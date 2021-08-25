@@ -189,15 +189,13 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case SettingViewControllerSection.notification.rawValue:
             self.viewModel.countTabVerify = self.viewModel.countTabVerify + 1
-            if self.viewModel.countTabVerify == 5 {
-                if self.viewModel.isVerify == false {
-                    self.viewModel.isVerify = true
-                    UIView.animate(withDuration: 0.4, animations: { [weak self] in
-                        guard let self = self else { return }
-                        self.tableView.reloadSections(IndexSet(integer: 1), with: UITableView.RowAnimation.fade)
-                        self.tableView.reloadSections(IndexSet(integer: 2), with: UITableView.RowAnimation.automatic)
-                    })
-                }
+            if self.viewModel.countTabVerify == 5 && !self.viewModel.isVerify {
+                self.viewModel.isVerify = true
+                UIView.animate(withDuration: 0.4, animations: { [weak self] in
+                    guard let self = self else { return }
+                    self.tableView.reloadSections(IndexSet(integer: 1), with: UITableView.RowAnimation.fade)
+                    self.tableView.reloadSections(IndexSet(integer: 2), with: UITableView.RowAnimation.automatic)
+                })
             }
         case SettingViewControllerSection.verify.rawValue:
             self.viewModel.countTabVerify = 0
