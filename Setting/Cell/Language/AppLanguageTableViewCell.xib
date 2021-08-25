@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="224" id="KGk-i7-Jjw" customClass="AppLanguageTableViewCell" customModule="Setting" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="224"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="224"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="App Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8A-vk-Bn7">
+                        <rect key="frame" x="20" y="30" width="192.5" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="umb-f9-zpA">
+                        <rect key="frame" x="285" y="32.5" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="cVu-K1-Kqf"/>
+                            <constraint firstAttribute="width" constant="15" id="lav-dg-aN4"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="English" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="az1-ds-hDZ">
+                        <rect key="frame" x="222.5" y="30" width="52.5" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Screen language displayed in the application" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mil-vh-e73">
+                        <rect key="frame" x="20" y="65" width="280" height="33.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Preferred Language" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czK-IF-5EX">
+                        <rect key="frame" x="20" y="118.5" width="280" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language you used in everyday life Castcle will display content that matches your preferred language" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6hf-BG-vaU">
+                        <rect key="frame" x="20" y="153.5" width="280" height="50.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2I-Qv-8QQ">
+                        <rect key="frame" x="20" y="10" width="280" height="55"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="55" id="Esh-WV-fyj"/>
+                        </constraints>
+                        <connections>
+                            <action selector="selectLanguageAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ilk-yv-sIe"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="czK-IF-5EX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="3B0-Oa-5DT"/>
+                    <constraint firstAttribute="bottom" secondItem="6hf-BG-vaU" secondAttribute="bottom" constant="20" id="3Qg-lQ-qJG"/>
+                    <constraint firstAttribute="trailing" secondItem="czK-IF-5EX" secondAttribute="trailing" constant="20" id="5cX-y8-8UK"/>
+                    <constraint firstAttribute="trailing" secondItem="r2I-Qv-8QQ" secondAttribute="trailing" constant="20" id="AZj-bi-Vcd"/>
+                    <constraint firstItem="az1-ds-hDZ" firstAttribute="centerY" secondItem="q8A-vk-Bn7" secondAttribute="centerY" id="ChV-hb-qG4"/>
+                    <constraint firstItem="q8A-vk-Bn7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="EN5-U5-lfH"/>
+                    <constraint firstAttribute="trailing" secondItem="mil-vh-e73" secondAttribute="trailing" constant="20" id="FnZ-gp-FHF"/>
+                    <constraint firstItem="6hf-BG-vaU" firstAttribute="top" secondItem="czK-IF-5EX" secondAttribute="bottom" constant="15" id="GLR-Dz-3dK"/>
+                    <constraint firstItem="mil-vh-e73" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="P8w-2e-Mwc"/>
+                    <constraint firstItem="az1-ds-hDZ" firstAttribute="leading" secondItem="q8A-vk-Bn7" secondAttribute="trailing" constant="10" id="PN9-km-dVw"/>
+                    <constraint firstItem="mil-vh-e73" firstAttribute="top" secondItem="q8A-vk-Bn7" secondAttribute="bottom" constant="15" id="RnG-cQ-0T4"/>
+                    <constraint firstItem="r2I-Qv-8QQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="S8f-9V-Af8"/>
+                    <constraint firstItem="q8A-vk-Bn7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Smu-aO-wok"/>
+                    <constraint firstItem="umb-f9-zpA" firstAttribute="centerY" secondItem="az1-ds-hDZ" secondAttribute="centerY" id="Wyf-81-PiN"/>
+                    <constraint firstItem="umb-f9-zpA" firstAttribute="leading" secondItem="az1-ds-hDZ" secondAttribute="trailing" constant="10" id="Zgb-qv-dwC"/>
+                    <constraint firstItem="r2I-Qv-8QQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="azW-wK-iY3"/>
+                    <constraint firstItem="czK-IF-5EX" firstAttribute="top" secondItem="mil-vh-e73" secondAttribute="bottom" constant="20" id="jub-Mw-pMB"/>
+                    <constraint firstAttribute="trailing" secondItem="umb-f9-zpA" secondAttribute="trailing" constant="20" id="qYt-JE-MfP"/>
+                    <constraint firstItem="6hf-BG-vaU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="rXh-5Y-uS9"/>
+                    <constraint firstAttribute="trailing" secondItem="6hf-BG-vaU" secondAttribute="trailing" constant="20" id="vQT-dw-EeM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="appLanguageDescLabel" destination="mil-vh-e73" id="43a-Y8-tT8"/>
+                <outlet property="appLanguageLabel" destination="q8A-vk-Bn7" id="k3U-Ja-N2L"/>
+                <outlet property="languageLabel" destination="az1-ds-hDZ" id="2r8-aa-mpG"/>
+                <outlet property="nextImage" destination="umb-f9-zpA" id="i3h-Zl-4j1"/>
+                <outlet property="preferedLanguageDescLabel" destination="6hf-BG-vaU" id="U9N-F1-k9w"/>
+                <outlet property="preferedLanguageLabel" destination="czK-IF-5EX" id="WTc-oF-OjB"/>
+            </connections>
+            <point key="canvasLocation" x="102.89855072463769" y="158.70535714285714"/>
+        </tableViewCell>
+    </objects>
+</document>

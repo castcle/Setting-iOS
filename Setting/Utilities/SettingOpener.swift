@@ -30,6 +30,8 @@ import Core
 
 public enum SettingScene {
     case setting
+    case language
+    case selectLanguage(SelectLanguageViewModel)
 }
 
 public struct SettingOpener {
@@ -39,6 +41,15 @@ public struct SettingOpener {
             let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
             let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.setting)
             return vc
+        case .language:
+            let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
+            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.language)
+            return vc
+        case .selectLanguage(let viewModel):
+            let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
+            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.selectLanguage) as? SelectLanguageViewController
+            vc?.viewModel = viewModel
+            return vc ?? SelectLanguageViewController()
         }
     }
 }

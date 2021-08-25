@@ -34,7 +34,8 @@ class PageListTableViewCell: UITableViewCell {
     @IBOutlet var newPageButton: UIButton!
     @IBOutlet var titleLabel: UILabel!
     
-    var page: [Page] = [Page(name: UserState.shared.name, avatar: UserState.shared.avatar)] + UserState.shared.page
+    var page: [Page] = []
+    var isVerify: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -52,6 +53,18 @@ class PageListTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    func configCell(isVerify: Bool) {
+        self.isVerify = isVerify
+        
+        if isVerify {
+            self.page = [Page(name: UserState.shared.name, avatar: UserState.shared.avatar)] + UserState.shared.page + [Page(name: "NEW", avatar: "")]
+        } else {
+            self.page = [Page(name: UserState.shared.name, avatar: UserState.shared.avatar)]
+        }
+        
+        self.collectionView.reloadData()
+    }
 }
 
 extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -61,9 +74,7 @@ extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
-        let page = self.page[indexPath.row]
-        let url = URL(string: page.avatar)
-        cell?.pageImage.kf.setImage(with: url)
+        cell?.configCell(isVerify: self.isVerify, page: self.page[indexPath.row])
         return cell ?? UICollectionViewCell()
     }
 }

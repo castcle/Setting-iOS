@@ -39,6 +39,66 @@
             </objects>
             <point key="canvasLocation" x="103.125" y="70.774647887323951"/>
         </scene>
+        <!--Language View Controller-->
+        <scene sceneID="SwC-YE-NU8">
+            <objects>
+                <viewController storyboardIdentifier="LanguageViewController" hidesBottomBarWhenPushed="YES" id="1s2-98-9hd" customClass="LanguageViewController" customModule="Setting" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HvZ-MB-rwk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QMN-yT-PXW">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6RH-De-Drd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="QMN-yT-PXW" firstAttribute="trailing" secondItem="6RH-De-Drd" secondAttribute="trailing" id="CXo-Eq-AwY"/>
+                            <constraint firstItem="QMN-yT-PXW" firstAttribute="leading" secondItem="6RH-De-Drd" secondAttribute="leading" id="R66-bn-VP7"/>
+                            <constraint firstItem="QMN-yT-PXW" firstAttribute="top" secondItem="6RH-De-Drd" secondAttribute="top" id="gQa-ve-N8H"/>
+                            <constraint firstAttribute="bottom" secondItem="QMN-yT-PXW" secondAttribute="bottom" id="lzB-Xw-ZIh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="QMN-yT-PXW" id="sch-Ud-By9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pOl-kn-hNL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="795" y="71"/>
+        </scene>
+        <!--Select Language View Controller-->
+        <scene sceneID="PhT-yz-jSr">
+            <objects>
+                <viewController storyboardIdentifier="SelectLanguageViewController" id="EI9-EO-RcV" customClass="SelectLanguageViewController" customModule="Setting" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CJU-S5-YdB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VCB-OE-QPC">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bW2-8A-dQc"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="VCB-OE-QPC" secondAttribute="bottom" id="56Q-r0-V6l"/>
+                            <constraint firstItem="VCB-OE-QPC" firstAttribute="top" secondItem="bW2-8A-dQc" secondAttribute="top" id="KMc-5Z-25x"/>
+                            <constraint firstItem="VCB-OE-QPC" firstAttribute="leading" secondItem="bW2-8A-dQc" secondAttribute="leading" id="Maw-gZ-93d"/>
+                            <constraint firstItem="bW2-8A-dQc" firstAttribute="trailing" secondItem="VCB-OE-QPC" secondAttribute="trailing" id="wpu-pT-ghb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="VCB-OE-QPC" id="Mu8-xa-yOs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tBM-Tt-rVh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1472" y="71"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">

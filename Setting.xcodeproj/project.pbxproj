@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		54CA255B2EF0297EA5B4505F /* Pods_Setting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33296E29F07D0AFE9916B159 /* Pods_Setting.framework */; };
+		B743385B26D6453D004BBC05 /* PreferredLanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743385926D6453D004BBC05 /* PreferredLanguageTableViewCell.swift */; };
+		B743385C26D6453D004BBC05 /* PreferredLanguageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B743385A26D6453D004BBC05 /* PreferredLanguageTableViewCell.xib */; };
 		B7C252B426D3915400ACBB84 /* Setting.h in Headers */ = {isa = PBXBuildFile; fileRef = B7C252B226D3915400ACBB84 /* Setting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B7C252C326D3944E00ACBB84 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7C252C226D3944E00ACBB84 /* Setting.storyboard */; };
 		B7C252C526D3946E00ACBB84 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C252C426D3946E00ACBB84 /* SettingViewController.swift */; };
@@ -32,6 +34,20 @@
 		B7C252F026D3D2D000ACBB84 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C252EE26D3D2D000ACBB84 /* SettingTableViewCell.xib */; };
 		B7C252F326D3E15800ACBB84 /* OtherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C252F126D3E15800ACBB84 /* OtherTableViewCell.swift */; };
 		B7C252F426D3E15800ACBB84 /* OtherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C252F226D3E15800ACBB84 /* OtherTableViewCell.xib */; };
+		B7C252F926D50A5C00ACBB84 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C252F826D50A5C00ACBB84 /* LanguageViewController.swift */; };
+		B7C252FC26D5308000ACBB84 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C252FB26D5308000ACBB84 /* Localizable.swift */; };
+		B7C252FF26D530F800ACBB84 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7C2530126D530F800ACBB84 /* Localizable.strings */; };
+		B7C2530626D5365D00ACBB84 /* AppLanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2530426D5365D00ACBB84 /* AppLanguageTableViewCell.swift */; };
+		B7C2530726D5365D00ACBB84 /* AppLanguageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C2530526D5365D00ACBB84 /* AppLanguageTableViewCell.xib */; };
+		B7C2530A26D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2530826D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.swift */; };
+		B7C2530B26D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C2530926D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.xib */; };
+		B7C2531026D5449B00ACBB84 /* LanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2530F26D5449B00ACBB84 /* LanguageViewModel.swift */; };
+		B7C2531226D54A3E00ACBB84 /* SelectLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2531126D54A3E00ACBB84 /* SelectLanguageViewController.swift */; };
+		B7C2531426D54AA300ACBB84 /* SelectLanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2531326D54AA300ACBB84 /* SelectLanguageViewModel.swift */; };
+		B7C2531726D54E9B00ACBB84 /* SelectLanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2531526D54E9B00ACBB84 /* SelectLanguageTableViewCell.swift */; };
+		B7C2531826D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C2531626D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib */; };
+		B7C2531A26D551DE00ACBB84 /* Authen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7C2531926D551DE00ACBB84 /* Authen.framework */; };
+		B7C2531B26D551DE00ACBB84 /* Authen.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B7C2531926D551DE00ACBB84 /* Authen.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +58,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				B7C252D126D395AB00ACBB84 /* Component.framework in Embed Frameworks */,
+				B7C2531B26D551DE00ACBB84 /* Authen.framework in Embed Frameworks */,
 				B7C252CD26D395A500ACBB84 /* Core.framework in Embed Frameworks */,
 				B7C252D426D395B400ACBB84 /* Networking.framework in Embed Frameworks */,
 			);
@@ -54,6 +71,8 @@
 		33296E29F07D0AFE9916B159 /* Pods_Setting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Setting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E51CBABC07E88940856F42 /* Pods-Setting.debug (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.debug (development).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.debug (development).xcconfig"; sourceTree = "<group>"; };
 		924112A5A38EDF92FF5817E9 /* Pods-Setting.debug (production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.debug (production).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.debug (production).xcconfig"; sourceTree = "<group>"; };
+		B743385926D6453D004BBC05 /* PreferredLanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferredLanguageTableViewCell.swift; sourceTree = "<group>"; };
+		B743385A26D6453D004BBC05 /* PreferredLanguageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferredLanguageTableViewCell.xib; sourceTree = "<group>"; };
 		B7C252AF26D3915400ACBB84 /* Setting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Setting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C252B226D3915400ACBB84 /* Setting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
 		B7C252B326D3915400ACBB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,6 +96,20 @@
 		B7C252EE26D3D2D000ACBB84 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		B7C252F126D3E15800ACBB84 /* OtherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherTableViewCell.swift; sourceTree = "<group>"; };
 		B7C252F226D3E15800ACBB84 /* OtherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OtherTableViewCell.xib; sourceTree = "<group>"; };
+		B7C252F826D50A5C00ACBB84 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
+		B7C252FB26D5308000ACBB84 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		B7C2530026D530F800ACBB84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B7C2530226D5314200ACBB84 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B7C2530426D5365D00ACBB84 /* AppLanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguageTableViewCell.swift; sourceTree = "<group>"; };
+		B7C2530526D5365D00ACBB84 /* AppLanguageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppLanguageTableViewCell.xib; sourceTree = "<group>"; };
+		B7C2530826D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPreferredLanguageTableViewCell.swift; sourceTree = "<group>"; };
+		B7C2530926D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddPreferredLanguageTableViewCell.xib; sourceTree = "<group>"; };
+		B7C2530F26D5449B00ACBB84 /* LanguageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewModel.swift; sourceTree = "<group>"; };
+		B7C2531126D54A3E00ACBB84 /* SelectLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguageViewController.swift; sourceTree = "<group>"; };
+		B7C2531326D54AA300ACBB84 /* SelectLanguageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguageViewModel.swift; sourceTree = "<group>"; };
+		B7C2531526D54E9B00ACBB84 /* SelectLanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguageTableViewCell.swift; sourceTree = "<group>"; };
+		B7C2531626D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectLanguageTableViewCell.xib; sourceTree = "<group>"; };
+		B7C2531926D551DE00ACBB84 /* Authen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC4AC43122933957DEFA40F /* Pods-Setting.debug (staging).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.debug (staging).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.debug (staging).xcconfig"; sourceTree = "<group>"; };
 		D4FC7016B0A506343C03F43A /* Pods-Setting.release (staging).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.release (staging).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.release (staging).xcconfig"; sourceTree = "<group>"; };
 		EB4AF3FA989FF6A4FEDDBE20 /* Pods-Setting.release (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.release (development).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.release (development).xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7C2531A26D551DE00ACBB84 /* Authen.framework in Frameworks */,
 				B7C252D326D395B400ACBB84 /* Networking.framework in Frameworks */,
 				B7C252D026D395AB00ACBB84 /* Component.framework in Frameworks */,
 				54CA255B2EF0297EA5B4505F /* Pods_Setting.framework in Frameworks */,
@@ -110,6 +144,21 @@
 			);
 			name = Pods;
 			path = ../Pods;
+			sourceTree = "<group>";
+		};
+		B743385D26D64AC6004BBC05 /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				B7C2530426D5365D00ACBB84 /* AppLanguageTableViewCell.swift */,
+				B7C2530526D5365D00ACBB84 /* AppLanguageTableViewCell.xib */,
+				B743385926D6453D004BBC05 /* PreferredLanguageTableViewCell.swift */,
+				B743385A26D6453D004BBC05 /* PreferredLanguageTableViewCell.xib */,
+				B7C2530826D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.swift */,
+				B7C2530926D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.xib */,
+				B7C2531526D54E9B00ACBB84 /* SelectLanguageTableViewCell.swift */,
+				B7C2531626D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib */,
+			);
+			path = Language;
 			sourceTree = "<group>";
 		};
 		B7C252A526D3915400ACBB84 = {
@@ -136,20 +185,10 @@
 				B7C252B226D3915400ACBB84 /* Setting.h */,
 				B7C252B326D3915400ACBB84 /* Info.plist */,
 				B7C252C226D3944E00ACBB84 /* Setting.storyboard */,
-				B7C252C426D3946E00ACBB84 /* SettingViewController.swift */,
-				B7C252EB26D3C46B00ACBB84 /* SettingViewModel.swift */,
-				B7C252DB26D3AB0D00ACBB84 /* NotificationTableViewCell.swift */,
-				B7C252DC26D3AB0D00ACBB84 /* NotificationTableViewCell.xib */,
-				B7C252DF26D3B92E00ACBB84 /* VerifyTableViewCell.swift */,
-				B7C252E026D3B92F00ACBB84 /* VerifyTableViewCell.xib */,
-				B7C252E326D3BC7C00ACBB84 /* PageListTableViewCell.swift */,
-				B7C252E426D3BC7C00ACBB84 /* PageListTableViewCell.xib */,
-				B7C252E726D3BDBC00ACBB84 /* PageCollectionViewCell.swift */,
-				B7C252E826D3BDBC00ACBB84 /* PageCollectionViewCell.xib */,
-				B7C252ED26D3D2D000ACBB84 /* SettingTableViewCell.swift */,
-				B7C252EE26D3D2D000ACBB84 /* SettingTableViewCell.xib */,
-				B7C252F126D3E15800ACBB84 /* OtherTableViewCell.swift */,
-				B7C252F226D3E15800ACBB84 /* OtherTableViewCell.xib */,
+				B7C252FA26D5302500ACBB84 /* Localizable */,
+				B7C252F726D50A2100ACBB84 /* ViewModel */,
+				B7C252F626D50A1300ACBB84 /* ViewController */,
+				B7C252F526D50A0500ACBB84 /* Cell */,
 				B7C252C626D394D800ACBB84 /* Utilities */,
 			);
 			path = Setting;
@@ -164,9 +203,67 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		B7C252F526D50A0500ACBB84 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B743385D26D64AC6004BBC05 /* Language */,
+				B7C2530326D535FE00ACBB84 /* Setting */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B7C252F626D50A1300ACBB84 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B7C252C426D3946E00ACBB84 /* SettingViewController.swift */,
+				B7C252F826D50A5C00ACBB84 /* LanguageViewController.swift */,
+				B7C2531126D54A3E00ACBB84 /* SelectLanguageViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B7C252F726D50A2100ACBB84 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B7C252EB26D3C46B00ACBB84 /* SettingViewModel.swift */,
+				B7C2530F26D5449B00ACBB84 /* LanguageViewModel.swift */,
+				B7C2531326D54AA300ACBB84 /* SelectLanguageViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B7C252FA26D5302500ACBB84 /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				B7C252FB26D5308000ACBB84 /* Localizable.swift */,
+				B7C2530126D530F800ACBB84 /* Localizable.strings */,
+			);
+			path = Localizable;
+			sourceTree = "<group>";
+		};
+		B7C2530326D535FE00ACBB84 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				B7C252DB26D3AB0D00ACBB84 /* NotificationTableViewCell.swift */,
+				B7C252DC26D3AB0D00ACBB84 /* NotificationTableViewCell.xib */,
+				B7C252DF26D3B92E00ACBB84 /* VerifyTableViewCell.swift */,
+				B7C252E026D3B92F00ACBB84 /* VerifyTableViewCell.xib */,
+				B7C252E326D3BC7C00ACBB84 /* PageListTableViewCell.swift */,
+				B7C252E426D3BC7C00ACBB84 /* PageListTableViewCell.xib */,
+				B7C252E726D3BDBC00ACBB84 /* PageCollectionViewCell.swift */,
+				B7C252E826D3BDBC00ACBB84 /* PageCollectionViewCell.xib */,
+				B7C252ED26D3D2D000ACBB84 /* SettingTableViewCell.swift */,
+				B7C252EE26D3D2D000ACBB84 /* SettingTableViewCell.xib */,
+				B7C252F126D3E15800ACBB84 /* OtherTableViewCell.swift */,
+				B7C252F226D3E15800ACBB84 /* OtherTableViewCell.xib */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		EA37D9F11EF0E5FE9778E44A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B7C2531926D551DE00ACBB84 /* Authen.framework */,
 				B7C252D226D395B400ACBB84 /* Networking.framework */,
 				B7C252CF26D395AB00ACBB84 /* Component.framework */,
 				B7C252CB26D395A500ACBB84 /* Core.framework */,
@@ -230,6 +327,7 @@
 			knownRegions = (
 				en,
 				Base,
+				th,
 			);
 			mainGroup = B7C252A526D3915400ACBB84;
 			productRefGroup = B7C252B026D3915400ACBB84 /* Products */;
@@ -246,11 +344,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7C2530726D5365D00ACBB84 /* AppLanguageTableViewCell.xib in Resources */,
+				B743385C26D6453D004BBC05 /* PreferredLanguageTableViewCell.xib in Resources */,
 				B7C252EA26D3BDBC00ACBB84 /* PageCollectionViewCell.xib in Resources */,
 				B7C252DE26D3AB0D00ACBB84 /* NotificationTableViewCell.xib in Resources */,
+				B7C2530B26D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.xib in Resources */,
 				B7C252E226D3B92F00ACBB84 /* VerifyTableViewCell.xib in Resources */,
 				B7C252E626D3BC7C00ACBB84 /* PageListTableViewCell.xib in Resources */,
 				B7C252C326D3944E00ACBB84 /* Setting.storyboard in Resources */,
+				B7C2531826D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib in Resources */,
+				B7C252FF26D530F800ACBB84 /* Localizable.strings in Resources */,
 				B7C252F026D3D2D000ACBB84 /* SettingTableViewCell.xib in Resources */,
 				B7C252F426D3E15800ACBB84 /* OtherTableViewCell.xib in Resources */,
 			);
@@ -288,26 +391,48 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7C2531226D54A3E00ACBB84 /* SelectLanguageViewController.swift in Sources */,
+				B7C2530626D5365D00ACBB84 /* AppLanguageTableViewCell.swift in Sources */,
 				B7C252DD26D3AB0D00ACBB84 /* NotificationTableViewCell.swift in Sources */,
 				B7C252E926D3BDBC00ACBB84 /* PageCollectionViewCell.swift in Sources */,
 				B7C252F326D3E15800ACBB84 /* OtherTableViewCell.swift in Sources */,
+				B7C2531026D5449B00ACBB84 /* LanguageViewModel.swift in Sources */,
 				B7C252EF26D3D2D000ACBB84 /* SettingTableViewCell.swift in Sources */,
+				B7C2530A26D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.swift in Sources */,
 				B7C252C826D394F000ACBB84 /* SettingNibVars.swift in Sources */,
 				B7C252EC26D3C46B00ACBB84 /* SettingViewModel.swift in Sources */,
 				B7C252E526D3BC7C00ACBB84 /* PageListTableViewCell.swift in Sources */,
+				B7C2531426D54AA300ACBB84 /* SelectLanguageViewModel.swift in Sources */,
 				B7C252CA26D3950400ACBB84 /* SettingOpener.swift in Sources */,
+				B743385B26D6453D004BBC05 /* PreferredLanguageTableViewCell.swift in Sources */,
+				B7C252F926D50A5C00ACBB84 /* LanguageViewController.swift in Sources */,
 				B7C252C526D3946E00ACBB84 /* SettingViewController.swift in Sources */,
+				B7C252FC26D5308000ACBB84 /* Localizable.swift in Sources */,
 				B7C252E126D3B92F00ACBB84 /* VerifyTableViewCell.swift in Sources */,
+				B7C2531726D54E9B00ACBB84 /* SelectLanguageTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B7C2530126D530F800ACBB84 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7C2530026D530F800ACBB84 /* en */,
+				B7C2530226D5314200ACBB84 /* th */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B7C252B526D3915400ACBB84 /* Debug (Production) */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -373,6 +498,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -483,6 +609,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -574,6 +701,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -665,6 +793,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -749,6 +878,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

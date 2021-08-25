@@ -19,22 +19,26 @@
 //  Thailand 10160, or visit www.castcle.com if you need additional information
 //  or have any questions.
 //
-//  PageCollectionViewCell.swift
+//  SelectLanguageViewModel.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 23/8/2564 BE.
+//  Created by Tanakorn Phoochaliaw on 24/8/2564 BE.
 //
 
-import UIKit
-import Core
+import Networking
 
-class PageCollectionViewCell: UICollectionViewCell {
-
-    @IBOutlet var pageImage: UIImageView!
+public final class SelectLanguageViewModel {
+    var preferredLanguage: [Language] = []
+    var isPreferredLanguage: Bool = false
+    var selectLanguage: Language = Language()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.pageImage.circle(color: UIColor.Asset.denger)
+    var displayPreferredLanguage: [Language] = []
+    
+    var language: [Language] = Language().setMock()
+    
+    public init(preferredLanguage: [Language] = [], isPreferredLanguage: Bool = false) {
+        self.preferredLanguage = preferredLanguage
+        self.displayPreferredLanguage = preferredLanguage.filter { $0.isSelected == false }
+        self.isPreferredLanguage = isPreferredLanguage
     }
-
 }

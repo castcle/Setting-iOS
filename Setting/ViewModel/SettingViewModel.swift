@@ -26,12 +26,16 @@
 //
 
 import UIKit
+import Core
+import Component
+import Authen
 
 public enum SettingSection: String {
     case profile = "Profile"
     case privacy = "Privacy"
     case languang = "Languang"
     case aboutUs = "About Us"
+    case verify
     
     public var image: UIImage {
         switch self {
@@ -43,6 +47,8 @@ public enum SettingSection: String {
             return UIImage.init(icon: .castcle(.language), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
         case .aboutUs:
             return UIImage.init(icon: .castcle(.aboutUs), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
+        default:
+            return UIImage()
         }
     }
 }
@@ -53,4 +59,20 @@ public final class SettingViewModel {
     let accountSection: [SettingSection] = [.profile, .privacy]
     let languangSection: [SettingSection] = [.languang]
     let aboutSection: [SettingSection] = [.aboutUs]
+    
+    // MARK: - For Test
+    var countTabVerify: Int = 0
+    
+    func openSettingSection(settingSection: SettingSection) {
+        switch settingSection {
+        case .privacy:
+            Utility.currentViewController().navigationController?.pushViewController(ComponentOpener.open(.internalWebView(URL(string: Environment.privacyPolicy)!)), animated: true)
+        case .verify:
+            Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.resendEmail(ResendEmailViewModel(title: "Setting"))), animated: true)
+        case .languang:
+            Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.language), animated: true)
+        default:
+            return
+        }
+    }
 }

@@ -29,6 +29,8 @@ public struct SettingNibVars {
     // MARK: - View Controller
     public struct ViewController {
         public static let setting = "SettingViewController"
+        public static let language = "LanguageViewController"
+        public static let selectLanguage = "SelectLanguageViewController"
     }
     
     // MARK: - View
@@ -43,6 +45,10 @@ public struct SettingNibVars {
         public static let pageList = "PageListTableViewCell"
         public static let setting = "SettingTableViewCell"
         public static let other = "OtherTableViewCell"
+        public static let appLanguage = "AppLanguageTableViewCell"
+        public static let preferred = "PreferredLanguageTableViewCell"
+        public static let addPreferred = "AddPreferredLanguageTableViewCell"
+        public static let selectLanguage = "SelectLanguageTableViewCell"
     }
     
     // MARK: - CollectionViewCell

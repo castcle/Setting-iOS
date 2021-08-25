@@ -20,17 +20,27 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Acw-gM-42t">
                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                     </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vkL-yY-VAc">
+                        <rect key="frame" x="20" y="20" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="ndT-Og-QZL"/>
+                            <constraint firstAttribute="height" constant="20" id="qRE-9x-Rrt"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstItem="vkL-yY-VAc" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="5Bi-nt-ZLK"/>
                 <constraint firstAttribute="trailing" secondItem="Acw-gM-42t" secondAttribute="trailing" id="9TK-gY-VKL"/>
                 <constraint firstAttribute="bottom" secondItem="Acw-gM-42t" secondAttribute="bottom" id="Slf-aG-i5N"/>
                 <constraint firstItem="Acw-gM-42t" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="eth-gl-aMh"/>
+                <constraint firstItem="vkL-yY-VAc" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="iid-Vf-aQK"/>
                 <constraint firstItem="Acw-gM-42t" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="tkF-n8-wAP"/>
             </constraints>
             <size key="customSize" width="60" height="60"/>
             <connections>
+                <outlet property="addImage" destination="vkL-yY-VAc" id="xGJ-JD-fP7"/>
                 <outlet property="pageImage" destination="Acw-gM-42t" id="fRy-Dx-OqR"/>
             </connections>
             <point key="canvasLocation" x="110.14492753623189" y="105.13392857142857"/>
