@@ -76,10 +76,9 @@ extension LanguageViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case LanguageViewControllerSection.preferred.rawValue:
+        if section == LanguageViewControllerSection.preferred.rawValue {
             return self.viewModel.preferredLanguage.filter { $0.isSelected == true }.count
-        default:
+        } else {
             return 1
         }
     }
@@ -107,12 +106,11 @@ extension LanguageViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.section {
-        case LanguageViewControllerSection.add.rawValue:
+        if indexPath.section == LanguageViewControllerSection.add.rawValue {
             let vc = SettingOpener.open(.selectLanguage(SelectLanguageViewModel(preferredLanguage: self.viewModel.preferredLanguage, isPreferredLanguage: true))) as? SelectLanguageViewController
             vc?.delegate = self
             Utility.currentViewController().navigationController?.pushViewController(vc ?? SelectLanguageViewController(), animated: true)
-        default:
+        } else {
             return
         }
     }
