@@ -110,8 +110,6 @@ extension LanguageViewController: UITableViewDelegate, UITableViewDataSource {
             let vc = SettingOpener.open(.selectLanguage(SelectLanguageViewModel(preferredLanguage: self.viewModel.preferredLanguage, isPreferredLanguage: true))) as? SelectLanguageViewController
             vc?.delegate = self
             Utility.currentViewController().navigationController?.pushViewController(vc ?? SelectLanguageViewController(), animated: true)
-        } else {
-            return
         }
     }
 }

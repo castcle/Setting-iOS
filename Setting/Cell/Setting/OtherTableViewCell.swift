@@ -85,5 +85,6 @@ class OtherTableViewCell: UITableViewCell {
     }
     
     @IBAction func signOutAction(_ sender: Any) {
+        // TO DO : Sign out function
     }
 }
