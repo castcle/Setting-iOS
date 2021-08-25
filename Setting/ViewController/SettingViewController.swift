@@ -206,7 +206,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case SettingViewControllerSection.language.rawValue:
             self.viewModel.countTabVerify = 0
             self.viewModel.openSettingSection(settingSection: self.viewModel.languangSection[indexPath.row])
-        case SettingViewControllerSection.account.rawValue:
+        case SettingViewControllerSection.about.rawValue:
             self.viewModel.countTabVerify = 0
             self.viewModel.openSettingSection(settingSection: self.viewModel.aboutSection[indexPath.row])
         default:
