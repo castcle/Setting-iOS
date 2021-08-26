@@ -26,6 +26,8 @@
 //
 
 import UIKit
+import Core
+import Component
 import ActiveLabel
 import Defaults
 
@@ -41,28 +43,28 @@ class OtherTableViewCell: UITableViewCell {
                 label.textColor = UIColor.Asset.gray
                 
                 let joinUsType = ActiveType.custom(pattern: "Join us")
-                let manifestoType = ActiveType.custom(pattern: "Manifesto")
+                let docsType = ActiveType.custom(pattern: "Docs")
                 let whitepaperType = ActiveType.custom(pattern: "Whitepaper")
                 
-                label.enabledTypes = [joinUsType, manifestoType, whitepaperType]
+                label.enabledTypes = [joinUsType, docsType, whitepaperType]
                 
                 label.customColor[joinUsType] = UIColor.Asset.lightBlue
                 label.customSelectedColor[joinUsType] = UIColor.Asset.lightBlue
-                label.customColor[manifestoType] = UIColor.Asset.lightBlue
-                label.customSelectedColor[manifestoType] = UIColor.Asset.lightBlue
+                label.customColor[docsType] = UIColor.Asset.lightBlue
+                label.customSelectedColor[docsType] = UIColor.Asset.lightBlue
                 label.customColor[whitepaperType] = UIColor.Asset.lightBlue
                 label.customSelectedColor[whitepaperType] = UIColor.Asset.lightBlue
                 
                 label.handleCustomTap(for: joinUsType) { element in
-//                    self.openWebView(urlString: "https://ethereum.org/en/terms-of-use/")
+                    self.openWebView(urlString: Environment.joinUs)
                 }
                 
-                label.handleCustomTap(for: manifestoType) { element in
-//                    self.openWebView(urlString: "https://ethereum.org/en/privacy-policy/")
+                label.handleCustomTap(for: docsType) { element in
+                    self.openWebView(urlString: Environment.docs)
                 }
                 
                 label.handleCustomTap(for: whitepaperType) { element in
-//                    self.openWebView(urlString: "https://ethereum.org/en/privacy-policy/")
+                    self.openWebView(urlString: Environment.whitepaper)
                 }
             }
         }
@@ -86,5 +88,9 @@ class OtherTableViewCell: UITableViewCell {
     
     @IBAction func signOutAction(_ sender: Any) {
         // TO DO : Sign out function
+    }
+    
+    private func openWebView(urlString: String) {
+        Utility.currentViewController().navigationController?.pushViewController(ComponentOpener.open(.internalWebView(URL(string: urlString)!)), animated: true)
     }
 }
