@@ -32,6 +32,10 @@ public enum SettingScene {
     case setting
     case language
     case selectLanguage(SelectLanguageViewModel)
+    case accountSetting
+    case deleteAccount
+    case deleteDetail
+    case deleteSuccess
 }
 
 public struct SettingOpener {
@@ -50,6 +54,22 @@ public struct SettingOpener {
             let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.selectLanguage) as? SelectLanguageViewController
             vc?.viewModel = viewModel
             return vc ?? SelectLanguageViewController()
+        case .accountSetting:
+            let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
+            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.accountSetting)
+            return vc
+        case .deleteAccount:
+            let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
+            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.deleteAccount)
+            return vc
+        case .deleteDetail:
+            let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
+            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.deleteDetail)
+            return vc
+        case .deleteSuccess:
+            let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
+            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.deleteSuccess)
+            return vc
         }
     }
 }

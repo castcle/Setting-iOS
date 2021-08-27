@@ -31,6 +31,10 @@ public struct SettingNibVars {
         public static let setting = "SettingViewController"
         public static let language = "LanguageViewController"
         public static let selectLanguage = "SelectLanguageViewController"
+        public static let accountSetting = "AccountSettingViewController"
+        public static let deleteAccount = "DeleteAccountViewController"
+        public static let deleteDetail = "DeleteAccountDetailViewController"
+        public static let deleteSuccess = "DeleteAccountSuccessViewController"
     }
     
     // MARK: - View
@@ -49,6 +53,10 @@ public struct SettingNibVars {
         public static let preferred = "PreferredLanguageTableViewCell"
         public static let addPreferred = "AddPreferredLanguageTableViewCell"
         public static let selectLanguage = "SelectLanguageTableViewCell"
+        public static let settingAccount = "SettingAccountTableViewCell"
+        public static let deleteHeader = "ConfirmDeleteHeaderTableViewCell"
+        public static let accountList = "AccountListTableViewCell"
+        public static let password = "DeleteAccountPasswordTableViewCell"
     }
     
     // MARK: - CollectionViewCell

@@ -65,14 +65,16 @@ public final class SettingViewModel {
     
     func openSettingSection(settingSection: SettingSection) {
         switch settingSection {
+        case .profile:
+            Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.accountSetting), animated: true)
         case .privacy:
             Utility.currentViewController().navigationController?.pushViewController(ComponentOpener.open(.internalWebView(URL(string: Environment.privacyPolicy)!)), animated: true)
         case .verify:
             Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.resendEmail(ResendEmailViewModel(title: "Setting"))), animated: true)
         case .languang:
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.language), animated: true)
-        default:
-            return
+        case .aboutUs:
+            Utility.currentViewController().navigationController?.pushViewController(ComponentOpener.open(.internalWebView(URL(string: Environment.aboutUs)!)), animated: true)
         }
     }
 }
