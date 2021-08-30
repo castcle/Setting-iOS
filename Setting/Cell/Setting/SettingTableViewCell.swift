@@ -36,7 +36,7 @@ class SettingTableViewCell: UITableViewCell {
     var settingSection: SettingSection? {
         didSet {
             guard let section = self.settingSection else { return }
-            self.titleLabel.text = section.rawValue
+            self.titleLabel.text = section.text
             self.iconImage.image = section.image
         }
     }

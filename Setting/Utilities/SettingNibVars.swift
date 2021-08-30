@@ -35,6 +35,9 @@ public struct SettingNibVars {
         public static let deleteAccount = "DeleteAccountViewController"
         public static let deleteDetail = "DeleteAccountDetailViewController"
         public static let deleteSuccess = "DeleteAccountSuccessViewController"
+        public static let oldPassword = "OldPasswordViewController"
+        public static let changePassword = "ChangePasswordViewController"
+        public static let changePasswordSuccess = "ChangePasswordSuccessViewController"
     }
     
     // MARK: - View
@@ -57,6 +60,8 @@ public struct SettingNibVars {
         public static let deleteHeader = "ConfirmDeleteHeaderTableViewCell"
         public static let accountList = "AccountListTableViewCell"
         public static let password = "DeleteAccountPasswordTableViewCell"
+        public static let oldPassword = "OldPasswordTableViewCell"
+        public static let changePassword = "ChangePasswordTableViewCell"
     }
     
     // MARK: - CollectionViewCell

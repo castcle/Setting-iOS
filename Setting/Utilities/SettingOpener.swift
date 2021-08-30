@@ -36,6 +36,9 @@ public enum SettingScene {
     case deleteAccount
     case deleteDetail
     case deleteSuccess
+    case oldPassword
+    case changePassword
+    case changePasswordSuccess
 }
 
 public struct SettingOpener {
@@ -69,6 +72,18 @@ public struct SettingOpener {
         case .deleteSuccess:
             let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
             let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.deleteSuccess)
+            return vc
+        case .oldPassword:
+            let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
+            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.oldPassword)
+            return vc
+        case .changePassword:
+            let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
+            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.changePassword)
+            return vc
+        case .changePasswordSuccess:
+            let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
+            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.changePasswordSuccess)
             return vc
         }
     }

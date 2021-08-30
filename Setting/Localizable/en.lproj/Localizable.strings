@@ -5,3 +5,23 @@
   Created by Tanakorn Phoochaliaw on 24/8/2564 BE.
   
 */
+
+// MARK: - Setting
+"setting_title"                     = "Setting";
+"setting_notification"              = "Notification";
+"setting_notification_new"          = "New notification";
+"setting_verify_email"              = "Verify e-mail";
+"setting_plase_verify_email"        = "Plase verify your e-mail";
+"setting_go_to"                     = "Go to";
+"setting_new_page"                  = "New Page";
+"setting_account_settings"          = "Account Settings";
+"setting_profile"                   = "Profile";
+"setting_privacy"                   = "Privacy";
+"setting_regional_and_language"     = "Regional & Language";
+"setting_language"                  = "Language";
+"setting_about"                     = "About Us";
+"setting_log_out"                   = "Log out";
+"setting_join_us"                   = "Join us";
+"setting_docs"                      = "Docs";
+"setting_whitepaper"                = "Whitepaper";
+"setting_version"                   = "Version";

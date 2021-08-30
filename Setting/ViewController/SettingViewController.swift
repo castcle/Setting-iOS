@@ -28,6 +28,7 @@
 import UIKit
 import Core
 import Component
+import Defaults
 
 class SettingViewController: UIViewController {
 
@@ -49,12 +50,17 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
-        self.setupNavBar()
         self.configureTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setupNavBar()
+        self.tableView.reloadData()
+    }
+    
     func setupNavBar() {
-        self.customNavigationBar(.primary, title: "Setting", leftBarButton: .back)
+        self.customNavigationBar(.primary, title: Localization.setting.title.text, leftBarButton: .back)
     }
     
     func configureTableView() {
@@ -114,9 +120,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch section {
         case SettingViewControllerSection.account.rawValue:
-            label.text = "Account Settings"
+            label.text = Localization.setting.accountSettings.text// "Account Settings"
         case SettingViewControllerSection.language.rawValue:
-            label.text = "Regional & Language"
+            label.text = Localization.setting.regionalAndLanguage.text //"Regional & Language"
         default:
             label.text = ""
         }
@@ -151,10 +157,12 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case SettingViewControllerSection.notification.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.notification, for: indexPath as IndexPath) as? NotificationTableViewCell
             cell?.backgroundColor = UIColor.clear
+            cell?.configCell()
             return cell ?? NotificationTableViewCell()
         case SettingViewControllerSection.verify.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.verify, for: indexPath as IndexPath) as? VerifyTableViewCell
             cell?.backgroundColor = UIColor.clear
+            cell?.configCell()
             return cell ?? VerifyTableViewCell()
         case SettingViewControllerSection.profile.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.pageList, for: indexPath as IndexPath) as? PageListTableViewCell
@@ -179,6 +187,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case SettingViewControllerSection.other.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.other, for: indexPath as IndexPath) as? OtherTableViewCell
             cell?.backgroundColor = UIColor.clear
+            cell?.configCell()
             return cell ?? OtherTableViewCell()
         default:
             return UITableViewCell()

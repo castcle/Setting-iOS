@@ -30,12 +30,27 @@ import Core
 import Component
 import Authen
 
-public enum SettingSection: String {
-    case profile = "Profile"
-    case privacy = "Privacy"
-    case languang = "Languang"
-    case aboutUs = "About Us"
+public enum SettingSection {
+    case profile
+    case privacy
+    case languang
+    case aboutUs
     case verify
+    
+    public var text: String {
+        switch self {
+        case .profile:
+            return Localization.setting.profile.text
+        case .privacy:
+            return Localization.setting.privacy.text
+        case .languang:
+            return Localization.setting.language.text
+        case .aboutUs:
+            return Localization.setting.about.text
+        default:
+            return ""
+        }
+    }
     
     public var image: UIImage {
         switch self {

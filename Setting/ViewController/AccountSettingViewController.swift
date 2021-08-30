@@ -47,7 +47,7 @@ class AccountSettingViewController: UIViewController {
     }
     
     func setupNavBar() {
-        self.customNavigationBar(.primary, title: "Profile", leftBarButton: .back)
+        self.customNavigationBar(.secondary, title: "Profile")
     }
     
     func configureTableView() {
@@ -112,11 +112,9 @@ extension AccountSettingViewController: UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        
-        switch section {
-        case AccountSettingViewControllerSection.setting.rawValue:
+        if section == AccountSettingViewControllerSection.setting.rawValue {
             return (self.viewModel.accountSection.count > 0 ? 1 : 0)
-        default:
+        } else {
             return 0
         }
     }

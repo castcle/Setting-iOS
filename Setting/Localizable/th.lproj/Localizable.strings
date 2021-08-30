@@ -5,3 +5,23 @@
   Created by Tanakorn Phoochaliaw on 24/8/2564 BE.
   
 */
+
+// MARK: - Setting
+"setting_title"                     = "การตั้งค่า";
+"setting_notification"              = "การแจ้งเตือน";
+"setting_notification_new"          = "การแจ้งเตือนใหม่";
+"setting_verify_email"              = "ยืนยันอีเมล";
+"setting_plase_verify_email"        = "กรุณายืนยันอีเมลของคุณ";
+"setting_go_to"                     = "ไปยัง";
+"setting_new_page"                  = "สร้างเพจใหม่";
+"setting_account_settings"          = "ตั้งค่าข้อมูลบัญชี";
+"setting_profile"                   = "บัญชี";
+"setting_privacy"                   = "ความเป็นส่วนตัว";
+"setting_regional_and_language"     = "ภูมิภาคและภาษา";
+"setting_language"                  = "ภาษา";
+"setting_about"                     = "เกี่ยวกับเรา";
+"setting_log_out"                   = "ออกจากระบบ";
+"setting_join_us"                   = "ร่วมงานกับเรา";
+"setting_docs"                      = "Docs";
+"setting_whitepaper"                = "Whitepaper";
+"setting_version"                   = "เวอร์ชั่น";

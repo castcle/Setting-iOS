@@ -19,15 +19,15 @@
 //  Thailand 10160, or visit www.castcle.com if you need additional information
 //  or have any questions.
 //
-//  DeleteAccountSuccessViewController.swift
+//  ChangePasswordSuccessViewController.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 27/8/2564 BE.
+//  Created by Tanakorn Phoochaliaw on 30/8/2564 BE.
 //
 
 import UIKit
 
-class DeleteAccountSuccessViewController: UIViewController {
+class ChangePasswordSuccessViewController: UIViewController {
 
     @IBOutlet var frameImage: UIImageView!
     @IBOutlet var successImage: UIImageView!
@@ -59,6 +59,7 @@ class DeleteAccountSuccessViewController: UIViewController {
     }
     
     @IBAction func homeAction(_ sender: Any) {
-        self.navigationController?.popToRootViewController(animated: true)
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 4], animated: true)
     }
 }

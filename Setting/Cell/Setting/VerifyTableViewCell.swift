@@ -26,6 +26,7 @@
 //
 
 import UIKit
+import Core
 
 class VerifyTableViewCell: UITableViewCell {
 
@@ -47,5 +48,10 @@ class VerifyTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func configCell() {
+        self.titleLabel.text = Localization.setting.verifyEmail.text
+        self.subtitleLabel.text = Localization.setting.plaseVerifyEmail.text
     }
 }

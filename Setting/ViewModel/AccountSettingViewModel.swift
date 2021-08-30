@@ -46,6 +46,8 @@ public final class AccountSettingViewModel {
         switch section {
         case .delete:
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.deleteAccount), animated: true)
+        case .password:
+            Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.oldPassword), animated: true)
         default:
             return
         }

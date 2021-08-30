@@ -56,4 +56,9 @@ class NotificationTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    func configCell() {
+        self.titleLabel.text = Localization.setting.notification.text
+        self.amountLabel.text = "3 \(Localization.setting.notificationNew.text)"
+    }
 }

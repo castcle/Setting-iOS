@@ -55,14 +55,14 @@ class PageListTableViewCell: UITableViewCell {
     }
     
     func configCell(isVerify: Bool) {
+        self.titleLabel.text = Localization.setting.goTo.text
+        self.newPageButton.setTitle("+ \(Localization.setting.newPage.text)", for: .normal)
         self.isVerify = isVerify
-        
         if isVerify {
             self.page = [Page(name: UserState.shared.name, avatar: UserState.shared.avatar)] + UserState.shared.page + [Page(name: "NEW", avatar: "")]
         } else {
             self.page = [Page(name: UserState.shared.name, avatar: UserState.shared.avatar)]
         }
-        
         self.collectionView.reloadData()
     }
 }

@@ -35,46 +35,13 @@ class OtherTableViewCell: UITableViewCell {
 
     @IBOutlet var signOutButton: UIButton!
     @IBOutlet var versionLabel: UILabel!
-    @IBOutlet var otherLabel: ActiveLabel! {
-        didSet {
-            self.otherLabel.customize { label in
-                label.font = UIFont.asset(.light, fontSize: .overline)
-                label.numberOfLines = 1
-                label.textColor = UIColor.Asset.gray
-                
-                let joinUsType = ActiveType.custom(pattern: "Join us")
-                let docsType = ActiveType.custom(pattern: "Docs")
-                let whitepaperType = ActiveType.custom(pattern: "Whitepaper")
-                
-                label.enabledTypes = [joinUsType, docsType, whitepaperType]
-                
-                label.customColor[joinUsType] = UIColor.Asset.lightBlue
-                label.customSelectedColor[joinUsType] = UIColor.Asset.lightBlue
-                label.customColor[docsType] = UIColor.Asset.lightBlue
-                label.customSelectedColor[docsType] = UIColor.Asset.lightBlue
-                label.customColor[whitepaperType] = UIColor.Asset.lightBlue
-                label.customSelectedColor[whitepaperType] = UIColor.Asset.lightBlue
-                
-                label.handleCustomTap(for: joinUsType) { element in
-                    self.openWebView(urlString: Environment.joinUs)
-                }
-                
-                label.handleCustomTap(for: docsType) { element in
-                    self.openWebView(urlString: Environment.docs)
-                }
-                
-                label.handleCustomTap(for: whitepaperType) { element in
-                    self.openWebView(urlString: Environment.whitepaper)
-                }
-            }
-        }
-    }
+    @IBOutlet var otherLabel: ActiveLabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.versionLabel.font = UIFont.asset(.light, fontSize: .overline)
         self.versionLabel.textColor = UIColor.Asset.gray
-        self.versionLabel.text = "Version \(Defaults[.appVersion]) (\(Defaults[.appBuild]))"
+        
         
         self.signOutButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .h4)
         self.signOutButton.setTitleColor(UIColor.Asset.white, for: .normal)
@@ -92,5 +59,42 @@ class OtherTableViewCell: UITableViewCell {
     
     private func openWebView(urlString: String) {
         Utility.currentViewController().navigationController?.pushViewController(ComponentOpener.open(.internalWebView(URL(string: urlString)!)), animated: true)
+    }
+    
+    func configCell() {
+        self.signOutButton.setTitle(Localization.setting.logOut.text, for: .normal)
+        self.otherLabel.text = "\(Localization.setting.joinUs.text) | \(Localization.setting.docs.text) | \(Localization.setting.whitepaper.text)"
+        self.versionLabel.text = "\(Localization.setting.version.text) \(Defaults[.appVersion]) (\(Defaults[.appBuild]))"
+        
+        self.otherLabel.customize { label in
+            label.font = UIFont.asset(.light, fontSize: .overline)
+            label.numberOfLines = 1
+            label.textColor = UIColor.Asset.gray
+            
+            let joinUsType = ActiveType.custom(pattern: Localization.setting.joinUs.text)
+            let docsType = ActiveType.custom(pattern: Localization.setting.docs.text)
+            let whitepaperType = ActiveType.custom(pattern: Localization.setting.whitepaper.text)
+            
+            label.enabledTypes = [joinUsType, docsType, whitepaperType]
+            
+            label.customColor[joinUsType] = UIColor.Asset.lightBlue
+            label.customSelectedColor[joinUsType] = UIColor.Asset.lightBlue
+            label.customColor[docsType] = UIColor.Asset.lightBlue
+            label.customSelectedColor[docsType] = UIColor.Asset.lightBlue
+            label.customColor[whitepaperType] = UIColor.Asset.lightBlue
+            label.customSelectedColor[whitepaperType] = UIColor.Asset.lightBlue
+            
+            label.handleCustomTap(for: joinUsType) { element in
+                self.openWebView(urlString: Environment.joinUs)
+            }
+            
+            label.handleCustomTap(for: docsType) { element in
+                self.openWebView(urlString: Environment.docs)
+            }
+            
+            label.handleCustomTap(for: whitepaperType) { element in
+                self.openWebView(urlString: Environment.whitepaper)
+            }
+        }
     }
 }
