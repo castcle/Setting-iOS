@@ -26,6 +26,7 @@
 //
 
 import Core
+import Authen
 
 public enum AccountSection: String {
     case email = "E-mail"
@@ -47,7 +48,7 @@ public final class AccountSettingViewModel {
         case .delete:
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.deleteAccount), animated: true)
         case .password:
-            Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.oldPassword), animated: true)
+            Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.oldPassword), animated: true)
         default:
             return
         }

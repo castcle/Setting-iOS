@@ -23,13 +23,8 @@
 		B743387726D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743387526D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.swift */; };
 		B743387826D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B743387626D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.xib */; };
 		B743387A26D920F0004BBC05 /* DeleteAccountSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743387926D920F0004BBC05 /* DeleteAccountSuccessViewController.swift */; };
-		B743387E26DCC39D004BBC05 /* OldPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743387D26DCC39D004BBC05 /* OldPasswordViewController.swift */; };
-		B743388126DCC57F004BBC05 /* OldPasswordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743387F26DCC57F004BBC05 /* OldPasswordTableViewCell.swift */; };
-		B743388226DCC57F004BBC05 /* OldPasswordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B743388026DCC57F004BBC05 /* OldPasswordTableViewCell.xib */; };
-		B743388526DCCAFD004BBC05 /* ChangePasswordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743388326DCCAFD004BBC05 /* ChangePasswordTableViewCell.swift */; };
-		B743388626DCCAFD004BBC05 /* ChangePasswordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B743388426DCCAFD004BBC05 /* ChangePasswordTableViewCell.xib */; };
-		B743388826DCCB15004BBC05 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743388726DCCB15004BBC05 /* ChangePasswordViewController.swift */; };
-		B743388A26DCE022004BBC05 /* ChangePasswordSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743388926DCE022004BBC05 /* ChangePasswordSuccessViewController.swift */; };
+		B74338A526DE33C4004BBC05 /* Authen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B74338A426DE33C4004BBC05 /* Authen.framework */; };
+		B74338A626DE33C4004BBC05 /* Authen.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B74338A426DE33C4004BBC05 /* Authen.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7C252B426D3915400ACBB84 /* Setting.h in Headers */ = {isa = PBXBuildFile; fileRef = B7C252B226D3915400ACBB84 /* Setting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B7C252C326D3944E00ACBB84 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7C252C226D3944E00ACBB84 /* Setting.storyboard */; };
 		B7C252C526D3946E00ACBB84 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C252C426D3946E00ACBB84 /* SettingViewController.swift */; };
@@ -66,8 +61,6 @@
 		B7C2531426D54AA300ACBB84 /* SelectLanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2531326D54AA300ACBB84 /* SelectLanguageViewModel.swift */; };
 		B7C2531726D54E9B00ACBB84 /* SelectLanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2531526D54E9B00ACBB84 /* SelectLanguageTableViewCell.swift */; };
 		B7C2531826D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C2531626D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib */; };
-		B7C2531A26D551DE00ACBB84 /* Authen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7C2531926D551DE00ACBB84 /* Authen.framework */; };
-		B7C2531B26D551DE00ACBB84 /* Authen.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B7C2531926D551DE00ACBB84 /* Authen.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,7 +71,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				B7C252D126D395AB00ACBB84 /* Component.framework in Embed Frameworks */,
-				B7C2531B26D551DE00ACBB84 /* Authen.framework in Embed Frameworks */,
+				B74338A626DE33C4004BBC05 /* Authen.framework in Embed Frameworks */,
 				B7C252CD26D395A500ACBB84 /* Core.framework in Embed Frameworks */,
 				B7C252D426D395B400ACBB84 /* Networking.framework in Embed Frameworks */,
 			);
@@ -106,13 +99,8 @@
 		B743387526D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountPasswordTableViewCell.swift; sourceTree = "<group>"; };
 		B743387626D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeleteAccountPasswordTableViewCell.xib; sourceTree = "<group>"; };
 		B743387926D920F0004BBC05 /* DeleteAccountSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountSuccessViewController.swift; sourceTree = "<group>"; };
-		B743387D26DCC39D004BBC05 /* OldPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldPasswordViewController.swift; sourceTree = "<group>"; };
-		B743387F26DCC57F004BBC05 /* OldPasswordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldPasswordTableViewCell.swift; sourceTree = "<group>"; };
-		B743388026DCC57F004BBC05 /* OldPasswordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OldPasswordTableViewCell.xib; sourceTree = "<group>"; };
-		B743388326DCCAFD004BBC05 /* ChangePasswordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordTableViewCell.swift; sourceTree = "<group>"; };
-		B743388426DCCAFD004BBC05 /* ChangePasswordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangePasswordTableViewCell.xib; sourceTree = "<group>"; };
-		B743388726DCCB15004BBC05 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
-		B743388926DCE022004BBC05 /* ChangePasswordSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordSuccessViewController.swift; sourceTree = "<group>"; };
+		B74338A326DE310C004BBC05 /* Authen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B74338A426DE33C4004BBC05 /* Authen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C252AF26D3915400ACBB84 /* Setting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Setting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C252B226D3915400ACBB84 /* Setting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
 		B7C252B326D3915400ACBB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -161,7 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7C2531A26D551DE00ACBB84 /* Authen.framework in Frameworks */,
+				B74338A526DE33C4004BBC05 /* Authen.framework in Frameworks */,
 				B7C252D326D395B400ACBB84 /* Networking.framework in Frameworks */,
 				B7C252D026D395AB00ACBB84 /* Component.framework in Frameworks */,
 				54CA255B2EF0297EA5B4505F /* Pods_Setting.framework in Frameworks */,
@@ -238,13 +226,6 @@
 				B7C252B226D3915400ACBB84 /* Setting.h */,
 				B7C252B326D3915400ACBB84 /* Info.plist */,
 				B7C252C226D3944E00ACBB84 /* Setting.storyboard */,
-				B743387D26DCC39D004BBC05 /* OldPasswordViewController.swift */,
-				B743387F26DCC57F004BBC05 /* OldPasswordTableViewCell.swift */,
-				B743388026DCC57F004BBC05 /* OldPasswordTableViewCell.xib */,
-				B743388726DCCB15004BBC05 /* ChangePasswordViewController.swift */,
-				B743388326DCCAFD004BBC05 /* ChangePasswordTableViewCell.swift */,
-				B743388426DCCAFD004BBC05 /* ChangePasswordTableViewCell.xib */,
-				B743388926DCE022004BBC05 /* ChangePasswordSuccessViewController.swift */,
 				B7C252FA26D5302500ACBB84 /* Localizable */,
 				B7C252F726D50A2100ACBB84 /* ViewModel */,
 				B7C252F626D50A1300ACBB84 /* ViewController */,
@@ -331,6 +312,8 @@
 		EA37D9F11EF0E5FE9778E44A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B74338A426DE33C4004BBC05 /* Authen.framework */,
+				B74338A326DE310C004BBC05 /* Authen.framework */,
 				B7C2531926D551DE00ACBB84 /* Authen.framework */,
 				B7C252D226D395B400ACBB84 /* Networking.framework */,
 				B7C252CF26D395AB00ACBB84 /* Component.framework */,
@@ -418,14 +401,12 @@
 				B7C252EA26D3BDBC00ACBB84 /* PageCollectionViewCell.xib in Resources */,
 				B743386526D8DF3B004BBC05 /* SettingAccountTableViewCell.xib in Resources */,
 				B7C252DE26D3AB0D00ACBB84 /* NotificationTableViewCell.xib in Resources */,
-				B743388626DCCAFD004BBC05 /* ChangePasswordTableViewCell.xib in Resources */,
 				B7C2530B26D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.xib in Resources */,
 				B7C252E226D3B92F00ACBB84 /* VerifyTableViewCell.xib in Resources */,
 				B743387426D90DEA004BBC05 /* AccountListTableViewCell.xib in Resources */,
 				B7C252E626D3BC7C00ACBB84 /* PageListTableViewCell.xib in Resources */,
 				B7C252C326D3944E00ACBB84 /* Setting.storyboard in Resources */,
 				B7C2531826D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib in Resources */,
-				B743388226DCC57F004BBC05 /* OldPasswordTableViewCell.xib in Resources */,
 				B7C252FF26D530F800ACBB84 /* Localizable.strings in Resources */,
 				B743387826D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.xib in Resources */,
 				B7C252F026D3D2D000ACBB84 /* SettingTableViewCell.xib in Resources */,
@@ -469,12 +450,10 @@
 				B743387326D90DEA004BBC05 /* AccountListTableViewCell.swift in Sources */,
 				B7C2530626D5365D00ACBB84 /* AppLanguageTableViewCell.swift in Sources */,
 				B7C252DD26D3AB0D00ACBB84 /* NotificationTableViewCell.swift in Sources */,
-				B743388126DCC57F004BBC05 /* OldPasswordTableViewCell.swift in Sources */,
 				B7C252E926D3BDBC00ACBB84 /* PageCollectionViewCell.swift in Sources */,
 				B743386D26D90B19004BBC05 /* ConfirmDeleteHeaderTableViewCell.swift in Sources */,
 				B7C252F326D3E15800ACBB84 /* OtherTableViewCell.swift in Sources */,
 				B743386126D8DCE7004BBC05 /* AccountSettingViewController.swift in Sources */,
-				B743388826DCCB15004BBC05 /* ChangePasswordViewController.swift in Sources */,
 				B743385F26D8DC38004BBC05 /* DeleteAccountViewController.swift in Sources */,
 				B7C2531026D5449B00ACBB84 /* LanguageViewModel.swift in Sources */,
 				B7C252EF26D3D2D000ACBB84 /* SettingTableViewCell.swift in Sources */,
@@ -483,12 +462,9 @@
 				B743387726D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.swift in Sources */,
 				B7C252C826D394F000ACBB84 /* SettingNibVars.swift in Sources */,
 				B7C252EC26D3C46B00ACBB84 /* SettingViewModel.swift in Sources */,
-				B743387E26DCC39D004BBC05 /* OldPasswordViewController.swift in Sources */,
-				B743388A26DCE022004BBC05 /* ChangePasswordSuccessViewController.swift in Sources */,
 				B7C252E526D3BC7C00ACBB84 /* PageListTableViewCell.swift in Sources */,
 				B7C2531426D54AA300ACBB84 /* SelectLanguageViewModel.swift in Sources */,
 				B743386426D8DF3B004BBC05 /* SettingAccountTableViewCell.swift in Sources */,
-				B743388526DCCAFD004BBC05 /* ChangePasswordTableViewCell.swift in Sources */,
 				B7C252CA26D3950400ACBB84 /* SettingOpener.swift in Sources */,
 				B743385B26D6453D004BBC05 /* PreferredLanguageTableViewCell.swift in Sources */,
 				B7C252F926D50A5C00ACBB84 /* LanguageViewController.swift in Sources */,
