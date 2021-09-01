@@ -30,7 +30,6 @@ import UIKit
 class AddPreferredLanguageTableViewCell: UITableViewCell {
 
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var frameImage: UIImageView!
     @IBOutlet var addImage: UIImageView!
     
     override func awakeFromNib() {
@@ -38,8 +37,7 @@ class AddPreferredLanguageTableViewCell: UITableViewCell {
         
         self.titleLabel.font = UIFont.asset(.regular, fontSize: .overline)
         self.titleLabel.textColor = UIColor.Asset.lightBlue
-        self.addImage.image = UIImage.init(icon: .castcle(.add), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.lightBlue)
-        self.frameImage.circle(color: UIColor.Asset.lightBlue)
+        self.addImage.image = UIImage.init(icon: .castcle(.addWithCircle), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.lightBlue)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -29,7 +29,6 @@ import UIKit
 
 class DeleteAccountSuccessViewController: UIViewController {
 
-    @IBOutlet var frameImage: UIImageView!
     @IBOutlet var successImage: UIImageView!
     @IBOutlet var headlineLabel: UILabel!
     @IBOutlet var homeButton: UIButton!
@@ -44,8 +43,7 @@ class DeleteAccountSuccessViewController: UIViewController {
         self.homeButton.setBackgroundImage(UIColor.Asset.lightBlue.toImage(), for: .normal)
         self.homeButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.clear)
         
-        self.frameImage.capsule(color: UIColor.clear, borderWidth: 6.0, borderColor: UIColor.Asset.lightBlue)
-        self.successImage.image = UIImage.init(icon: .castcle(.checkmark), size: CGSize(width: 80, height: 80), textColor: UIColor.Asset.lightBlue)
+        self.successImage.image = UIImage.init(icon: .castcle(.addWithCheckmark), size: CGSize(width: 100, height: 100), textColor: UIColor.Asset.lightBlue)
     }
     
     override func viewWillAppear(_ animated: Bool) {

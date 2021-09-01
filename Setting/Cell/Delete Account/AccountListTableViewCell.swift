@@ -47,7 +47,7 @@ class AccountListTableViewCell: UITableViewCell {
     }
     
     func configCell(title: String, type: String, avatar: String) {
-        let url = URL(string:avatar)
+        let url = URL(string: avatar)
         self.avatarImage.kf.setImage(with: url)
         self.nameLabel.text = title
         self.typeLabel.text = type

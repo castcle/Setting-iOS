@@ -225,30 +225,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A6m-Vq-EpM">
-                                <rect key="frame" x="0.0" y="124" width="320" height="320.5"/>
+                                <rect key="frame" x="0.0" y="114" width="320" height="340.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zoo-r4-m0e">
-                                        <rect key="frame" x="120" y="10" width="80" height="80"/>
+                                        <rect key="frame" x="110" y="10" width="100" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="ne8-I7-svZ"/>
-                                            <constraint firstAttribute="width" constant="80" id="wLJ-Kp-L7v"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QMW-Rx-TJi">
-                                        <rect key="frame" x="130" y="20" width="60" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="hWP-x8-xqn"/>
-                                            <constraint firstAttribute="height" constant="60" id="jyM-ZM-2qA"/>
+                                            <constraint firstAttribute="height" constant="100" id="ne8-I7-svZ"/>
+                                            <constraint firstAttribute="width" constant="100" id="wLJ-Kp-L7v"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ระบบได้ทำการปิดใช้งานบัญชีของคุณเรียบร้อยแล้ว" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eD9-NE-c7x">
-                                        <rect key="frame" x="30" y="150" width="260" height="50.5"/>
+                                        <rect key="frame" x="30" y="170" width="260" height="50.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbr-2w-34K">
-                                        <rect key="frame" x="20" y="260.5" width="280" height="50"/>
+                                        <rect key="frame" x="20" y="280.5" width="280" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Ghr-yk-j97"/>
                                         </constraints>
@@ -261,11 +254,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="QMW-Rx-TJi" firstAttribute="centerY" secondItem="Zoo-r4-m0e" secondAttribute="centerY" id="0cr-39-Ull"/>
                                     <constraint firstAttribute="trailing" secondItem="cbr-2w-34K" secondAttribute="trailing" constant="20" id="3KW-iO-jAq"/>
                                     <constraint firstAttribute="trailing" secondItem="eD9-NE-c7x" secondAttribute="trailing" constant="30" id="5Dm-di-MvY"/>
                                     <constraint firstItem="cbr-2w-34K" firstAttribute="top" secondItem="eD9-NE-c7x" secondAttribute="bottom" constant="60" id="CBQ-lo-ftL"/>
-                                    <constraint firstItem="QMW-Rx-TJi" firstAttribute="centerX" secondItem="Zoo-r4-m0e" secondAttribute="centerX" id="Fwe-bl-vgc"/>
                                     <constraint firstAttribute="bottom" secondItem="cbr-2w-34K" secondAttribute="bottom" constant="10" id="O1Q-Nq-8LM"/>
                                     <constraint firstItem="cbr-2w-34K" firstAttribute="leading" secondItem="A6m-Vq-EpM" secondAttribute="leading" constant="20" id="QgW-XE-bVw"/>
                                     <constraint firstItem="eD9-NE-c7x" firstAttribute="leading" secondItem="A6m-Vq-EpM" secondAttribute="leading" constant="30" id="c7N-Ya-FnF"/>
@@ -285,10 +276,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="frameImage" destination="Zoo-r4-m0e" id="TXX-N5-lYW"/>
                         <outlet property="headlineLabel" destination="eD9-NE-c7x" id="LnB-RA-kbK"/>
                         <outlet property="homeButton" destination="cbr-2w-34K" id="sUT-wT-Dnc"/>
-                        <outlet property="successImage" destination="QMW-Rx-TJi" id="4Ng-zc-h1U"/>
+                        <outlet property="successImage" destination="Zoo-r4-m0e" id="msF-Hm-KL1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uiU-wx-NeH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
