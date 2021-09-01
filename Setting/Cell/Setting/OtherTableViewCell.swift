@@ -78,11 +78,11 @@ class OtherTableViewCell: UITableViewCell {
             label.enabledTypes = [joinUsType, docsType, whitepaperType]
             
             label.customColor[joinUsType] = UIColor.Asset.lightBlue
-            label.customSelectedColor[joinUsType] = UIColor.Asset.lightBlue
+            label.customSelectedColor[joinUsType] = UIColor.Asset.gray
             label.customColor[docsType] = UIColor.Asset.lightBlue
-            label.customSelectedColor[docsType] = UIColor.Asset.lightBlue
+            label.customSelectedColor[docsType] = UIColor.Asset.gray
             label.customColor[whitepaperType] = UIColor.Asset.lightBlue
-            label.customSelectedColor[whitepaperType] = UIColor.Asset.lightBlue
+            label.customSelectedColor[whitepaperType] = UIColor.Asset.gray
             
             label.handleCustomTap(for: joinUsType) { element in
                 self.openWebView(urlString: Environment.joinUs)
