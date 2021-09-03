@@ -36,6 +36,7 @@ class OtherTableViewCell: UITableViewCell {
     @IBOutlet var signOutButton: UIButton!
     @IBOutlet var versionLabel: UILabel!
     @IBOutlet var otherLabel: ActiveLabel!
+    @IBOutlet var termLabel: ActiveLabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -54,7 +55,8 @@ class OtherTableViewCell: UITableViewCell {
     }
     
     @IBAction func signOutAction(_ sender: Any) {
-        // TO DO : Sign out function
+        UserState.shared.logout()
+        Utility.currentViewController().navigationController?.popToRootViewController(animated: true)
     }
     
     private func openWebView(urlString: String) {
@@ -94,6 +96,30 @@ class OtherTableViewCell: UITableViewCell {
             
             label.handleCustomTap(for: whitepaperType) { element in
                 self.openWebView(urlString: Environment.whitepaper)
+            }
+        }
+        
+        self.termLabel.customize { label in
+            label.font = UIFont.asset(.light, fontSize: .overline)
+            label.numberOfLines = 1
+            label.textColor = UIColor.Asset.gray
+            
+            let termType = ActiveType.custom(pattern: "Terms of Service")
+            let privacyType = ActiveType.custom(pattern: "Privacy Policy")
+            
+            label.enabledTypes = [termType, privacyType]
+            
+            label.customColor[termType] = UIColor.Asset.lightBlue
+            label.customSelectedColor[termType] = UIColor.Asset.gray
+            label.customColor[privacyType] = UIColor.Asset.lightBlue
+            label.customSelectedColor[privacyType] = UIColor.Asset.gray
+            
+            label.handleCustomTap(for: termType) { element in
+                self.openWebView(urlString: Environment.userAgreement)
+            }
+            
+            label.handleCustomTap(for: privacyType) { element in
+                self.openWebView(urlString: Environment.privacyPolicy)
             }
         }
     }

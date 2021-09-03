@@ -71,9 +71,9 @@ public enum SettingSection {
 public final class SettingViewModel {
     var isVerify: Bool = false
     
-    let accountSection: [SettingSection] = [.profile, .privacy]
-    let languangSection: [SettingSection] = [.languang]
-    let aboutSection: [SettingSection] = [.aboutUs]
+    let accountSection: [SettingSection] = [.profile, .languang, .aboutUs]
+    let languangSection: [SettingSection] = []
+    let aboutSection: [SettingSection] = []
     
     // MARK: - For Test
     var countTabVerify: Int = 0

@@ -99,12 +99,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch section {
-        case SettingViewControllerSection.account.rawValue:
+        if section == SettingViewControllerSection.account.rawValue {
             return (self.viewModel.accountSection.count > 0 ? 50 : 0)
-        case SettingViewControllerSection.language.rawValue:
-            return (self.viewModel.languangSection.count > 0 ? 50 : 0)
-        default:
+        } else {
             return 0
         }
     }
@@ -121,8 +118,6 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case SettingViewControllerSection.account.rawValue:
             label.text = Localization.setting.accountSettings.text// "Account Settings"
-        case SettingViewControllerSection.language.rawValue:
-            label.text = Localization.setting.regionalAndLanguage.text //"Regional & Language"
         default:
             label.text = ""
         }
@@ -134,14 +129,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        switch section {
-        case SettingViewControllerSection.profile.rawValue:
+        if section == SettingViewControllerSection.profile.rawValue {
             return 1
-        case SettingViewControllerSection.account.rawValue:
-            return (self.viewModel.accountSection.count > 0 ? 1 : 0)
-        case SettingViewControllerSection.language.rawValue:
-            return (self.viewModel.languangSection.count > 0 ? 1 : 0)
-        default:
+        } else {
             return 0
         }
     }
