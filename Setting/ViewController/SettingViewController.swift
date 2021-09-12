@@ -60,7 +60,7 @@ class SettingViewController: UIViewController {
     }
     
     func setupNavBar() {
-        self.customNavigationBar(.primary, title: Localization.setting.title.text, leftBarButton: .back)
+        self.customNavigationBar(.primary, title: Localization.setting.title.text, textColor: UIColor.Asset.lightBlue, leftBarButton: .back)
     }
     
     func configureTableView() {
