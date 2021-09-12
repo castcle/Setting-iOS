@@ -38,16 +38,19 @@ class OtherTableViewCell: UITableViewCell {
     @IBOutlet var otherLabel: ActiveLabel!
     @IBOutlet var termLabel: ActiveLabel!
     
+    let viewModel: SettingViewModel = SettingViewModel()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.versionLabel.font = UIFont.asset(.light, fontSize: .overline)
         self.versionLabel.textColor = UIColor.Asset.gray
         
-        
         self.signOutButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .h4)
         self.signOutButton.setTitleColor(UIColor.Asset.white, for: .normal)
         self.signOutButton.setBackgroundImage(UIColor.Asset.lightBlue.toImage(), for: .normal)
         self.signOutButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.clear)
+        
+        self.viewModel.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -55,8 +58,8 @@ class OtherTableViewCell: UITableViewCell {
     }
     
     @IBAction func signOutAction(_ sender: Any) {
-        UserState.shared.logout()
-        Utility.currentViewController().navigationController?.popToRootViewController(animated: true)
+        self.signOutButton.isEnabled = false
+        self.viewModel.logout()
     }
     
     private func openWebView(urlString: String) {
@@ -122,5 +125,12 @@ class OtherTableViewCell: UITableViewCell {
                 self.openWebView(urlString: Environment.privacyPolicy)
             }
         }
+    }
+}
+
+extension OtherTableViewCell: SettingViewModelDelegate {
+    func didSignOutFinish() {
+        self.signOutButton.isEnabled = true
+        Utility.currentViewController().navigationController?.popToRootViewController(animated: true)
     }
 }

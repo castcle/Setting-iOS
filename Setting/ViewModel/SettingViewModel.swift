@@ -27,8 +27,10 @@
 
 import UIKit
 import Core
+import Networking
 import Component
 import Authen
+import Defaults
 
 public enum SettingSection {
     case profile
@@ -68,12 +70,23 @@ public enum SettingSection {
     }
 }
 
+public protocol SettingViewModelDelegate {
+    func didSignOutFinish()
+}
+
 public final class SettingViewModel {
+    
+    public var delegate: SettingViewModelDelegate?
     var isVerify: Bool = false
     
+    var authenticationRepository: AuthenticationRepository
     let accountSection: [SettingSection] = [.profile, .languang, .aboutUs]
     let languangSection: [SettingSection] = []
     let aboutSection: [SettingSection] = []
+    
+    public init(authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()) {
+        self.authenticationRepository = authenticationRepository
+    }
     
     // MARK: - For Test
     var countTabVerify: Int = 0
@@ -90,6 +103,14 @@ public final class SettingViewModel {
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.language), animated: true)
         case .aboutUs:
             Utility.currentViewController().navigationController?.pushViewController(ComponentOpener.open(.internalWebView(URL(string: Environment.aboutUs)!)), animated: true)
+        }
+    }
+    
+    func logout() {
+        self.authenticationRepository.guestLogin(uuid: Defaults[.deviceUuid]) { (success) in
+            if success {
+                self.delegate?.didSignOutFinish()
+            }
         }
     }
 }
