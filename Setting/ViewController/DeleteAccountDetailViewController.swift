@@ -27,6 +27,7 @@
 
 import UIKit
 import Core
+import Defaults
 
 class DeleteAccountDetailViewController: UIViewController {
 
@@ -45,6 +46,11 @@ class DeleteAccountDetailViewController: UIViewController {
         self.hideKeyboardWhenTapped()
         self.setupNavBar()
         self.configureTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Defaults[.screenId] = ""
     }
     
     func setupNavBar() {

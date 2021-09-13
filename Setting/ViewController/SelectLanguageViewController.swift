@@ -48,6 +48,11 @@ class SelectLanguageViewController: UIViewController {
         self.configureTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Defaults[.screenId] = ""
+    }
+    
     func setupNavBar() {
         self.customNavigationBar(.secondary, title: "App Language")
     }

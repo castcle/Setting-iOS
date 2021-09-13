@@ -28,6 +28,7 @@
 import UIKit
 import Core
 import Networking
+import Defaults
 
 class LanguageViewController: UIViewController {
 
@@ -51,6 +52,7 @@ class LanguageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
+        Defaults[.screenId] = ""
     }
     
     func setupNavBar() {

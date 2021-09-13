@@ -26,6 +26,7 @@
 //
 
 import UIKit
+import Defaults
 
 class DeleteAccountSuccessViewController: UIViewController {
 
@@ -49,6 +50,7 @@ class DeleteAccountSuccessViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        Defaults[.screenId] = ""
     }
 
     override func viewWillDisappear(_ animated: Bool) {

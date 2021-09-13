@@ -27,6 +27,7 @@
 
 import UIKit
 import Core
+import Defaults
 
 class AccountSettingViewController: UIViewController {
 
@@ -44,6 +45,11 @@ class AccountSettingViewController: UIViewController {
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.setupNavBar()
         self.configureTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Defaults[.screenId] = ""
     }
     
     func setupNavBar() {

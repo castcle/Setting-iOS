@@ -48,7 +48,6 @@ class SettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.configureTableView()
     }
@@ -57,6 +56,7 @@ class SettingViewController: UIViewController {
         super.viewWillAppear(animated)
         self.setupNavBar()
         self.tableView.reloadData()
+        Defaults[.screenId] = ""
     }
     
     func setupNavBar() {

@@ -27,6 +27,7 @@
 
 import UIKit
 import Core
+import Defaults
 
 class DeleteAccountViewController: UIViewController {
 
@@ -49,6 +50,11 @@ class DeleteAccountViewController: UIViewController {
         self.deleteAccountButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.clear)
         
         self.detailLabel.text = "If you delete account:\n\n  ●  You won't be able to reactivate your account\n\n  ●  Your profile, photos, posts, videos and everything else you've added will be permanently deleted. You won't be able to retrieve anything you've added.\n\n  ●  You will lose access to any videos you have posted.\n\n  ●  You will not be able to get a refund on any items you have purchased.\n\n  ●  Your pages will be deleted"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Defaults[.screenId] = ""
     }
     
     func setupNavBar() {
