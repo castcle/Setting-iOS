@@ -38,7 +38,7 @@ class AppLanguageTableViewCell: UITableViewCell {
     @IBOutlet var preferedLanguageDescLabel: UILabel!
     @IBOutlet var nextImage: UIImageView!
     
-    var viewModel = LanguageViewModel()
+    private var viewModel = LanguageViewModel()
     
     override func awakeFromNib() {
         super.awakeFromNib()
