@@ -109,6 +109,8 @@ public final class SettingViewModel {
     func logout() {
         self.authenticationRepository.guestLogin(uuid: Defaults[.deviceUuid]) { (success) in
             if success {
+                let userHelper = UserHelper()
+                userHelper.clearUserData()
                 self.delegate?.didSignOutFinish()
             }
         }
