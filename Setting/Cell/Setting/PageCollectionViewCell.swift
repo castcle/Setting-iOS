@@ -44,7 +44,7 @@ class PageCollectionViewCell: UICollectionViewCell {
             self.addImage.image = UIImage.init(icon: .castcle(.add), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.gray)
         } else {
             let url = URL(string: page.avatar)
-            self.pageImage.kf.setImage(with: url)
+            self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.placeholder, options: [.transition(.fade(0.5))])
             self.addImage.isHidden = true
             if isVerify {
                 self.pageImage.circle(color: UIColor.Asset.white)

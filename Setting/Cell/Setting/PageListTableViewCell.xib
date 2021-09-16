@@ -34,6 +34,9 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <state key="normal" title="+ New Page"/>
+                        <connections>
+                            <action selector="createPageAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ZV8-4Z-vNo"/>
+                        </connections>
                     </button>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="T2g-rY-sjn">
                         <rect key="frame" x="0.0" y="70" width="320" height="60"/>

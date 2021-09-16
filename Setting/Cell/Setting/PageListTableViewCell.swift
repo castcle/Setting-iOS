@@ -27,6 +27,7 @@
 
 import UIKit
 import Core
+import Profile
 
 class PageListTableViewCell: UITableViewCell {
 
@@ -59,11 +60,17 @@ class PageListTableViewCell: UITableViewCell {
         self.newPageButton.setTitle("+ \(Localization.setting.newPage.text)", for: .normal)
         self.isVerify = isVerify
         if isVerify {
+            self.newPageButton.isHidden = false
             self.page = [Page(name: UserState.shared.name, avatar: UserState.shared.avatar)] + UserState.shared.page + [Page(name: "NEW", avatar: "")]
         } else {
+            self.newPageButton.isHidden = true
             self.page = [Page(name: UserState.shared.name, avatar: UserState.shared.avatar)]
         }
         self.collectionView.reloadData()
+    }
+    
+    @IBAction func createPageAction(_ sender: Any) {
+        Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.welcomeCreatePage), animated: true)
     }
 }
 
@@ -76,5 +83,12 @@ extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDel
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
         cell?.configCell(isVerify: self.isVerify, page: self.page[indexPath.row])
         return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let page = self.page[indexPath.row]
+        if page.name == "NEW" {
+            Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.welcomeCreatePage), animated: true)
+        }
     }
 }
