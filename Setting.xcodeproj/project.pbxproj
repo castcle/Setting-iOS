@@ -27,6 +27,8 @@
 		B74338A626DE33C4004BBC05 /* Authen.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B74338A426DE33C4004BBC05 /* Authen.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7AF660B26F24F5800BDE9C4 /* Profile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF660A26F24F5800BDE9C4 /* Profile.framework */; };
 		B7AF660C26F24F5800BDE9C4 /* Profile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF660A26F24F5800BDE9C4 /* Profile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B7AF666826F4385800BDE9C4 /* Notification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF666726F4385800BDE9C4 /* Notification.framework */; };
+		B7AF666926F4385800BDE9C4 /* Notification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF666726F4385800BDE9C4 /* Notification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7C252B426D3915400ACBB84 /* Setting.h in Headers */ = {isa = PBXBuildFile; fileRef = B7C252B226D3915400ACBB84 /* Setting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B7C252C326D3944E00ACBB84 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7C252C226D3944E00ACBB84 /* Setting.storyboard */; };
 		B7C252C526D3946E00ACBB84 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C252C426D3946E00ACBB84 /* SettingViewController.swift */; };
@@ -77,6 +79,7 @@
 				B7C252CD26D395A500ACBB84 /* Core.framework in Embed Frameworks */,
 				B7AF660C26F24F5800BDE9C4 /* Profile.framework in Embed Frameworks */,
 				B7C252D426D395B400ACBB84 /* Networking.framework in Embed Frameworks */,
+				B7AF666926F4385800BDE9C4 /* Notification.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +108,7 @@
 		B74338A326DE310C004BBC05 /* Authen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B74338A426DE33C4004BBC05 /* Authen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7AF660A26F24F5800BDE9C4 /* Profile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Profile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7AF666726F4385800BDE9C4 /* Notification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Notification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C252AF26D3915400ACBB84 /* Setting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Setting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C252B226D3915400ACBB84 /* Setting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
 		B7C252B326D3915400ACBB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 				B7AF660B26F24F5800BDE9C4 /* Profile.framework in Frameworks */,
 				B74338A526DE33C4004BBC05 /* Authen.framework in Frameworks */,
 				B7C252D326D395B400ACBB84 /* Networking.framework in Frameworks */,
+				B7AF666826F4385800BDE9C4 /* Notification.framework in Frameworks */,
 				B7C252D026D395AB00ACBB84 /* Component.framework in Frameworks */,
 				54CA255B2EF0297EA5B4505F /* Pods_Setting.framework in Frameworks */,
 				B7C252CC26D395A500ACBB84 /* Core.framework in Frameworks */,
@@ -317,6 +322,7 @@
 		EA37D9F11EF0E5FE9778E44A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B7AF666726F4385800BDE9C4 /* Notification.framework */,
 				B7AF660A26F24F5800BDE9C4 /* Profile.framework */,
 				B74338A426DE33C4004BBC05 /* Authen.framework */,
 				B74338A326DE310C004BBC05 /* Authen.framework */,
