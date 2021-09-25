@@ -26,6 +26,7 @@
 //
 
 import UIKit
+import Core
 
 class AddPreferredLanguageTableViewCell: UITableViewCell {
 
@@ -44,4 +45,7 @@ class AddPreferredLanguageTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    func configCell() {
+        self.titleLabel.text = Localization.settingLanguage.selectAdditionalLanguagesAdd.text
+    }
 }

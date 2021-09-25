@@ -19,9 +19,7 @@ extension Localization {
         case goTo
         case newPage
         case accountSettings
-        case profile
-        case privacy
-        case regionalAndLanguage
+        case account
         case language
         case about
         case logOut
@@ -29,6 +27,8 @@ extension Localization {
         case docs
         case whitepaper
         case version
+        case termOfService
+        case privacy
         
         public var text: String {
             switch self {
@@ -48,12 +48,8 @@ extension Localization {
                 return "setting_new_page".localized(bundle: ConfigBundle.setting)
             case .accountSettings:
                 return "setting_account_settings".localized(bundle: ConfigBundle.setting)
-            case .profile:
-                return "setting_profile".localized(bundle: ConfigBundle.setting)
-            case .privacy:
-                return "setting_privacy".localized(bundle: ConfigBundle.setting)
-            case .regionalAndLanguage:
-                return "setting_regional_and_language".localized(bundle: ConfigBundle.setting)
+            case .account:
+                return "setting_account".localized(bundle: ConfigBundle.setting)
             case .language:
                 return "setting_language".localized(bundle: ConfigBundle.setting)
             case .about:
@@ -68,6 +64,37 @@ extension Localization {
                 return "setting_whitepaper".localized(bundle: ConfigBundle.setting)
             case .version:
                 return "setting_version".localized(bundle: ConfigBundle.setting)
+            case .termOfService:
+                return "setting_term_of_service".localized(bundle: ConfigBundle.setting)
+            case .privacy:
+                return "setting_privacy".localized(bundle: ConfigBundle.setting)
+            }
+        }
+    }
+    
+    // MARK: - Setting (Language)
+    public enum settingLanguage {
+        case title
+        case displayLanguage
+        case displayLanguageDescription
+        case selectAdditionalLanguages
+        case selectAdditionalLanguagesDescription
+        case selectAdditionalLanguagesAdd
+        
+        public var text: String {
+            switch self {
+            case .title:
+                return "setting_language_title".localized(bundle: ConfigBundle.setting)
+            case .displayLanguage:
+                return "setting_display_language".localized(bundle: ConfigBundle.setting)
+            case .displayLanguageDescription:
+                return "setting_display_language_description".localized(bundle: ConfigBundle.setting)
+            case .selectAdditionalLanguages:
+                return "setting_select_additional_languages".localized(bundle: ConfigBundle.setting)
+            case .selectAdditionalLanguagesDescription:
+                return "setting_select_additional_languages_description".localized(bundle: ConfigBundle.setting)
+            case .selectAdditionalLanguagesAdd:
+                return "setting_select_additional_languages_add".localized(bundle: ConfigBundle.setting)
             }
         }
     }

@@ -15,9 +15,7 @@
 "setting_go_to"                     = "ไปยัง";
 "setting_new_page"                  = "สร้างเพจใหม่";
 "setting_account_settings"          = "ตั้งค่าข้อมูลบัญชี";
-"setting_profile"                   = "บัญชี";
-"setting_privacy"                   = "ความเป็นส่วนตัว";
-"setting_regional_and_language"     = "ภูมิภาคและภาษา";
+"setting_account"                   = "บัญชี";
 "setting_language"                  = "ภาษา";
 "setting_about"                     = "เกี่ยวกับเรา";
 "setting_log_out"                   = "ออกจากระบบ";
@@ -25,3 +23,13 @@
 "setting_docs"                      = "Docs";
 "setting_whitepaper"                = "Whitepaper";
 "setting_version"                   = "เวอร์ชั่น";
+"setting_term_of_service"           = "Terms of Service";
+"setting_privacy"                   = "Privacy Policy";
+
+// MARK: - Setting (Language)
+"setting_language_title"                            = "ภาษา";
+"setting_display_language"                          = "ภาษาที่แสดง";
+"setting_display_language_description"              = "เลือกภาษาที่คุณต้องการสำหรับพาดหัว ปุ่ม และข้อความอื่นๆ จากแคสเคิล";
+"setting_select_additional_languages"               = "เลือกภาษาเพิ่มเติม";
+"setting_select_additional_languages_description"   = "เลือกภาษาเพิ่มเติมสำหรับเนื้อหาที่คุณต้องการเห็นบนแคสเคิล";
+"setting_select_additional_languages_add"           = "เพิ่มภาษา";

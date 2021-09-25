@@ -188,16 +188,16 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case SettingViewControllerSection.notification.rawValue:
-            Utility.currentViewController().navigationController?.pushViewController(NotificationOpener.open(.notification), animated: true)
-//            self.viewModel.countTabVerify = self.viewModel.countTabVerify + 1
-//            if self.viewModel.countTabVerify == 5 && !self.viewModel.isVerify {
-//                self.viewModel.isVerify = true
-//                UIView.animate(withDuration: 0.4, animations: { [weak self] in
-//                    guard let self = self else { return }
-//                    self.tableView.reloadSections(IndexSet(integer: 1), with: UITableView.RowAnimation.fade)
-//                    self.tableView.reloadSections(IndexSet(integer: 2), with: UITableView.RowAnimation.automatic)
-//                })
-//            }
+//            Utility.currentViewController().navigationController?.pushViewController(NotificationOpener.open(.notification), animated: true)
+            self.viewModel.countTabVerify = self.viewModel.countTabVerify + 1
+            if self.viewModel.countTabVerify == 5 && !self.viewModel.isVerify {
+                self.viewModel.isVerify = true
+                UIView.animate(withDuration: 0.4, animations: { [weak self] in
+                    guard let self = self else { return }
+                    self.tableView.reloadSections(IndexSet(integer: 1), with: UITableView.RowAnimation.fade)
+                    self.tableView.reloadSections(IndexSet(integer: 2), with: UITableView.RowAnimation.automatic)
+                })
+            }
         case SettingViewControllerSection.verify.rawValue:
             self.viewModel.countTabVerify = 0
             self.viewModel.openSettingSection(settingSection: .verify)

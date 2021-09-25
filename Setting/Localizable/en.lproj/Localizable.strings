@@ -15,9 +15,7 @@
 "setting_go_to"                     = "Go to";
 "setting_new_page"                  = "New Page";
 "setting_account_settings"          = "Account Settings";
-"setting_profile"                   = "Account";
-"setting_privacy"                   = "Privacy";
-"setting_regional_and_language"     = "Regional & Language";
+"setting_account"                   = "Account";
 "setting_language"                  = "Language";
 "setting_about"                     = "About Us";
 "setting_log_out"                   = "Log out";
@@ -25,3 +23,13 @@
 "setting_docs"                      = "Docs";
 "setting_whitepaper"                = "Whitepaper";
 "setting_version"                   = "Version";
+"setting_term_of_service"           = "Terms of Service";
+"setting_privacy"                   = "Privacy Policy";
+
+// MARK: - Setting (Language)
+"setting_language_title"                            = "Language";
+"setting_display_language"                          = "Display language";
+"setting_display_language_description"              = "Select your preferred language for headlines, buttons, and other text from Castcle.";
+"setting_select_additional_languages"               = "Select additional languages";
+"setting_select_additional_languages_description"   = "Select additional languages for hte content you want to see on Castcle.";
+"setting_select_additional_languages_add"           = "Add Language";

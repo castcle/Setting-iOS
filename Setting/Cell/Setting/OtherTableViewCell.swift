@@ -107,8 +107,8 @@ class OtherTableViewCell: UITableViewCell {
             label.numberOfLines = 1
             label.textColor = UIColor.Asset.gray
             
-            let termType = ActiveType.custom(pattern: "Terms of Service")
-            let privacyType = ActiveType.custom(pattern: "Privacy Policy")
+            let termType = ActiveType.custom(pattern: Localization.setting.termOfService.text)
+            let privacyType = ActiveType.custom(pattern: Localization.setting.privacy.text)
             
             label.enabledTypes = [termType, privacyType]
             

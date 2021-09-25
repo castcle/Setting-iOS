@@ -42,9 +42,7 @@ public enum SettingSection {
     public var text: String {
         switch self {
         case .profile:
-            return Localization.setting.profile.text
-        case .privacy:
-            return Localization.setting.privacy.text
+            return Localization.setting.account.text
         case .languang:
             return Localization.setting.language.text
         case .aboutUs:
