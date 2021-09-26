@@ -48,7 +48,7 @@ class SettingAccountTableViewCell: UITableViewCell {
     }
     
     func configCell(section: AccountSection) {
-        self.titleLabel.text = section.rawValue
+        self.titleLabel.text = section.text
         
         if section == .email {
             self.displayLabel.text = UserState.shared.email

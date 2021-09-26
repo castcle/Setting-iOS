@@ -26,6 +26,7 @@
 //
 
 import UIKit
+import Core
 
 class ConfirmDeleteHeaderTableViewCell: UITableViewCell {
 
@@ -44,4 +45,8 @@ class ConfirmDeleteHeaderTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    func cogfigCell() {
+        self.headerLabel.text = Localization.settingDeleteConfirm.headline.text
+        self.detailLabel.text = Localization.settingDeleteConfirm.description.text
+    }
 }

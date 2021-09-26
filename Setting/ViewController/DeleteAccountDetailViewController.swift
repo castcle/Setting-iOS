@@ -44,17 +44,17 @@ class DeleteAccountDetailViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.hideKeyboardWhenTapped()
-        self.setupNavBar()
         self.configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.setupNavBar()
         Defaults[.screenId] = ""
     }
     
     func setupNavBar() {
-        self.customNavigationBar(.secondary, title: "Delete Account")
+        self.customNavigationBar(.secondary, title: Localization.settingDeleteConfirm.title.text)
     }
     
     func configureTableView() {
@@ -88,21 +88,23 @@ extension DeleteAccountDetailViewController: UITableViewDelegate, UITableViewDat
         case DeleteAccountDetailViewControllerSection.header.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.deleteHeader, for: indexPath as IndexPath) as? ConfirmDeleteHeaderTableViewCell
             cell?.backgroundColor = UIColor.clear
+            cell?.cogfigCell()
             return cell ?? ConfirmDeleteHeaderTableViewCell()
         case DeleteAccountDetailViewControllerSection.user.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.accountList, for: indexPath as IndexPath) as? AccountListTableViewCell
             cell?.backgroundColor = UIColor.clear
-            cell?.configCell(title: UserState.shared.name, type: "User Castcle", avatar: UserState.shared.avatar)
+            cell?.configCell(title: UserState.shared.name, type: Localization.settingDeleteConfirm.profile.text, avatar: UserState.shared.avatar)
             return cell ?? AccountListTableViewCell()
         case DeleteAccountDetailViewControllerSection.page.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.accountList, for: indexPath as IndexPath) as? AccountListTableViewCell
             let page: Page = UserState.shared.page[indexPath.row]
             cell?.backgroundColor = UIColor.clear
-            cell?.configCell(title: page.name, type: "Page", avatar: page.avatar)
+            cell?.configCell(title: page.name, type: Localization.settingDeleteConfirm.page.text, avatar: page.avatar)
             return cell ?? AccountListTableViewCell()
         case DeleteAccountDetailViewControllerSection.password.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.password, for: indexPath as IndexPath) as? DeleteAccountPasswordTableViewCell
             cell?.backgroundColor = UIColor.clear
+            cell?.configCell()
             return cell ?? DeleteAccountPasswordTableViewCell()
         default:
             return UITableViewCell()

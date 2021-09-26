@@ -28,10 +28,21 @@
 import Core
 import Authen
 
-public enum AccountSection: String {
-    case email = "E-mail"
-    case password = "Password"
-    case delete = "Delete Account"
+public enum AccountSection {
+    case email
+    case password
+    case delete
+    
+    public var text: String {
+        switch self {
+        case .email:
+            return Localization.settingAccount.email.text
+        case .password:
+            return Localization.settingAccount.password.text
+        case .delete:
+            return Localization.settingAccount.deleteAccount.text
+        }
+    }
 }
 
 public final class AccountSettingViewModel {

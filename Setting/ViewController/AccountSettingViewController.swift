@@ -43,17 +43,17 @@ class AccountSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
-        self.setupNavBar()
         self.configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.setupNavBar()
         Defaults[.screenId] = ""
     }
     
     func setupNavBar() {
-        self.customNavigationBar(.secondary, title: "Profile")
+        self.customNavigationBar(.secondary, title: Localization.settingAccount.title.text)
     }
     
     func configureTableView() {
@@ -105,9 +105,9 @@ extension AccountSettingViewController: UITableViewDelegate, UITableViewDataSour
         
         switch section {
         case AccountSettingViewControllerSection.setting.rawValue:
-            label.text = "Account Settings"
+            label.text = Localization.settingAccount.sectionAccountSetting.text
         case AccountSettingViewControllerSection.control.rawValue:
-            label.text = "Account Control"
+            label.text = Localization.settingAccount.sectionAccountControl.text
         default:
             label.text = ""
         }
