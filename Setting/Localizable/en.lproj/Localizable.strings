@@ -33,3 +33,33 @@
 "setting_select_additional_languages"               = "Select additional languages";
 "setting_select_additional_languages_description"   = "Select additional languages for hte content you want to see on Castcle.";
 "setting_select_additional_languages_add"           = "Add Language";
+
+// MARK: - Setting (App Language)
+"setting_display_language_title"                    = "Display language";
+
+// MARK: - Setting (Account)
+"setting_account_title"                             = "Account";
+"setting_account_section_account_setting"           = "Account Setting";
+"setting_account_email"                             = "Email";
+"setting_account_password"                          = "Password";
+"setting_account_section_account_control"           = "Account Control";
+"setting_account_delete_account"                    = "Delete Account";
+
+// MARK: - Setting (Delete Account)
+"setting_profile_delete_title"                      = "Delete Account";
+"setting_profile_delete_id"                         = "Delete Account";
+"setting_profile_delete_description"                = "If you delete account:\n\n● You won't be able to reactivate your account\n\n● Your profile, photos, posts, videos and everything else you've added will be permanently deleted. You won't be able to retrieve anything you've added.\n\n● Your pages will be deleted";
+"setting_profile_delete_button"                     = "Delete Account";
+
+// MARK: - Setting (Delete Confirm)
+"setting_profile_delete_confirm_title"              = "Delete Account";
+"setting_profile_delete_confirm_headline"           = "Confirm that this is your Account ";
+"setting_profile_delete_confirm_description"        = "Before you permanently delete your Account, please enter your password.";
+"setting_profile_delete_confirm_profile"            = "Profile";
+"setting_profile_delete_confirm_page"               = "Page";
+"setting_profile_delete_confirm_password"           = "Password";
+"setting_profile_delete_confirm_button"             = "Continue";
+
+// MARK: - Setting (Delete Success)
+"setting_profile_delete_success_description"        = "We've successfully deleted your account.";
+"setting_profile_delete_success_button"             = "Home";

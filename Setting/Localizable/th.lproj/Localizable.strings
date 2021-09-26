@@ -33,3 +33,33 @@
 "setting_select_additional_languages"               = "เลือกภาษาเพิ่มเติม";
 "setting_select_additional_languages_description"   = "เลือกภาษาเพิ่มเติมสำหรับเนื้อหาที่คุณต้องการเห็นบนแคสเคิล";
 "setting_select_additional_languages_add"           = "เพิ่มภาษา";
+
+// MARK: - Setting (App Language)
+"setting_display_language_title"                    = "ภาษาที่แสดง";
+
+// MARK: - Setting (Account)
+"setting_account_title"                             = "บัญชี";
+"setting_account_section_account_setting"           = "ตั้งค่าข้อมูลบัญชี";
+"setting_account_email"                             = "อีเมล";
+"setting_account_password"                          = "รหัสผ่าน";
+"setting_account_section_account_control"           = "การควบคุมบัญชี";
+"setting_account_delete_account"                    = "ลบบัญชีผู้ใช้";
+
+// MARK: - Setting (Delete Account)
+"setting_profile_delete_title"                      = "ลบบัญชี";
+"setting_profile_delete_id"                         = "ลบบัญชี";
+"setting_profile_delete_description"                = "ถ้าหากคุณลบบัญชี\n\n● คุณจะไม่สามารถเปิดใช้งานบัญชีอีกครั้งได้\n\n● โปรไฟล์ รูปภาพ โพสต์ วีดิโอ และทุกสิ่งที่คุณเพิ่มไปในบัญชีจะถูกลบอย่างถาวร และคุณไม่สามารถจะกลับมาค้นหาข้อมูลที่คุณเพิ่มลงไปดังกล่าวได้\n\n● เพจของคุณจะถูกลบเช่นกัน";
+"setting_profile_delete_button"                     = "ลบบัญชี";
+
+// MARK: - Setting (Delete Confirm)
+"setting_profile_delete_confirm_title"              = "ลบบัญชี";
+"setting_profile_delete_confirm_headline"           = "ยืนยันว่านี่คือบัญชีของคุณ";
+"setting_profile_delete_confirm_description"        = "ก่อนที่จะคุณลบบัญชีอย่างถาวร กรุณาใส่รหัสผ่านของคุณ";
+"setting_profile_delete_confirm_profile"            = "บัญชีส่วนตัว";
+"setting_profile_delete_confirm_page"               = "เพจ";
+"setting_profile_delete_confirm_password"           = "รหัสผ่าน";
+"setting_profile_delete_confirm_button"             = "ดำเนินการต่อ";
+
+// MARK: - Setting (Delete Success)
+"setting_profile_delete_success_description"        = "เราได้ทำการลบบัญชีของคุณเรียบร้อยแล้ว";
+"setting_profile_delete_success_button"             = "หน้าหลัก";

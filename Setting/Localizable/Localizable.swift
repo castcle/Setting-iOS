@@ -98,4 +98,109 @@ extension Localization {
             }
         }
     }
+    
+    // MARK: - Setting (App Language)
+    public enum settingDisplayLanguage {
+        case title
+        
+        public var text: String {
+            switch self {
+            case .title:
+                return "setting_display_language_title".localized(bundle: ConfigBundle.setting)
+            }
+        }
+    }
+
+    // MARK: - Setting (Account)
+    public enum settingAccount {
+        case title
+        case sectionAccountSetting
+        case email
+        case password
+        case sectionAccountControl
+        case deleteAccount
+        
+        public var text: String {
+            switch self {
+            case .title:
+                return "setting_account_title".localized(bundle: ConfigBundle.setting)
+            case .sectionAccountSetting:
+                return "setting_account_section_account_setting".localized(bundle: ConfigBundle.setting)
+            case .email:
+                return "setting_account_email".localized(bundle: ConfigBundle.setting)
+            case .password:
+                return "setting_account_password".localized(bundle: ConfigBundle.setting)
+            case .sectionAccountControl:
+                return "setting_account_section_account_control".localized(bundle: ConfigBundle.setting)
+            case .deleteAccount:
+                return "setting_account_delete_account".localized(bundle: ConfigBundle.setting)
+            }
+        }
+    }
+
+    // MARK: - Setting (Delete Account)
+    public enum settingDeleteAccount {
+        case title
+        case id
+        case description
+        case button
+        
+        public var text: String {
+            switch self {
+            case .title:
+                return "setting_profile_delete_title".localized(bundle: ConfigBundle.setting)
+            case .id:
+                return "setting_profile_delete_id".localized(bundle: ConfigBundle.setting)
+            case .description:
+                return "setting_profile_delete_description".localized(bundle: ConfigBundle.setting)
+            case .button:
+                return "setting_profile_delete_button".localized(bundle: ConfigBundle.setting)
+            }
+        }
+    }
+
+    // MARK: - Setting (Delete Confirm)
+    public enum settingDeleteConfirm {
+        case title
+        case headline
+        case description
+        case profile
+        case page
+        case password
+        case button
+        
+        public var text: String {
+            switch self {
+            case .title:
+                return "setting_profile_delete_confirm_title".localized(bundle: ConfigBundle.setting)
+            case .headline:
+                return "setting_profile_delete_confirm_headline".localized(bundle: ConfigBundle.setting)
+            case .description:
+                return "setting_profile_delete_confirm_description".localized(bundle: ConfigBundle.setting)
+            case .profile:
+                return "setting_profile_delete_confirm_profile".localized(bundle: ConfigBundle.setting)
+            case .page:
+                return "setting_profile_delete_confirm_page".localized(bundle: ConfigBundle.setting)
+            case .password:
+                return "setting_profile_delete_confirm_password".localized(bundle: ConfigBundle.setting)
+            case .button:
+                return "setting_profile_delete_confirm_button".localized(bundle: ConfigBundle.setting)
+            }
+        }
+    }
+
+    // MARK: - Setting (Delete Success)
+    public enum settingDeleteSuccess {
+        case description
+        case button
+        
+        public var text: String {
+            switch self {
+            case .description:
+                return "setting_profile_delete_success_description".localized(bundle: ConfigBundle.setting)
+            case .button:
+                return "setting_profile_delete_success_button".localized(bundle: ConfigBundle.setting)
+            }
+        }
+    }
 }
