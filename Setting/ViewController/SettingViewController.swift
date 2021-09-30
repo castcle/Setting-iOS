@@ -87,7 +87,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case SettingViewControllerSection.verify.rawValue:
-            return (self.viewModel.isVerify ? 0 : 1)
+            return (UserState.shared.emailVerified ? 0 : 1)
         case SettingViewControllerSection.account.rawValue:
             return self.viewModel.accountSection.count
         case SettingViewControllerSection.language.rawValue:
@@ -158,7 +158,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case SettingViewControllerSection.profile.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.pageList, for: indexPath as IndexPath) as? PageListTableViewCell
             cell?.backgroundColor = UIColor.clear
-            cell?.configCell(isVerify: self.viewModel.isVerify)
+            cell?.configCell(isVerify: UserState.shared.emailVerified)
             return cell ?? PageListTableViewCell()
         case SettingViewControllerSection.account.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.setting, for: indexPath as IndexPath) as? SettingTableViewCell
@@ -188,30 +188,17 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case SettingViewControllerSection.notification.rawValue:
-//            Utility.currentViewController().navigationController?.pushViewController(NotificationOpener.open(.notification), animated: true)
-            self.viewModel.countTabVerify = self.viewModel.countTabVerify + 1
-            if self.viewModel.countTabVerify == 5 && !self.viewModel.isVerify {
-                self.viewModel.isVerify = true
-                UIView.animate(withDuration: 0.4, animations: { [weak self] in
-                    guard let self = self else { return }
-                    self.tableView.reloadSections(IndexSet(integer: 1), with: UITableView.RowAnimation.fade)
-                    self.tableView.reloadSections(IndexSet(integer: 2), with: UITableView.RowAnimation.automatic)
-                })
-            }
+            Utility.currentViewController().navigationController?.pushViewController(NotificationOpener.open(.notification), animated: true)
         case SettingViewControllerSection.verify.rawValue:
-            self.viewModel.countTabVerify = 0
             self.viewModel.openSettingSection(settingSection: .verify)
         case SettingViewControllerSection.account.rawValue:
-            self.viewModel.countTabVerify = 0
             self.viewModel.openSettingSection(settingSection: self.viewModel.accountSection[indexPath.row])
         case SettingViewControllerSection.language.rawValue:
-            self.viewModel.countTabVerify = 0
             self.viewModel.openSettingSection(settingSection: self.viewModel.languangSection[indexPath.row])
         case SettingViewControllerSection.about.rawValue:
-            self.viewModel.countTabVerify = 0
             self.viewModel.openSettingSection(settingSection: self.viewModel.aboutSection[indexPath.row])
         default:
-            self.viewModel.countTabVerify = 0
+            return
         }
     }
 }

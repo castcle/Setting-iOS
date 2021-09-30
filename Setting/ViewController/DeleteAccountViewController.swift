@@ -51,7 +51,7 @@ class DeleteAccountViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavBar()
-        self.titleLabel.text = "\(Localization.settingDeleteAccount.id.text) \(UserState.shared.userId)?"
+        self.titleLabel.text = "\(Localization.settingDeleteAccount.id.text) \(UserState.shared.castcleId)?"
         self.detailLabel.text = Localization.settingDeleteAccount.description.text
         self.deleteAccountButton.setTitle(Localization.settingDeleteAccount.button.text, for: .normal)
         Defaults[.screenId] = ""

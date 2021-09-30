@@ -75,19 +75,14 @@ public protocol SettingViewModelDelegate {
 public final class SettingViewModel {
     
     public var delegate: SettingViewModelDelegate?
-    var isVerify: Bool = false
-    
-    var authenticationRepository: AuthenticationRepository
+    var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
     let accountSection: [SettingSection] = [.profile, .languang, .aboutUs]
     let languangSection: [SettingSection] = []
     let aboutSection: [SettingSection] = []
     
-    public init(authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()) {
-        self.authenticationRepository = authenticationRepository
+    public init() {
+        // Init ViewModel
     }
-    
-    // MARK: - For Test
-    var countTabVerify: Int = 0
     
     func openSettingSection(settingSection: SettingSection) {
         switch settingSection {
