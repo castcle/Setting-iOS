@@ -61,10 +61,10 @@ class PageListTableViewCell: UITableViewCell {
         self.isVerify = isVerify
         if isVerify {
             self.newPageButton.isHidden = false
-            self.page = [Page(name: UserState.shared.name, avatar: UserState.shared.avatar)] + UserState.shared.page + [Page(name: "NEW", avatar: "")]
+            self.page = [Page(name: UserState.shared.name, avatar: UserState.shared.avatar, castcleId: UserState.shared.rawCastcleId)] + UserState.shared.page + [Page(name: "NEW", avatar: "", castcleId: "")]
         } else {
             self.newPageButton.isHidden = true
-            self.page = [Page(name: UserState.shared.name, avatar: UserState.shared.avatar)]
+            self.page = [Page(name: UserState.shared.name, avatar: UserState.shared.avatar, castcleId: UserState.shared.rawCastcleId)]
         }
         self.collectionView.reloadData()
     }
