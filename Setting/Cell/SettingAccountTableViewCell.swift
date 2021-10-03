@@ -51,7 +51,7 @@ class SettingAccountTableViewCell: UITableViewCell {
         self.titleLabel.text = section.text
         
         if section == .email {
-            self.displayLabel.text = UserState.shared.email
+            self.displayLabel.text = UserManager.shared.email
         } else {
             self.displayLabel.text = ""
         }

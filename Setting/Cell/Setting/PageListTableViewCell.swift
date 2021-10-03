@@ -61,10 +61,10 @@ class PageListTableViewCell: UITableViewCell {
         self.isVerify = isVerify
         if isVerify {
             self.newPageButton.isHidden = false
-            self.page = [Page(name: UserState.shared.name, avatar: UserState.shared.avatar, castcleId: UserState.shared.rawCastcleId)] + UserState.shared.page + [Page(name: "NEW", avatar: "", castcleId: "")]
+            self.page = [Page(displayName: UserManager.shared.displayName, avatar: UserManager.shared.avatar, castcleId: UserManager.shared.rawCastcleId)] + UserManager.shared.page + [Page(displayName: "NEW", avatar: "", castcleId: "")]
         } else {
             self.newPageButton.isHidden = true
-            self.page = [Page(name: UserState.shared.name, avatar: UserState.shared.avatar, castcleId: UserState.shared.rawCastcleId)]
+            self.page = [Page(displayName: UserManager.shared.displayName, avatar: UserManager.shared.avatar, castcleId: UserManager.shared.rawCastcleId)]
         }
         self.collectionView.reloadData()
     }
@@ -87,7 +87,7 @@ extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let page = self.page[indexPath.row]
-        if page.name == "NEW" {
+        if page.displayName == "NEW" {
             Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.welcomeCreatePage), animated: true)
         }
     }

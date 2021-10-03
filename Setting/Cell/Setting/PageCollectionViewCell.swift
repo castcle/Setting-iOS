@@ -38,7 +38,7 @@ class PageCollectionViewCell: UICollectionViewCell {
     }
     
     func configCell(isVerify: Bool, page: Page) {
-        if page.name == "NEW" {
+        if page.displayName == "NEW" {
             self.pageImage.circle(color: UIColor.Asset.gray)
             self.addImage.isHidden = false
             self.addImage.image = UIImage.init(icon: .castcle(.add), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.gray)

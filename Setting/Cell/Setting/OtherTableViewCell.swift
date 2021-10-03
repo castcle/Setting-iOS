@@ -131,6 +131,7 @@ class OtherTableViewCell: UITableViewCell {
 extension OtherTableViewCell: SettingViewModelDelegate {
     func didSignOutFinish() {
         self.signOutButton.isEnabled = true
+        Defaults[.startLoadFeed] = true
         Utility.currentViewController().navigationController?.popToRootViewController(animated: true)
     }
 }
