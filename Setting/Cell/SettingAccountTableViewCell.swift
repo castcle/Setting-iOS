@@ -56,7 +56,7 @@ class SettingAccountTableViewCell: UITableViewCell {
             self.displayLabel.text = ""
         }
         
-        if section == .delete {
+        if section == .delete || section == .email {
             self.nextImage.isHidden = true
         } else {
             self.nextImage.isHidden = false

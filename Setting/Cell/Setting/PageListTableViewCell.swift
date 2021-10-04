@@ -89,6 +89,8 @@ extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDel
         let page = self.page[indexPath.row]
         if page.displayName == "NEW" {
             Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.welcomeCreatePage), animated: true)
+        } else if page.castcleId == UserManager.shared.rawCastcleId {
+            Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.userDetail(UserDetailViewModel(isMe: true))), animated: true)
         }
     }
 }
