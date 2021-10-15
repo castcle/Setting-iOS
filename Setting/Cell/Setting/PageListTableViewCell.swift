@@ -90,7 +90,9 @@ extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDel
         if page.displayName == "NEW" {
             Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.welcomeCreatePage), animated: true)
         } else if page.castcleId == UserManager.shared.rawCastcleId {
-            Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.userDetail(UserDetailViewModel(isMe: true))), animated: true)
+            Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.userDetail(UserDetailViewModel(profileType: .me))), animated: true)
+        } else {
+            Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.userDetail(UserDetailViewModel(profileType: .myPage, page: page))), animated: true)
         }
     }
 }
