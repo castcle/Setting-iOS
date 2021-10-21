@@ -51,6 +51,7 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.configureTableView()
+        self.viewModel.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +59,7 @@ class SettingViewController: UIViewController {
         self.setupNavBar()
         self.tableView.reloadData()
         Defaults[.screenId] = ""
+        self.viewModel.getMyPage()
     }
     
     func setupNavBar() {
@@ -158,7 +160,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case SettingViewControllerSection.profile.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.pageList, for: indexPath as IndexPath) as? PageListTableViewCell
             cell?.backgroundColor = UIColor.clear
-            cell?.configCell(isVerify: UserManager.shared.emailVerified)
+            cell?.configCell(isVerify: UserManager.shared.emailVerified, pages: self.viewModel.pages)
             return cell ?? PageListTableViewCell()
         case SettingViewControllerSection.account.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.setting, for: indexPath as IndexPath) as? SettingTableViewCell
@@ -200,5 +202,18 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             return
         }
+    }
+}
+
+extension SettingViewController: SettingViewModelDelegate {
+    func didSignOutFinish() {
+        // Not thing
+    }
+    
+    func didGetPageFinish() {
+        UIView.animate(withDuration: 0.4, animations: { [weak self] in
+            guard let self = self else { return }
+            self.tableView.reloadData()
+        })
     }
 }

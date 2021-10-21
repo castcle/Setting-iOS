@@ -59,6 +59,6 @@ class NotificationTableViewCell: UITableViewCell {
     
     func configCell() {
         self.titleLabel.text = Localization.setting.notification.text
-        self.amountLabel.text = "3 \(Localization.setting.notificationNew.text)"
+        self.amountLabel.text =  "" // "3 \(Localization.setting.notificationNew.text)"
     }
 }

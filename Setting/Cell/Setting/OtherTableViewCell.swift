@@ -134,4 +134,8 @@ extension OtherTableViewCell: SettingViewModelDelegate {
         Defaults[.startLoadFeed] = true
         Utility.currentViewController().navigationController?.popToRootViewController(animated: true)
     }
+    
+    func didGetPageFinish() {
+        // Not thing
+    }
 }

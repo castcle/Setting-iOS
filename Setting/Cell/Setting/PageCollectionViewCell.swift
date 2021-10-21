@@ -27,6 +27,7 @@
 
 import UIKit
 import Core
+import Networking
 
 class PageCollectionViewCell: UICollectionViewCell {
 
@@ -37,14 +38,14 @@ class PageCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configCell(isVerify: Bool, page: Page) {
+    func configCell(isVerify: Bool, page: PageInfo) {
         if page.displayName == "NEW" {
             self.pageImage.image = UIImage()
             self.pageImage.circle(color: UIColor.Asset.gray)
             self.addImage.isHidden = false
             self.addImage.image = UIImage.init(icon: .castcle(.add), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.gray)
         } else {
-            let url = URL(string: page.avatar)
+            let url = URL(string: page.image.avatar.fullHd)
             self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.5))])
             self.addImage.isHidden = true
             if isVerify {

@@ -31,6 +31,7 @@ import Networking
 import Component
 import Authen
 import Defaults
+import SwiftyJSON
 
 public enum SettingSection {
     case profile
@@ -70,18 +71,28 @@ public enum SettingSection {
 
 public protocol SettingViewModelDelegate {
     func didSignOutFinish()
+    func didGetPageFinish()
 }
 
 public final class SettingViewModel {
     
     public var delegate: SettingViewModelDelegate?
     var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
+    var pageRepository: PageRepository = PageRepositoryImpl()
+    let tokenHelper: TokenHelper = TokenHelper()
     let accountSection: [SettingSection] = [.profile, .languang, .aboutUs]
     let languangSection: [SettingSection] = []
     let aboutSection: [SettingSection] = []
+    var stage: Stage = .none
+    var pages: [PageInfo] = []
+    
+    enum Stage {
+        case getMyPage
+        case none
+    }
     
     public init() {
-        // Init ViewModel
+        self.tokenHelper.delegate = self
     }
     
     func openSettingSection(settingSection: SettingSection) {
@@ -106,6 +117,35 @@ public final class SettingViewModel {
                 userHelper.clearUserData()
                 self.delegate?.didSignOutFinish()
             }
+        }
+    }
+    
+    func getMyPage() {
+        self.stage = .getMyPage
+        self.pageRepository.getMyPage() { (success, response, isRefreshToken) in
+            if success {
+                do {
+                    let rawJson = try response.mapJSON()
+                    let json = JSON(rawJson)
+                    self.pages = []
+                    self.pages = (json[AuthenticationApiKey.payload.rawValue].arrayValue).map { PageInfo(json: $0) }
+                    self.delegate?.didGetPageFinish()
+                } catch {}
+            } else {
+                if isRefreshToken {
+                    self.tokenHelper.refreshToken()
+                } else {
+                    self.delegate?.didGetPageFinish()
+                }
+            }
+        }
+    }
+}
+
+extension SettingViewModel: TokenHelperDelegate {
+    public func didRefreshTokenFinish() {
+        if self.stage == .getMyPage {
+            self.getMyPage()
         }
     }
 }
