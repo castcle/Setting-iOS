@@ -2,7 +2,7 @@
 //  Setting.h
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 23/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 23/8/2564 BE.
 //
 
 #import <Foundation/Foundation.h>

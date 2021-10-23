@@ -22,7 +22,7 @@
 //  SettingViewController.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 23/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 23/8/2564 BE.
 //
 
 import UIKit
@@ -211,8 +211,7 @@ extension SettingViewController: SettingViewModelDelegate {
     }
     
     func didGetPageFinish() {
-        UIView.animate(withDuration: 0.4, animations: { [weak self] in
-            guard let self = self else { return }
+        UIView.animate(withDuration: 0.35, delay: 0, options: [.curveLinear], animations: {
             self.tableView.reloadData()
         })
     }
