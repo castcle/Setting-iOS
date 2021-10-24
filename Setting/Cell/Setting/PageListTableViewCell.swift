@@ -48,7 +48,7 @@ class PageListTableViewCell: UITableViewCell {
         
         self.titleLabel.font = UIFont.asset(.regular, fontSize: .body)
         self.titleLabel.textColor = UIColor.Asset.white
-        self.newPageButton.titleLabel?.font = UIFont.asset(.medium, fontSize: .body)
+        self.newPageButton.titleLabel?.font = UIFont.asset(.bold, fontSize: .body)
         self.newPageButton.setTitleColor(UIColor.Asset.lightBlue, for: .normal)
     }
 
