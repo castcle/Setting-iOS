@@ -160,7 +160,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case SettingViewControllerSection.profile.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.pageList, for: indexPath as IndexPath) as? PageListTableViewCell
             cell?.backgroundColor = UIColor.clear
-            cell?.configCell(isVerify: UserManager.shared.emailVerified, pages: self.viewModel.pages)
+            cell?.configCell(isVerify: UserManager.shared.emailVerified)
             return cell ?? PageListTableViewCell()
         case SettingViewControllerSection.account.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.setting, for: indexPath as IndexPath) as? SettingTableViewCell

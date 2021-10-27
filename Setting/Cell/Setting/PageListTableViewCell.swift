@@ -29,6 +29,7 @@ import UIKit
 import Core
 import Profile
 import Networking
+import RealmSwift
 
 class PageListTableViewCell: UITableViewCell {
 
@@ -36,7 +37,10 @@ class PageListTableViewCell: UITableViewCell {
     @IBOutlet var newPageButton: UIButton!
     @IBOutlet var titleLabel: UILabel!
     
-    var pages: [PageInfo] = []
+    private let realm = try! Realm()
+    var pageList: Results<PageLocal>!
+    var userPage: PageInfo = PageInfo()
+    var newPage: PageInfo = PageInfo()
     var isVerify: Bool = false
     
     override func awakeFromNib() {
@@ -56,16 +60,17 @@ class PageListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configCell(isVerify: Bool, pages: [PageInfo]) {
+    func configCell(isVerify: Bool) {
         self.titleLabel.text = Localization.setting.goTo.text
         self.newPageButton.setTitle("+ \(Localization.setting.newPage.text)", for: .normal)
         self.isVerify = isVerify
+        self.userPage = PageInfo(displayName: UserManager.shared.displayName, avatar: UserManager.shared.avatar, castcleId: UserManager.shared.rawCastcleId)
         if isVerify {
+            self.pageList = self.realm.objects(PageLocal.self)
             self.newPageButton.isHidden = false
-            self.pages = [PageInfo(displayName: UserManager.shared.displayName, avatar: UserManager.shared.avatar, castcleId: UserManager.shared.rawCastcleId)] + pages + [PageInfo(displayName: "NEW", avatar: "", castcleId: "")]
+            self.newPage = PageInfo(displayName: "NEW", avatar: "", castcleId: "")
         } else {
             self.newPageButton.isHidden = true
-            self.pages = [PageInfo(displayName: UserManager.shared.displayName, avatar: UserManager.shared.avatar, castcleId: UserManager.shared.rawCastcleId)]
         }
         self.collectionView.reloadData()
     }
@@ -77,23 +82,38 @@ class PageListTableViewCell: UITableViewCell {
 
 extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.pages.count
+        if self.isVerify {
+            return self.pageList.count + 2
+        } else {
+            return 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
-        cell?.configCell(isVerify: self.isVerify, page: self.pages[indexPath.row])
-        return cell ?? UICollectionViewCell()
+        if indexPath.row == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
+            cell?.configCell(isVerify: self.isVerify, pageInfo: self.userPage, pageLocal: nil)
+            return cell ?? UICollectionViewCell()
+        } else if indexPath.row == (self.pageList.count + 1) {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
+            cell?.configCell(isVerify: self.isVerify, pageInfo: self.newPage, pageLocal: nil)
+            return cell ?? UICollectionViewCell()
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
+            let pageLocal = self.pageList[indexPath.row - 1]
+            cell?.configCell(isVerify: self.isVerify, pageInfo: nil, pageLocal: pageLocal)
+            return cell ?? UICollectionViewCell()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let page = self.pages[indexPath.row]
-        if page.displayName == "NEW" {
+        if indexPath.row == 0 {
+            Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.userDetail(UserDetailViewModel(profileType: .me, page: nil))), animated: true)
+        } else if indexPath.row == (self.pageList.count + 1) {
             Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.welcomeCreatePage), animated: true)
-        } else if page.castcleId == UserManager.shared.rawCastcleId {
-            Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.userDetail(UserDetailViewModel(profileType: .me))), animated: true)
         } else {
-            Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.userDetail(UserDetailViewModel(profileType: .myPage, page: page))), animated: true)
+            let pageLocal = self.pageList[indexPath.row - 1]
+            Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.userDetail(UserDetailViewModel(profileType: .myPage, page: pageLocal))), animated: true)
         }
     }
 }

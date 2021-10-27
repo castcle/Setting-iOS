@@ -38,14 +38,28 @@ class PageCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configCell(isVerify: Bool, page: PageInfo) {
-        if page.displayName == "NEW" {
-            self.pageImage.image = UIImage()
-            self.pageImage.circle(color: UIColor.Asset.gray)
-            self.addImage.isHidden = false
-            self.addImage.image = UIImage.init(icon: .castcle(.add), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.gray)
-        } else {
-            let url = URL(string: page.image.avatar.fullHd)
+    func configCell(isVerify: Bool, pageInfo: PageInfo?, pageLocal: PageLocal?) {
+        self.pageImage.isHidden = false
+        self.addImage.isHidden = false
+        
+        if let page = pageInfo {
+            if page.displayName == "NEW" {
+                self.pageImage.image = UIImage()
+                self.pageImage.circle(color: UIColor.Asset.gray)
+                self.addImage.isHidden = false
+                self.addImage.image = UIImage.init(icon: .castcle(.add), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.gray)
+            } else {
+                let url = URL(string: page.image.avatar.fullHd)
+                self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.5))])
+                self.addImage.isHidden = true
+                if isVerify {
+                    self.pageImage.circle(color: UIColor.Asset.white)
+                } else {
+                    self.pageImage.circle(color: UIColor.Asset.denger)
+                }
+            }
+        } else if let page = pageLocal {
+            let url = URL(string: page.image)
             self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.5))])
             self.addImage.isHidden = true
             if isVerify {
@@ -53,6 +67,9 @@ class PageCollectionViewCell: UICollectionViewCell {
             } else {
                 self.pageImage.circle(color: UIColor.Asset.denger)
             }
+        } else {
+            self.pageImage.isHidden = true
+            self.addImage.isHidden = true
         }
     }
 

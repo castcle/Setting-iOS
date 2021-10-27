@@ -28,10 +28,14 @@
 import UIKit
 import Core
 import Defaults
+import RealmSwift
 
 class DeleteAccountDetailViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
+    
+    private let realm = try! Realm()
+    var pageList: Results<PageLocal>!
     
     enum DeleteAccountDetailViewControllerSection: Int, CaseIterable {
         case header = 0
@@ -45,6 +49,7 @@ class DeleteAccountDetailViewController: UIViewController {
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.hideKeyboardWhenTapped()
         self.configureTableView()
+        self.pageList = self.realm.objects(PageLocal.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,7 +82,7 @@ extension DeleteAccountDetailViewController: UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == DeleteAccountDetailViewControllerSection.page.rawValue {
-            return UserManager.shared.page.count
+            return self.pageList.count
         } else {
             return 1
         }
@@ -97,9 +102,9 @@ extension DeleteAccountDetailViewController: UITableViewDelegate, UITableViewDat
             return cell ?? AccountListTableViewCell()
         case DeleteAccountDetailViewControllerSection.page.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.accountList, for: indexPath as IndexPath) as? AccountListTableViewCell
-            let page: Page = UserManager.shared.page[indexPath.row]
+            let page: PageLocal = self.pageList[indexPath.row]
             cell?.backgroundColor = UIColor.clear
-            cell?.configCell(title: page.displayName, type: Localization.settingDeleteConfirm.page.text, avatar: page.avatar)
+            cell?.configCell(title: page.displayName, type: Localization.settingDeleteConfirm.page.text, avatar: page.image)
             return cell ?? AccountListTableViewCell()
         case DeleteAccountDetailViewControllerSection.password.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.password, for: indexPath as IndexPath) as? DeleteAccountPasswordTableViewCell

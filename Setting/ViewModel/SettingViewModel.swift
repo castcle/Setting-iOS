@@ -32,6 +32,7 @@ import Component
 import Authen
 import Defaults
 import SwiftyJSON
+import RealmSwift
 
 public enum SettingSection {
     case profile
@@ -84,7 +85,7 @@ public final class SettingViewModel {
     let languangSection: [SettingSection] = []
     let aboutSection: [SettingSection] = []
     var stage: Stage = .none
-    var pages: [PageInfo] = []
+    private let realm = try! Realm()
     
     enum Stage {
         case getMyPage
@@ -127,8 +128,24 @@ public final class SettingViewModel {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    self.pages = []
-                    self.pages = (json[AuthenticationApiKey.payload.rawValue].arrayValue).map { PageInfo(json: $0) }
+                    let pageList = json[AuthenticationApiKey.payload.rawValue].arrayValue
+                    let pageLocal = self.realm.objects(PageLocal.self)
+                    try! self.realm.write {
+                        self.realm.delete(pageLocal)
+                    }
+                    
+                    pageList.forEach { page in
+                        let pageInfo = PageInfo(json: page)
+                        try! self.realm.write {
+                            let pageLocal = PageLocal()
+                            pageLocal.id = pageInfo.id
+                            pageLocal.castcleId = pageInfo.castcleId
+                            pageLocal.displayName = pageInfo.displayName
+                            pageLocal.image = pageInfo.image.avatar.fullHd
+                            self.realm.add(pageLocal, update: .modified)
+                        }
+                        
+                    }
                     self.delegate?.didGetPageFinish()
                 } catch {}
             } else {
