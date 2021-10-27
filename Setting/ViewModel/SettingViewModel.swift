@@ -116,6 +116,10 @@ public final class SettingViewModel {
             if success {
                 let userHelper = UserHelper()
                 userHelper.clearUserData()
+                let pageLocal = self.realm.objects(PageLocal.self)
+                try! self.realm.write {
+                    self.realm.delete(pageLocal)
+                }
                 self.delegate?.didSignOutFinish()
             }
         }
