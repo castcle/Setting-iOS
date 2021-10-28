@@ -72,7 +72,6 @@ public enum SettingSection {
 
 public protocol SettingViewModelDelegate {
     func didSignOutFinish()
-    func didGetPageFinish()
     func didGetProfileFinish()
 }
 
@@ -80,7 +79,6 @@ public final class SettingViewModel {
     
     public var delegate: SettingViewModelDelegate?
     var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
-    var pageRepository: PageRepository = PageRepositoryImpl()
     var userRepository: UserRepository = UserRepositoryImpl()
     let tokenHelper: TokenHelper = TokenHelper()
     let accountSection: [SettingSection] = [.profile, .languang, .aboutUs]
@@ -90,7 +88,6 @@ public final class SettingViewModel {
     private let realm = try! Realm()
     
     enum Stage {
-        case getMyPage
         case getMe
         case none
     }
@@ -128,43 +125,6 @@ public final class SettingViewModel {
         }
     }
     
-    func getMyPage() {
-        self.stage = .getMyPage
-        self.pageRepository.getMyPage() { (success, response, isRefreshToken) in
-            if success {
-                do {
-                    let rawJson = try response.mapJSON()
-                    let json = JSON(rawJson)
-                    let pageList = json[AuthenticationApiKey.payload.rawValue].arrayValue
-                    let pageLocal = self.realm.objects(PageLocal.self)
-                    try! self.realm.write {
-                        self.realm.delete(pageLocal)
-                    }
-                    
-                    pageList.forEach { page in
-                        let pageInfo = PageInfo(json: page)
-                        try! self.realm.write {
-                            let pageLocal = PageLocal()
-                            pageLocal.id = pageInfo.id
-                            pageLocal.castcleId = pageInfo.castcleId
-                            pageLocal.displayName = pageInfo.displayName
-                            pageLocal.image = pageInfo.image.avatar.fullHd
-                            self.realm.add(pageLocal, update: .modified)
-                        }
-                        
-                    }
-                    self.delegate?.didGetPageFinish()
-                } catch {}
-            } else {
-                if isRefreshToken {
-                    self.tokenHelper.refreshToken()
-                } else {
-                    self.delegate?.didGetPageFinish()
-                }
-            }
-        }
-    }
-    
     func getMe() {
         self.stage = .getMe
         self.userRepository.getMe() { (success, response, isRefreshToken) in
@@ -188,9 +148,7 @@ public final class SettingViewModel {
 
 extension SettingViewModel: TokenHelperDelegate {
     public func didRefreshTokenFinish() {
-        if self.stage == .getMyPage {
-            self.getMyPage()
-        } else if self.stage == .getMe {
+        if self.stage == .getMe {
             self.getMe()
         }
     }

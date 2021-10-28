@@ -59,7 +59,6 @@ class SettingViewController: UIViewController {
         self.setupNavBar()
         self.tableView.reloadData()
         Defaults[.screenId] = ""
-        self.viewModel.getMyPage()
         if !UserManager.shared.emailVerified {
             self.viewModel.getMe()
         }
@@ -211,12 +210,6 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 extension SettingViewController: SettingViewModelDelegate {
     func didSignOutFinish() {
         // Not thing
-    }
-    
-    func didGetPageFinish() {
-        UIView.animate(withDuration: 0.35, delay: 0, options: [.curveLinear], animations: {
-            self.tableView.reloadData()
-        })
     }
     
     func didGetProfileFinish() {
