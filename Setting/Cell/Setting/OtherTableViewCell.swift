@@ -138,4 +138,8 @@ extension OtherTableViewCell: SettingViewModelDelegate {
     func didGetPageFinish() {
         // Not thing
     }
+    
+    func didGetProfileFinish() {
+        // Not thing
+    }
 }

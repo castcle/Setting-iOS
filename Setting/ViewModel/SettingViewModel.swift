@@ -73,6 +73,7 @@ public enum SettingSection {
 public protocol SettingViewModelDelegate {
     func didSignOutFinish()
     func didGetPageFinish()
+    func didGetProfileFinish()
 }
 
 public final class SettingViewModel {
@@ -80,6 +81,7 @@ public final class SettingViewModel {
     public var delegate: SettingViewModelDelegate?
     var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
     var pageRepository: PageRepository = PageRepositoryImpl()
+    var userRepository: UserRepository = UserRepositoryImpl()
     let tokenHelper: TokenHelper = TokenHelper()
     let accountSection: [SettingSection] = [.profile, .languang, .aboutUs]
     let languangSection: [SettingSection] = []
@@ -89,6 +91,7 @@ public final class SettingViewModel {
     
     enum Stage {
         case getMyPage
+        case getMe
         case none
     }
     
@@ -161,12 +164,34 @@ public final class SettingViewModel {
             }
         }
     }
+    
+    func getMe() {
+        self.stage = .getMe
+        self.userRepository.getMe() { (success, response, isRefreshToken) in
+            if success {
+                do {
+                    let rawJson = try response.mapJSON()
+                    let json = JSON(rawJson)
+                    let userHelper = UserHelper()
+                    userHelper.updateLocalProfile(user: User(json: json))
+                    self.delegate?.didGetProfileFinish()
+                } catch {}
+            } else {
+                if isRefreshToken {
+                    self.tokenHelper.refreshToken()
+                }
+            }
+        }
+    }
+
 }
 
 extension SettingViewModel: TokenHelperDelegate {
     public func didRefreshTokenFinish() {
         if self.stage == .getMyPage {
             self.getMyPage()
+        } else if self.stage == .getMe {
+            self.getMe()
         }
     }
 }
