@@ -38,7 +38,7 @@ class PageListTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     
     private let realm = try! Realm()
-    var pageList: Results<PageLocal>!
+    var pages: Results<Page>!
     var userPage: PageInfo = PageInfo()
     var newPage: PageInfo = PageInfo()
     var isVerify: Bool = false
@@ -66,7 +66,7 @@ class PageListTableViewCell: UITableViewCell {
         self.isVerify = isVerify
         self.userPage = PageInfo(displayName: UserManager.shared.displayName, avatar: UserManager.shared.avatar, castcleId: UserManager.shared.rawCastcleId)
         if isVerify {
-            self.pageList = self.realm.objects(PageLocal.self)
+            self.pages = self.realm.objects(Page.self)
             self.newPageButton.isHidden = false
             self.newPage = PageInfo(displayName: "NEW", avatar: "", castcleId: "")
         } else {
@@ -83,7 +83,7 @@ class PageListTableViewCell: UITableViewCell {
 extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if self.isVerify {
-            return self.pageList.count + 2
+            return self.pages.count + 2
         } else {
             return 1
         }
@@ -92,16 +92,16 @@ extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
-            cell?.configCell(isVerify: self.isVerify, pageInfo: self.userPage, pageLocal: nil)
+            cell?.configCell(isVerify: self.isVerify, pageInfo: self.userPage, page: nil)
             return cell ?? UICollectionViewCell()
-        } else if indexPath.row == (self.pageList.count + 1) {
+        } else if indexPath.row == (self.pages.count + 1) {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
-            cell?.configCell(isVerify: self.isVerify, pageInfo: self.newPage, pageLocal: nil)
+            cell?.configCell(isVerify: self.isVerify, pageInfo: self.newPage, page: nil)
             return cell ?? UICollectionViewCell()
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
-            let pageLocal = self.pageList[indexPath.row - 1]
-            cell?.configCell(isVerify: self.isVerify, pageInfo: nil, pageLocal: pageLocal)
+            let page = self.pages[indexPath.row - 1]
+            cell?.configCell(isVerify: self.isVerify, pageInfo: nil, page: page)
             return cell ?? UICollectionViewCell()
         }
     }
@@ -109,11 +109,11 @@ extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.userDetail(UserDetailViewModel(profileType: .me, page: nil))), animated: true)
-        } else if indexPath.row == (self.pageList.count + 1) {
+        } else if indexPath.row == (self.pages.count + 1) {
             Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.welcomeCreatePage), animated: true)
         } else {
-            let pageLocal = self.pageList[indexPath.row - 1]
-            Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.userDetail(UserDetailViewModel(profileType: .myPage, page: pageLocal))), animated: true)
+            let page = self.pages[indexPath.row - 1]
+            Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.userDetail(UserDetailViewModel(profileType: .myPage, page: page))), animated: true)
         }
     }
 }

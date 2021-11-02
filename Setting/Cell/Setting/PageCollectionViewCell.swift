@@ -38,7 +38,7 @@ class PageCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configCell(isVerify: Bool, pageInfo: PageInfo?, pageLocal: PageLocal?) {
+    func configCell(isVerify: Bool, pageInfo: PageInfo?, page: Page?) {
         self.pageImage.isHidden = false
         self.addImage.isHidden = false
         
@@ -58,7 +58,7 @@ class PageCollectionViewCell: UICollectionViewCell {
                     self.pageImage.circle(color: UIColor.Asset.denger)
                 }
             }
-        } else if let page = pageLocal {
+        } else if let page = page {
             let url = URL(string: page.image)
             self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
             self.addImage.isHidden = true

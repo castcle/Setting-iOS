@@ -35,7 +35,7 @@ class DeleteAccountDetailViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     private let realm = try! Realm()
-    var pageList: Results<PageLocal>!
+    var pages: Results<Page>!
     
     enum DeleteAccountDetailViewControllerSection: Int, CaseIterable {
         case header = 0
@@ -49,7 +49,7 @@ class DeleteAccountDetailViewController: UIViewController {
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.hideKeyboardWhenTapped()
         self.configureTableView()
-        self.pageList = self.realm.objects(PageLocal.self)
+        self.pages = self.realm.objects(Page.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,7 +82,7 @@ extension DeleteAccountDetailViewController: UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == DeleteAccountDetailViewControllerSection.page.rawValue {
-            return self.pageList.count
+            return self.pages.count
         } else {
             return 1
         }
@@ -102,7 +102,7 @@ extension DeleteAccountDetailViewController: UITableViewDelegate, UITableViewDat
             return cell ?? AccountListTableViewCell()
         case DeleteAccountDetailViewControllerSection.page.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.accountList, for: indexPath as IndexPath) as? AccountListTableViewCell
-            let page: PageLocal = self.pageList[indexPath.row]
+            let page: Page = self.pages[indexPath.row]
             cell?.backgroundColor = UIColor.clear
             cell?.configCell(title: page.displayName, type: Localization.settingDeleteConfirm.page.text, avatar: page.image)
             return cell ?? AccountListTableViewCell()
