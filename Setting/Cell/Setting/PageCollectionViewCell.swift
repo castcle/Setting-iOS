@@ -49,8 +49,8 @@ class PageCollectionViewCell: UICollectionViewCell {
                 self.addImage.isHidden = false
                 self.addImage.image = UIImage.init(icon: .castcle(.add), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.gray)
             } else {
-                let url = URL(string: page.image.avatar.fullHd)
-                self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.5))])
+                let url = URL(string: page.image.avatar.thumbnail)
+                self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
                 self.addImage.isHidden = true
                 if isVerify {
                     self.pageImage.circle(color: UIColor.Asset.white)
@@ -60,7 +60,7 @@ class PageCollectionViewCell: UICollectionViewCell {
             }
         } else if let page = pageLocal {
             let url = URL(string: page.image)
-            self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.5))])
+            self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
             self.addImage.isHidden = true
             if isVerify {
                 self.pageImage.circle(color: UIColor.Asset.white)
