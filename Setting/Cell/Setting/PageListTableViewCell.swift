@@ -30,6 +30,7 @@ import Core
 import Profile
 import Networking
 import RealmSwift
+import Defaults
 
 class PageListTableViewCell: UITableViewCell {
 
@@ -108,12 +109,12 @@ extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.userDetail(UserDetailViewModel(profileType: .me, page: nil))), animated: true)
+            ProfileOpener.openProfileDetail(.people, castcleId: UserManager.shared.rawCastcleId, displayName: "", page: nil)
         } else if indexPath.row == (self.pages.count + 1) {
             Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.welcomeCreatePage), animated: true)
         } else {
             let page = self.pages[indexPath.row - 1]
-            Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.userDetail(UserDetailViewModel(profileType: .myPage, page: page))), animated: true)
+            ProfileOpener.openProfileDetail(.page, castcleId: nil, displayName: "", page: page)
         }
     }
 }
