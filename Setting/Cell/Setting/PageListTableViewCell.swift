@@ -65,7 +65,7 @@ class PageListTableViewCell: UITableViewCell {
         self.titleLabel.text = Localization.setting.goTo.text
         self.newPageButton.setTitle("+ \(Localization.setting.newPage.text)", for: .normal)
         self.isVerify = isVerify
-        self.userPage = PageInfo(displayName: UserManager.shared.displayName, avatar: UserManager.shared.avatar, castcleId: UserManager.shared.rawCastcleId)
+        self.userPage = PageInfo(displayName: UserManager.shared.displayName, avatar: "", castcleId: UserManager.shared.rawCastcleId)
         if isVerify {
             self.pages = self.realm.objects(Page.self)
             self.newPageButton.isHidden = false

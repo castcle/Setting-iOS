@@ -49,8 +49,12 @@ class PageCollectionViewCell: UICollectionViewCell {
                 self.addImage.isHidden = false
                 self.addImage.image = UIImage.init(icon: .castcle(.add), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.gray)
             } else {
-                let url = URL(string: page.image.avatar.thumbnail)
-                self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
+                if page.castcleId == UserManager.shared.rawCastcleId {
+                    self.pageImage.image = UserManager.shared.avatar
+                } else {
+                    let url = URL(string: page.image.avatar.thumbnail)
+                    self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
+                }
                 self.addImage.isHidden = true
                 if isVerify {
                     self.pageImage.circle(color: UIColor.Asset.white)

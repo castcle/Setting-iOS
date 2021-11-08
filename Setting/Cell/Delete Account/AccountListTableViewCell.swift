@@ -46,9 +46,14 @@ class AccountListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configCell(title: String, type: String, avatar: String) {
-        let url = URL(string: avatar)
-        self.avatarImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
+    func configCell(title: String, type: String, avatarUrl: String, avatarImage: UIImage?) {
+        if let image = avatarImage {
+            self.avatarImage.image = image
+        } else {
+            let url = URL(string: avatarUrl)
+            self.avatarImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
+        }
+        
         self.nameLabel.text = title
         self.typeLabel.text = type
     }
