@@ -63,8 +63,7 @@ class PageCollectionViewCell: UICollectionViewCell {
                 }
             }
         } else if let page = page {
-            let url = URL(string: page.image)
-            self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
+            self.pageImage.image = ImageHelper.shared.loadImageFromDocumentDirectory(nameOfImage: page.castcleId, type: .avatar)
             self.addImage.isHidden = true
             if isVerify {
                 self.pageImage.circle(color: UIColor.Asset.white)
