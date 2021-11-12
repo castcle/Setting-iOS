@@ -52,7 +52,7 @@ class PageCollectionViewCell: UICollectionViewCell {
                 if page.castcleId == UserManager.shared.rawCastcleId {
                     self.pageImage.image = UserManager.shared.avatar
                 } else {
-                    let url = URL(string: page.image.avatar.thumbnail)
+                    let url = URL(string: page.images.avatar.thumbnail)
                     self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
                 }
                 self.addImage.isHidden = true
