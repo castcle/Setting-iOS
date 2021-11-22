@@ -38,7 +38,7 @@ class PageCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configCell(isVerify: Bool, pageInfo: PageInfo?, page: Page?) {
+    func configCell(pageInfo: PageInfo?, page: Page?) {
         self.pageImage.isHidden = false
         self.addImage.isHidden = false
         
@@ -56,20 +56,12 @@ class PageCollectionViewCell: UICollectionViewCell {
                     self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
                 }
                 self.addImage.isHidden = true
-                if isVerify {
-                    self.pageImage.circle(color: UIColor.Asset.white)
-                } else {
-                    self.pageImage.circle(color: UIColor.Asset.denger)
-                }
+                self.pageImage.circle(color: UIColor.Asset.white)
             }
         } else if let page = page {
             self.pageImage.image = ImageHelper.shared.loadImageFromDocumentDirectory(nameOfImage: page.castcleId, type: .avatar)
             self.addImage.isHidden = true
-            if isVerify {
-                self.pageImage.circle(color: UIColor.Asset.white)
-            } else {
-                self.pageImage.circle(color: UIColor.Asset.denger)
-            }
+            self.pageImage.circle(color: UIColor.Asset.white)
         } else {
             self.pageImage.isHidden = true
             self.addImage.isHidden = true

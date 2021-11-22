@@ -93,16 +93,16 @@ extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
-            cell?.configCell(isVerify: self.isVerify, pageInfo: self.userPage, page: nil)
+            cell?.configCell(pageInfo: self.userPage, page: nil)
             return cell ?? UICollectionViewCell()
         } else if indexPath.row == (self.pages.count + 1) {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
-            cell?.configCell(isVerify: self.isVerify, pageInfo: self.newPage, page: nil)
+            cell?.configCell(pageInfo: self.newPage, page: nil)
             return cell ?? UICollectionViewCell()
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
             let page = self.pages[indexPath.row - 1]
-            cell?.configCell(isVerify: self.isVerify, pageInfo: nil, page: page)
+            cell?.configCell(pageInfo: nil, page: page)
             return cell ?? UICollectionViewCell()
         }
     }
