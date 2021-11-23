@@ -45,8 +45,8 @@ class SocialTableViewCell: UITableViewCell {
         self.twitterButton.setImage(UIImage.init(icon: .castcle(.twitter), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.lightGray).withRenderingMode(.alwaysOriginal), for: .normal)
         self.mediumButton.setImage(UIImage.init(icon: .castcle(.medium), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.lightGray).withRenderingMode(.alwaysOriginal), for: .normal)
         self.telegramButton.setImage(UIImage.init(icon: .castcle(.direct), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.lightGray).withRenderingMode(.alwaysOriginal), for: .normal)
-        self.githubButton.setImage(UIImage.init(icon: .castcle(.apple), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.lightGray).withRenderingMode(.alwaysOriginal), for: .normal)
-        self.discordButton.setImage(UIImage.init(icon: .castcle(.apple), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.lightGray).withRenderingMode(.alwaysOriginal), for: .normal)
+        self.githubButton.setImage(UIImage.init(icon: .castcle(.github), size: CGSize(width: 27, height: 27), textColor: UIColor.Asset.lightGray).withRenderingMode(.alwaysOriginal), for: .normal)
+        self.discordButton.setImage(UIImage.init(icon: .castcle(.discord), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.lightGray).withRenderingMode(.alwaysOriginal), for: .normal)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
