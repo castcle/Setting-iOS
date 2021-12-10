@@ -22,7 +22,7 @@
 //  LanguageViewController.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 24/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 24/8/2564 BE.
 //
 
 import UIKit
@@ -45,18 +45,18 @@ class LanguageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
-        self.setupNavBar()
         self.configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.setupNavBar()
         self.tableView.reloadData()
         Defaults[.screenId] = ""
     }
     
     func setupNavBar() {
-        self.customNavigationBar(.secondary, title: "Language")
+        self.customNavigationBar(.secondary, title: Localization.settingLanguage.title.text)
     }
     
     func configureTableView() {
@@ -101,6 +101,7 @@ extension LanguageViewController: UITableViewDelegate, UITableViewDataSource {
         case LanguageViewControllerSection.add.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.addPreferred, for: indexPath as IndexPath) as? AddPreferredLanguageTableViewCell
             cell?.backgroundColor = UIColor.Asset.darkGray
+            cell?.configCell()
             return cell ?? AddPreferredLanguageTableViewCell()
         default:
             return UITableViewCell()

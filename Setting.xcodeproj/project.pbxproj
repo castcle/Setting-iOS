@@ -24,22 +24,18 @@
 		B743387826D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B743387626D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.xib */; };
 		B743387A26D920F0004BBC05 /* DeleteAccountSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743387926D920F0004BBC05 /* DeleteAccountSuccessViewController.swift */; };
 		B74338A526DE33C4004BBC05 /* Authen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B74338A426DE33C4004BBC05 /* Authen.framework */; };
-		B74338A626DE33C4004BBC05 /* Authen.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B74338A426DE33C4004BBC05 /* Authen.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B7866369274B8D1000B13EEF /* SocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7866367274B8D1000B13EEF /* SocialTableViewCell.swift */; };
+		B786636A274B8D1000B13EEF /* SocialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7866368274B8D1000B13EEF /* SocialTableViewCell.xib */; };
 		B7AF660B26F24F5800BDE9C4 /* Profile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF660A26F24F5800BDE9C4 /* Profile.framework */; };
-		B7AF660C26F24F5800BDE9C4 /* Profile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF660A26F24F5800BDE9C4 /* Profile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7AF666826F4385800BDE9C4 /* Notification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF666726F4385800BDE9C4 /* Notification.framework */; };
-		B7AF666926F4385800BDE9C4 /* Notification.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF666726F4385800BDE9C4 /* Notification.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7C252B426D3915400ACBB84 /* Setting.h in Headers */ = {isa = PBXBuildFile; fileRef = B7C252B226D3915400ACBB84 /* Setting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B7C252C326D3944E00ACBB84 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7C252C226D3944E00ACBB84 /* Setting.storyboard */; };
 		B7C252C526D3946E00ACBB84 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C252C426D3946E00ACBB84 /* SettingViewController.swift */; };
 		B7C252C826D394F000ACBB84 /* SettingNibVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C252C726D394F000ACBB84 /* SettingNibVars.swift */; };
 		B7C252CA26D3950400ACBB84 /* SettingOpener.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C252C926D3950400ACBB84 /* SettingOpener.swift */; };
 		B7C252CC26D395A500ACBB84 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7C252CB26D395A500ACBB84 /* Core.framework */; };
-		B7C252CD26D395A500ACBB84 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B7C252CB26D395A500ACBB84 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7C252D026D395AB00ACBB84 /* Component.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7C252CF26D395AB00ACBB84 /* Component.framework */; };
-		B7C252D126D395AB00ACBB84 /* Component.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B7C252CF26D395AB00ACBB84 /* Component.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7C252D326D395B400ACBB84 /* Networking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7C252D226D395B400ACBB84 /* Networking.framework */; };
-		B7C252D426D395B400ACBB84 /* Networking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B7C252D226D395B400ACBB84 /* Networking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B7C252DD26D3AB0D00ACBB84 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C252DB26D3AB0D00ACBB84 /* NotificationTableViewCell.swift */; };
 		B7C252DE26D3AB0D00ACBB84 /* NotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C252DC26D3AB0D00ACBB84 /* NotificationTableViewCell.xib */; };
 		B7C252E126D3B92F00ACBB84 /* VerifyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C252DF26D3B92E00ACBB84 /* VerifyTableViewCell.swift */; };
@@ -67,25 +63,6 @@
 		B7C2531826D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C2531626D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		B7C252CE26D395A600ACBB84 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				B7C252D126D395AB00ACBB84 /* Component.framework in Embed Frameworks */,
-				B74338A626DE33C4004BBC05 /* Authen.framework in Embed Frameworks */,
-				B7C252CD26D395A500ACBB84 /* Core.framework in Embed Frameworks */,
-				B7AF660C26F24F5800BDE9C4 /* Profile.framework in Embed Frameworks */,
-				B7C252D426D395B400ACBB84 /* Networking.framework in Embed Frameworks */,
-				B7AF666926F4385800BDE9C4 /* Notification.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		33296E29F07D0AFE9916B159 /* Pods_Setting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Setting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E51CBABC07E88940856F42 /* Pods-Setting.debug (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.debug (development).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.debug (development).xcconfig"; sourceTree = "<group>"; };
@@ -107,6 +84,8 @@
 		B743387926D920F0004BBC05 /* DeleteAccountSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountSuccessViewController.swift; sourceTree = "<group>"; };
 		B74338A326DE310C004BBC05 /* Authen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B74338A426DE33C4004BBC05 /* Authen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7866367274B8D1000B13EEF /* SocialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTableViewCell.swift; sourceTree = "<group>"; };
+		B7866368274B8D1000B13EEF /* SocialTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialTableViewCell.xib; sourceTree = "<group>"; };
 		B7AF660A26F24F5800BDE9C4 /* Profile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Profile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7AF666726F4385800BDE9C4 /* Notification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Notification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C252AF26D3915400ACBB84 /* Setting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Setting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -315,6 +294,8 @@
 				B7C252EE26D3D2D000ACBB84 /* SettingTableViewCell.xib */,
 				B7C252F126D3E15800ACBB84 /* OtherTableViewCell.swift */,
 				B7C252F226D3E15800ACBB84 /* OtherTableViewCell.xib */,
+				B7866367274B8D1000B13EEF /* SocialTableViewCell.swift */,
+				B7866368274B8D1000B13EEF /* SocialTableViewCell.xib */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -358,7 +339,6 @@
 				B7C252AB26D3915400ACBB84 /* Sources */,
 				B7C252AC26D3915400ACBB84 /* Frameworks */,
 				B7C252AD26D3915400ACBB84 /* Resources */,
-				B7C252CE26D395A600ACBB84 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -423,6 +403,7 @@
 				B743387826D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.xib in Resources */,
 				B7C252F026D3D2D000ACBB84 /* SettingTableViewCell.xib in Resources */,
 				B7C252F426D3E15800ACBB84 /* OtherTableViewCell.xib in Resources */,
+				B786636A274B8D1000B13EEF /* SocialTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +451,7 @@
 				B7C2531026D5449B00ACBB84 /* LanguageViewModel.swift in Sources */,
 				B7C252EF26D3D2D000ACBB84 /* SettingTableViewCell.swift in Sources */,
 				B7C2530A26D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.swift in Sources */,
+				B7866369274B8D1000B13EEF /* SocialTableViewCell.swift in Sources */,
 				B743386726D8E297004BBC05 /* AccountSettingViewModel.swift in Sources */,
 				B743387726D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.swift in Sources */,
 				B7C252C826D394F000ACBB84 /* SettingNibVars.swift in Sources */,

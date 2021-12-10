@@ -22,7 +22,7 @@
 //  SettingViewController.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 23/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 23/8/2564 BE.
 //
 
 import UIKit
@@ -43,6 +43,7 @@ class SettingViewController: UIViewController {
         case language
         case about
         case other
+        case social
     }
     
     var viewModel = SettingViewModel()
@@ -51,6 +52,7 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.configureTableView()
+        self.viewModel.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +60,9 @@ class SettingViewController: UIViewController {
         self.setupNavBar()
         self.tableView.reloadData()
         Defaults[.screenId] = ""
+        if !UserManager.shared.emailVerified {
+            self.viewModel.getMe()
+        }
     }
     
     func setupNavBar() {
@@ -73,6 +78,7 @@ class SettingViewController: UIViewController {
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.pageList, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.pageList)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.setting, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.setting)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.other, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.other)
+        self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.social, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.social)
         
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 100
@@ -87,7 +93,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case SettingViewControllerSection.verify.rawValue:
-            return (self.viewModel.isVerify ? 0 : 1)
+            return (UserManager.shared.emailVerified ? 0 : 1)
         case SettingViewControllerSection.account.rawValue:
             return self.viewModel.accountSection.count
         case SettingViewControllerSection.language.rawValue:
@@ -158,7 +164,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case SettingViewControllerSection.profile.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.pageList, for: indexPath as IndexPath) as? PageListTableViewCell
             cell?.backgroundColor = UIColor.clear
-            cell?.configCell(isVerify: self.viewModel.isVerify)
+            cell?.configCell(isVerify: UserManager.shared.emailVerified)
             return cell ?? PageListTableViewCell()
         case SettingViewControllerSection.account.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.setting, for: indexPath as IndexPath) as? SettingTableViewCell
@@ -180,6 +186,10 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             cell?.backgroundColor = UIColor.clear
             cell?.configCell()
             return cell ?? OtherTableViewCell()
+        case SettingViewControllerSection.social.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.social, for: indexPath as IndexPath) as? SocialTableViewCell
+            cell?.backgroundColor = UIColor.clear
+            return cell ?? SocialTableViewCell()
         default:
             return UITableViewCell()
         }
@@ -189,29 +199,28 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case SettingViewControllerSection.notification.rawValue:
             Utility.currentViewController().navigationController?.pushViewController(NotificationOpener.open(.notification), animated: true)
-//            self.viewModel.countTabVerify = self.viewModel.countTabVerify + 1
-//            if self.viewModel.countTabVerify == 5 && !self.viewModel.isVerify {
-//                self.viewModel.isVerify = true
-//                UIView.animate(withDuration: 0.4, animations: { [weak self] in
-//                    guard let self = self else { return }
-//                    self.tableView.reloadSections(IndexSet(integer: 1), with: UITableView.RowAnimation.fade)
-//                    self.tableView.reloadSections(IndexSet(integer: 2), with: UITableView.RowAnimation.automatic)
-//                })
-//            }
         case SettingViewControllerSection.verify.rawValue:
-            self.viewModel.countTabVerify = 0
             self.viewModel.openSettingSection(settingSection: .verify)
         case SettingViewControllerSection.account.rawValue:
-            self.viewModel.countTabVerify = 0
             self.viewModel.openSettingSection(settingSection: self.viewModel.accountSection[indexPath.row])
         case SettingViewControllerSection.language.rawValue:
-            self.viewModel.countTabVerify = 0
             self.viewModel.openSettingSection(settingSection: self.viewModel.languangSection[indexPath.row])
         case SettingViewControllerSection.about.rawValue:
-            self.viewModel.countTabVerify = 0
             self.viewModel.openSettingSection(settingSection: self.viewModel.aboutSection[indexPath.row])
         default:
-            self.viewModel.countTabVerify = 0
+            return
         }
+    }
+}
+
+extension SettingViewController: SettingViewModelDelegate {
+    func didSignOutFinish() {
+        // Not thing
+    }
+    
+    func didGetProfileFinish() {
+        UIView.animate(withDuration: 0.35, delay: 0, options: [.curveLinear], animations: {
+            self.tableView.reloadData()
+        })
     }
 }

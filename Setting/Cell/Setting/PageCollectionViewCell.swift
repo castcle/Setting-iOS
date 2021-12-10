@@ -22,11 +22,12 @@
 //  PageCollectionViewCell.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 23/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 23/8/2564 BE.
 //
 
 import UIKit
 import Core
+import Networking
 
 class PageCollectionViewCell: UICollectionViewCell {
 
@@ -37,20 +38,33 @@ class PageCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configCell(isVerify: Bool, page: Page) {
-        if page.name == "NEW" {
-            self.pageImage.circle(color: UIColor.Asset.gray)
-            self.addImage.isHidden = false
-            self.addImage.image = UIImage.init(icon: .castcle(.add), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.gray)
-        } else {
-            let url = URL(string: page.avatar)
-            self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.5))])
-            self.addImage.isHidden = true
-            if isVerify {
-                self.pageImage.circle(color: UIColor.Asset.white)
+    func configCell(pageInfo: PageInfo?, page: Page?) {
+        self.pageImage.isHidden = false
+        self.addImage.isHidden = false
+        
+        if let page = pageInfo {
+            if page.displayName == "NEW" {
+                self.pageImage.image = UIImage()
+                self.pageImage.circle(color: UIColor.Asset.gray)
+                self.addImage.isHidden = false
+                self.addImage.image = UIImage.init(icon: .castcle(.add), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.gray)
             } else {
-                self.pageImage.circle(color: UIColor.Asset.denger)
+                if page.castcleId == UserManager.shared.rawCastcleId {
+                    self.pageImage.image = UserManager.shared.avatar
+                } else {
+                    let url = URL(string: page.images.avatar.thumbnail)
+                    self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
+                }
+                self.addImage.isHidden = true
+                self.pageImage.circle(color: UIColor.Asset.white)
             }
+        } else if let page = page {
+            self.pageImage.image = ImageHelper.shared.loadImageFromDocumentDirectory(nameOfImage: page.castcleId, type: .avatar)
+            self.addImage.isHidden = true
+            self.pageImage.circle(color: UIColor.Asset.white)
+        } else {
+            self.pageImage.isHidden = true
+            self.addImage.isHidden = true
         }
     }
 

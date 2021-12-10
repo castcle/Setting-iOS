@@ -22,7 +22,7 @@
 //  SettingViewModel.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 23/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 23/8/2564 BE.
 //
 
 import UIKit
@@ -31,6 +31,8 @@ import Networking
 import Component
 import Authen
 import Defaults
+import SwiftyJSON
+import RealmSwift
 
 public enum SettingSection {
     case profile
@@ -42,9 +44,7 @@ public enum SettingSection {
     public var text: String {
         switch self {
         case .profile:
-            return Localization.setting.profile.text
-        case .privacy:
-            return Localization.setting.privacy.text
+            return Localization.setting.account.text
         case .languang:
             return Localization.setting.language.text
         case .aboutUs:
@@ -72,24 +72,29 @@ public enum SettingSection {
 
 public protocol SettingViewModelDelegate {
     func didSignOutFinish()
+    func didGetProfileFinish()
 }
 
 public final class SettingViewModel {
     
     public var delegate: SettingViewModelDelegate?
-    var isVerify: Bool = false
-    
-    var authenticationRepository: AuthenticationRepository
+    var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
+    var userRepository: UserRepository = UserRepositoryImpl()
+    let tokenHelper: TokenHelper = TokenHelper()
     let accountSection: [SettingSection] = [.profile, .languang, .aboutUs]
     let languangSection: [SettingSection] = []
     let aboutSection: [SettingSection] = []
+    var stage: Stage = .none
+    private let realm = try! Realm()
     
-    public init(authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()) {
-        self.authenticationRepository = authenticationRepository
+    enum Stage {
+        case getMe
+        case none
     }
     
-    // MARK: - For Test
-    var countTabVerify: Int = 0
+    public init() {
+        self.tokenHelper.delegate = self
+    }
     
     func openSettingSection(settingSection: SettingSection) {
         switch settingSection {
@@ -111,8 +116,40 @@ public final class SettingViewModel {
             if success {
                 let userHelper = UserHelper()
                 userHelper.clearUserData()
+                let pageRealm = self.realm.objects(Page.self)
+                try! self.realm.write {
+                    self.realm.delete(pageRealm)
+                }
                 self.delegate?.didSignOutFinish()
             }
+        }
+    }
+    
+    func getMe() {
+        self.stage = .getMe
+        self.userRepository.getMe() { (success, response, isRefreshToken) in
+            if success {
+                do {
+                    let rawJson = try response.mapJSON()
+                    let json = JSON(rawJson)
+                    let userHelper = UserHelper()
+                    userHelper.updateLocalProfile(user: User(json: json))
+                    self.delegate?.didGetProfileFinish()
+                } catch {}
+            } else {
+                if isRefreshToken {
+                    self.tokenHelper.refreshToken()
+                }
+            }
+        }
+    }
+
+}
+
+extension SettingViewModel: TokenHelperDelegate {
+    public func didRefreshTokenFinish() {
+        if self.stage == .getMe {
+            self.getMe()
         }
     }
 }

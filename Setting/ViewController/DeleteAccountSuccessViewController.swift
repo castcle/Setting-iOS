@@ -22,10 +22,11 @@
 //  DeleteAccountSuccessViewController.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 27/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 27/8/2564 BE.
 //
 
 import UIKit
+import Core
 import Defaults
 
 class DeleteAccountSuccessViewController: UIViewController {
@@ -50,6 +51,8 @@ class DeleteAccountSuccessViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        self.headlineLabel.text = Localization.settingDeleteSuccess.description.text
+        self.homeButton.setTitle(Localization.settingDeleteSuccess.button.text, for: .normal)
         Defaults[.screenId] = ""
     }
 

@@ -22,7 +22,7 @@
 //  NotificationTableViewCell.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 23/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 23/8/2564 BE.
 //
 
 import UIKit
@@ -59,6 +59,6 @@ class NotificationTableViewCell: UITableViewCell {
     
     func configCell() {
         self.titleLabel.text = Localization.setting.notification.text
-        self.amountLabel.text = "3 \(Localization.setting.notificationNew.text)"
+        self.amountLabel.text =  "" // "3 \(Localization.setting.notificationNew.text)"
     }
 }

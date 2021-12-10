@@ -22,7 +22,7 @@
 //  DeleteAccountPasswordTableViewCell.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 27/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 27/8/2564 BE.
 //
 
 import UIKit
@@ -33,18 +33,7 @@ class DeleteAccountPasswordTableViewCell: UITableViewCell {
 
     @IBOutlet var passwordView: UIView!
     @IBOutlet var continueButton: UIButton!
-    @IBOutlet var passwordTextField: JVFloatLabeledTextField! {
-        didSet {
-            self.passwordTextField.font = UIFont.asset(.regular, fontSize: .body)
-            self.passwordTextField.placeholder = "Password"
-            self.passwordTextField.placeholderColor = UIColor.Asset.gray
-            self.passwordTextField.floatingLabelTextColor = UIColor.Asset.gray
-            self.passwordTextField.floatingLabelActiveTextColor = UIColor.Asset.gray
-            self.passwordTextField.floatingLabelFont = UIFont.asset(.regular, fontSize: .small)
-            self.passwordTextField.textColor = UIColor.Asset.white
-            self.passwordTextField.isSecureTextEntry = true
-        }
-    }
+    @IBOutlet var passwordTextField: JVFloatLabeledTextField!
     
     private var isCanContinue: Bool {
         if self.passwordTextField.text!.isEmpty {
@@ -58,13 +47,24 @@ class DeleteAccountPasswordTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.passwordView.custom(color: UIColor.Asset.darkGray, cornerRadius: 10, borderWidth: 1, borderColor: UIColor.Asset.black)
         self.setupContinueButton(isActive: self.isCanContinue)
-
         self.passwordTextField.tag = 0
         self.passwordTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    func configCell() {
+        self.passwordTextField.font = UIFont.asset(.regular, fontSize: .body)
+        self.passwordTextField.placeholder = Localization.settingDeleteConfirm.password.text
+        self.passwordTextField.placeholderColor = UIColor.Asset.gray
+        self.passwordTextField.floatingLabelTextColor = UIColor.Asset.gray
+        self.passwordTextField.floatingLabelActiveTextColor = UIColor.Asset.gray
+        self.passwordTextField.floatingLabelFont = UIFont.asset(.regular, fontSize: .small)
+        self.passwordTextField.textColor = UIColor.Asset.white
+        self.passwordTextField.isSecureTextEntry = true
+        self.continueButton.setTitle(Localization.settingDeleteConfirm.button.text, for: .normal)
     }
     
     private func setupContinueButton(isActive: Bool) {

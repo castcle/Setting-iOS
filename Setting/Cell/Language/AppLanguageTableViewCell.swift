@@ -22,7 +22,7 @@
 //  AppLanguageTableViewCell.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 24/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 24/8/2564 BE.
 //
 
 import UIKit
@@ -58,6 +58,10 @@ class AppLanguageTableViewCell: UITableViewCell {
     func configCell(viewModel: LanguageViewModel) {
         self.viewModel = viewModel
         self.languageLabel.text = Defaults[.appLanguageDisplay]
+        self.appLanguageLabel.text = Localization.settingLanguage.displayLanguage.text
+        self.appLanguageDescLabel.text = Localization.settingLanguage.displayLanguageDescription.text
+        self.preferedLanguageLabel.text = Localization.settingLanguage.selectAdditionalLanguages.text
+        self.preferedLanguageDescLabel.text = Localization.settingLanguage.selectAdditionalLanguagesDescription.text
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

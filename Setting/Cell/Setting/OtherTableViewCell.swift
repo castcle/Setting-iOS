@@ -22,7 +22,7 @@
 //  OtherTableViewCell.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 23/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 23/8/2564 BE.
 //
 
 import UIKit
@@ -107,8 +107,8 @@ class OtherTableViewCell: UITableViewCell {
             label.numberOfLines = 1
             label.textColor = UIColor.Asset.gray
             
-            let termType = ActiveType.custom(pattern: "Terms of Service")
-            let privacyType = ActiveType.custom(pattern: "Privacy Policy")
+            let termType = ActiveType.custom(pattern: Localization.setting.termOfService.text)
+            let privacyType = ActiveType.custom(pattern: Localization.setting.privacy.text)
             
             label.enabledTypes = [termType, privacyType]
             
@@ -131,6 +131,15 @@ class OtherTableViewCell: UITableViewCell {
 extension OtherTableViewCell: SettingViewModelDelegate {
     func didSignOutFinish() {
         self.signOutButton.isEnabled = true
+        Defaults[.startLoadFeed] = true
         Utility.currentViewController().navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func didGetPageFinish() {
+        // Not thing
+    }
+    
+    func didGetProfileFinish() {
+        // Not thing
     }
 }

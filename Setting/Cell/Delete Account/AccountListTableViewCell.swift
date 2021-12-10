@@ -22,10 +22,11 @@
 //  AccountListTableViewCell.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 27/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 27/8/2564 BE.
 //
 
 import UIKit
+import Core
 
 class AccountListTableViewCell: UITableViewCell {
 
@@ -46,9 +47,8 @@ class AccountListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configCell(title: String, type: String, avatar: String) {
-        let url = URL(string: avatar)
-        self.avatarImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.5))])
+    func configCell(title: String, type: String, avatarImage: UIImage) {
+        self.avatarImage.image = avatarImage
         self.nameLabel.text = title
         self.typeLabel.text = type
     }

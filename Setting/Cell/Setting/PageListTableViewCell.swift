@@ -22,12 +22,15 @@
 //  PageListTableViewCell.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 23/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 23/8/2564 BE.
 //
 
 import UIKit
 import Core
 import Profile
+import Networking
+import RealmSwift
+import Defaults
 
 class PageListTableViewCell: UITableViewCell {
 
@@ -35,7 +38,10 @@ class PageListTableViewCell: UITableViewCell {
     @IBOutlet var newPageButton: UIButton!
     @IBOutlet var titleLabel: UILabel!
     
-    var page: [Page] = []
+    private let realm = try! Realm()
+    var pages: Results<Page>!
+    var userPage: PageInfo = PageInfo()
+    var newPage: PageInfo = PageInfo()
     var isVerify: Bool = false
     
     override func awakeFromNib() {
@@ -47,7 +53,7 @@ class PageListTableViewCell: UITableViewCell {
         
         self.titleLabel.font = UIFont.asset(.regular, fontSize: .body)
         self.titleLabel.textColor = UIColor.Asset.white
-        self.newPageButton.titleLabel?.font = UIFont.asset(.medium, fontSize: .body)
+        self.newPageButton.titleLabel?.font = UIFont.asset(.bold, fontSize: .body)
         self.newPageButton.setTitleColor(UIColor.Asset.lightBlue, for: .normal)
     }
 
@@ -59,12 +65,13 @@ class PageListTableViewCell: UITableViewCell {
         self.titleLabel.text = Localization.setting.goTo.text
         self.newPageButton.setTitle("+ \(Localization.setting.newPage.text)", for: .normal)
         self.isVerify = isVerify
+        self.userPage = PageInfo(displayName: UserManager.shared.displayName, avatar: "", castcleId: UserManager.shared.rawCastcleId)
         if isVerify {
+            self.pages = self.realm.objects(Page.self)
             self.newPageButton.isHidden = false
-            self.page = [Page(name: UserState.shared.name, avatar: UserState.shared.avatar)] + UserState.shared.page + [Page(name: "NEW", avatar: "")]
+            self.newPage = PageInfo(displayName: "NEW", avatar: "", castcleId: "")
         } else {
             self.newPageButton.isHidden = true
-            self.page = [Page(name: UserState.shared.name, avatar: UserState.shared.avatar)]
         }
         self.collectionView.reloadData()
     }
@@ -76,19 +83,38 @@ class PageListTableViewCell: UITableViewCell {
 
 extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.page.count
+        if self.isVerify {
+            return self.pages.count + 2
+        } else {
+            return 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
-        cell?.configCell(isVerify: self.isVerify, page: self.page[indexPath.row])
-        return cell ?? UICollectionViewCell()
+        if indexPath.row == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
+            cell?.configCell(pageInfo: self.userPage, page: nil)
+            return cell ?? UICollectionViewCell()
+        } else if indexPath.row == (self.pages.count + 1) {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
+            cell?.configCell(pageInfo: self.newPage, page: nil)
+            return cell ?? UICollectionViewCell()
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
+            let page = self.pages[indexPath.row - 1]
+            cell?.configCell(pageInfo: nil, page: page)
+            return cell ?? UICollectionViewCell()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let page = self.page[indexPath.row]
-        if page.name == "NEW" {
+        if indexPath.row == 0 {
+            ProfileOpener.openProfileDetail(.people, castcleId: UserManager.shared.rawCastcleId, displayName: "", page: nil)
+        } else if indexPath.row == (self.pages.count + 1) {
             Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.welcomeCreatePage), animated: true)
+        } else {
+            let page = self.pages[indexPath.row - 1]
+            ProfileOpener.openProfileDetail(.page, castcleId: nil, displayName: "", page: page)
         }
     }
 }

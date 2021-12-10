@@ -1,8 +1,28 @@
-/* 
+//  Copyright (c) 2021, Castcle and/or its affiliates. All rights reserved.
+//  DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+//
+//  This code is free software; you can redistribute it and/or modify it
+//  under the terms of the GNU General Public License version 3 only, as
+//  published by the Free Software Foundation.
+//
+//  This code is distributed in the hope that it will be useful, but WITHOUT
+//  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+//  FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+//  version 3 for more details (a copy is included in the LICENSE file that
+//  accompanied this code).
+//
+//  You should have received a copy of the GNU General Public License version
+//  3 along with this work; if not, write to the Free Software Foundation,
+//  Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+//
+//  Please contact Castcle, 22 Phet Kasem 47/2 Alley, Bang Khae, Bangkok,
+//  Thailand 10160, or visit www.castcle.com if you need additional information
+//  or have any questions.
+/*
   Localizable.strings
   Setting
 
-  Created by Tanakorn Phoochaliaw on 24/8/2564 BE.
+  Created by Castcle Co., Ltd. on 24/8/2564 BE.
   
 */
 
@@ -15,9 +35,7 @@
 "setting_go_to"                     = "Go to";
 "setting_new_page"                  = "New Page";
 "setting_account_settings"          = "Account Settings";
-"setting_profile"                   = "Account";
-"setting_privacy"                   = "Privacy";
-"setting_regional_and_language"     = "Regional & Language";
+"setting_account"                   = "Account";
 "setting_language"                  = "Language";
 "setting_about"                     = "About Us";
 "setting_log_out"                   = "Log out";
@@ -25,3 +43,43 @@
 "setting_docs"                      = "Docs";
 "setting_whitepaper"                = "Whitepaper";
 "setting_version"                   = "Version";
+"setting_term_of_service"           = "Terms of Service";
+"setting_privacy"                   = "Privacy Policy";
+
+// MARK: - Setting (Language)
+"setting_language_title"                            = "Language";
+"setting_display_language"                          = "Display language";
+"setting_display_language_description"              = "Select your preferred language for headlines, buttons, and other text from Castcle.";
+"setting_select_additional_languages"               = "Select additional languages";
+"setting_select_additional_languages_description"   = "Select additional languages for hte content you want to see on Castcle.";
+"setting_select_additional_languages_add"           = "Add Language";
+
+// MARK: - Setting (App Language)
+"setting_display_language_title"                    = "Display language";
+
+// MARK: - Setting (Account)
+"setting_account_title"                             = "Account";
+"setting_account_section_account_setting"           = "Account Setting";
+"setting_account_email"                             = "Email";
+"setting_account_password"                          = "Password";
+"setting_account_section_account_control"           = "Account Control";
+"setting_account_delete_account"                    = "Delete Account";
+
+// MARK: - Setting (Delete Account)
+"setting_profile_delete_title"                      = "Delete Account";
+"setting_profile_delete_id"                         = "Delete Account";
+"setting_profile_delete_description"                = "If you delete account:\n\n●   You won't be able to reactivate your account\n\n●   Your profile, photos, posts, videos and everything else you've added will be permanently deleted. You won't be able to retrieve anything you've added.\n\n●   Your pages will be deleted";
+"setting_profile_delete_button"                     = "Delete Account";
+
+// MARK: - Setting (Delete Confirm)
+"setting_profile_delete_confirm_title"              = "Delete Account";
+"setting_profile_delete_confirm_headline"           = "Confirm that this is your Account ";
+"setting_profile_delete_confirm_description"        = "Before you permanently delete your Account, please enter your password.";
+"setting_profile_delete_confirm_profile"            = "Profile";
+"setting_profile_delete_confirm_page"               = "Page";
+"setting_profile_delete_confirm_password"           = "Password";
+"setting_profile_delete_confirm_button"             = "Continue";
+
+// MARK: - Setting (Delete Success)
+"setting_profile_delete_success_description"        = "We've successfully deleted your account.";
+"setting_profile_delete_success_button"             = "Home";

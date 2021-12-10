@@ -22,7 +22,7 @@
 //  SettingAccountTableViewCell.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 27/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 27/8/2564 BE.
 //
 
 import UIKit
@@ -48,15 +48,15 @@ class SettingAccountTableViewCell: UITableViewCell {
     }
     
     func configCell(section: AccountSection) {
-        self.titleLabel.text = section.rawValue
+        self.titleLabel.text = section.text
         
         if section == .email {
-            self.displayLabel.text = UserState.shared.email
+            self.displayLabel.text = UserManager.shared.email
         } else {
             self.displayLabel.text = ""
         }
         
-        if section == .delete {
+        if section == .delete || section == .email {
             self.nextImage.isHidden = true
         } else {
             self.nextImage.isHidden = false

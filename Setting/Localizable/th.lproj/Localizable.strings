@@ -1,8 +1,28 @@
-/* 
+//  Copyright (c) 2021, Castcle and/or its affiliates. All rights reserved.
+//  DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
+//
+//  This code is free software; you can redistribute it and/or modify it
+//  under the terms of the GNU General Public License version 3 only, as
+//  published by the Free Software Foundation.
+//
+//  This code is distributed in the hope that it will be useful, but WITHOUT
+//  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+//  FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+//  version 3 for more details (a copy is included in the LICENSE file that
+//  accompanied this code).
+//
+//  You should have received a copy of the GNU General Public License version
+//  3 along with this work; if not, write to the Free Software Foundation,
+//  Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
+//
+//  Please contact Castcle, 22 Phet Kasem 47/2 Alley, Bang Khae, Bangkok,
+//  Thailand 10160, or visit www.castcle.com if you need additional information
+//  or have any questions.
+/*
   Localizable.strings
   Setting
 
-  Created by Tanakorn Phoochaliaw on 24/8/2564 BE.
+  Created by Castcle Co., Ltd. on 24/8/2564 BE.
   
 */
 
@@ -15,9 +35,7 @@
 "setting_go_to"                     = "ไปยัง";
 "setting_new_page"                  = "สร้างเพจใหม่";
 "setting_account_settings"          = "ตั้งค่าข้อมูลบัญชี";
-"setting_profile"                   = "บัญชี";
-"setting_privacy"                   = "ความเป็นส่วนตัว";
-"setting_regional_and_language"     = "ภูมิภาคและภาษา";
+"setting_account"                   = "บัญชี";
 "setting_language"                  = "ภาษา";
 "setting_about"                     = "เกี่ยวกับเรา";
 "setting_log_out"                   = "ออกจากระบบ";
@@ -25,3 +43,43 @@
 "setting_docs"                      = "Docs";
 "setting_whitepaper"                = "Whitepaper";
 "setting_version"                   = "เวอร์ชั่น";
+"setting_term_of_service"           = "Terms of Service";
+"setting_privacy"                   = "Privacy Policy";
+
+// MARK: - Setting (Language)
+"setting_language_title"                            = "ภาษา";
+"setting_display_language"                          = "ภาษาที่แสดง";
+"setting_display_language_description"              = "เลือกภาษาที่คุณต้องการสำหรับพาดหัว ปุ่ม และข้อความอื่นๆ จากแคสเคิล";
+"setting_select_additional_languages"               = "เลือกภาษาเพิ่มเติม";
+"setting_select_additional_languages_description"   = "เลือกภาษาเพิ่มเติมสำหรับเนื้อหาที่คุณต้องการเห็นบนแคสเคิล";
+"setting_select_additional_languages_add"           = "เพิ่มภาษา";
+
+// MARK: - Setting (App Language)
+"setting_display_language_title"                    = "ภาษาที่แสดง";
+
+// MARK: - Setting (Account)
+"setting_account_title"                             = "บัญชี";
+"setting_account_section_account_setting"           = "ตั้งค่าข้อมูลบัญชี";
+"setting_account_email"                             = "อีเมล";
+"setting_account_password"                          = "รหัสผ่าน";
+"setting_account_section_account_control"           = "การควบคุมบัญชี";
+"setting_account_delete_account"                    = "ลบบัญชีผู้ใช้";
+
+// MARK: - Setting (Delete Account)
+"setting_profile_delete_title"                      = "ลบบัญชี";
+"setting_profile_delete_id"                         = "ลบบัญชี";
+"setting_profile_delete_description"                = "ถ้าหากคุณลบบัญชี\n\n●   คุณจะไม่สามารถเปิดใช้งานบัญชีอีกครั้งได้\n\n●   โปรไฟล์ รูปภาพ โพสต์ วีดิโอ และทุกสิ่งที่คุณเพิ่มไปในบัญชีจะถูกลบอย่างถาวร และคุณไม่สามารถจะกลับมาค้นหาข้อมูลที่คุณเพิ่มลงไปดังกล่าวได้\n\n●   เพจของคุณจะถูกลบเช่นกัน";
+"setting_profile_delete_button"                     = "ลบบัญชี";
+
+// MARK: - Setting (Delete Confirm)
+"setting_profile_delete_confirm_title"              = "ลบบัญชี";
+"setting_profile_delete_confirm_headline"           = "ยืนยันว่านี่คือบัญชีของคุณ";
+"setting_profile_delete_confirm_description"        = "ก่อนที่จะคุณลบบัญชีอย่างถาวร กรุณาใส่รหัสผ่านของคุณ";
+"setting_profile_delete_confirm_profile"            = "บัญชีส่วนตัว";
+"setting_profile_delete_confirm_page"               = "เพจ";
+"setting_profile_delete_confirm_password"           = "รหัสผ่าน";
+"setting_profile_delete_confirm_button"             = "ดำเนินการต่อ";
+
+// MARK: - Setting (Delete Success)
+"setting_profile_delete_success_description"        = "เราได้ทำการลบบัญชีของคุณเรียบร้อยแล้ว";
+"setting_profile_delete_success_button"             = "หน้าหลัก";

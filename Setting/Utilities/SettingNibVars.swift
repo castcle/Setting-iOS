@@ -22,7 +22,7 @@
 //  SettingNibVars.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 23/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 23/8/2564 BE.
 //
 
 public struct SettingNibVars {
@@ -57,6 +57,7 @@ public struct SettingNibVars {
         public static let deleteHeader = "ConfirmDeleteHeaderTableViewCell"
         public static let accountList = "AccountListTableViewCell"
         public static let password = "DeleteAccountPasswordTableViewCell"
+        public static let social = "SocialTableViewCell"
     }
     
     // MARK: - CollectionViewCell

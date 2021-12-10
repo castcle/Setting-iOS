@@ -22,16 +22,20 @@
 //  DeleteAccountDetailViewController.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 27/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 27/8/2564 BE.
 //
 
 import UIKit
 import Core
 import Defaults
+import RealmSwift
 
 class DeleteAccountDetailViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
+    
+    private let realm = try! Realm()
+    var pages: Results<Page>!
     
     enum DeleteAccountDetailViewControllerSection: Int, CaseIterable {
         case header = 0
@@ -44,17 +48,18 @@ class DeleteAccountDetailViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.hideKeyboardWhenTapped()
-        self.setupNavBar()
         self.configureTableView()
+        self.pages = self.realm.objects(Page.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.setupNavBar()
         Defaults[.screenId] = ""
     }
     
     func setupNavBar() {
-        self.customNavigationBar(.secondary, title: "Delete Account")
+        self.customNavigationBar(.secondary, title: Localization.settingDeleteConfirm.title.text)
     }
     
     func configureTableView() {
@@ -77,7 +82,7 @@ extension DeleteAccountDetailViewController: UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == DeleteAccountDetailViewControllerSection.page.rawValue {
-            return UserState.shared.page.count
+            return self.pages.count
         } else {
             return 1
         }
@@ -88,21 +93,23 @@ extension DeleteAccountDetailViewController: UITableViewDelegate, UITableViewDat
         case DeleteAccountDetailViewControllerSection.header.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.deleteHeader, for: indexPath as IndexPath) as? ConfirmDeleteHeaderTableViewCell
             cell?.backgroundColor = UIColor.clear
+            cell?.cogfigCell()
             return cell ?? ConfirmDeleteHeaderTableViewCell()
         case DeleteAccountDetailViewControllerSection.user.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.accountList, for: indexPath as IndexPath) as? AccountListTableViewCell
             cell?.backgroundColor = UIColor.clear
-            cell?.configCell(title: UserState.shared.name, type: "User Castcle", avatar: UserState.shared.avatar)
+            cell?.configCell(title: UserManager.shared.displayName, type: Localization.settingDeleteConfirm.profile.text, avatarImage: UserManager.shared.avatar)
             return cell ?? AccountListTableViewCell()
         case DeleteAccountDetailViewControllerSection.page.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.accountList, for: indexPath as IndexPath) as? AccountListTableViewCell
-            let page: Page = UserState.shared.page[indexPath.row]
+            let page: Page = self.pages[indexPath.row]
             cell?.backgroundColor = UIColor.clear
-            cell?.configCell(title: page.name, type: "Page", avatar: page.avatar)
+            cell?.configCell(title: page.displayName, type: Localization.settingDeleteConfirm.page.text, avatarImage: ImageHelper.shared.loadImageFromDocumentDirectory(nameOfImage: page.castcleId, type: .avatar))
             return cell ?? AccountListTableViewCell()
         case DeleteAccountDetailViewControllerSection.password.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.password, for: indexPath as IndexPath) as? DeleteAccountPasswordTableViewCell
             cell?.backgroundColor = UIColor.clear
+            cell?.configCell()
             return cell ?? DeleteAccountPasswordTableViewCell()
         default:
             return UITableViewCell()

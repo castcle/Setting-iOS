@@ -22,10 +22,11 @@
 //  AddPreferredLanguageTableViewCell.swift
 //  Setting
 //
-//  Created by Tanakorn Phoochaliaw on 24/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 24/8/2564 BE.
 //
 
 import UIKit
+import Core
 
 class AddPreferredLanguageTableViewCell: UITableViewCell {
 
@@ -44,4 +45,7 @@ class AddPreferredLanguageTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    func configCell() {
+        self.titleLabel.text = Localization.settingLanguage.selectAdditionalLanguagesAdd.text
+    }
 }
