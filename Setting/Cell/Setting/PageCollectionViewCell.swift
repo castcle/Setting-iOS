@@ -50,7 +50,8 @@ class PageCollectionViewCell: UICollectionViewCell {
                 self.addImage.image = UIImage.init(icon: .castcle(.add), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.gray)
             } else {
                 if page.castcleId == UserManager.shared.rawCastcleId {
-                    self.pageImage.image = UserManager.shared.avatar
+                    let url = URL(string: UserManager.shared.avatar)
+                    self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
                 } else {
                     let url = URL(string: page.images.avatar.thumbnail)
                     self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
