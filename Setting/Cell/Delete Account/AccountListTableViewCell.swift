@@ -27,6 +27,7 @@
 
 import UIKit
 import Core
+import Kingfisher
 
 class AccountListTableViewCell: UITableViewCell {
 
@@ -47,9 +48,11 @@ class AccountListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configCell(title: String, type: String, avatarImage: UIImage) {
-        self.avatarImage.image = avatarImage
+    func configCell(title: String, type: String, avatar: String) {
         self.nameLabel.text = title
         self.typeLabel.text = type
+        
+        let url = URL(string: avatar)
+        self.avatarImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
     }
 }
