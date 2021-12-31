@@ -98,13 +98,13 @@ extension DeleteAccountDetailViewController: UITableViewDelegate, UITableViewDat
         case DeleteAccountDetailViewControllerSection.user.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.accountList, for: indexPath as IndexPath) as? AccountListTableViewCell
             cell?.backgroundColor = UIColor.clear
-            cell?.configCell(title: UserManager.shared.displayName, type: Localization.settingDeleteConfirm.profile.text, avatarImage: UserManager.shared.avatar)
+            cell?.configCell(title: UserManager.shared.displayName, type: Localization.settingDeleteConfirm.profile.text, avatar: UserManager.shared.avatar)
             return cell ?? AccountListTableViewCell()
         case DeleteAccountDetailViewControllerSection.page.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.accountList, for: indexPath as IndexPath) as? AccountListTableViewCell
             let page: Page = self.pages[indexPath.row]
             cell?.backgroundColor = UIColor.clear
-            cell?.configCell(title: page.displayName, type: Localization.settingDeleteConfirm.page.text, avatarImage: ImageHelper.shared.loadImageFromDocumentDirectory(nameOfImage: page.castcleId, type: .avatar))
+            cell?.configCell(title: page.displayName, type: Localization.settingDeleteConfirm.page.text, avatar: page.avatar)
             return cell ?? AccountListTableViewCell()
         case DeleteAccountDetailViewControllerSection.password.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.password, for: indexPath as IndexPath) as? DeleteAccountPasswordTableViewCell
