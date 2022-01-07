@@ -43,8 +43,8 @@
 "setting_docs"                      = "Docs";
 "setting_whitepaper"                = "Whitepaper";
 "setting_version"                   = "เวอร์ชั่น";
-"setting_term_of_service"           = "Terms of Service";
-"setting_privacy"                   = "Privacy Policy";
+"setting_term_of_service"           = "เงื่อนไขการใช้บริการ";
+"setting_privacy"                   = "นโยบายความเป็นส่วนตัว";
 
 // MARK: - Setting (Language)
 "setting_language_title"                            = "ภาษา";
