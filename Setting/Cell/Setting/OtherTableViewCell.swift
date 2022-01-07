@@ -70,6 +70,7 @@ class OtherTableViewCell: UITableViewCell {
         self.signOutButton.setTitle(Localization.setting.logOut.text, for: .normal)
         self.otherLabel.text = "\(Localization.setting.joinUs.text) | \(Localization.setting.docs.text) | \(Localization.setting.whitepaper.text)"
         self.versionLabel.text = "\(Localization.setting.version.text) \(Defaults[.appVersion]) (\(Defaults[.appBuild]))"
+        self.termLabel.text = "\(Localization.setting.termOfService.text) | \(Localization.setting.privacy.text)"
         
         self.otherLabel.customize { label in
             label.font = UIFont.asset(.light, fontSize: .overline)
