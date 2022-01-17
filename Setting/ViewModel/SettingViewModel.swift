@@ -116,6 +116,7 @@ public final class SettingViewModel {
             if success {
                 let userHelper = UserHelper()
                 userHelper.clearUserData()
+                userHelper.clearSeenContent()
                 let pageRealm = self.realm.objects(Page.self)
                 try! self.realm.write {
                     self.realm.delete(pageRealm)
