@@ -60,7 +60,7 @@ class SettingViewController: UIViewController {
         self.setupNavBar()
         self.tableView.reloadData()
         Defaults[.screenId] = ""
-        if !UserManager.shared.emailVerified {
+        if !UserManager.shared.isVerified {
             self.viewModel.getMe()
         }
     }
@@ -93,7 +93,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case SettingViewControllerSection.verify.rawValue:
-            return (UserManager.shared.emailVerified ? 0 : 1)
+            return (UserManager.shared.isVerified ? 0 : 1)
         case SettingViewControllerSection.account.rawValue:
             return self.viewModel.accountSection.count
         case SettingViewControllerSection.language.rawValue:
@@ -164,7 +164,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case SettingViewControllerSection.profile.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.pageList, for: indexPath as IndexPath) as? PageListTableViewCell
             cell?.backgroundColor = UIColor.clear
-            cell?.configCell(isVerify: UserManager.shared.emailVerified)
+            cell?.configCell(isVerify: UserManager.shared.isVerified)
             return cell ?? PageListTableViewCell()
         case SettingViewControllerSection.account.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.setting, for: indexPath as IndexPath) as? SettingTableViewCell
