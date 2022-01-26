@@ -77,7 +77,7 @@ class PageListTableViewCell: UITableViewCell {
     }
     
     @IBAction func createPageAction(_ sender: Any) {
-        Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.welcomeCreatePage), animated: true)
+        Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.newPageWithSocial), animated: true)
     }
 }
 
@@ -111,7 +111,7 @@ extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDel
         if indexPath.row == 0 {
             ProfileOpener.openProfileDetail(.people, castcleId: UserManager.shared.rawCastcleId, displayName: "", page: nil)
         } else if indexPath.row == (self.pages.count + 1) {
-            Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.welcomeCreatePage), animated: true)
+            Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.newPageWithSocial), animated: true)
         } else {
             let page = self.pages[indexPath.row - 1]
             ProfileOpener.openProfileDetail(.page, castcleId: nil, displayName: "", page: page)
