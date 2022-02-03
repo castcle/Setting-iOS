@@ -24,6 +24,7 @@
 		B743387826D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B743387626D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.xib */; };
 		B743387A26D920F0004BBC05 /* DeleteAccountSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743387926D920F0004BBC05 /* DeleteAccountSuccessViewController.swift */; };
 		B74338A526DE33C4004BBC05 /* Authen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B74338A426DE33C4004BBC05 /* Authen.framework */; };
+		B75E5B2527ABC2E600B6CC14 /* Ads.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B75E5B2427ABC2E600B6CC14 /* Ads.framework */; };
 		B7866369274B8D1000B13EEF /* SocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7866367274B8D1000B13EEF /* SocialTableViewCell.swift */; };
 		B786636A274B8D1000B13EEF /* SocialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7866368274B8D1000B13EEF /* SocialTableViewCell.xib */; };
 		B7AF660B26F24F5800BDE9C4 /* Profile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF660A26F24F5800BDE9C4 /* Profile.framework */; };
@@ -84,6 +85,7 @@
 		B743387926D920F0004BBC05 /* DeleteAccountSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountSuccessViewController.swift; sourceTree = "<group>"; };
 		B74338A326DE310C004BBC05 /* Authen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B74338A426DE33C4004BBC05 /* Authen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B75E5B2427ABC2E600B6CC14 /* Ads.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Ads.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7866367274B8D1000B13EEF /* SocialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTableViewCell.swift; sourceTree = "<group>"; };
 		B7866368274B8D1000B13EEF /* SocialTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialTableViewCell.xib; sourceTree = "<group>"; };
 		B7AF660A26F24F5800BDE9C4 /* Profile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Profile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7AF660B26F24F5800BDE9C4 /* Profile.framework in Frameworks */,
+				B75E5B2527ABC2E600B6CC14 /* Ads.framework in Frameworks */,
 				B74338A526DE33C4004BBC05 /* Authen.framework in Frameworks */,
 				B7C252D326D395B400ACBB84 /* Networking.framework in Frameworks */,
 				B7AF666826F4385800BDE9C4 /* Notification.framework in Frameworks */,
@@ -303,6 +306,7 @@
 		EA37D9F11EF0E5FE9778E44A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B75E5B2427ABC2E600B6CC14 /* Ads.framework */,
 				B7AF666726F4385800BDE9C4 /* Notification.framework */,
 				B7AF660A26F24F5800BDE9C4 /* Profile.framework */,
 				B74338A426DE33C4004BBC05 /* Authen.framework */,

@@ -66,13 +66,12 @@ class SettingViewController: UIViewController {
     }
     
     func setupNavBar() {
-        self.customNavigationBar(.primary, title: Localization.setting.title.text, textColor: UIColor.Asset.lightBlue, leftBarButton: .back)
+        self.customNavigationBar(.primary, title: Localization.setting.title.text, leftBarButton: .back)
     }
     
     func configureTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.notification, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.notification)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.verify, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.verify)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.pageList, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.pageList)

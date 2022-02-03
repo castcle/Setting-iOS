@@ -33,6 +33,7 @@ import Authen
 import Defaults
 import SwiftyJSON
 import RealmSwift
+import Ads
 
 public enum SettingSection {
     case profile
@@ -121,7 +122,7 @@ public final class SettingViewModel {
         case .aboutUs:
             Utility.currentViewController().navigationController?.pushViewController(ComponentOpener.open(.internalWebView(URL(string: Environment.aboutUs)!)), animated: true)
         case .ads:
-            return
+            Utility.currentViewController().navigationController?.pushViewController(AdsOpener.open(.adsManager), animated: true)
         }
     }
     
