@@ -33,6 +33,7 @@ import Authen
 import Defaults
 import SwiftyJSON
 import RealmSwift
+import Ads
 
 public enum SettingSection {
     case profile
@@ -40,6 +41,7 @@ public enum SettingSection {
     case languang
     case aboutUs
     case verify
+    case ads
     
     public var text: String {
         switch self {
@@ -49,6 +51,8 @@ public enum SettingSection {
             return Localization.setting.language.text
         case .aboutUs:
             return Localization.setting.about.text
+        case .ads:
+            return "Ad manager"
         default:
             return ""
         }
@@ -64,6 +68,8 @@ public enum SettingSection {
             return UIImage.init(icon: .castcle(.language), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
         case .aboutUs:
             return UIImage.init(icon: .castcle(.aboutUs), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
+        case .ads:
+            return UIImage.init(icon: .castcle(.adsManager), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
         default:
             return UIImage()
         }
@@ -81,11 +87,18 @@ public final class SettingViewModel {
     var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
     var userRepository: UserRepository = UserRepositoryImpl()
     let tokenHelper: TokenHelper = TokenHelper()
-    let accountSection: [SettingSection] = [.profile, .languang, .aboutUs]
     let languangSection: [SettingSection] = []
     let aboutSection: [SettingSection] = []
     var stage: Stage = .none
     private let realm = try! Realm()
+    var accountSection: [SettingSection] {
+        let pageRealm = self.realm.objects(Page.self)
+        if pageRealm.count > 0 {
+            return [.profile, .ads, .languang, .aboutUs]
+        } else {
+            return [.profile, .languang, .aboutUs]
+        }
+    }
     
     enum Stage {
         case getMe
@@ -108,6 +121,8 @@ public final class SettingViewModel {
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.language), animated: true)
         case .aboutUs:
             Utility.currentViewController().navigationController?.pushViewController(ComponentOpener.open(.internalWebView(URL(string: Environment.aboutUs)!)), animated: true)
+        case .ads:
+            Utility.currentViewController().navigationController?.pushViewController(AdsOpener.open(.adsManager), animated: true)
         }
     }
     

@@ -66,13 +66,12 @@ class SettingViewController: UIViewController {
     }
     
     func setupNavBar() {
-        self.customNavigationBar(.primary, title: Localization.setting.title.text, textColor: UIColor.Asset.lightBlue, leftBarButton: .back)
+        self.customNavigationBar(.primary, title: Localization.setting.title.text, leftBarButton: .back)
     }
     
     func configureTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.notification, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.notification)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.verify, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.verify)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.pageList, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.pageList)
@@ -107,32 +106,27 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == SettingViewControllerSection.account.rawValue {
-            return (self.viewModel.accountSection.count > 0 ? 50 : 0)
+            return (self.viewModel.accountSection.count > 0 ? 15 : 0)
         } else {
             return 0
         }
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
-        
+        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 15))
         let label = UILabel()
-        label.frame = CGRect.init(x: 15, y: 5, width: headerView.frame.width - 10, height: headerView.frame.height - 10)
-        
+        label.frame = CGRect.init(x: 15, y: 0, width: headerView.frame.width - 30, height: headerView.frame.height)
         label.font = UIFont.asset(.regular, fontSize: .overline)
         label.textColor = UIColor.Asset.gray
-        
+
         switch section {
         case SettingViewControllerSection.account.rawValue:
             label.text = Localization.setting.accountSettings.text
         default:
             label.text = ""
         }
-        
         headerView.addSubview(label)
-        
         return headerView
-        
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
