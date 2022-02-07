@@ -94,7 +94,7 @@ public final class SettingViewModel {
     var accountSection: [SettingSection] {
         let pageRealm = self.realm.objects(Page.self)
         if pageRealm.count > 0 {
-            return [.profile, .ads, .languang, .aboutUs]
+            return [.profile, .languang, .aboutUs]
         } else {
             return [.profile, .languang, .aboutUs]
         }
