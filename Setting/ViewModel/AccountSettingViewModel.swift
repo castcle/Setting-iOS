@@ -25,22 +25,32 @@
 //  Created by Castcle Co., Ltd. on 27/8/2564 BE.
 //
 
+import UIKit
 import Core
 import Authen
 
 public enum AccountSection {
     case email
     case password
+    case mobile
     case delete
+    case linkFacebook
+    case linkTwitter
     
     public var text: String {
         switch self {
         case .email:
             return Localization.settingAccount.email.text
+        case .mobile:
+            return "Mobile number"
         case .password:
             return Localization.settingAccount.password.text
         case .delete:
             return Localization.settingAccount.deleteAccount.text
+        case .linkFacebook:
+            return "Facebook"
+        case .linkTwitter:
+            return "Twitter"
         }
     }
 }
@@ -48,18 +58,30 @@ public enum AccountSection {
 public final class AccountSettingViewModel {
     var isVerify: Bool = false
     
-    let accountSection: [AccountSection] = [.email, .password]
+    let accountSection: [AccountSection] = [.email, .mobile, .password]
+    let socialSection: [AccountSection] = [.linkFacebook, .linkTwitter]
     let controlSection: [AccountSection] = [.delete]
-    
-    // MARK: - For Test
-    var countTabVerify: Int = 0
     
     func openSettingSection(section: AccountSection) {
         switch section {
-        case .delete:
-            Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.deleteAccount), animated: true)
+        case .email:
+            if !UserManager.shared.isVerifiedEmail {
+                Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.resendEmail(ResendEmailViewModel(title: "Setting"))), animated: true)
+            }
+        case .mobile:
+            let alert = UIAlertController(title: "Error", message: "Waiting for implementation", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            Utility.currentViewController().present(alert, animated: true, completion: nil)
         case .password:
-            Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.oldPassword), animated: true)
+            if UserManager.shared.passwordNotSet {
+                Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.oldPassword), animated: true)
+            } else {
+                let alert = UIAlertController(title: "Error", message: "Waiting for implementation", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                Utility.currentViewController().present(alert, animated: true, completion: nil)
+            }
+        case .delete:
+            Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.deleteAccount), animated: true)  
         default:
             return
         }

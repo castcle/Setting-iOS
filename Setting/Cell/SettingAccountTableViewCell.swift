@@ -40,7 +40,7 @@ class SettingAccountTableViewCell: UITableViewCell {
         self.titleLabel.textColor = UIColor.Asset.white
         self.displayLabel.font = UIFont.asset(.regular, fontSize: .body)
         self.displayLabel.textColor = UIColor.Asset.gray
-        self.nextImage.image = UIImage.init(icon: .castcle(.next), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.gray)
+        self.nextImage.image = UIImage.init(icon: .castcle(.next), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -51,14 +51,27 @@ class SettingAccountTableViewCell: UITableViewCell {
         self.titleLabel.text = section.text
         
         if section == .email {
-            self.displayLabel.text = UserManager.shared.email
+            if UserManager.shared.isVerifiedEmail {
+                self.displayLabel.text = UserManager.shared.email
+                self.nextImage.isHidden = true
+            } else {
+                self.displayLabel.text = "Not Verify"
+                self.nextImage.isHidden = false
+            }
+        } else if section == .mobile {
+            if UserManager.shared.isVerifiedMobile {
+                self.displayLabel.text = ""
+            } else {
+                self.displayLabel.text = "Unregistered"
+            }
+        } else if section == .password {
+            if UserManager.shared.passwordNotSet {
+                self.displayLabel.text = "Unregistered"
+            } else {
+                self.displayLabel.text = ""
+            }
         } else {
             self.displayLabel.text = ""
-        }
-        
-        if section == .delete || section == .email {
-            self.nextImage.isHidden = true
-        } else {
             self.nextImage.isHidden = false
         }
     }
