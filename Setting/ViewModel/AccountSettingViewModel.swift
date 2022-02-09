@@ -28,6 +28,8 @@
 import UIKit
 import Core
 import Authen
+import Networking
+import SwiftyJSON
 
 public enum AccountSection {
     case email
@@ -56,11 +58,39 @@ public enum AccountSection {
 }
 
 public final class AccountSettingViewModel {
-    var isVerify: Bool = false
     
+    private var userRepository: UserRepository = UserRepositoryImpl()
     let accountSection: [AccountSection] = [.email, .mobile, .password]
     let socialSection: [AccountSection] = [.linkFacebook, .linkTwitter]
     let controlSection: [AccountSection] = [.delete]
+    var stage: Stage = .none
+    var linkSocial: LinkSocial = LinkSocial()
+    
+    enum Stage {
+        case getMe
+        case none
+    }
+    
+    func getMe() {
+        self.stage = .getMe
+        self.userRepository.getMe() { (success, response, isRefreshToken) in
+            if success {
+                do {
+                    let rawJson = try response.mapJSON()
+                    let json = JSON(rawJson)
+                    let user = User(json: json)
+                    self.linkSocial = user.linkSocial
+                    let userHelper = UserHelper()
+                    userHelper.updateLocalProfile(user: user)
+                    self.didGetMeFinish?()
+                } catch {}
+            } else {
+                if isRefreshToken {
+                    self.didGetMeFinish?()
+                }
+            }
+        }
+    }
     
     func openSettingSection(section: AccountSection) {
         switch section {
@@ -80,10 +110,22 @@ public final class AccountSettingViewModel {
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 Utility.currentViewController().present(alert, animated: true, completion: nil)
             }
+        case .linkFacebook, .linkTwitter:
+            let alert = UIAlertController(title: "Error", message: "Waiting for implementation", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            Utility.currentViewController().present(alert, animated: true, completion: nil)
         case .delete:
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.deleteAccount), animated: true)  
-        default:
-            return
+        }
+    }
+    
+    var didGetMeFinish: (() -> ())?
+}
+
+extension AccountSettingViewModel: TokenHelperDelegate {
+    public func didRefreshTokenFinish() {
+        if self.stage == .getMe {
+            self.getMe()
         }
     }
 }

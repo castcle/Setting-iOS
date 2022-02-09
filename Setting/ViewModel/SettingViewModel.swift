@@ -159,7 +159,6 @@ public final class SettingViewModel {
             }
         }
     }
-
 }
 
 extension SettingViewModel: TokenHelperDelegate {

@@ -62,6 +62,8 @@
 		B7C2531426D54AA300ACBB84 /* SelectLanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2531326D54AA300ACBB84 /* SelectLanguageViewModel.swift */; };
 		B7C2531726D54E9B00ACBB84 /* SelectLanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2531526D54E9B00ACBB84 /* SelectLanguageTableViewCell.swift */; };
 		B7C2531826D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C2531626D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib */; };
+		B7FA199A27B3A1F500C69D37 /* SettingSocialAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FA199827B3A1F500C69D37 /* SettingSocialAccountTableViewCell.swift */; };
+		B7FA199B27B3A1F500C69D37 /* SettingSocialAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7FA199927B3A1F500C69D37 /* SettingSocialAccountTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +129,8 @@
 		B7C2531526D54E9B00ACBB84 /* SelectLanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguageTableViewCell.swift; sourceTree = "<group>"; };
 		B7C2531626D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectLanguageTableViewCell.xib; sourceTree = "<group>"; };
 		B7C2531926D551DE00ACBB84 /* Authen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7FA199827B3A1F500C69D37 /* SettingSocialAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSocialAccountTableViewCell.swift; sourceTree = "<group>"; };
+		B7FA199927B3A1F500C69D37 /* SettingSocialAccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingSocialAccountTableViewCell.xib; sourceTree = "<group>"; };
 		BAC4AC43122933957DEFA40F /* Pods-Setting.debug (staging).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.debug (staging).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.debug (staging).xcconfig"; sourceTree = "<group>"; };
 		D4FC7016B0A506343C03F43A /* Pods-Setting.release (staging).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.release (staging).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.release (staging).xcconfig"; sourceTree = "<group>"; };
 		EB4AF3FA989FF6A4FEDDBE20 /* Pods-Setting.release (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.release (development).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.release (development).xcconfig"; sourceTree = "<group>"; };
@@ -241,6 +245,8 @@
 			children = (
 				B743386226D8DF3B004BBC05 /* SettingAccountTableViewCell.swift */,
 				B743386326D8DF3B004BBC05 /* SettingAccountTableViewCell.xib */,
+				B7FA199827B3A1F500C69D37 /* SettingSocialAccountTableViewCell.swift */,
+				B7FA199927B3A1F500C69D37 /* SettingSocialAccountTableViewCell.xib */,
 				B743386A26D90AEA004BBC05 /* Delete Account */,
 				B743385D26D64AC6004BBC05 /* Language */,
 				B7C2530326D535FE00ACBB84 /* Setting */,
@@ -404,6 +410,7 @@
 				B7C252C326D3944E00ACBB84 /* Setting.storyboard in Resources */,
 				B7C2531826D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib in Resources */,
 				B7C252FF26D530F800ACBB84 /* Localizable.strings in Resources */,
+				B7FA199B27B3A1F500C69D37 /* SettingSocialAccountTableViewCell.xib in Resources */,
 				B743387826D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.xib in Resources */,
 				B7C252F026D3D2D000ACBB84 /* SettingTableViewCell.xib in Resources */,
 				B7C252F426D3E15800ACBB84 /* OtherTableViewCell.xib in Resources */,
@@ -460,6 +467,7 @@
 				B743387726D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.swift in Sources */,
 				B7C252C826D394F000ACBB84 /* SettingNibVars.swift in Sources */,
 				B7C252EC26D3C46B00ACBB84 /* SettingViewModel.swift in Sources */,
+				B7FA199A27B3A1F500C69D37 /* SettingSocialAccountTableViewCell.swift in Sources */,
 				B7C252E526D3BC7C00ACBB84 /* PageListTableViewCell.swift in Sources */,
 				B7C2531426D54AA300ACBB84 /* SelectLanguageViewModel.swift in Sources */,
 				B743386426D8DF3B004BBC05 /* SettingAccountTableViewCell.swift in Sources */,
