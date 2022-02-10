@@ -25,43 +25,110 @@
 //  Created by Castcle Co., Ltd. on 27/8/2564 BE.
 //
 
+import UIKit
 import Core
 import Authen
+import Networking
+import SwiftyJSON
 
 public enum AccountSection {
     case email
     case password
+    case mobile
     case delete
+    case linkFacebook
+    case linkTwitter
     
     public var text: String {
         switch self {
         case .email:
             return Localization.settingAccount.email.text
+        case .mobile:
+            return "Mobile number"
         case .password:
             return Localization.settingAccount.password.text
         case .delete:
             return Localization.settingAccount.deleteAccount.text
+        case .linkFacebook:
+            return "Facebook"
+        case .linkTwitter:
+            return "Twitter"
         }
     }
 }
 
 public final class AccountSettingViewModel {
-    var isVerify: Bool = false
     
-    let accountSection: [AccountSection] = [.email, .password]
+    private var userRepository: UserRepository = UserRepositoryImpl()
+    let tokenHelper: TokenHelper = TokenHelper()
+    let accountSection: [AccountSection] = [.email, .mobile, .password]
+    let socialSection: [AccountSection] = [.linkFacebook, .linkTwitter]
     let controlSection: [AccountSection] = [.delete]
+    var stage: Stage = .none
+    var linkSocial: LinkSocial = LinkSocial()
     
-    // MARK: - For Test
-    var countTabVerify: Int = 0
+    enum Stage {
+        case getMe
+        case none
+    }
+    
+    public init() {
+        self.tokenHelper.delegate = self
+    }
+    
+    func getMe() {
+        self.stage = .getMe
+        self.userRepository.getMe() { (success, response, isRefreshToken) in
+            if success {
+                do {
+                    let rawJson = try response.mapJSON()
+                    let json = JSON(rawJson)
+                    let user = User(json: json)
+                    self.linkSocial = user.linkSocial
+                    let userHelper = UserHelper()
+                    userHelper.updateLocalProfile(user: user)
+                    self.didGetMeFinish?()
+                } catch {}
+            } else {
+                if isRefreshToken {
+                    self.tokenHelper.refreshToken()
+                }
+            }
+        }
+    }
     
     func openSettingSection(section: AccountSection) {
         switch section {
-        case .delete:
-            Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.deleteAccount), animated: true)
+        case .email:
+            if !UserManager.shared.isVerifiedEmail {
+                Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.resendEmail(ResendEmailViewModel(title: "Setting"))), animated: true)
+            }
+        case .mobile:
+            Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.verifyMobile), animated: true)
         case .password:
-            Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.oldPassword), animated: true)
-        default:
-            return
+            if UserManager.shared.passwordNotSet {
+                Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.oldPassword), animated: true)
+            } else {
+                let alert = UIAlertController(title: "Error", message: "Waiting for implementation", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                Utility.currentViewController().present(alert, animated: true, completion: nil)
+            }
+        case .linkFacebook, .linkTwitter:
+            let alert = UIAlertController(title: "Error", message: "Waiting for implementation", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            Utility.currentViewController().present(alert, animated: true, completion: nil)
+        case .delete:
+            Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.deleteAccount), animated: true)  
+        }
+    }
+    
+    var didGetMeFinish: (() -> ())?
+}
+
+extension AccountSettingViewModel: TokenHelperDelegate {
+    public func didRefreshTokenFinish() {
+        if self.stage == .getMe {
+            self.getMe()
         }
     }
 }

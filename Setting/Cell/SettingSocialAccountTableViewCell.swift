@@ -19,20 +19,23 @@
 //  Thailand 10160, or visit www.castcle.com if you need additional information
 //  or have any questions.
 //
-//  SettingAccountTableViewCell.swift
+//  SettingSocialAccountTableViewCell.swift
 //  Setting
 //
-//  Created by Castcle Co., Ltd. on 27/8/2564 BE.
+//  Created by Castcle Co., Ltd. on 9/2/2565 BE.
 //
 
 import UIKit
 import Core
+import Networking
 
-class SettingAccountTableViewCell: UITableViewCell {
+class SettingSocialAccountTableViewCell: UITableViewCell {
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var displayLabel: UILabel!
     @IBOutlet var nextImage: UIImageView!
+    @IBOutlet var socialView: UIView!
+    @IBOutlet var socialImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,32 +50,27 @@ class SettingAccountTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configCell(section: AccountSection) {
+    func configCell(section: AccountSection, socialUser: SocialUser) {
         self.titleLabel.text = section.text
         
-        if section == .email {
-            if UserManager.shared.isVerifiedEmail {
-                self.displayLabel.text = UserManager.shared.email
-                self.nextImage.isHidden = true
-            } else {
-                self.displayLabel.text = "Not Verify"
-                self.nextImage.isHidden = false
-            }
-        } else if section == .mobile {
-            if UserManager.shared.isVerifiedMobile {
-                self.displayLabel.text = "Registered"
-            } else {
-                self.displayLabel.text = "Unregistered"
-            }
-        } else if section == .password {
-            if UserManager.shared.passwordNotSet {
-                self.displayLabel.text = "Unregistered"
-            } else {
-                self.displayLabel.text = "Registered"
-            }
+        if section == .linkFacebook {
+            self.socialView.capsule(color: UIColor.Asset.facebook)
+            self.socialImage.image = UIImage.init(icon: .castcle(.facebook), size: CGSize(width: 23, height: 23), textColor: UIColor.Asset.white)
+        } else if section == .linkTwitter {
+            self.socialView.capsule(color: UIColor.Asset.twitter)
+            self.socialImage.image = UIImage.init(icon: .castcle(.twitter), size: CGSize(width: 23, height: 23), textColor: UIColor.Asset.white)
         } else {
-            self.displayLabel.text = ""
-            self.nextImage.isHidden = false
+            self.socialView.capsule(color: .clear)
+            self.socialImage.image = UIImage()
+        }
+        
+        if socialUser.socialId.isEmpty {
+            self.displayLabel.text = "Link"
+            self.displayLabel.textColor = UIColor.Asset.gray
+        } else {
+            self.displayLabel.text = "Linked"
+            self.displayLabel.textColor = UIColor.Asset.lightBlue
         }
     }
+    
 }

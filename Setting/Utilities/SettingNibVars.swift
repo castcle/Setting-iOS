@@ -35,6 +35,10 @@ public struct SettingNibVars {
         public static let deleteAccount = "DeleteAccountViewController"
         public static let deleteDetail = "DeleteAccountDetailViewController"
         public static let deleteSuccess = "DeleteAccountSuccessViewController"
+        public static let verifyMobile = "VerifyMobileViewController"
+        public static let selectCode = "SelectCodeViewController"
+        public static let verifyMobileOtp = "VerifyMobileOtpViewController"
+        public static let verifyMobileSuccess = "VerifyMobileSuccessViewController"
     }
     
     // MARK: - View
@@ -58,6 +62,10 @@ public struct SettingNibVars {
         public static let accountList = "AccountListTableViewCell"
         public static let password = "DeleteAccountPasswordTableViewCell"
         public static let social = "SocialTableViewCell"
+        public static let settingSocialAccount = "SettingSocialAccountTableViewCell"
+        public static let verifyMobile = "VerifyMobileTableViewCell"
+        public static let selectCode = "SelectCodeTableViewCell"
+        public static let verifyMobileOtp = "VerifyMobileOtpTableViewCell"
     }
     
     // MARK: - CollectionViewCell

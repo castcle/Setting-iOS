@@ -35,6 +35,7 @@ class AccountSettingViewController: UIViewController {
     
     enum AccountSettingViewControllerSection: Int, CaseIterable {
         case setting = 0
+        case social
         case control
     }
     
@@ -44,6 +45,10 @@ class AccountSettingViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.configureTableView()
+        self.viewModel.getMe()
+        self.viewModel.didGetMeFinish = {
+            self.tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,9 +64,8 @@ class AccountSettingViewController: UIViewController {
     func configureTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.settingAccount, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.settingAccount)
-        
+        self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.settingSocialAccount, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.settingSocialAccount)
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 100
     }
@@ -76,6 +80,8 @@ extension AccountSettingViewController: UITableViewDelegate, UITableViewDataSour
         switch section {
         case AccountSettingViewControllerSection.setting.rawValue:
             return self.viewModel.accountSection.count
+        case AccountSettingViewControllerSection.social.rawValue:
+            return self.viewModel.socialSection.count
         case AccountSettingViewControllerSection.control.rawValue:
             return self.viewModel.controlSection.count
         default:
@@ -86,6 +92,8 @@ extension AccountSettingViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case AccountSettingViewControllerSection.setting.rawValue:
+            return (self.viewModel.accountSection.count > 0 ? 50 : 0)
+        case AccountSettingViewControllerSection.social.rawValue:
             return (self.viewModel.accountSection.count > 0 ? 50 : 0)
         case AccountSettingViewControllerSection.control.rawValue:
             return (self.viewModel.controlSection.count > 0 ? 50 : 0)
@@ -106,6 +114,8 @@ extension AccountSettingViewController: UITableViewDelegate, UITableViewDataSour
         switch section {
         case AccountSettingViewControllerSection.setting.rawValue:
             label.text = Localization.settingAccount.sectionAccountSetting.text
+        case AccountSettingViewControllerSection.social.rawValue:
+            label.text = "Link Social Media Account"
         case AccountSettingViewControllerSection.control.rawValue:
             label.text = Localization.settingAccount.sectionAccountControl.text
         default:
@@ -117,36 +127,35 @@ extension AccountSettingViewController: UITableViewDelegate, UITableViewDataSour
         return headerView
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == AccountSettingViewControllerSection.setting.rawValue {
-            return (self.viewModel.accountSection.count > 0 ? 1 : 0)
-        } else {
-            return 0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 1))
-        headerView.backgroundColor = UIColor.Asset.black
-        return headerView
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.settingAccount, for: indexPath as IndexPath) as? SettingAccountTableViewCell
-        cell?.backgroundColor = UIColor.clear
-        
-        if indexPath.section == AccountSettingViewControllerSection.setting.rawValue {
-            cell?.configCell(section: self.viewModel.accountSection[indexPath.row])
-        } else if indexPath.section == AccountSettingViewControllerSection.control.rawValue {
-            cell?.configCell(section: self.viewModel.controlSection[indexPath.row])
+        if indexPath.section == AccountSettingViewControllerSection.social.rawValue {
+            let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.settingSocialAccount, for: indexPath as IndexPath) as? SettingSocialAccountTableViewCell
+            cell?.backgroundColor = UIColor.clear
+            if self.viewModel.socialSection[indexPath.row] == .linkFacebook {
+                cell?.configCell(section: self.viewModel.socialSection[indexPath.row], socialUser: self.viewModel.linkSocial.facebook)
+            } else if self.viewModel.socialSection[indexPath.row] == .linkTwitter {
+                cell?.configCell(section: self.viewModel.socialSection[indexPath.row], socialUser: self.viewModel.linkSocial.twitter)
+            }
+            return cell ?? SettingSocialAccountTableViewCell()
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.settingAccount, for: indexPath as IndexPath) as? SettingAccountTableViewCell
+            cell?.backgroundColor = UIColor.clear
+            if indexPath.section == AccountSettingViewControllerSection.setting.rawValue {
+                cell?.configCell(section: self.viewModel.accountSection[indexPath.row])
+            } else if indexPath.section == AccountSettingViewControllerSection.social.rawValue {
+                cell?.configCell(section: self.viewModel.socialSection[indexPath.row])
+            } else if indexPath.section == AccountSettingViewControllerSection.control.rawValue {
+                cell?.configCell(section: self.viewModel.controlSection[indexPath.row])
+            }
+            return cell ?? SettingAccountTableViewCell()
         }
-        
-        return cell ?? SettingAccountTableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == AccountSettingViewControllerSection.setting.rawValue {
             self.viewModel.openSettingSection(section: self.viewModel.accountSection[indexPath.row])
+        } else if indexPath.section == AccountSettingViewControllerSection.social.rawValue {
+            self.viewModel.openSettingSection(section: self.viewModel.socialSection[indexPath.row])
         } else if indexPath.section == AccountSettingViewControllerSection.control.rawValue {
             self.viewModel.openSettingSection(section: self.viewModel.controlSection[indexPath.row])
         }
