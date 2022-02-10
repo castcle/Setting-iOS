@@ -105,9 +105,9 @@ class VerifyMobileOtpTableViewCell: UITableViewCell {
     
     private func secondsToTime(seconds: Int) -> String {
         let (m,s) = ((seconds % 3600) / 60, (seconds % 3600) % 60)
-        let m_string =  m < 10 ? "0\(m)" : "\(m)"
-        let s_string =  s < 10 ? "0\(s)" : "\(s)"
-        return "\(m_string):\(s_string)"
+        let minuteString =  m < 10 ? "0\(m)" : "\(m)"
+        let secondString =  s < 10 ? "0\(s)" : "\(s)"
+        return "\(minuteString):\(secondString)"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -118,12 +118,12 @@ class VerifyMobileOtpTableViewCell: UITableViewCell {
         self.countdownLabel.isHidden = false
         self.resendButton.isHidden = true
         self.secondsRemaining = 300
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (Timer) in
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
             if self.secondsRemaining > 0 {
                 self.countdownLabel.text = "Request code again \(self.secondsToTime(seconds: self.secondsRemaining)) sec"
                 self.secondsRemaining -= 1
             } else {
-                Timer.invalidate()
+                timer.invalidate()
                 self.countdownLabel.isHidden = true
                 self.resendButton.isHidden = false
             }
