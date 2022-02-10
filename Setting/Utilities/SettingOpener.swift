@@ -36,6 +36,10 @@ public enum SettingScene {
     case deleteAccount
     case deleteDetail
     case deleteSuccess
+    case verifyMobile
+    case selectCode
+    case verifyMobileOtp
+    case verifyMobileSuccess
 }
 
 public struct SettingOpener {
@@ -69,6 +73,22 @@ public struct SettingOpener {
         case .deleteSuccess:
             let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
             let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.deleteSuccess)
+            return vc
+        case .verifyMobile:
+            let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
+            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.verifyMobile)
+            return vc
+        case .selectCode:
+            let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
+            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.selectCode)
+            return vc
+        case .verifyMobileOtp:
+            let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
+            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.verifyMobileOtp)
+            return vc
+        case .verifyMobileSuccess:
+            let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
+            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.verifyMobileSuccess)
             return vc
         }
     }

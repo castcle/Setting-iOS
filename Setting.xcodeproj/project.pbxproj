@@ -25,6 +25,18 @@
 		B743387A26D920F0004BBC05 /* DeleteAccountSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743387926D920F0004BBC05 /* DeleteAccountSuccessViewController.swift */; };
 		B74338A526DE33C4004BBC05 /* Authen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B74338A426DE33C4004BBC05 /* Authen.framework */; };
 		B75E5B2527ABC2E600B6CC14 /* Ads.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B75E5B2427ABC2E600B6CC14 /* Ads.framework */; };
+		B779D94327B4C92A008C8670 /* VerifyMobileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D94227B4C92A008C8670 /* VerifyMobileViewController.swift */; };
+		B779D94727B4CB19008C8670 /* VerifyMobileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D94527B4CB19008C8670 /* VerifyMobileTableViewCell.swift */; };
+		B779D94827B4CB19008C8670 /* VerifyMobileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B779D94627B4CB19008C8670 /* VerifyMobileTableViewCell.xib */; };
+		B779D95027B4CFCB008C8670 /* VerifyMobileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D94F27B4CFCB008C8670 /* VerifyMobileViewModel.swift */; };
+		B779D95527B4D659008C8670 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B779D95427B4D659008C8670 /* Assets.xcassets */; };
+		B779D95727B4F36B008C8670 /* VerifyMobileOtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D95627B4F36B008C8670 /* VerifyMobileOtpViewController.swift */; };
+		B779D95927B4F37E008C8670 /* SelectCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D95827B4F37E008C8670 /* SelectCodeViewController.swift */; };
+		B779D95C27B4F580008C8670 /* SelectCodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D95A27B4F580008C8670 /* SelectCodeTableViewCell.swift */; };
+		B779D95D27B4F580008C8670 /* SelectCodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B779D95B27B4F580008C8670 /* SelectCodeTableViewCell.xib */; };
+		B779D96027B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D95E27B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift */; };
+		B779D96127B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B779D95F27B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib */; };
+		B779D96327B54948008C8670 /* VerifyMobileSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D96227B54948008C8670 /* VerifyMobileSuccessViewController.swift */; };
 		B7866369274B8D1000B13EEF /* SocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7866367274B8D1000B13EEF /* SocialTableViewCell.swift */; };
 		B786636A274B8D1000B13EEF /* SocialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7866368274B8D1000B13EEF /* SocialTableViewCell.xib */; };
 		B7AF660B26F24F5800BDE9C4 /* Profile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF660A26F24F5800BDE9C4 /* Profile.framework */; };
@@ -88,6 +100,18 @@
 		B74338A326DE310C004BBC05 /* Authen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B74338A426DE33C4004BBC05 /* Authen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75E5B2427ABC2E600B6CC14 /* Ads.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Ads.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B779D94227B4C92A008C8670 /* VerifyMobileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileViewController.swift; sourceTree = "<group>"; };
+		B779D94527B4CB19008C8670 /* VerifyMobileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileTableViewCell.swift; sourceTree = "<group>"; };
+		B779D94627B4CB19008C8670 /* VerifyMobileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerifyMobileTableViewCell.xib; sourceTree = "<group>"; };
+		B779D94F27B4CFCB008C8670 /* VerifyMobileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileViewModel.swift; sourceTree = "<group>"; };
+		B779D95427B4D659008C8670 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B779D95627B4F36B008C8670 /* VerifyMobileOtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileOtpViewController.swift; sourceTree = "<group>"; };
+		B779D95827B4F37E008C8670 /* SelectCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCodeViewController.swift; sourceTree = "<group>"; };
+		B779D95A27B4F580008C8670 /* SelectCodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCodeTableViewCell.swift; sourceTree = "<group>"; };
+		B779D95B27B4F580008C8670 /* SelectCodeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCodeTableViewCell.xib; sourceTree = "<group>"; };
+		B779D95E27B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileOtpTableViewCell.swift; sourceTree = "<group>"; };
+		B779D95F27B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerifyMobileOtpTableViewCell.xib; sourceTree = "<group>"; };
+		B779D96227B54948008C8670 /* VerifyMobileSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileSuccessViewController.swift; sourceTree = "<group>"; };
 		B7866367274B8D1000B13EEF /* SocialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTableViewCell.swift; sourceTree = "<group>"; };
 		B7866368274B8D1000B13EEF /* SocialTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialTableViewCell.xib; sourceTree = "<group>"; };
 		B7AF660A26F24F5800BDE9C4 /* Profile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Profile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,6 +222,38 @@
 			path = "Delete Account";
 			sourceTree = "<group>";
 		};
+		B779D94127B4C83C008C8670 /* Verify Mobile */ = {
+			isa = PBXGroup;
+			children = (
+				B779D94227B4C92A008C8670 /* VerifyMobileViewController.swift */,
+				B779D95827B4F37E008C8670 /* SelectCodeViewController.swift */,
+				B779D95627B4F36B008C8670 /* VerifyMobileOtpViewController.swift */,
+				B779D96227B54948008C8670 /* VerifyMobileSuccessViewController.swift */,
+			);
+			path = "Verify Mobile";
+			sourceTree = "<group>";
+		};
+		B779D94427B4CAEA008C8670 /* Verify Mobile */ = {
+			isa = PBXGroup;
+			children = (
+				B779D94527B4CB19008C8670 /* VerifyMobileTableViewCell.swift */,
+				B779D94627B4CB19008C8670 /* VerifyMobileTableViewCell.xib */,
+				B779D95A27B4F580008C8670 /* SelectCodeTableViewCell.swift */,
+				B779D95B27B4F580008C8670 /* SelectCodeTableViewCell.xib */,
+				B779D95E27B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift */,
+				B779D95F27B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib */,
+			);
+			path = "Verify Mobile";
+			sourceTree = "<group>";
+		};
+		B779D95327B4D64B008C8670 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B779D95427B4D659008C8670 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		B7C252A526D3915400ACBB84 = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +278,7 @@
 				B7C252B226D3915400ACBB84 /* Setting.h */,
 				B7C252B326D3915400ACBB84 /* Info.plist */,
 				B7C252C226D3944E00ACBB84 /* Setting.storyboard */,
+				B779D95327B4D64B008C8670 /* Assets */,
 				B7C252FA26D5302500ACBB84 /* Localizable */,
 				B7C252F726D50A2100ACBB84 /* ViewModel */,
 				B7C252F626D50A1300ACBB84 /* ViewController */,
@@ -250,6 +307,7 @@
 				B743386A26D90AEA004BBC05 /* Delete Account */,
 				B743385D26D64AC6004BBC05 /* Language */,
 				B7C2530326D535FE00ACBB84 /* Setting */,
+				B779D94427B4CAEA008C8670 /* Verify Mobile */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -257,6 +315,7 @@
 		B7C252F626D50A1300ACBB84 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B779D94127B4C83C008C8670 /* Verify Mobile */,
 				B7C252C426D3946E00ACBB84 /* SettingViewController.swift */,
 				B7C252F826D50A5C00ACBB84 /* LanguageViewController.swift */,
 				B7C2531126D54A3E00ACBB84 /* SelectLanguageViewController.swift */,
@@ -275,6 +334,7 @@
 				B7C2530F26D5449B00ACBB84 /* LanguageViewModel.swift */,
 				B7C2531326D54AA300ACBB84 /* SelectLanguageViewModel.swift */,
 				B743386626D8E297004BBC05 /* AccountSettingViewModel.swift */,
+				B779D94F27B4CFCB008C8670 /* VerifyMobileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -401,6 +461,7 @@
 				B743385C26D6453D004BBC05 /* PreferredLanguageTableViewCell.xib in Resources */,
 				B743386E26D90B19004BBC05 /* ConfirmDeleteHeaderTableViewCell.xib in Resources */,
 				B7C252EA26D3BDBC00ACBB84 /* PageCollectionViewCell.xib in Resources */,
+				B779D95D27B4F580008C8670 /* SelectCodeTableViewCell.xib in Resources */,
 				B743386526D8DF3B004BBC05 /* SettingAccountTableViewCell.xib in Resources */,
 				B7C252DE26D3AB0D00ACBB84 /* NotificationTableViewCell.xib in Resources */,
 				B7C2530B26D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.xib in Resources */,
@@ -408,10 +469,13 @@
 				B743387426D90DEA004BBC05 /* AccountListTableViewCell.xib in Resources */,
 				B7C252E626D3BC7C00ACBB84 /* PageListTableViewCell.xib in Resources */,
 				B7C252C326D3944E00ACBB84 /* Setting.storyboard in Resources */,
+				B779D94827B4CB19008C8670 /* VerifyMobileTableViewCell.xib in Resources */,
 				B7C2531826D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib in Resources */,
 				B7C252FF26D530F800ACBB84 /* Localizable.strings in Resources */,
+				B779D95527B4D659008C8670 /* Assets.xcassets in Resources */,
 				B7FA199B27B3A1F500C69D37 /* SettingSocialAccountTableViewCell.xib in Resources */,
 				B743387826D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.xib in Resources */,
+				B779D96127B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib in Resources */,
 				B7C252F026D3D2D000ACBB84 /* SettingTableViewCell.xib in Resources */,
 				B7C252F426D3E15800ACBB84 /* OtherTableViewCell.xib in Resources */,
 				B786636A274B8D1000B13EEF /* SocialTableViewCell.xib in Resources */,
@@ -453,19 +517,24 @@
 				B7C2531226D54A3E00ACBB84 /* SelectLanguageViewController.swift in Sources */,
 				B743387326D90DEA004BBC05 /* AccountListTableViewCell.swift in Sources */,
 				B7C2530626D5365D00ACBB84 /* AppLanguageTableViewCell.swift in Sources */,
+				B779D96327B54948008C8670 /* VerifyMobileSuccessViewController.swift in Sources */,
 				B7C252DD26D3AB0D00ACBB84 /* NotificationTableViewCell.swift in Sources */,
 				B7C252E926D3BDBC00ACBB84 /* PageCollectionViewCell.swift in Sources */,
+				B779D95927B4F37E008C8670 /* SelectCodeViewController.swift in Sources */,
 				B743386D26D90B19004BBC05 /* ConfirmDeleteHeaderTableViewCell.swift in Sources */,
 				B7C252F326D3E15800ACBB84 /* OtherTableViewCell.swift in Sources */,
 				B743386126D8DCE7004BBC05 /* AccountSettingViewController.swift in Sources */,
 				B743385F26D8DC38004BBC05 /* DeleteAccountViewController.swift in Sources */,
 				B7C2531026D5449B00ACBB84 /* LanguageViewModel.swift in Sources */,
+				B779D94727B4CB19008C8670 /* VerifyMobileTableViewCell.swift in Sources */,
 				B7C252EF26D3D2D000ACBB84 /* SettingTableViewCell.swift in Sources */,
 				B7C2530A26D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.swift in Sources */,
 				B7866369274B8D1000B13EEF /* SocialTableViewCell.swift in Sources */,
 				B743386726D8E297004BBC05 /* AccountSettingViewModel.swift in Sources */,
 				B743387726D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.swift in Sources */,
+				B779D95027B4CFCB008C8670 /* VerifyMobileViewModel.swift in Sources */,
 				B7C252C826D394F000ACBB84 /* SettingNibVars.swift in Sources */,
+				B779D96027B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift in Sources */,
 				B7C252EC26D3C46B00ACBB84 /* SettingViewModel.swift in Sources */,
 				B7FA199A27B3A1F500C69D37 /* SettingSocialAccountTableViewCell.swift in Sources */,
 				B7C252E526D3BC7C00ACBB84 /* PageListTableViewCell.swift in Sources */,
@@ -473,9 +542,12 @@
 				B743386426D8DF3B004BBC05 /* SettingAccountTableViewCell.swift in Sources */,
 				B7C252CA26D3950400ACBB84 /* SettingOpener.swift in Sources */,
 				B743385B26D6453D004BBC05 /* PreferredLanguageTableViewCell.swift in Sources */,
+				B779D95C27B4F580008C8670 /* SelectCodeTableViewCell.swift in Sources */,
+				B779D94327B4C92A008C8670 /* VerifyMobileViewController.swift in Sources */,
 				B7C252F926D50A5C00ACBB84 /* LanguageViewController.swift in Sources */,
 				B7C252C526D3946E00ACBB84 /* SettingViewController.swift in Sources */,
 				B743386926D90695004BBC05 /* DeleteAccountDetailViewController.swift in Sources */,
+				B779D95727B4F36B008C8670 /* VerifyMobileOtpViewController.swift in Sources */,
 				B7C252FC26D5308000ACBB84 /* Localizable.swift in Sources */,
 				B7C252E126D3B92F00ACBB84 /* VerifyTableViewCell.swift in Sources */,
 				B7C2531726D54E9B00ACBB84 /* SelectLanguageTableViewCell.swift in Sources */,
