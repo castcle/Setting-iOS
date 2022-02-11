@@ -39,6 +39,7 @@
 		B779D96327B54948008C8670 /* VerifyMobileSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D96227B54948008C8670 /* VerifyMobileSuccessViewController.swift */; };
 		B7866369274B8D1000B13EEF /* SocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7866367274B8D1000B13EEF /* SocialTableViewCell.swift */; };
 		B786636A274B8D1000B13EEF /* SocialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7866368274B8D1000B13EEF /* SocialTableViewCell.xib */; };
+		B7A11BF327B60DD200D00F3A /* VerifyMobileOtpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A11BF227B60DD200D00F3A /* VerifyMobileOtpViewModel.swift */; };
 		B7AF660B26F24F5800BDE9C4 /* Profile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF660A26F24F5800BDE9C4 /* Profile.framework */; };
 		B7AF666826F4385800BDE9C4 /* Notification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF666726F4385800BDE9C4 /* Notification.framework */; };
 		B7C252B426D3915400ACBB84 /* Setting.h in Headers */ = {isa = PBXBuildFile; fileRef = B7C252B226D3915400ACBB84 /* Setting.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -114,6 +115,7 @@
 		B779D96227B54948008C8670 /* VerifyMobileSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileSuccessViewController.swift; sourceTree = "<group>"; };
 		B7866367274B8D1000B13EEF /* SocialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTableViewCell.swift; sourceTree = "<group>"; };
 		B7866368274B8D1000B13EEF /* SocialTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialTableViewCell.xib; sourceTree = "<group>"; };
+		B7A11BF227B60DD200D00F3A /* VerifyMobileOtpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileOtpViewModel.swift; sourceTree = "<group>"; };
 		B7AF660A26F24F5800BDE9C4 /* Profile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Profile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7AF666726F4385800BDE9C4 /* Notification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Notification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C252AF26D3915400ACBB84 /* Setting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Setting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -335,6 +337,7 @@
 				B7C2531326D54AA300ACBB84 /* SelectLanguageViewModel.swift */,
 				B743386626D8E297004BBC05 /* AccountSettingViewModel.swift */,
 				B779D94F27B4CFCB008C8670 /* VerifyMobileViewModel.swift */,
+				B7A11BF227B60DD200D00F3A /* VerifyMobileOtpViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				B7C252F326D3E15800ACBB84 /* OtherTableViewCell.swift in Sources */,
 				B743386126D8DCE7004BBC05 /* AccountSettingViewController.swift in Sources */,
 				B743385F26D8DC38004BBC05 /* DeleteAccountViewController.swift in Sources */,
+				B7A11BF327B60DD200D00F3A /* VerifyMobileOtpViewModel.swift in Sources */,
 				B7C2531026D5449B00ACBB84 /* LanguageViewModel.swift in Sources */,
 				B779D94727B4CB19008C8670 /* VerifyMobileTableViewCell.swift in Sources */,
 				B7C252EF26D3D2D000ACBB84 /* SettingTableViewCell.swift in Sources */,

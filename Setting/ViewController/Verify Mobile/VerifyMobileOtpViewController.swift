@@ -28,24 +28,40 @@
 import UIKit
 import Core
 import Defaults
+import JGProgressHUD
 
 class VerifyMobileOtpViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
-    var viewModel = VerifyMobileViewModel()
+    var viewModel = VerifyMobileOtpViewModel()
+    let hud = JGProgressHUD()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.hideKeyboardWhenTapped()
         self.configureTableView()
+        
+        self.viewModel.didGetOtpFinish = {
+            self.hud.dismiss()
+        }
+        
+        self.viewModel.didVerifyOtpFinish = {
+            self.hud.dismiss()
+            Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.verifyMobileSuccess), animated: true)
+        }
+        
+        self.viewModel.didError = {
+            self.hud.dismiss()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavBar()
         Defaults[.screenId] = ""
+        self.hud.textLabel.text = "Verifying"
     }
     
     func setupNavBar() {
@@ -74,12 +90,20 @@ extension VerifyMobileOtpViewController: UITableViewDelegate, UITableViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.verifyMobileOtp, for: indexPath as IndexPath) as? VerifyMobileOtpTableViewCell
         cell?.backgroundColor = UIColor.clear
         cell?.delegate = self
+        cell?.configCell(mobileNumber: self.viewModel.authenRequest.payload.mobileNumber)
         return cell ?? VerifyMobileOtpTableViewCell()
     }
 }
 
 extension VerifyMobileOtpViewController: VerifyMobileOtpTableViewCellDelegate {
+    func didRequestOtp(_ cell: VerifyMobileOtpTableViewCell) {
+        self.hud.show(in: self.view)
+        self.viewModel.requestOtp()
+    }
+    
     func didConfirm(_ cell: VerifyMobileOtpTableViewCell, pin: String) {
-        Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.verifyMobileSuccess), animated: true)
+        self.hud.show(in: self.view)
+        self.viewModel.authenRequest.payload.otp = pin
+        self.viewModel.verifyOtp()
     }
 }

@@ -32,15 +32,45 @@ import RealmSwift
 
 public final class VerifyMobileViewModel {
     
+    var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
+    var authenRequest: AuthenRequest = AuthenRequest()
     let tokenHelper: TokenHelper = TokenHelper()
     var countryCode: CountryCode = CountryCode().initCustom(code: "TH", dialCode: "+66", name: "Thailand")
     
     public init() {
         self.tokenHelper.delegate = self
     }
+    
+    func requestOtp() {
+        self.authenRequest.channel = .mobile
+        self.authenRequest.objective = .verifyMobile
+        self.authenRequest.payload.countryCode = self.countryCode.dialCode
+        self.authenticationRepository.requestOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
+            if success {
+                do {
+                    let rawJson = try response.mapJSON()
+                    let json = JSON(rawJson)
+                    self.authenRequest.payload.refCode = json[AuthenticationApiKey.refCode.rawValue].stringValue
+                    self.didGetOtpFinish?()
+                } catch {
+                    self.didError?()
+                }
+            } else {
+                if isRefreshToken {
+                    self.tokenHelper.refreshToken()
+                } else {
+                    self.didError?()
+                }
+            }
+        }
+    }
+    
+    var didGetOtpFinish: (() -> ())?
+    var didError: (() -> ())?
 }
 
 extension VerifyMobileViewModel: TokenHelperDelegate {
     public func didRefreshTokenFinish() {
+        self.requestOtp()
     }
 }

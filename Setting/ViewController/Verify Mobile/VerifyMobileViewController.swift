@@ -28,24 +28,36 @@
 import UIKit
 import Core
 import Defaults
+import JGProgressHUD
 
 class VerifyMobileViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
     var viewModel = VerifyMobileViewModel()
+    let hud = JGProgressHUD()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.hideKeyboardWhenTapped()
         self.configureTableView()
+        
+        self.viewModel.didGetOtpFinish = {
+            self.hud.dismiss()
+            Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.verifyMobileOtp(VerifyMobileOtpViewModel(authenRequest: self.viewModel.authenRequest))), animated: true)
+        }
+        
+        self.viewModel.didError = {
+            self.hud.dismiss()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavBar()
         Defaults[.screenId] = ""
+        self.hud.textLabel.text = "Verifying"
     }
     
     func setupNavBar() {
@@ -87,7 +99,9 @@ extension VerifyMobileViewController: VerifyMobileTableViewCellDelegate {
     }
     
     func didConfirm(_ cell: VerifyMobileTableViewCell, mobileNumber: String) {
-        Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.verifyMobileOtp), animated: true)
+        self.hud.show(in: self.view)
+        self.viewModel.authenRequest.payload.mobileNumber = mobileNumber
+        self.viewModel.requestOtp()
     }
 }
 

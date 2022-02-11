@@ -34,9 +34,14 @@ protocol SelectCodeViewControllerDelegate {
     func didSelectCountryCode(_ view: SelectCodeViewController, countryCode: CountryCode)
 }
 
-class SelectCodeViewController: UIViewController {
+class SelectCodeViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var searchView: UIView!
+    @IBOutlet var searchImage: UIImageView!
+    @IBOutlet var searchTextField: UITextField!
+    @IBOutlet var searchContainerView: UIView!
+    @IBOutlet var clearButton: UIButton!
     
     var delegate: SelectCodeViewControllerDelegate?
     private let realm = try! Realm()
@@ -47,6 +52,16 @@ class SelectCodeViewController: UIViewController {
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.configureTableView()
         self.countryCode = self.realm.objects(CountryCode.self)
+        
+        self.searchView.custom(color: UIColor.Asset.darkGray, cornerRadius: 18, borderWidth: 1, borderColor: UIColor.Asset.darkGraphiteBlue)
+        self.searchImage.image = UIImage.init(icon: .castcle(.search), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
+        self.searchTextField.font = UIFont.asset(.regular, fontSize: .overline)
+        self.searchTextField.textColor = UIColor.Asset.white
+        self.searchContainerView.backgroundColor = UIColor.Asset.darkGray
+        self.clearButton.setImage(UIImage.init(icon: .castcle(.incorrect), size: CGSize(width: 15, height: 15), textColor: UIColor.Asset.white).withRenderingMode(.alwaysOriginal), for: .normal)
+        
+        self.searchTextField.delegate = self
+        self.searchTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +80,28 @@ class SelectCodeViewController: UIViewController {
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.selectCode, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.selectCode)
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 100
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        let searchText: String = textField.text ?? ""
+        if searchText.isEmpty {
+            self.countryCode = self.realm.objects(CountryCode.self)
+        } else {
+            let predicate = NSPredicate(format: "name CONTAINS[c] %@", searchText)
+            self.countryCode = self.realm.objects(CountryCode.self).filter(predicate)
+        }
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func clearAction(_ sender: Any) {
+        self.searchTextField.text = ""
+        self.countryCode = self.realm.objects(CountryCode.self)
+        self.tableView.reloadData()
     }
 }
 

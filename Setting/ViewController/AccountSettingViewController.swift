@@ -55,6 +55,7 @@ class AccountSettingViewController: UIViewController {
         super.viewWillAppear(animated)
         self.setupNavBar()
         Defaults[.screenId] = ""
+        self.tableView.reloadData()
     }
     
     func setupNavBar() {

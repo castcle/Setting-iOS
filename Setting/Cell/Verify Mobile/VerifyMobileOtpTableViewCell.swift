@@ -30,6 +30,7 @@ import Core
 import SVPinView
 
 protocol VerifyMobileOtpTableViewCellDelegate {
+    func didRequestOtp(_ cell: VerifyMobileOtpTableViewCell)
     func didConfirm(_ cell: VerifyMobileOtpTableViewCell, pin: String)
 }
 
@@ -90,6 +91,10 @@ class VerifyMobileOtpTableViewCell: UITableViewCell {
         self.setupNextButton(isActive: false)
     }
     
+    func configCell(mobileNumber: String) {
+        self.subTitleLabel.text = "You will receive a 6 digit code to verify your mobile number. OTP code will be sent to \(mobileNumber)"
+    }
+    
     private func setupNextButton(isActive: Bool) {
         self.confirmButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .h4)
         if isActive {
@@ -138,5 +143,6 @@ class VerifyMobileOtpTableViewCell: UITableViewCell {
     
     @IBAction func resendAction(_ sender: Any) {
         self.setupCountdown()
+        self.delegate?.didRequestOtp(self)
     }
 }

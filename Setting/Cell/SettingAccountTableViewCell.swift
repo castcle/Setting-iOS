@@ -60,7 +60,7 @@ class SettingAccountTableViewCell: UITableViewCell {
             }
         } else if section == .mobile {
             if UserManager.shared.isVerifiedMobile {
-                self.displayLabel.text = "Registered"
+                self.displayLabel.text = UserManager.shared.mobile
             } else {
                 self.displayLabel.text = "Unregistered"
             }
