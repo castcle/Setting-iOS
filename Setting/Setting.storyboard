@@ -524,6 +524,66 @@
             </objects>
             <point key="canvasLocation" x="2179" y="2133"/>
         </scene>
+        <!--Register Password View Controller-->
+        <scene sceneID="3bl-Ba-P9T">
+            <objects>
+                <viewController storyboardIdentifier="RegisterPasswordViewController" hidesBottomBarWhenPushed="YES" id="spn-IV-WV4" customClass="RegisterPasswordViewController" customModule="Setting" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vr4-Os-CQI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HDe-lh-Wg1">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="70j-wT-UrH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="HDe-lh-Wg1" firstAttribute="top" secondItem="70j-wT-UrH" secondAttribute="top" id="JZV-aa-2LH"/>
+                            <constraint firstItem="HDe-lh-Wg1" firstAttribute="leading" secondItem="70j-wT-UrH" secondAttribute="leading" id="K2O-wC-2Ns"/>
+                            <constraint firstAttribute="bottom" secondItem="HDe-lh-Wg1" secondAttribute="bottom" id="nY7-lZ-yBk"/>
+                            <constraint firstItem="HDe-lh-Wg1" firstAttribute="trailing" secondItem="70j-wT-UrH" secondAttribute="trailing" id="pdu-eC-bY5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="HDe-lh-Wg1" id="29M-vz-zjV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fVs-2Q-CkQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="101" y="2831"/>
+        </scene>
+        <!--Register Password Otp View Controller-->
+        <scene sceneID="wHG-Hu-gbr">
+            <objects>
+                <viewController storyboardIdentifier="RegisterPasswordOtpViewController" hidesBottomBarWhenPushed="YES" id="aVr-sM-TSB" customClass="RegisterPasswordOtpViewController" customModule="Setting" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Um8-cN-uCR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rDb-9m-VKK">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GRb-kr-87B"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rDb-9m-VKK" firstAttribute="leading" secondItem="GRb-kr-87B" secondAttribute="leading" id="M9j-co-dFg"/>
+                            <constraint firstItem="rDb-9m-VKK" firstAttribute="trailing" secondItem="GRb-kr-87B" secondAttribute="trailing" id="X9J-iB-4Qi"/>
+                            <constraint firstItem="rDb-9m-VKK" firstAttribute="top" secondItem="GRb-kr-87B" secondAttribute="top" id="btn-Fk-1Y9"/>
+                            <constraint firstAttribute="bottom" secondItem="rDb-9m-VKK" secondAttribute="bottom" id="oeL-h7-fSj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="rDb-9m-VKK" id="2da-MD-XGu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1dj-zN-MHE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="795" y="2831"/>
+        </scene>
     </scenes>
     <resources>
         <image name="verify-mobile-success" width="191.5" height="174.5"/>

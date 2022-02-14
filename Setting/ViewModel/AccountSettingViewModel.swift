@@ -107,11 +107,9 @@ public final class AccountSettingViewModel {
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.verifyMobile), animated: true)
         case .password:
             if UserManager.shared.passwordNotSet {
-                Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.oldPassword), animated: true)
+                Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.registerPassword), animated: true)
             } else {
-                let alert = UIAlertController(title: "Error", message: "Waiting for implementation", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                Utility.currentViewController().present(alert, animated: true, completion: nil)
+                Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.oldPassword), animated: true)
             }
         case .linkFacebook, .linkTwitter:
             let alert = UIAlertController(title: "Error", message: "Waiting for implementation", preferredStyle: .alert)

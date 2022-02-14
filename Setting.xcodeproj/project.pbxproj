@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		54CA255B2EF0297EA5B4505F /* Pods_Setting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33296E29F07D0AFE9916B159 /* Pods_Setting.framework */; };
+		B726645C27BA1BE8005ABE90 /* RegisterPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B726645B27BA1BE8005ABE90 /* RegisterPasswordViewController.swift */; };
+		B726645E27BA1BFF005ABE90 /* RegisterPasswordOtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B726645D27BA1BFF005ABE90 /* RegisterPasswordOtpViewController.swift */; };
+		B726646527BA3708005ABE90 /* RegisterPasswordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B726646327BA3708005ABE90 /* RegisterPasswordTableViewCell.swift */; };
+		B726646627BA3708005ABE90 /* RegisterPasswordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B726646427BA3708005ABE90 /* RegisterPasswordTableViewCell.xib */; };
+		B726646927BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B726646727BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.swift */; };
+		B726646A27BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B726646827BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.xib */; };
+		B726646C27BA476E005ABE90 /* RegisterPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B726646B27BA476E005ABE90 /* RegisterPasswordViewModel.swift */; };
+		B726646E27BA4DFA005ABE90 /* RegisterPasswordOtpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B726646D27BA4DF9005ABE90 /* RegisterPasswordOtpViewModel.swift */; };
 		B743385B26D6453D004BBC05 /* PreferredLanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743385926D6453D004BBC05 /* PreferredLanguageTableViewCell.swift */; };
 		B743385C26D6453D004BBC05 /* PreferredLanguageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B743385A26D6453D004BBC05 /* PreferredLanguageTableViewCell.xib */; };
 		B743385F26D8DC38004BBC05 /* DeleteAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743385E26D8DC38004BBC05 /* DeleteAccountViewController.swift */; };
@@ -83,6 +91,14 @@
 		33296E29F07D0AFE9916B159 /* Pods_Setting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Setting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E51CBABC07E88940856F42 /* Pods-Setting.debug (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.debug (development).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.debug (development).xcconfig"; sourceTree = "<group>"; };
 		924112A5A38EDF92FF5817E9 /* Pods-Setting.debug (production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.debug (production).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.debug (production).xcconfig"; sourceTree = "<group>"; };
+		B726645B27BA1BE8005ABE90 /* RegisterPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPasswordViewController.swift; sourceTree = "<group>"; };
+		B726645D27BA1BFF005ABE90 /* RegisterPasswordOtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPasswordOtpViewController.swift; sourceTree = "<group>"; };
+		B726646327BA3708005ABE90 /* RegisterPasswordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPasswordTableViewCell.swift; sourceTree = "<group>"; };
+		B726646427BA3708005ABE90 /* RegisterPasswordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterPasswordTableViewCell.xib; sourceTree = "<group>"; };
+		B726646727BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPasswordOtpTableViewCell.swift; sourceTree = "<group>"; };
+		B726646827BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterPasswordOtpTableViewCell.xib; sourceTree = "<group>"; };
+		B726646B27BA476E005ABE90 /* RegisterPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPasswordViewModel.swift; sourceTree = "<group>"; };
+		B726646D27BA4DF9005ABE90 /* RegisterPasswordOtpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPasswordOtpViewModel.swift; sourceTree = "<group>"; };
 		B743385926D6453D004BBC05 /* PreferredLanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferredLanguageTableViewCell.swift; sourceTree = "<group>"; };
 		B743385A26D6453D004BBC05 /* PreferredLanguageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferredLanguageTableViewCell.xib; sourceTree = "<group>"; };
 		B743385E26D8DC38004BBC05 /* DeleteAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +210,26 @@
 			);
 			name = Pods;
 			path = ../Pods;
+			sourceTree = "<group>";
+		};
+		B726645927BA1B24005ABE90 /* Verify Password */ = {
+			isa = PBXGroup;
+			children = (
+				B726645B27BA1BE8005ABE90 /* RegisterPasswordViewController.swift */,
+				B726645D27BA1BFF005ABE90 /* RegisterPasswordOtpViewController.swift */,
+			);
+			path = "Verify Password";
+			sourceTree = "<group>";
+		};
+		B726645A27BA1B36005ABE90 /* Verify Password */ = {
+			isa = PBXGroup;
+			children = (
+				B726646327BA3708005ABE90 /* RegisterPasswordTableViewCell.swift */,
+				B726646427BA3708005ABE90 /* RegisterPasswordTableViewCell.xib */,
+				B726646727BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.swift */,
+				B726646827BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.xib */,
+			);
+			path = "Verify Password";
 			sourceTree = "<group>";
 		};
 		B743385D26D64AC6004BBC05 /* Language */ = {
@@ -310,6 +346,7 @@
 				B743385D26D64AC6004BBC05 /* Language */,
 				B7C2530326D535FE00ACBB84 /* Setting */,
 				B779D94427B4CAEA008C8670 /* Verify Mobile */,
+				B726645A27BA1B36005ABE90 /* Verify Password */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -317,6 +354,7 @@
 		B7C252F626D50A1300ACBB84 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B726645927BA1B24005ABE90 /* Verify Password */,
 				B779D94127B4C83C008C8670 /* Verify Mobile */,
 				B7C252C426D3946E00ACBB84 /* SettingViewController.swift */,
 				B7C252F826D50A5C00ACBB84 /* LanguageViewController.swift */,
@@ -338,6 +376,8 @@
 				B743386626D8E297004BBC05 /* AccountSettingViewModel.swift */,
 				B779D94F27B4CFCB008C8670 /* VerifyMobileViewModel.swift */,
 				B7A11BF227B60DD200D00F3A /* VerifyMobileOtpViewModel.swift */,
+				B726646B27BA476E005ABE90 /* RegisterPasswordViewModel.swift */,
+				B726646D27BA4DF9005ABE90 /* RegisterPasswordOtpViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -474,10 +514,12 @@
 				B7C252C326D3944E00ACBB84 /* Setting.storyboard in Resources */,
 				B779D94827B4CB19008C8670 /* VerifyMobileTableViewCell.xib in Resources */,
 				B7C2531826D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib in Resources */,
+				B726646627BA3708005ABE90 /* RegisterPasswordTableViewCell.xib in Resources */,
 				B7C252FF26D530F800ACBB84 /* Localizable.strings in Resources */,
 				B779D95527B4D659008C8670 /* Assets.xcassets in Resources */,
 				B7FA199B27B3A1F500C69D37 /* SettingSocialAccountTableViewCell.xib in Resources */,
 				B743387826D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.xib in Resources */,
+				B726646A27BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.xib in Resources */,
 				B779D96127B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib in Resources */,
 				B7C252F026D3D2D000ACBB84 /* SettingTableViewCell.xib in Resources */,
 				B7C252F426D3E15800ACBB84 /* OtherTableViewCell.xib in Resources */,
@@ -517,20 +559,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B726645E27BA1BFF005ABE90 /* RegisterPasswordOtpViewController.swift in Sources */,
 				B7C2531226D54A3E00ACBB84 /* SelectLanguageViewController.swift in Sources */,
 				B743387326D90DEA004BBC05 /* AccountListTableViewCell.swift in Sources */,
 				B7C2530626D5365D00ACBB84 /* AppLanguageTableViewCell.swift in Sources */,
 				B779D96327B54948008C8670 /* VerifyMobileSuccessViewController.swift in Sources */,
 				B7C252DD26D3AB0D00ACBB84 /* NotificationTableViewCell.swift in Sources */,
 				B7C252E926D3BDBC00ACBB84 /* PageCollectionViewCell.swift in Sources */,
+				B726646527BA3708005ABE90 /* RegisterPasswordTableViewCell.swift in Sources */,
+				B726645C27BA1BE8005ABE90 /* RegisterPasswordViewController.swift in Sources */,
 				B779D95927B4F37E008C8670 /* SelectCodeViewController.swift in Sources */,
 				B743386D26D90B19004BBC05 /* ConfirmDeleteHeaderTableViewCell.swift in Sources */,
 				B7C252F326D3E15800ACBB84 /* OtherTableViewCell.swift in Sources */,
 				B743386126D8DCE7004BBC05 /* AccountSettingViewController.swift in Sources */,
 				B743385F26D8DC38004BBC05 /* DeleteAccountViewController.swift in Sources */,
+				B726646C27BA476E005ABE90 /* RegisterPasswordViewModel.swift in Sources */,
 				B7A11BF327B60DD200D00F3A /* VerifyMobileOtpViewModel.swift in Sources */,
 				B7C2531026D5449B00ACBB84 /* LanguageViewModel.swift in Sources */,
 				B779D94727B4CB19008C8670 /* VerifyMobileTableViewCell.swift in Sources */,
+				B726646927BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.swift in Sources */,
 				B7C252EF26D3D2D000ACBB84 /* SettingTableViewCell.swift in Sources */,
 				B7C2530A26D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.swift in Sources */,
 				B7866369274B8D1000B13EEF /* SocialTableViewCell.swift in Sources */,
@@ -551,6 +598,7 @@
 				B7C252F926D50A5C00ACBB84 /* LanguageViewController.swift in Sources */,
 				B7C252C526D3946E00ACBB84 /* SettingViewController.swift in Sources */,
 				B743386926D90695004BBC05 /* DeleteAccountDetailViewController.swift in Sources */,
+				B726646E27BA4DFA005ABE90 /* RegisterPasswordOtpViewModel.swift in Sources */,
 				B779D95727B4F36B008C8670 /* VerifyMobileOtpViewController.swift in Sources */,
 				B7C252FC26D5308000ACBB84 /* Localizable.swift in Sources */,
 				B7C252E126D3B92F00ACBB84 /* VerifyTableViewCell.swift in Sources */,
