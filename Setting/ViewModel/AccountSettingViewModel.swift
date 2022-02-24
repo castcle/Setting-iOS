@@ -83,7 +83,7 @@ public final class AccountSettingViewModel {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    let user = User(json: json)
+                    let user = UserInfo(json: json)
                     self.linkSocial = user.linkSocial
                     let userHelper = UserHelper()
                     userHelper.updateLocalProfile(user: user)
