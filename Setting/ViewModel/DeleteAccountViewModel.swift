@@ -37,13 +37,6 @@ public class DeleteAccountViewModel {
     var userRepository: UserRepository = UserRepositoryImpl()
     let tokenHelper: TokenHelper = TokenHelper()
     private let realm = try! Realm()
-//    private var state: Stage = .none
-//
-//    enum Stage {
-//        case deleteUser
-//        case verifyOtp
-//        case none
-//    }
     
     public init() {
         self.tokenHelper.delegate = self
