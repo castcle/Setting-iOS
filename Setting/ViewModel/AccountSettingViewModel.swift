@@ -83,7 +83,7 @@ public final class AccountSettingViewModel {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    let user = User(json: json)
+                    let user = UserInfo(json: json)
                     self.linkSocial = user.linkSocial
                     let userHelper = UserHelper()
                     userHelper.updateLocalProfile(user: user)
@@ -107,11 +107,9 @@ public final class AccountSettingViewModel {
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.verifyMobile), animated: true)
         case .password:
             if UserManager.shared.passwordNotSet {
-                Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.oldPassword), animated: true)
+                Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.registerPassword), animated: true)
             } else {
-                let alert = UIAlertController(title: "Error", message: "Waiting for implementation", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                Utility.currentViewController().present(alert, animated: true, completion: nil)
+                Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.oldPassword), animated: true)
             }
         case .linkFacebook, .linkTwitter:
             let alert = UIAlertController(title: "Error", message: "Waiting for implementation", preferredStyle: .alert)

@@ -92,12 +92,13 @@ public final class SettingViewModel {
     var stage: Stage = .none
     private let realm = try! Realm()
     var accountSection: [SettingSection] {
-        let pageRealm = self.realm.objects(Page.self)
-        if pageRealm.count > 0 {
-            return [.profile, .ads, .languang, .aboutUs]
-        } else {
-            return [.profile, .languang, .aboutUs]
-        }
+//        let pageRealm = self.realm.objects(Page.self)
+//        if pageRealm.count > 0 {
+//            return [.profile, .ads, .languang, .aboutUs]
+//        } else {
+//            return [.profile, .languang, .aboutUs]
+//        }
+        return [.profile, .languang, .aboutUs]
     }
     
     enum Stage {
@@ -149,7 +150,7 @@ public final class SettingViewModel {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
                     let userHelper = UserHelper()
-                    userHelper.updateLocalProfile(user: User(json: json))
+                    userHelper.updateLocalProfile(user: UserInfo(json: json))
                     self.delegate?.didGetProfileFinish()
                 } catch {}
             } else {

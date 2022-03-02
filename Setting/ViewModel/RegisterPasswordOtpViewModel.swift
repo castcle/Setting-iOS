@@ -19,40 +19,57 @@
 //  Thailand 10160, or visit www.castcle.com if you need additional information
 //  or have any questions.
 //
-//  VerifyMobileOtpViewModel.swift
+//  RegisterPasswordOtpViewModel.swift
 //  Setting
 //
-//  Created by Castcle Co., Ltd. on 11/2/2565 BE.
+//  Created by Castcle Co., Ltd. on 14/2/2565 BE.
 //
 
 import Core
 import Networking
 import SwiftyJSON
 
-public final class VerifyMobileOtpViewModel {
-    
-    var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
-    var userRepository: UserRepository = UserRepositoryImpl()
+public class RegisterPasswordOtpViewModel {
     var authenRequest: AuthenRequest = AuthenRequest()
-    var userRequest: UserRequest = UserRequest()
+    var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
     let tokenHelper: TokenHelper = TokenHelper()
-    var stage: Stage = .none
+    private var state: Stage = .none
     
     enum Stage {
         case requestOtp
         case verifyOtp
-        case updateMobile
-        case getMe
         case none
     }
     
     public init(authenRequest: AuthenRequest = AuthenRequest()) {
-        self.tokenHelper.delegate = self
         self.authenRequest = authenRequest
+        self.tokenHelper.delegate = self
+    }
+    
+    func verifyOtp() {
+        self.state = .verifyOtp
+        self.authenticationRepository.verificationOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
+            if success {
+                do {
+                    let rawJson = try response.mapJSON()
+                    let json = JSON(rawJson)
+                    self.authenRequest.payload.refCode = json[AuthenticationApiKey.refCode.rawValue].stringValue
+                    self.didVerifyOtpFinish?()
+                } catch {
+                    self.didError?()
+                }
+            } else {
+                if isRefreshToken {
+                    self.tokenHelper.refreshToken()
+                } else {
+                    self.didError?()
+                }
+            }
+        }
     }
     
     func requestOtp() {
-        self.stage = .requestOtp
+        self.state = .requestOtp
         self.authenticationRepository.requestOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
@@ -73,85 +90,17 @@ public final class VerifyMobileOtpViewModel {
         }
     }
     
-    func verifyOtp() {
-        self.stage = .verifyOtp
-        self.authenticationRepository.verificationOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
-            if success {
-                do {
-                    let rawJson = try response.mapJSON()
-                    let json = JSON(rawJson)
-                    self.authenRequest.payload.refCode = json[AuthenticationApiKey.refCode.rawValue].stringValue
-                    self.updateMobile()
-                } catch {
-                    self.didError?()
-                }
-            } else {
-                if isRefreshToken {
-                    self.tokenHelper.refreshToken()
-                } else {
-                    self.didError?()
-                }
-            }
-        }
-    }
-    
-    func updateMobile() {
-        self.stage = .updateMobile
-        self.userRequest.objective = self.authenRequest.objective
-        self.userRequest.refCode = self.authenRequest.payload.refCode
-        self.userRequest.countryCode = self.authenRequest.payload.countryCode
-        self.userRequest.mobileNumber = self.authenRequest.payload.mobileNumber
-        self.userRepository.updateMobile(userRequest: self.userRequest) { (success, response, isRefreshToken) in
-            if success {
-                self.getMe()
-            } else {
-                if isRefreshToken {
-                    self.tokenHelper.refreshToken()
-                } else {
-                    self.didError?()
-                }
-            }
-        }
-    }
-    
-    func getMe() {
-        self.stage = .getMe
-        self.userRepository.getMe() { (success, response, isRefreshToken) in
-            if success {
-                do {
-                    let rawJson = try response.mapJSON()
-                    let json = JSON(rawJson)
-                    let userHelper = UserHelper()
-                    userHelper.updateLocalProfile(user: UserInfo(json: json))
-                    self.didVerifyOtpFinish?()
-                } catch {
-                    self.didError?()
-                }
-            } else {
-                if isRefreshToken {
-                    self.tokenHelper.refreshToken()
-                } else {
-                    self.didError?()
-                }
-            }
-        }
-    }
-    
     var didGetOtpFinish: (() -> ())?
     var didVerifyOtpFinish: (() -> ())?
     var didError: (() -> ())?
 }
 
-extension VerifyMobileOtpViewModel: TokenHelperDelegate {
+extension RegisterPasswordOtpViewModel: TokenHelperDelegate {
     public func didRefreshTokenFinish() {
-        if self.stage == .requestOtp {
-            self.requestOtp()
-        } else if self.stage == .verifyOtp {
+        if self.state == .verifyOtp {
             self.verifyOtp()
-        } else if self.stage == .updateMobile {
-            self.updateMobile()
-        } else if self.stage == .getMe {
-            self.getMe()
+        } else if self.state == .requestOtp {
+            self.requestOtp()
         }
     }
 }
