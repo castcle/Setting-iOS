@@ -29,12 +29,17 @@ import UIKit
 import Core
 import JVFloatLabeledTextField
 
+protocol DeleteAccountPasswordTableViewCellDelegate {
+    func didConfirm(_ deleteAccountPasswordTableViewCell: DeleteAccountPasswordTableViewCell, password: String)
+}
+
 class DeleteAccountPasswordTableViewCell: UITableViewCell {
 
     @IBOutlet var passwordView: UIView!
     @IBOutlet var continueButton: UIButton!
     @IBOutlet var passwordTextField: JVFloatLabeledTextField!
     
+    public var delegate: DeleteAccountPasswordTableViewCellDelegate?
     private var isCanContinue: Bool {
         if self.passwordTextField.text!.isEmpty {
             return false
@@ -87,6 +92,8 @@ class DeleteAccountPasswordTableViewCell: UITableViewCell {
     
     @IBAction func continueAction(_ sender: Any) {
         self.endEditing(true)
-        Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.deleteSuccess), animated: true)
+        if self.isCanContinue {
+            self.delegate?.didConfirm(self, password: self.passwordTextField.text ?? "")
+        }
     }
 }
