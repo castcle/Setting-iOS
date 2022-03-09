@@ -33,6 +33,8 @@ class PageCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var pageImage: UIImageView!
     @IBOutlet var addImage: UIImageView!
+    @IBOutlet var sicialIconView: UIView!
+    @IBOutlet var socialIcon: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,6 +45,7 @@ class PageCollectionViewCell: UICollectionViewCell {
         self.addImage.isHidden = false
         
         if let page = pageInfo {
+            self.sicialIconView.isHidden = true
             if page.displayName == "NEW" {
                 self.pageImage.image = UIImage()
                 self.pageImage.circle(color: UIColor.Asset.gray)
@@ -64,9 +67,26 @@ class PageCollectionViewCell: UICollectionViewCell {
             self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
             self.addImage.isHidden = true
             self.pageImage.circle(color: UIColor.Asset.white)
+            
+            if page.socialActive {
+                self.sicialIconView.isHidden = false
+                if page.socialProvider == "facebook" {
+                    self.sicialIconView.capsule(color: UIColor.Asset.facebook)
+                    self.socialIcon.image = UIImage.init(icon: .castcle(.facebook), size: CGSize(width: 23, height: 23), textColor: UIColor.Asset.white)
+                } else if page.socialProvider == "twitter" {
+                    self.sicialIconView.capsule(color: UIColor.Asset.twitter)
+                    self.socialIcon.image = UIImage.init(icon: .castcle(.twitter), size: CGSize(width: 23, height: 23), textColor: UIColor.Asset.white)
+                } else {
+                    self.sicialIconView.capsule(color: UIColor.clear)
+                    self.socialIcon.image = UIImage()
+                }
+            } else {
+                self.sicialIconView.isHidden = true
+            }
         } else {
             self.pageImage.isHidden = true
             self.addImage.isHidden = true
+            self.sicialIconView.isHidden = true
         }
     }
 

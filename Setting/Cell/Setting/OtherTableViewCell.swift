@@ -136,7 +136,7 @@ extension OtherTableViewCell: SettingViewModelDelegate {
         Utility.currentViewController().navigationController?.popToRootViewController(animated: true)
     }
     
-    func didGetPageFinish() {
+    func didGetMyPageFinish() {
         // Not thing
     }
     

@@ -79,12 +79,14 @@ public enum SettingSection {
 public protocol SettingViewModelDelegate {
     func didSignOutFinish()
     func didGetProfileFinish()
+    func didGetMyPageFinish()
 }
 
 public final class SettingViewModel {
     
     public var delegate: SettingViewModelDelegate?
     var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
+    private var pageRepository: PageRepository = PageRepositoryImpl()
     var userRepository: UserRepository = UserRepositoryImpl()
     let tokenHelper: TokenHelper = TokenHelper()
     let languangSection: [SettingSection] = []
@@ -103,6 +105,7 @@ public final class SettingViewModel {
     
     enum Stage {
         case getMe
+        case getMyPage
         case none
     }
     
@@ -160,12 +163,55 @@ public final class SettingViewModel {
             }
         }
     }
+    
+    func getMyPage() {
+        self.stage = .getMyPage
+        self.pageRepository.getMyPage() { (success, response, isRefreshToken) in
+            if success {
+                self.stage = .none
+                do {
+                    let rawJson = try response.mapJSON()
+                    let json = JSON(rawJson)
+                    let pages = json[AuthenticationApiKey.payload.rawValue].arrayValue
+                    let pageRealm = self.realm.objects(Page.self)
+                    try! self.realm.write {
+                        self.realm.delete(pageRealm)
+                    }
+                    
+                    pages.forEach { page in
+                        let pageInfo = PageInfo(json: page)
+                        try! self.realm.write {
+                            let pageTemp = Page()
+                            pageTemp.id = pageInfo.id
+                            pageTemp.castcleId = pageInfo.castcleId
+                            pageTemp.displayName = pageInfo.displayName
+                            pageTemp.avatar = pageInfo.images.avatar.thumbnail
+                            pageTemp.cover = pageInfo.images.cover.fullHd
+                            pageTemp.overview = pageInfo.overview
+                            pageTemp.official = pageInfo.verified.official
+                            pageTemp.socialProvider = pageInfo.syncSocial.provider
+                            pageTemp.socialActive = pageInfo.syncSocial.active
+                            pageTemp.socialAutoPost = pageInfo.syncSocial.autoPost
+                            self.realm.add(pageTemp, update: .modified)
+                        }
+                    }
+                    self.delegate?.didGetMyPageFinish()
+                } catch {}
+            } else {
+                if isRefreshToken {
+                    self.tokenHelper.refreshToken()
+                }
+            }
+        }
+    }
 }
 
 extension SettingViewModel: TokenHelperDelegate {
     public func didRefreshTokenFinish() {
         if self.stage == .getMe {
             self.getMe()
+        } else if self.stage == .getMyPage {
+            self.getMyPage()
         }
     }
 }

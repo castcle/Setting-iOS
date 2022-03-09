@@ -67,7 +67,7 @@ class PageListTableViewCell: UITableViewCell {
         self.isVerify = isVerify
         self.userPage = PageInfo(displayName: UserManager.shared.displayName, avatar: "", castcleId: UserManager.shared.rawCastcleId)
         if isVerify {
-            self.pages = self.realm.objects(Page.self)
+            self.pages = self.realm.objects(Page.self).sorted(byKeyPath: "id")
             self.newPageButton.isHidden = false
             self.newPage = PageInfo(displayName: "NEW", avatar: "", castcleId: "")
         } else {

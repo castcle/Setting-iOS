@@ -52,7 +52,7 @@ class DeleteAccountDetailViewController: UIViewController {
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.hideKeyboardWhenTapped()
         self.configureTableView()
-        self.pages = self.realm.objects(Page.self)
+        self.pages = self.realm.objects(Page.self).sorted(byKeyPath: "id")
         
         self.viewModel.didDeleteAccountFinish = {
             self.hud.dismiss()
