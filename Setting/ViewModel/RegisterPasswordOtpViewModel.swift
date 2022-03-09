@@ -33,9 +33,9 @@ public class RegisterPasswordOtpViewModel {
     var authenRequest: AuthenRequest = AuthenRequest()
     var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
     let tokenHelper: TokenHelper = TokenHelper()
-    private var state: Stage = .none
+    private var state: State = .none
     
-    enum Stage {
+    enum State {
         case requestOtp
         case verifyOtp
         case none

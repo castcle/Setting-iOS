@@ -91,7 +91,7 @@ public final class SettingViewModel {
     let tokenHelper: TokenHelper = TokenHelper()
     let languangSection: [SettingSection] = []
     let aboutSection: [SettingSection] = []
-    var stage: Stage = .none
+    var state: State = .none
     private let realm = try! Realm()
     var accountSection: [SettingSection] {
 //        let pageRealm = self.realm.objects(Page.self)
@@ -103,7 +103,7 @@ public final class SettingViewModel {
         return [.profile, .languang, .aboutUs]
     }
     
-    enum Stage {
+    enum State {
         case getMe
         case getMyPage
         case none
@@ -146,7 +146,7 @@ public final class SettingViewModel {
     }
     
     func getMe() {
-        self.stage = .getMe
+        self.state = .getMe
         self.userRepository.getMe() { (success, response, isRefreshToken) in
             if success {
                 do {
@@ -165,10 +165,10 @@ public final class SettingViewModel {
     }
     
     func getMyPage() {
-        self.stage = .getMyPage
+        self.state = .getMyPage
         self.pageRepository.getMyPage() { (success, response, isRefreshToken) in
             if success {
-                self.stage = .none
+                self.state = .none
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
@@ -208,9 +208,9 @@ public final class SettingViewModel {
 
 extension SettingViewModel: TokenHelperDelegate {
     public func didRefreshTokenFinish() {
-        if self.stage == .getMe {
+        if self.state == .getMe {
             self.getMe()
-        } else if self.stage == .getMyPage {
+        } else if self.state == .getMyPage {
             self.getMyPage()
         }
     }

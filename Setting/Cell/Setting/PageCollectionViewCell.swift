@@ -68,7 +68,7 @@ class PageCollectionViewCell: UICollectionViewCell {
             self.addImage.isHidden = true
             self.pageImage.circle(color: UIColor.Asset.white)
             
-            if page.socialActive {
+            if !page.socialProvider.isEmpty {
                 self.sicialIconView.isHidden = false
                 if page.socialProvider == "facebook" {
                     self.sicialIconView.capsule(color: UIColor.Asset.facebook)
