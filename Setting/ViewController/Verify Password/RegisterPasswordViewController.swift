@@ -57,7 +57,7 @@ class RegisterPasswordViewController: UIViewController {
         super.viewWillAppear(animated)
         self.setupNavBar()
         Defaults[.screenId] = ""
-        self.hud.textLabel.text = "Verifying"
+        self.hud.textLabel.text = "Sending"
     }
     
     func setupNavBar() {
