@@ -94,12 +94,12 @@ public final class SettingViewModel {
     var state: State = .none
     private let realm = try! Realm()
     var accountSection: [SettingSection] {
-//        let pageRealm = self.realm.objects(Page.self)
-//        if pageRealm.count > 0 {
-//            return [.profile, .ads, .languang, .aboutUs]
-//        } else {
+        let pageRealm = self.realm.objects(Page.self)
+        if pageRealm.count > 0 {
+            return [.profile, .ads, .languang, .aboutUs]
+        } else {
             return [.profile, .languang, .aboutUs]
-//        }
+        }
     }
     
     enum State {
