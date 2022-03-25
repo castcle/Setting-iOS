@@ -87,7 +87,9 @@ public final class SettingViewModel {
     public var delegate: SettingViewModelDelegate?
     var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
     private var pageRepository: PageRepository = PageRepositoryImpl()
+    private var notificationRepository: NotificationRepository = NotificationRepositoryImpl()
     var userRepository: UserRepository = UserRepositoryImpl()
+    private var notificationRequest: NotificationRequest = NotificationRequest()
     let tokenHelper: TokenHelper = TokenHelper()
     let languangSection: [SettingSection] = []
     let aboutSection: [SettingSection] = []
@@ -105,6 +107,7 @@ public final class SettingViewModel {
     enum State {
         case getMe
         case getMyPage
+        case unregisterToken
         case none
     }
     
@@ -130,6 +133,7 @@ public final class SettingViewModel {
     }
     
     func logout() {
+        self.unregisterNotificationToken()
         self.authenticationRepository.guestLogin(uuid: Defaults[.deviceUuid]) { (success) in
             if success {
                 let userHelper = UserHelper()
@@ -140,6 +144,19 @@ public final class SettingViewModel {
                     self.realm.delete(pageRealm)
                 }
                 self.delegate?.didSignOutFinish()
+            }
+        }
+    }
+    
+    private func unregisterNotificationToken() {
+        self.state = .unregisterToken
+        self.notificationRequest.uuid = Defaults[.deviceUuid]
+        self.notificationRequest.firebaseToken = Defaults[.firebaseToken]
+        self.notificationRepository.unregisterToken(notificationRequest: self.notificationRequest) { (success, response, isRefreshToken) in
+            if !success {
+                if isRefreshToken {
+                    self.tokenHelper.refreshToken()
+                }
             }
         }
     }
@@ -211,6 +228,8 @@ extension SettingViewModel: TokenHelperDelegate {
             self.getMe()
         } else if self.state == .getMyPage {
             self.getMyPage()
+        } else if self.state == .unregisterToken {
+            self.unregisterNotificationToken()
         }
     }
 }
