@@ -34,6 +34,7 @@ import Defaults
 import SwiftyJSON
 import RealmSwift
 import Ads
+import Farming
 
 public enum SettingSection {
     case profile
@@ -42,6 +43,7 @@ public enum SettingSection {
     case aboutUs
     case verify
     case ads
+    case farming
     
     public var text: String {
         switch self {
@@ -52,7 +54,9 @@ public enum SettingSection {
         case .aboutUs:
             return Localization.setting.about.text
         case .ads:
-            return "Ad manager"
+            return "Ad Manager"
+        case .farming:
+            return "Content Farming"
         default:
             return ""
         }
@@ -70,6 +74,8 @@ public enum SettingSection {
             return UIImage.init(icon: .castcle(.aboutUs), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
         case .ads:
             return UIImage.init(icon: .castcle(.adsManager), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
+        case .farming:
+            return UIImage.init(icon: .castcle(.farm), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
         default:
             return UIImage()
         }
@@ -98,9 +104,9 @@ public final class SettingViewModel {
     var accountSection: [SettingSection] {
         let pageRealm = self.realm.objects(Page.self)
         if pageRealm.count > 0 {
-            return [.profile, .ads, .languang, .aboutUs]
+            return [.profile, .ads, .farming, .languang, .aboutUs]
         } else {
-            return [.profile, .languang, .aboutUs]
+            return [.profile, .farming, .languang, .aboutUs]
         }
     }
     
@@ -129,6 +135,8 @@ public final class SettingViewModel {
             Utility.currentViewController().navigationController?.pushViewController(ComponentOpener.open(.internalWebView(URL(string: Environment.aboutUs)!)), animated: true)
         case .ads:
             Utility.currentViewController().navigationController?.pushViewController(AdsOpener.open(.adsManager), animated: true)
+        case .farming:
+            Utility.currentViewController().navigationController?.pushViewController(FarmingOpener.open(.contentFarming), animated: true)
         }
     }
     
