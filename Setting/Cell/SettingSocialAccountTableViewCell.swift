@@ -52,7 +52,6 @@ class SettingSocialAccountTableViewCell: UITableViewCell {
     
     func configCell(section: AccountSection, socialUser: SocialUser) {
         self.titleLabel.text = section.text
-        
         if section == .linkFacebook {
             self.socialView.capsule(color: UIColor.Asset.facebook)
             self.socialImage.image = UIImage.init(icon: .castcle(.facebook), size: CGSize(width: 23, height: 23), textColor: UIColor.Asset.white)
@@ -67,9 +66,11 @@ class SettingSocialAccountTableViewCell: UITableViewCell {
         if socialUser.socialId.isEmpty {
             self.displayLabel.text = "Link"
             self.displayLabel.textColor = UIColor.Asset.gray
+            self.nextImage.isHidden = false
         } else {
             self.displayLabel.text = "Linked"
             self.displayLabel.textColor = UIColor.Asset.lightBlue
+            self.nextImage.isHidden = true
         }
     }
     

@@ -30,6 +30,7 @@ import Core
 import Authen
 import Networking
 import SwiftyJSON
+import RealmSwift
 
 public enum AccountSection {
     case email
@@ -60,15 +61,19 @@ public enum AccountSection {
 public final class AccountSettingViewModel {
     
     private var userRepository: UserRepository = UserRepositoryImpl()
+    private var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
     let tokenHelper: TokenHelper = TokenHelper()
     let accountSection: [AccountSection] = [.email, .mobile, .password]
     let socialSection: [AccountSection] = [.linkFacebook, .linkTwitter]
     let controlSection: [AccountSection] = [.delete]
     var state: State = .none
     var linkSocial: LinkSocial = LinkSocial()
+    var authenRequest: AuthenRequest = AuthenRequest()
+    private let realm = try! Realm()
     
     enum State {
         case getMe
+        case connectSocial
         case none
     }
     
@@ -88,10 +93,70 @@ public final class AccountSettingViewModel {
                     let userHelper = UserHelper()
                     userHelper.updateLocalProfile(user: user)
                     self.didGetMeFinish?()
-                } catch {}
+                } catch {
+                    self.didError?()
+                }
             } else {
                 if isRefreshToken {
                     self.tokenHelper.refreshToken()
+                } else {
+                    self.didError?()
+                }
+            }
+        }
+    }
+    
+    func connectSocial() {
+        self.state = .connectSocial
+        self.authenticationRepository.connectWithSocial(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
+            if success {
+                do {
+                    let rawJson = try response.mapJSON()
+                    let json = JSON(rawJson)
+                    
+                    let accessToken = json[AuthenticationApiKey.accessToken.rawValue].stringValue
+                    let refreshToken = json[AuthenticationApiKey.refreshToken.rawValue].stringValue
+                    let profile = JSON(json[AuthenticationApiKey.profile.rawValue].dictionaryValue)
+                    let pages = json[AuthenticationApiKey.pages.rawValue].arrayValue
+                    let user = UserInfo(json: profile)
+
+                    self.linkSocial = user.linkSocial
+                    let userHelper = UserHelper()
+                    userHelper.updateLocalProfile(user: user)
+
+                    let pageRealm = self.realm.objects(Page.self)
+                    try! self.realm.write {
+                        self.realm.delete(pageRealm)
+                    }
+
+                    pages.forEach { page in
+                        let pageInfo = PageInfo(json: page)
+                        try! self.realm.write {
+                            let pageTemp = Page()
+                            pageTemp.id = pageInfo.id
+                            pageTemp.castcleId = pageInfo.castcleId
+                            pageTemp.displayName = pageInfo.displayName
+                            pageTemp.avatar = pageInfo.images.avatar.thumbnail
+                            pageTemp.cover = pageInfo.images.cover.fullHd
+                            pageTemp.overview = pageInfo.overview
+                            pageTemp.official = pageInfo.verified.official
+                            pageTemp.socialProvider = pageInfo.syncSocial.provider
+                            pageTemp.socialActive = pageInfo.syncSocial.active
+                            pageTemp.socialAutoPost = pageInfo.syncSocial.autoPost
+                            self.realm.add(pageTemp, update: .modified)
+                        }
+                    }
+                    UserManager.shared.setAccessToken(token: accessToken)
+                    UserManager.shared.setRefreshToken(token: refreshToken)
+                    self.didConnectSocialFinish?()
+                } catch {
+                    self.didError?()
+                }
+            } else {
+                if isRefreshToken {
+                    self.tokenHelper.refreshToken()
+                } else {
+                    self.didError?()
                 }
             }
         }
@@ -111,22 +176,24 @@ public final class AccountSettingViewModel {
             } else {
                 Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.oldPassword), animated: true)
             }
-        case .linkFacebook, .linkTwitter:
-            let alert = UIAlertController(title: "Error", message: "Waiting for implementation", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            Utility.currentViewController().present(alert, animated: true, completion: nil)
         case .delete:
-            Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.deleteAccount), animated: true)  
+            Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.deleteAccount), animated: true)
+        default:
+            return
         }
     }
     
     var didGetMeFinish: (() -> ())?
+    var didConnectSocialFinish: (() -> ())?
+    var didError: (() -> ())?
 }
 
 extension AccountSettingViewModel: TokenHelperDelegate {
     public func didRefreshTokenFinish() {
         if self.state == .getMe {
             self.getMe()
+        } else if self.state == .connectSocial {
+            self.connectSocial()
         }
     }
 }
