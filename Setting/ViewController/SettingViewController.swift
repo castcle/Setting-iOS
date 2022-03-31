@@ -53,6 +53,7 @@ class SettingViewController: UIViewController {
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.configureTableView()
         self.viewModel.delegate = self
+        self.viewModel.getMyPage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -213,6 +214,12 @@ extension SettingViewController: SettingViewModelDelegate {
     }
     
     func didGetProfileFinish() {
+        UIView.animate(withDuration: 0.35, delay: 0, options: [.curveLinear], animations: {
+            self.tableView.reloadData()
+        })
+    }
+    
+    func didGetMyPageFinish() {
         UIView.animate(withDuration: 0.35, delay: 0, options: [.curveLinear], animations: {
             self.tableView.reloadData()
         })

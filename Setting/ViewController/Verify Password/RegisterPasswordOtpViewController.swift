@@ -63,7 +63,6 @@ class RegisterPasswordOtpViewController: UIViewController {
         super.viewWillAppear(animated)
         self.setupNavBar()
         Defaults[.screenId] = ""
-        self.hud.textLabel.text = "Verifying"
     }
     
     func setupNavBar() {
@@ -99,11 +98,13 @@ extension RegisterPasswordOtpViewController: UITableViewDelegate, UITableViewDat
 
 extension RegisterPasswordOtpViewController: RegisterPasswordOtpTableViewCellDelegate {
     func didRequestOtp(_ cell: RegisterPasswordOtpTableViewCell) {
+        self.hud.textLabel.text = "Sending"
         self.hud.show(in: self.view)
         self.viewModel.requestOtp()
     }
     
     func didConfirm(_ cell: RegisterPasswordOtpTableViewCell, pin: String) {
+        self.hud.textLabel.text = "Verifying"
         self.hud.show(in: self.view)
         self.viewModel.authenRequest.payload.otp = pin
         self.viewModel.verifyOtp()

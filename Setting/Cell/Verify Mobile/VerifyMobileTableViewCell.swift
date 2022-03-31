@@ -87,12 +87,13 @@ class VerifyMobileTableViewCell: UITableViewCell {
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        let mobileNumber = textField.text ?? ""
+        let mobileNumber = (textField.text ?? "").substringWithRange(range: 20)
         if mobileNumber.isEmpty {
             self.setupNextButton(isActive: false)
         } else {
             self.setupNextButton(isActive: true)
         }
+        textField.text = mobileNumber
     }
     
     @IBAction func selectContryCodeAction(_ sender: Any) {

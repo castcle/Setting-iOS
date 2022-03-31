@@ -67,7 +67,7 @@ class PageListTableViewCell: UITableViewCell {
         self.isVerify = isVerify
         self.userPage = PageInfo(displayName: UserManager.shared.displayName, avatar: "", castcleId: UserManager.shared.rawCastcleId)
         if isVerify {
-            self.pages = self.realm.objects(Page.self)
+            self.pages = self.realm.objects(Page.self).sorted(byKeyPath: "id")
             self.newPageButton.isHidden = false
             self.newPage = PageInfo(displayName: "NEW", avatar: "", castcleId: "")
         } else {
@@ -109,12 +109,12 @@ extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            ProfileOpener.openProfileDetail(.people, castcleId: UserManager.shared.rawCastcleId, displayName: "")
+            ProfileOpener.openProfileDetail(UserManager.shared.rawCastcleId, displayName: "")
         } else if indexPath.row == (self.pages.count + 1) {
             Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.newPageWithSocial), animated: true)
         } else {
             let page = self.pages[indexPath.row - 1]
-            ProfileOpener.openProfileDetail(.page, castcleId: page.castcleId, displayName: page.displayName)
+            ProfileOpener.openProfileDetail(page.castcleId, displayName: page.displayName)
         }
     }
 }

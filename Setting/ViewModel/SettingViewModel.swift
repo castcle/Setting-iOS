@@ -79,30 +79,35 @@ public enum SettingSection {
 public protocol SettingViewModelDelegate {
     func didSignOutFinish()
     func didGetProfileFinish()
+    func didGetMyPageFinish()
 }
 
 public final class SettingViewModel {
     
     public var delegate: SettingViewModelDelegate?
     var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
+    private var pageRepository: PageRepository = PageRepositoryImpl()
+    private var notificationRepository: NotificationRepository = NotificationRepositoryImpl()
     var userRepository: UserRepository = UserRepositoryImpl()
+    private var notificationRequest: NotificationRequest = NotificationRequest()
     let tokenHelper: TokenHelper = TokenHelper()
     let languangSection: [SettingSection] = []
     let aboutSection: [SettingSection] = []
-    var stage: Stage = .none
+    var state: State = .none
     private let realm = try! Realm()
     var accountSection: [SettingSection] {
 //        let pageRealm = self.realm.objects(Page.self)
 //        if pageRealm.count > 0 {
 //            return [.profile, .ads, .languang, .aboutUs]
 //        } else {
-//            return [.profile, .languang, .aboutUs]
+            return [.profile, .languang, .aboutUs]
 //        }
-        return [.profile, .languang, .aboutUs]
     }
     
-    enum Stage {
+    enum State {
         case getMe
+        case getMyPage
+        case unregisterToken
         case none
     }
     
@@ -128,6 +133,7 @@ public final class SettingViewModel {
     }
     
     func logout() {
+        self.unregisterNotificationToken()
         self.authenticationRepository.guestLogin(uuid: Defaults[.deviceUuid]) { (success) in
             if success {
                 let userHelper = UserHelper()
@@ -142,8 +148,21 @@ public final class SettingViewModel {
         }
     }
     
+    private func unregisterNotificationToken() {
+        self.state = .unregisterToken
+        self.notificationRequest.uuid = Defaults[.deviceUuid]
+        self.notificationRequest.firebaseToken = Defaults[.firebaseToken]
+        self.notificationRepository.unregisterToken(notificationRequest: self.notificationRequest) { (success, response, isRefreshToken) in
+            if !success {
+                if isRefreshToken {
+                    self.tokenHelper.refreshToken()
+                }
+            }
+        }
+    }
+    
     func getMe() {
-        self.stage = .getMe
+        self.state = .getMe
         self.userRepository.getMe() { (success, response, isRefreshToken) in
             if success {
                 do {
@@ -160,12 +179,57 @@ public final class SettingViewModel {
             }
         }
     }
+    
+    func getMyPage() {
+        self.state = .getMyPage
+        self.pageRepository.getMyPage() { (success, response, isRefreshToken) in
+            if success {
+                self.state = .none
+                do {
+                    let rawJson = try response.mapJSON()
+                    let json = JSON(rawJson)
+                    let pages = json[AuthenticationApiKey.payload.rawValue].arrayValue
+                    let pageRealm = self.realm.objects(Page.self)
+                    try! self.realm.write {
+                        self.realm.delete(pageRealm)
+                    }
+                    
+                    pages.forEach { page in
+                        let pageInfo = PageInfo(json: page)
+                        try! self.realm.write {
+                            let pageTemp = Page()
+                            pageTemp.id = pageInfo.id
+                            pageTemp.castcleId = pageInfo.castcleId
+                            pageTemp.displayName = pageInfo.displayName
+                            pageTemp.avatar = pageInfo.images.avatar.thumbnail
+                            pageTemp.cover = pageInfo.images.cover.fullHd
+                            pageTemp.overview = pageInfo.overview
+                            pageTemp.official = pageInfo.verified.official
+                            pageTemp.socialProvider = pageInfo.syncSocial.provider
+                            pageTemp.socialActive = pageInfo.syncSocial.active
+                            pageTemp.socialAutoPost = pageInfo.syncSocial.autoPost
+                            self.realm.add(pageTemp, update: .modified)
+                        }
+                    }
+                    self.delegate?.didGetMyPageFinish()
+                } catch {}
+            } else {
+                if isRefreshToken {
+                    self.tokenHelper.refreshToken()
+                }
+            }
+        }
+    }
 }
 
 extension SettingViewModel: TokenHelperDelegate {
     public func didRefreshTokenFinish() {
-        if self.stage == .getMe {
+        if self.state == .getMe {
             self.getMe()
+        } else if self.state == .getMyPage {
+            self.getMyPage()
+        } else if self.state == .unregisterToken {
+            self.unregisterNotificationToken()
         }
     }
 }

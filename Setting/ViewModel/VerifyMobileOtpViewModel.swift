@@ -36,9 +36,9 @@ public final class VerifyMobileOtpViewModel {
     var authenRequest: AuthenRequest = AuthenRequest()
     var userRequest: UserRequest = UserRequest()
     let tokenHelper: TokenHelper = TokenHelper()
-    var stage: Stage = .none
+    var state: State = .none
     
-    enum Stage {
+    enum State {
         case requestOtp
         case verifyOtp
         case updateMobile
@@ -52,7 +52,7 @@ public final class VerifyMobileOtpViewModel {
     }
     
     func requestOtp() {
-        self.stage = .requestOtp
+        self.state = .requestOtp
         self.authenticationRepository.requestOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
@@ -74,7 +74,7 @@ public final class VerifyMobileOtpViewModel {
     }
     
     func verifyOtp() {
-        self.stage = .verifyOtp
+        self.state = .verifyOtp
         self.authenticationRepository.verificationOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
@@ -96,7 +96,7 @@ public final class VerifyMobileOtpViewModel {
     }
     
     func updateMobile() {
-        self.stage = .updateMobile
+        self.state = .updateMobile
         self.userRequest.objective = self.authenRequest.objective
         self.userRequest.refCode = self.authenRequest.payload.refCode
         self.userRequest.countryCode = self.authenRequest.payload.countryCode
@@ -115,7 +115,7 @@ public final class VerifyMobileOtpViewModel {
     }
     
     func getMe() {
-        self.stage = .getMe
+        self.state = .getMe
         self.userRepository.getMe() { (success, response, isRefreshToken) in
             if success {
                 do {
@@ -144,13 +144,13 @@ public final class VerifyMobileOtpViewModel {
 
 extension VerifyMobileOtpViewModel: TokenHelperDelegate {
     public func didRefreshTokenFinish() {
-        if self.stage == .requestOtp {
+        if self.state == .requestOtp {
             self.requestOtp()
-        } else if self.stage == .verifyOtp {
+        } else if self.state == .verifyOtp {
             self.verifyOtp()
-        } else if self.stage == .updateMobile {
+        } else if self.state == .updateMobile {
             self.updateMobile()
-        } else if self.stage == .getMe {
+        } else if self.state == .getMe {
             self.getMe()
         }
     }

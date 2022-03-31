@@ -61,7 +61,6 @@ class VerifyMobileOtpViewController: UIViewController {
         super.viewWillAppear(animated)
         self.setupNavBar()
         Defaults[.screenId] = ""
-        self.hud.textLabel.text = "Verifying"
     }
     
     func setupNavBar() {
@@ -97,11 +96,13 @@ extension VerifyMobileOtpViewController: UITableViewDelegate, UITableViewDataSou
 
 extension VerifyMobileOtpViewController: VerifyMobileOtpTableViewCellDelegate {
     func didRequestOtp(_ cell: VerifyMobileOtpTableViewCell) {
+        self.hud.textLabel.text = "Sending"
         self.hud.show(in: self.view)
         self.viewModel.requestOtp()
     }
     
     func didConfirm(_ cell: VerifyMobileOtpTableViewCell, pin: String) {
+        self.hud.textLabel.text = "Verifying"
         self.hud.show(in: self.view)
         self.viewModel.authenRequest.payload.otp = pin
         self.viewModel.verifyOtp()

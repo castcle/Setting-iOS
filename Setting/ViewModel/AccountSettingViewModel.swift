@@ -64,10 +64,10 @@ public final class AccountSettingViewModel {
     let accountSection: [AccountSection] = [.email, .mobile, .password]
     let socialSection: [AccountSection] = [.linkFacebook, .linkTwitter]
     let controlSection: [AccountSection] = [.delete]
-    var stage: Stage = .none
+    var state: State = .none
     var linkSocial: LinkSocial = LinkSocial()
     
-    enum Stage {
+    enum State {
         case getMe
         case none
     }
@@ -77,7 +77,7 @@ public final class AccountSettingViewModel {
     }
     
     func getMe() {
-        self.stage = .getMe
+        self.state = .getMe
         self.userRepository.getMe() { (success, response, isRefreshToken) in
             if success {
                 do {
@@ -125,7 +125,7 @@ public final class AccountSettingViewModel {
 
 extension AccountSettingViewModel: TokenHelperDelegate {
     public func didRefreshTokenFinish() {
-        if self.stage == .getMe {
+        if self.state == .getMe {
             self.getMe()
         }
     }

@@ -30,6 +30,7 @@ import Core
 import Component
 import ActiveLabel
 import Defaults
+import JGProgressHUD
 
 class OtherTableViewCell: UITableViewCell {
 
@@ -39,6 +40,7 @@ class OtherTableViewCell: UITableViewCell {
     @IBOutlet var termLabel: ActiveLabel!
     
     let viewModel: SettingViewModel = SettingViewModel()
+    let hud = JGProgressHUD()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -51,6 +53,7 @@ class OtherTableViewCell: UITableViewCell {
         self.signOutButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.clear)
         
         self.viewModel.delegate = self
+        self.hud.textLabel.text = "Logging out"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -58,6 +61,7 @@ class OtherTableViewCell: UITableViewCell {
     }
     
     @IBAction func signOutAction(_ sender: Any) {
+        self.hud.show(in: Utility.currentViewController().view)
         self.signOutButton.isEnabled = false
         self.viewModel.logout()
     }
@@ -131,12 +135,13 @@ class OtherTableViewCell: UITableViewCell {
 
 extension OtherTableViewCell: SettingViewModelDelegate {
     func didSignOutFinish() {
+        self.hud.dismiss()
         self.signOutButton.isEnabled = true
         Defaults[.startLoadFeed] = true
         Utility.currentViewController().navigationController?.popToRootViewController(animated: true)
     }
     
-    func didGetPageFinish() {
+    func didGetMyPageFinish() {
         // Not thing
     }
     
