@@ -36,52 +36,6 @@ import RealmSwift
 import Ads
 import Farming
 
-public enum SettingSection {
-    case profile
-    case privacy
-    case languang
-    case aboutUs
-    case verify
-    case ads
-    case farming
-    
-    public var text: String {
-        switch self {
-        case .profile:
-            return Localization.setting.account.text
-        case .languang:
-            return Localization.setting.language.text
-        case .aboutUs:
-            return Localization.setting.about.text
-        case .ads:
-            return "Ad Manager"
-        case .farming:
-            return "Content Farming"
-        default:
-            return ""
-        }
-    }
-    
-    public var image: UIImage {
-        switch self {
-        case .profile:
-            return UIImage.init(icon: .castcle(.righProfile), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
-        case .privacy:
-            return UIImage.init(icon: .castcle(.privacy), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
-        case .languang:
-            return UIImage.init(icon: .castcle(.language), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
-        case .aboutUs:
-            return UIImage.init(icon: .castcle(.aboutUs), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
-        case .ads:
-            return UIImage.init(icon: .castcle(.adsManager), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
-        case .farming:
-            return UIImage.init(icon: .castcle(.farm), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
-        default:
-            return UIImage()
-        }
-    }
-}
-
 public protocol SettingViewModelDelegate {
     func didSignOutFinish()
     func didGetProfileFinish()

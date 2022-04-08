@@ -26,6 +26,7 @@
 //
 
 import UIKit
+import Core
 
 class SettingTableViewCell: UITableViewCell {
 
