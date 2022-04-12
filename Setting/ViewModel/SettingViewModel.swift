@@ -56,12 +56,14 @@ public final class SettingViewModel {
     var state: State = .none
     private let realm = try! Realm()
     var accountSection: [SettingSection] {
-        let pageRealm = self.realm.objects(Page.self)
-        if pageRealm.count > 0 {
-            return [.profile, .ads, .farming, .languang, .aboutUs]
-        } else {
-            return [.profile, .farming, .languang, .aboutUs]
-        }
+        // MARK: - For 1.4.0
+//        let pageRealm = self.realm.objects(Page.self)
+//        if pageRealm.count > 0 {
+//            return [.profile, .ads, .farming, .languang, .aboutUs]
+//        } else {
+//            return [.profile, .farming, .languang, .aboutUs]
+//        }
+        return [.profile, .aboutUs]
     }
     
     enum State {
