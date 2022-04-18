@@ -54,6 +54,7 @@ public final class SettingViewModel {
     let languangSection: [SettingSection] = []
     let aboutSection: [SettingSection] = []
     var state: State = .none
+    var userInfo: UserInfo = UserInfo()
     private let realm = try! Realm()
     var accountSection: [SettingSection] {
         // MARK: - For 1.4.0
@@ -133,7 +134,9 @@ public final class SettingViewModel {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
                     let userHelper = UserHelper()
-                    userHelper.updateLocalProfile(user: UserInfo(json: json))
+                    let userInfo =  UserInfo(json: json)
+                    self.userInfo = userInfo
+                    userHelper.updateLocalProfile(user: userInfo)
                     self.delegate?.didGetProfileFinish()
                 } catch {}
             } else {
@@ -159,7 +162,7 @@ public final class SettingViewModel {
                     }
                     
                     pages.forEach { page in
-                        let pageInfo = PageInfo(json: page)
+                        let pageInfo = UserInfo(json: page)
                         try! self.realm.write {
                             let pageTemp = Page()
                             pageTemp.id = pageInfo.id
@@ -169,9 +172,8 @@ public final class SettingViewModel {
                             pageTemp.cover = pageInfo.images.cover.fullHd
                             pageTemp.overview = pageInfo.overview
                             pageTemp.official = pageInfo.verified.official
-                            pageTemp.socialProvider = pageInfo.syncSocial.provider
-                            pageTemp.socialActive = pageInfo.syncSocial.active
-                            pageTemp.socialAutoPost = pageInfo.syncSocial.autoPost
+                            pageTemp.isSyncTwitter = (pageInfo.syncSocial.twitter.socialId.isEmpty ? false : true)
+                            pageTemp.isSyncFacebook = (pageInfo.syncSocial.facebook.socialId.isEmpty ? false : true)
                             self.realm.add(pageTemp, update: .modified)
                         }
                     }
