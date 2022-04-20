@@ -38,14 +38,6 @@ public final class VerifyMobileOtpViewModel {
     let tokenHelper: TokenHelper = TokenHelper()
     var state: State = .none
     
-    enum State {
-        case requestOtp
-        case verifyOtp
-        case updateMobile
-        case getMe
-        case none
-    }
-    
     public init(authenRequest: AuthenRequest = AuthenRequest()) {
         self.tokenHelper.delegate = self
         self.authenRequest = authenRequest

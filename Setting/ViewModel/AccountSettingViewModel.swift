@@ -71,12 +71,6 @@ public final class AccountSettingViewModel {
     var authenRequest: AuthenRequest = AuthenRequest()
     private let realm = try! Realm()
     
-    enum State {
-        case getMe
-        case connectSocial
-        case none
-    }
-    
     public init() {
         self.tokenHelper.delegate = self
     }

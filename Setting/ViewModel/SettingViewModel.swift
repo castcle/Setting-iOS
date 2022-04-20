@@ -43,7 +43,6 @@ public protocol SettingViewModelDelegate {
 }
 
 public final class SettingViewModel {
-    
     public var delegate: SettingViewModelDelegate?
     var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
     private var pageRepository: PageRepository = PageRepositoryImpl()
@@ -65,13 +64,6 @@ public final class SettingViewModel {
 //            return [.profile, .farming, .languang, .aboutUs]
 //        }
         return [.profile, .aboutUs]
-    }
-    
-    enum State {
-        case getMe
-        case getMyPage
-        case unregisterToken
-        case none
     }
     
     public init() {
