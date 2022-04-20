@@ -121,8 +121,7 @@ public final class VerifyMobileOtpViewModel {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    let userHelper = UserHelper()
-                    userHelper.updateLocalProfile(user: UserInfo(json: json))
+                    UserHelper.shared.updateLocalProfile(user: UserInfo(json: json))
                     self.didVerifyOtpFinish?()
                 } catch {
                     self.didError?()

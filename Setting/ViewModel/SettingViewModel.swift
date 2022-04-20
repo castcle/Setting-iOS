@@ -101,9 +101,8 @@ public final class SettingViewModel {
         self.unregisterNotificationToken()
         self.authenticationRepository.guestLogin(uuid: Defaults[.deviceUuid]) { (success) in
             if success {
-                let userHelper = UserHelper()
-                userHelper.clearUserData()
-                userHelper.clearSeenContent()
+                UserHelper.shared.clearUserData()
+                UserHelper.shared.clearSeenContent()
                 let pageRealm = self.realm.objects(Page.self)
                 try! self.realm.write {
                     self.realm.delete(pageRealm)
@@ -133,10 +132,9 @@ public final class SettingViewModel {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    let userHelper = UserHelper()
-                    let userInfo =  UserInfo(json: json)
+                    let userInfo = UserInfo(json: json)
                     self.userInfo = userInfo
-                    userHelper.updateLocalProfile(user: userInfo)
+                    UserHelper.shared.updateLocalProfile(user: userInfo)
                     self.delegate?.didGetProfileFinish()
                 } catch {}
             } else {

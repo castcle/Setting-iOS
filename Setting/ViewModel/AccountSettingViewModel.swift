@@ -90,8 +90,7 @@ public final class AccountSettingViewModel {
                     let json = JSON(rawJson)
                     let user = UserInfo(json: json)
                     self.linkSocial = user.linkSocial
-                    let userHelper = UserHelper()
-                    userHelper.updateLocalProfile(user: user)
+                    UserHelper.shared.updateLocalProfile(user: user)
                     self.didGetMeFinish?()
                 } catch {
                     self.didError?()
@@ -121,8 +120,7 @@ public final class AccountSettingViewModel {
                     let user = UserInfo(json: profile)
 
                     self.linkSocial = user.linkSocial
-                    let userHelper = UserHelper()
-                    userHelper.updateLocalProfile(user: user)
+                    UserHelper.shared.updateLocalProfile(user: user)
 
                     let pageRealm = self.realm.objects(Page.self)
                     try! self.realm.write {
