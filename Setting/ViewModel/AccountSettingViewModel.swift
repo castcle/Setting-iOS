@@ -71,12 +71,6 @@ public final class AccountSettingViewModel {
     var authenRequest: AuthenRequest = AuthenRequest()
     private let realm = try! Realm()
     
-    enum State {
-        case getMe
-        case connectSocial
-        case none
-    }
-    
     public init() {
         self.tokenHelper.delegate = self
     }
@@ -90,8 +84,7 @@ public final class AccountSettingViewModel {
                     let json = JSON(rawJson)
                     let user = UserInfo(json: json)
                     self.linkSocial = user.linkSocial
-                    let userHelper = UserHelper()
-                    userHelper.updateLocalProfile(user: user)
+                    UserHelper.shared.updateLocalProfile(user: user)
                     self.didGetMeFinish?()
                 } catch {
                     self.didError?()
@@ -121,8 +114,7 @@ public final class AccountSettingViewModel {
                     let user = UserInfo(json: profile)
 
                     self.linkSocial = user.linkSocial
-                    let userHelper = UserHelper()
-                    userHelper.updateLocalProfile(user: user)
+                    UserHelper.shared.updateLocalProfile(user: user)
 
                     let pageRealm = self.realm.objects(Page.self)
                     try! self.realm.write {
@@ -130,7 +122,7 @@ public final class AccountSettingViewModel {
                     }
 
                     pages.forEach { page in
-                        let pageInfo = PageInfo(json: page)
+                        let pageInfo = UserInfo(json: page)
                         try! self.realm.write {
                             let pageTemp = Page()
                             pageTemp.id = pageInfo.id
@@ -140,9 +132,8 @@ public final class AccountSettingViewModel {
                             pageTemp.cover = pageInfo.images.cover.fullHd
                             pageTemp.overview = pageInfo.overview
                             pageTemp.official = pageInfo.verified.official
-                            pageTemp.socialProvider = pageInfo.syncSocial.provider
-                            pageTemp.socialActive = pageInfo.syncSocial.active
-                            pageTemp.socialAutoPost = pageInfo.syncSocial.autoPost
+                            pageTemp.isSyncTwitter = !pageInfo.syncSocial.twitter.socialId.isEmpty
+                            pageTemp.isSyncFacebook = !pageInfo.syncSocial.facebook.socialId.isEmpty
                             self.realm.add(pageTemp, update: .modified)
                         }
                     }

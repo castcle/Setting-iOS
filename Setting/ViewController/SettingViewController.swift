@@ -53,7 +53,6 @@ class SettingViewController: UIViewController {
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.configureTableView()
         self.viewModel.delegate = self
-        self.viewModel.getMyPage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,9 +60,8 @@ class SettingViewController: UIViewController {
         self.setupNavBar()
         self.tableView.reloadData()
         Defaults[.screenId] = ""
-        if !UserManager.shared.isVerified {
-            self.viewModel.getMe()
-        }
+        self.viewModel.getMe()
+        self.viewModel.getMyPage()
     }
     
     func setupNavBar() {
@@ -79,7 +77,6 @@ class SettingViewController: UIViewController {
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.setting, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.setting)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.other, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.other)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.social, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.social)
-        
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 100
     }
@@ -159,7 +156,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case SettingViewControllerSection.profile.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.pageList, for: indexPath as IndexPath) as? PageListTableViewCell
             cell?.backgroundColor = UIColor.clear
-            cell?.configCell(isVerify: UserManager.shared.isVerified)
+            cell?.configCell(userInfo: self.viewModel.userInfo)
             return cell ?? PageListTableViewCell()
         case SettingViewControllerSection.account.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.setting, for: indexPath as IndexPath) as? SettingTableViewCell

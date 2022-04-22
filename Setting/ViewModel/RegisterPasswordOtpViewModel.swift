@@ -35,12 +35,6 @@ public class RegisterPasswordOtpViewModel {
     let tokenHelper: TokenHelper = TokenHelper()
     private var state: State = .none
     
-    enum State {
-        case requestOtp
-        case verifyOtp
-        case none
-    }
-    
     public init(authenRequest: AuthenRequest = AuthenRequest()) {
         self.authenRequest = authenRequest
         self.tokenHelper.delegate = self

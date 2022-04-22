@@ -40,9 +40,8 @@ class PageListTableViewCell: UITableViewCell {
     
     private let realm = try! Realm()
     var pages: Results<Page>!
-    var userPage: PageInfo = PageInfo()
-    var newPage: PageInfo = PageInfo()
-    var isVerify: Bool = false
+    var userInfo: UserInfo = UserInfo()
+    var newPage: UserInfo = UserInfo()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -61,15 +60,15 @@ class PageListTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configCell(isVerify: Bool) {
+    func configCell(userInfo: UserInfo) {
+        self.userInfo = userInfo
         self.titleLabel.text = Localization.setting.goTo.text
         self.newPageButton.setTitle("+ \(Localization.setting.newPage.text)", for: .normal)
-        self.isVerify = isVerify
-        self.userPage = PageInfo(displayName: UserManager.shared.displayName, avatar: "", castcleId: UserManager.shared.rawCastcleId)
-        if isVerify {
+
+        if UserManager.shared.isVerified {
             self.pages = self.realm.objects(Page.self).sorted(byKeyPath: "id")
             self.newPageButton.isHidden = false
-            self.newPage = PageInfo(displayName: "NEW", avatar: "", castcleId: "")
+            self.newPage = UserInfo(displayName: "NEW", avatar: "", castcleId: "")
         } else {
             self.newPageButton.isHidden = true
         }
@@ -83,7 +82,7 @@ class PageListTableViewCell: UITableViewCell {
 
 extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if self.isVerify {
+        if UserManager.shared.isVerified {
             return self.pages.count + 2
         } else {
             return 1
@@ -93,16 +92,16 @@ extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
-            cell?.configCell(pageInfo: self.userPage, page: nil)
+            cell?.configCell(userInfo: self.userInfo, page: nil)
             return cell ?? UICollectionViewCell()
         } else if indexPath.row == (self.pages.count + 1) {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
-            cell?.configCell(pageInfo: self.newPage, page: nil)
+            cell?.configCell(userInfo: self.newPage, page: nil)
             return cell ?? UICollectionViewCell()
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
             let page = self.pages[indexPath.row - 1]
-            cell?.configCell(pageInfo: nil, page: page)
+            cell?.configCell(userInfo: nil, page: page)
             return cell ?? UICollectionViewCell()
         }
     }

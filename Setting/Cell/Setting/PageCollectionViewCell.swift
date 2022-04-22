@@ -33,25 +33,39 @@ class PageCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var pageImage: UIImageView!
     @IBOutlet var addImage: UIImageView!
-    @IBOutlet var sicialIconView: UIView!
-    @IBOutlet var socialIcon: UIImageView!
+    @IBOutlet var firstSocialIconView: UIView!
+    @IBOutlet var firstSocialIcon: UIImageView!
+    @IBOutlet var seccondSocialIconView: UIView!
+    @IBOutlet var seccondSocialIcon: UIImageView!
+    
+    var providerList: [SocialType] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    func configCell(pageInfo: PageInfo?, page: Page?) {
+    func configCell(userInfo: UserInfo?, page: Page?) {
         self.pageImage.isHidden = false
         self.addImage.isHidden = false
+        self.firstSocialIconView.isHidden = true
+        self.seccondSocialIconView.isHidden = true
+        self.providerList = []
         
-        if let page = pageInfo {
-            self.sicialIconView.isHidden = true
+        if let page = userInfo {
             if page.displayName == "NEW" {
                 self.pageImage.image = UIImage()
                 self.pageImage.circle(color: UIColor.Asset.gray)
                 self.addImage.isHidden = false
                 self.addImage.image = UIImage.init(icon: .castcle(.add), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.gray)
             } else {
+                if !page.syncSocial.twitter.socialId.isEmpty {
+                    self.providerList.append(.twitter)
+                }
+                if !page.syncSocial.facebook.socialId.isEmpty {
+                    self.providerList.append(.facebook)
+                }
+                self.mappingSocialIcon()
+                
                 if page.castcleId == UserManager.shared.rawCastcleId {
                     let url = URL(string: UserManager.shared.avatar)
                     self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
@@ -68,26 +82,44 @@ class PageCollectionViewCell: UICollectionViewCell {
             self.addImage.isHidden = true
             self.pageImage.circle(color: UIColor.Asset.white)
             
-            if !page.socialProvider.isEmpty {
-                self.sicialIconView.isHidden = false
-                if page.socialProvider == "facebook" {
-                    self.sicialIconView.capsule(color: UIColor.Asset.facebook)
-                    self.socialIcon.image = UIImage.init(icon: .castcle(.facebook), size: CGSize(width: 23, height: 23), textColor: UIColor.Asset.white)
-                } else if page.socialProvider == "twitter" {
-                    self.sicialIconView.capsule(color: UIColor.Asset.twitter)
-                    self.socialIcon.image = UIImage.init(icon: .castcle(.twitter), size: CGSize(width: 23, height: 23), textColor: UIColor.Asset.white)
-                } else {
-                    self.sicialIconView.capsule(color: UIColor.clear)
-                    self.socialIcon.image = UIImage()
-                }
-            } else {
-                self.sicialIconView.isHidden = true
+            if page.isSyncTwitter {
+                self.providerList.append(.twitter)
             }
+            if page.isSyncFacebook {
+                self.providerList.append(.facebook)
+            }
+            
+            self.mappingSocialIcon()
         } else {
             self.pageImage.isHidden = true
             self.addImage.isHidden = true
-            self.sicialIconView.isHidden = true
+            self.mappingSocialIcon()
         }
     }
 
+    private func mappingSocialIcon() {
+        if self.providerList.isEmpty {
+            self.firstSocialIconView.isHidden = true
+            self.seccondSocialIconView.isHidden = true
+        } else if self.providerList.count == 1 {
+            self.firstSocialIconView.isHidden = false
+            self.seccondSocialIconView.isHidden = true
+            self.updateUiFirstIcon(provider: self.providerList[0])
+        } else {
+            self.firstSocialIconView.isHidden = false
+            self.seccondSocialIconView.isHidden = false
+            self.updateUiFirstIcon(provider: self.providerList[0])
+            self.updateUiSeccondIcon(provider: self.providerList[1])
+        }
+    }
+    
+    private func updateUiFirstIcon(provider: SocialType) {
+        self.firstSocialIconView.capsule(color: provider.color, borderWidth: 1, borderColor: UIColor.Asset.white)
+        self.firstSocialIcon.image = provider.icon
+    }
+    
+    private func updateUiSeccondIcon(provider: SocialType) {
+        self.seccondSocialIconView.capsule(color: provider.color, borderWidth: 1, borderColor: UIColor.Asset.white)
+        self.seccondSocialIcon.image = provider.icon
+    }
 }
