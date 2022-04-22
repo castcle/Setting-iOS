@@ -124,9 +124,9 @@ public final class SettingViewModel {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    let userInfo = UserInfo(json: json)
-                    self.userInfo = userInfo
-                    UserHelper.shared.updateLocalProfile(user: userInfo)
+                    let info = UserInfo(json: json)
+                    self.userInfo = info
+                    UserHelper.shared.updateLocalProfile(user: info)
                     self.delegate?.didGetProfileFinish()
                 } catch {}
             } else {
