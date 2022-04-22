@@ -27,6 +27,7 @@
 
 import UIKit
 import Core
+import Component
 import Defaults
 import JGProgressHUD
 
@@ -93,7 +94,7 @@ extension VerifyMobileViewController: UITableViewDelegate, UITableViewDataSource
 
 extension VerifyMobileViewController: VerifyMobileTableViewCellDelegate {
     func didSelectCountryCode(_ cell: VerifyMobileTableViewCell) {
-        let vc = SettingOpener.open(.selectCode) as? SelectCodeViewController
+        let vc = ComponentOpener.open(.selectCode) as? SelectCodeViewController
         vc?.delegate = self
         Utility.currentViewController().navigationController?.pushViewController(vc ?? SelectCodeViewController(), animated: true)
     }
