@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		54CA255B2EF0297EA5B4505F /* Pods_Setting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33296E29F07D0AFE9916B159 /* Pods_Setting.framework */; };
+		B726645C27BA1BE8005ABE90 /* RegisterPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B726645B27BA1BE8005ABE90 /* RegisterPasswordViewController.swift */; };
+		B726645E27BA1BFF005ABE90 /* RegisterPasswordOtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B726645D27BA1BFF005ABE90 /* RegisterPasswordOtpViewController.swift */; };
+		B726646527BA3708005ABE90 /* RegisterPasswordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B726646327BA3708005ABE90 /* RegisterPasswordTableViewCell.swift */; };
+		B726646627BA3708005ABE90 /* RegisterPasswordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B726646427BA3708005ABE90 /* RegisterPasswordTableViewCell.xib */; };
+		B726646927BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B726646727BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.swift */; };
+		B726646A27BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B726646827BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.xib */; };
+		B726646C27BA476E005ABE90 /* RegisterPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B726646B27BA476E005ABE90 /* RegisterPasswordViewModel.swift */; };
+		B726646E27BA4DFA005ABE90 /* RegisterPasswordOtpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B726646D27BA4DF9005ABE90 /* RegisterPasswordOtpViewModel.swift */; };
 		B743385B26D6453D004BBC05 /* PreferredLanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743385926D6453D004BBC05 /* PreferredLanguageTableViewCell.swift */; };
 		B743385C26D6453D004BBC05 /* PreferredLanguageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B743385A26D6453D004BBC05 /* PreferredLanguageTableViewCell.xib */; };
 		B743385F26D8DC38004BBC05 /* DeleteAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743385E26D8DC38004BBC05 /* DeleteAccountViewController.swift */; };
@@ -24,10 +32,23 @@
 		B743387826D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B743387626D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.xib */; };
 		B743387A26D920F0004BBC05 /* DeleteAccountSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743387926D920F0004BBC05 /* DeleteAccountSuccessViewController.swift */; };
 		B74338A526DE33C4004BBC05 /* Authen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B74338A426DE33C4004BBC05 /* Authen.framework */; };
+		B75E5B2527ABC2E600B6CC14 /* Ads.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B75E5B2427ABC2E600B6CC14 /* Ads.framework */; };
+		B779D94327B4C92A008C8670 /* VerifyMobileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D94227B4C92A008C8670 /* VerifyMobileViewController.swift */; };
+		B779D94727B4CB19008C8670 /* VerifyMobileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D94527B4CB19008C8670 /* VerifyMobileTableViewCell.swift */; };
+		B779D94827B4CB19008C8670 /* VerifyMobileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B779D94627B4CB19008C8670 /* VerifyMobileTableViewCell.xib */; };
+		B779D95027B4CFCB008C8670 /* VerifyMobileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D94F27B4CFCB008C8670 /* VerifyMobileViewModel.swift */; };
+		B779D95527B4D659008C8670 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B779D95427B4D659008C8670 /* Assets.xcassets */; };
+		B779D95727B4F36B008C8670 /* VerifyMobileOtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D95627B4F36B008C8670 /* VerifyMobileOtpViewController.swift */; };
+		B779D96027B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D95E27B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift */; };
+		B779D96127B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B779D95F27B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib */; };
+		B779D96327B54948008C8670 /* VerifyMobileSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D96227B54948008C8670 /* VerifyMobileSuccessViewController.swift */; };
 		B7866369274B8D1000B13EEF /* SocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7866367274B8D1000B13EEF /* SocialTableViewCell.swift */; };
 		B786636A274B8D1000B13EEF /* SocialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7866368274B8D1000B13EEF /* SocialTableViewCell.xib */; };
+		B7A11BF327B60DD200D00F3A /* VerifyMobileOtpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A11BF227B60DD200D00F3A /* VerifyMobileOtpViewModel.swift */; };
 		B7AF660B26F24F5800BDE9C4 /* Profile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF660A26F24F5800BDE9C4 /* Profile.framework */; };
 		B7AF666826F4385800BDE9C4 /* Notification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF666726F4385800BDE9C4 /* Notification.framework */; };
+		B7B417A227CA802500EA82A8 /* DeleteAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B417A127CA802500EA82A8 /* DeleteAccountViewModel.swift */; };
+		B7B87C3427F193F4003284C6 /* Farming.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B87C3327F193F3003284C6 /* Farming.framework */; };
 		B7C252B426D3915400ACBB84 /* Setting.h in Headers */ = {isa = PBXBuildFile; fileRef = B7C252B226D3915400ACBB84 /* Setting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B7C252C326D3944E00ACBB84 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7C252C226D3944E00ACBB84 /* Setting.storyboard */; };
 		B7C252C526D3946E00ACBB84 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C252C426D3946E00ACBB84 /* SettingViewController.swift */; };
@@ -61,12 +82,22 @@
 		B7C2531426D54AA300ACBB84 /* SelectLanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2531326D54AA300ACBB84 /* SelectLanguageViewModel.swift */; };
 		B7C2531726D54E9B00ACBB84 /* SelectLanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C2531526D54E9B00ACBB84 /* SelectLanguageTableViewCell.swift */; };
 		B7C2531826D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C2531626D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib */; };
+		B7FA199A27B3A1F500C69D37 /* SettingSocialAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FA199827B3A1F500C69D37 /* SettingSocialAccountTableViewCell.swift */; };
+		B7FA199B27B3A1F500C69D37 /* SettingSocialAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7FA199927B3A1F500C69D37 /* SettingSocialAccountTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		33296E29F07D0AFE9916B159 /* Pods_Setting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Setting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E51CBABC07E88940856F42 /* Pods-Setting.debug (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.debug (development).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.debug (development).xcconfig"; sourceTree = "<group>"; };
 		924112A5A38EDF92FF5817E9 /* Pods-Setting.debug (production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.debug (production).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.debug (production).xcconfig"; sourceTree = "<group>"; };
+		B726645B27BA1BE8005ABE90 /* RegisterPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPasswordViewController.swift; sourceTree = "<group>"; };
+		B726645D27BA1BFF005ABE90 /* RegisterPasswordOtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPasswordOtpViewController.swift; sourceTree = "<group>"; };
+		B726646327BA3708005ABE90 /* RegisterPasswordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPasswordTableViewCell.swift; sourceTree = "<group>"; };
+		B726646427BA3708005ABE90 /* RegisterPasswordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterPasswordTableViewCell.xib; sourceTree = "<group>"; };
+		B726646727BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPasswordOtpTableViewCell.swift; sourceTree = "<group>"; };
+		B726646827BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterPasswordOtpTableViewCell.xib; sourceTree = "<group>"; };
+		B726646B27BA476E005ABE90 /* RegisterPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPasswordViewModel.swift; sourceTree = "<group>"; };
+		B726646D27BA4DF9005ABE90 /* RegisterPasswordOtpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPasswordOtpViewModel.swift; sourceTree = "<group>"; };
 		B743385926D6453D004BBC05 /* PreferredLanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferredLanguageTableViewCell.swift; sourceTree = "<group>"; };
 		B743385A26D6453D004BBC05 /* PreferredLanguageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferredLanguageTableViewCell.xib; sourceTree = "<group>"; };
 		B743385E26D8DC38004BBC05 /* DeleteAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewController.swift; sourceTree = "<group>"; };
@@ -84,10 +115,23 @@
 		B743387926D920F0004BBC05 /* DeleteAccountSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountSuccessViewController.swift; sourceTree = "<group>"; };
 		B74338A326DE310C004BBC05 /* Authen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B74338A426DE33C4004BBC05 /* Authen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B75E5B2427ABC2E600B6CC14 /* Ads.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Ads.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B779D94227B4C92A008C8670 /* VerifyMobileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileViewController.swift; sourceTree = "<group>"; };
+		B779D94527B4CB19008C8670 /* VerifyMobileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileTableViewCell.swift; sourceTree = "<group>"; };
+		B779D94627B4CB19008C8670 /* VerifyMobileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerifyMobileTableViewCell.xib; sourceTree = "<group>"; };
+		B779D94F27B4CFCB008C8670 /* VerifyMobileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileViewModel.swift; sourceTree = "<group>"; };
+		B779D95427B4D659008C8670 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B779D95627B4F36B008C8670 /* VerifyMobileOtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileOtpViewController.swift; sourceTree = "<group>"; };
+		B779D95E27B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileOtpTableViewCell.swift; sourceTree = "<group>"; };
+		B779D95F27B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerifyMobileOtpTableViewCell.xib; sourceTree = "<group>"; };
+		B779D96227B54948008C8670 /* VerifyMobileSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileSuccessViewController.swift; sourceTree = "<group>"; };
 		B7866367274B8D1000B13EEF /* SocialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTableViewCell.swift; sourceTree = "<group>"; };
 		B7866368274B8D1000B13EEF /* SocialTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialTableViewCell.xib; sourceTree = "<group>"; };
+		B7A11BF227B60DD200D00F3A /* VerifyMobileOtpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileOtpViewModel.swift; sourceTree = "<group>"; };
 		B7AF660A26F24F5800BDE9C4 /* Profile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Profile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7AF666726F4385800BDE9C4 /* Notification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Notification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7B417A127CA802500EA82A8 /* DeleteAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewModel.swift; sourceTree = "<group>"; };
+		B7B87C3327F193F3003284C6 /* Farming.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Farming.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C252AF26D3915400ACBB84 /* Setting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Setting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C252B226D3915400ACBB84 /* Setting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
 		B7C252B326D3915400ACBB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -125,6 +169,8 @@
 		B7C2531526D54E9B00ACBB84 /* SelectLanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguageTableViewCell.swift; sourceTree = "<group>"; };
 		B7C2531626D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectLanguageTableViewCell.xib; sourceTree = "<group>"; };
 		B7C2531926D551DE00ACBB84 /* Authen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Authen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7FA199827B3A1F500C69D37 /* SettingSocialAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingSocialAccountTableViewCell.swift; sourceTree = "<group>"; };
+		B7FA199927B3A1F500C69D37 /* SettingSocialAccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingSocialAccountTableViewCell.xib; sourceTree = "<group>"; };
 		BAC4AC43122933957DEFA40F /* Pods-Setting.debug (staging).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.debug (staging).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.debug (staging).xcconfig"; sourceTree = "<group>"; };
 		D4FC7016B0A506343C03F43A /* Pods-Setting.release (staging).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.release (staging).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.release (staging).xcconfig"; sourceTree = "<group>"; };
 		EB4AF3FA989FF6A4FEDDBE20 /* Pods-Setting.release (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.release (development).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.release (development).xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +183,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7AF660B26F24F5800BDE9C4 /* Profile.framework in Frameworks */,
+				B7B87C3427F193F4003284C6 /* Farming.framework in Frameworks */,
+				B75E5B2527ABC2E600B6CC14 /* Ads.framework in Frameworks */,
 				B74338A526DE33C4004BBC05 /* Authen.framework in Frameworks */,
 				B7C252D326D395B400ACBB84 /* Networking.framework in Frameworks */,
 				B7AF666826F4385800BDE9C4 /* Notification.framework in Frameworks */,
@@ -161,6 +209,26 @@
 			);
 			name = Pods;
 			path = ../Pods;
+			sourceTree = "<group>";
+		};
+		B726645927BA1B24005ABE90 /* Verify Password */ = {
+			isa = PBXGroup;
+			children = (
+				B726645B27BA1BE8005ABE90 /* RegisterPasswordViewController.swift */,
+				B726645D27BA1BFF005ABE90 /* RegisterPasswordOtpViewController.swift */,
+			);
+			path = "Verify Password";
+			sourceTree = "<group>";
+		};
+		B726645A27BA1B36005ABE90 /* Verify Password */ = {
+			isa = PBXGroup;
+			children = (
+				B726646327BA3708005ABE90 /* RegisterPasswordTableViewCell.swift */,
+				B726646427BA3708005ABE90 /* RegisterPasswordTableViewCell.xib */,
+				B726646727BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.swift */,
+				B726646827BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.xib */,
+			);
+			path = "Verify Password";
 			sourceTree = "<group>";
 		};
 		B743385D26D64AC6004BBC05 /* Language */ = {
@@ -191,6 +259,35 @@
 			path = "Delete Account";
 			sourceTree = "<group>";
 		};
+		B779D94127B4C83C008C8670 /* Verify Mobile */ = {
+			isa = PBXGroup;
+			children = (
+				B779D94227B4C92A008C8670 /* VerifyMobileViewController.swift */,
+				B779D95627B4F36B008C8670 /* VerifyMobileOtpViewController.swift */,
+				B779D96227B54948008C8670 /* VerifyMobileSuccessViewController.swift */,
+			);
+			path = "Verify Mobile";
+			sourceTree = "<group>";
+		};
+		B779D94427B4CAEA008C8670 /* Verify Mobile */ = {
+			isa = PBXGroup;
+			children = (
+				B779D94527B4CB19008C8670 /* VerifyMobileTableViewCell.swift */,
+				B779D94627B4CB19008C8670 /* VerifyMobileTableViewCell.xib */,
+				B779D95E27B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift */,
+				B779D95F27B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib */,
+			);
+			path = "Verify Mobile";
+			sourceTree = "<group>";
+		};
+		B779D95327B4D64B008C8670 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B779D95427B4D659008C8670 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		B7C252A526D3915400ACBB84 = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +312,7 @@
 				B7C252B226D3915400ACBB84 /* Setting.h */,
 				B7C252B326D3915400ACBB84 /* Info.plist */,
 				B7C252C226D3944E00ACBB84 /* Setting.storyboard */,
+				B779D95327B4D64B008C8670 /* Assets */,
 				B7C252FA26D5302500ACBB84 /* Localizable */,
 				B7C252F726D50A2100ACBB84 /* ViewModel */,
 				B7C252F626D50A1300ACBB84 /* ViewController */,
@@ -238,9 +336,13 @@
 			children = (
 				B743386226D8DF3B004BBC05 /* SettingAccountTableViewCell.swift */,
 				B743386326D8DF3B004BBC05 /* SettingAccountTableViewCell.xib */,
+				B7FA199827B3A1F500C69D37 /* SettingSocialAccountTableViewCell.swift */,
+				B7FA199927B3A1F500C69D37 /* SettingSocialAccountTableViewCell.xib */,
 				B743386A26D90AEA004BBC05 /* Delete Account */,
 				B743385D26D64AC6004BBC05 /* Language */,
 				B7C2530326D535FE00ACBB84 /* Setting */,
+				B779D94427B4CAEA008C8670 /* Verify Mobile */,
+				B726645A27BA1B36005ABE90 /* Verify Password */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -248,6 +350,8 @@
 		B7C252F626D50A1300ACBB84 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B726645927BA1B24005ABE90 /* Verify Password */,
+				B779D94127B4C83C008C8670 /* Verify Mobile */,
 				B7C252C426D3946E00ACBB84 /* SettingViewController.swift */,
 				B7C252F826D50A5C00ACBB84 /* LanguageViewController.swift */,
 				B7C2531126D54A3E00ACBB84 /* SelectLanguageViewController.swift */,
@@ -266,6 +370,11 @@
 				B7C2530F26D5449B00ACBB84 /* LanguageViewModel.swift */,
 				B7C2531326D54AA300ACBB84 /* SelectLanguageViewModel.swift */,
 				B743386626D8E297004BBC05 /* AccountSettingViewModel.swift */,
+				B779D94F27B4CFCB008C8670 /* VerifyMobileViewModel.swift */,
+				B7A11BF227B60DD200D00F3A /* VerifyMobileOtpViewModel.swift */,
+				B726646B27BA476E005ABE90 /* RegisterPasswordViewModel.swift */,
+				B726646D27BA4DF9005ABE90 /* RegisterPasswordOtpViewModel.swift */,
+				B7B417A127CA802500EA82A8 /* DeleteAccountViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -303,6 +412,8 @@
 		EA37D9F11EF0E5FE9778E44A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B7B87C3327F193F3003284C6 /* Farming.framework */,
+				B75E5B2427ABC2E600B6CC14 /* Ads.framework */,
 				B7AF666726F4385800BDE9C4 /* Notification.framework */,
 				B7AF660A26F24F5800BDE9C4 /* Profile.framework */,
 				B74338A426DE33C4004BBC05 /* Authen.framework */,
@@ -398,9 +509,15 @@
 				B743387426D90DEA004BBC05 /* AccountListTableViewCell.xib in Resources */,
 				B7C252E626D3BC7C00ACBB84 /* PageListTableViewCell.xib in Resources */,
 				B7C252C326D3944E00ACBB84 /* Setting.storyboard in Resources */,
+				B779D94827B4CB19008C8670 /* VerifyMobileTableViewCell.xib in Resources */,
 				B7C2531826D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib in Resources */,
+				B726646627BA3708005ABE90 /* RegisterPasswordTableViewCell.xib in Resources */,
 				B7C252FF26D530F800ACBB84 /* Localizable.strings in Resources */,
+				B779D95527B4D659008C8670 /* Assets.xcassets in Resources */,
+				B7FA199B27B3A1F500C69D37 /* SettingSocialAccountTableViewCell.xib in Resources */,
 				B743387826D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.xib in Resources */,
+				B726646A27BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.xib in Resources */,
+				B779D96127B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib in Resources */,
 				B7C252F026D3D2D000ACBB84 /* SettingTableViewCell.xib in Resources */,
 				B7C252F426D3E15800ACBB84 /* OtherTableViewCell.xib in Resources */,
 				B786636A274B8D1000B13EEF /* SocialTableViewCell.xib in Resources */,
@@ -439,31 +556,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B726645E27BA1BFF005ABE90 /* RegisterPasswordOtpViewController.swift in Sources */,
 				B7C2531226D54A3E00ACBB84 /* SelectLanguageViewController.swift in Sources */,
 				B743387326D90DEA004BBC05 /* AccountListTableViewCell.swift in Sources */,
 				B7C2530626D5365D00ACBB84 /* AppLanguageTableViewCell.swift in Sources */,
+				B779D96327B54948008C8670 /* VerifyMobileSuccessViewController.swift in Sources */,
 				B7C252DD26D3AB0D00ACBB84 /* NotificationTableViewCell.swift in Sources */,
 				B7C252E926D3BDBC00ACBB84 /* PageCollectionViewCell.swift in Sources */,
+				B726646527BA3708005ABE90 /* RegisterPasswordTableViewCell.swift in Sources */,
+				B726645C27BA1BE8005ABE90 /* RegisterPasswordViewController.swift in Sources */,
 				B743386D26D90B19004BBC05 /* ConfirmDeleteHeaderTableViewCell.swift in Sources */,
 				B7C252F326D3E15800ACBB84 /* OtherTableViewCell.swift in Sources */,
 				B743386126D8DCE7004BBC05 /* AccountSettingViewController.swift in Sources */,
 				B743385F26D8DC38004BBC05 /* DeleteAccountViewController.swift in Sources */,
+				B726646C27BA476E005ABE90 /* RegisterPasswordViewModel.swift in Sources */,
+				B7A11BF327B60DD200D00F3A /* VerifyMobileOtpViewModel.swift in Sources */,
 				B7C2531026D5449B00ACBB84 /* LanguageViewModel.swift in Sources */,
+				B779D94727B4CB19008C8670 /* VerifyMobileTableViewCell.swift in Sources */,
+				B726646927BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.swift in Sources */,
+				B7B417A227CA802500EA82A8 /* DeleteAccountViewModel.swift in Sources */,
 				B7C252EF26D3D2D000ACBB84 /* SettingTableViewCell.swift in Sources */,
 				B7C2530A26D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.swift in Sources */,
 				B7866369274B8D1000B13EEF /* SocialTableViewCell.swift in Sources */,
 				B743386726D8E297004BBC05 /* AccountSettingViewModel.swift in Sources */,
 				B743387726D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.swift in Sources */,
+				B779D95027B4CFCB008C8670 /* VerifyMobileViewModel.swift in Sources */,
 				B7C252C826D394F000ACBB84 /* SettingNibVars.swift in Sources */,
+				B779D96027B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift in Sources */,
 				B7C252EC26D3C46B00ACBB84 /* SettingViewModel.swift in Sources */,
+				B7FA199A27B3A1F500C69D37 /* SettingSocialAccountTableViewCell.swift in Sources */,
 				B7C252E526D3BC7C00ACBB84 /* PageListTableViewCell.swift in Sources */,
 				B7C2531426D54AA300ACBB84 /* SelectLanguageViewModel.swift in Sources */,
 				B743386426D8DF3B004BBC05 /* SettingAccountTableViewCell.swift in Sources */,
 				B7C252CA26D3950400ACBB84 /* SettingOpener.swift in Sources */,
 				B743385B26D6453D004BBC05 /* PreferredLanguageTableViewCell.swift in Sources */,
+				B779D94327B4C92A008C8670 /* VerifyMobileViewController.swift in Sources */,
 				B7C252F926D50A5C00ACBB84 /* LanguageViewController.swift in Sources */,
 				B7C252C526D3946E00ACBB84 /* SettingViewController.swift in Sources */,
 				B743386926D90695004BBC05 /* DeleteAccountDetailViewController.swift in Sources */,
+				B726646E27BA4DFA005ABE90 /* RegisterPasswordOtpViewModel.swift in Sources */,
+				B779D95727B4F36B008C8670 /* VerifyMobileOtpViewController.swift in Sources */,
 				B7C252FC26D5308000ACBB84 /* Localizable.swift in Sources */,
 				B7C252E126D3B92F00ACBB84 /* VerifyTableViewCell.swift in Sources */,
 				B7C2531726D54E9B00ACBB84 /* SelectLanguageTableViewCell.swift in Sources */,

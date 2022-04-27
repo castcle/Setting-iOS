@@ -60,26 +60,23 @@ class SettingViewController: UIViewController {
         self.setupNavBar()
         self.tableView.reloadData()
         Defaults[.screenId] = ""
-        if !UserManager.shared.isVerified {
-            self.viewModel.getMe()
-        }
+        self.viewModel.getMe()
+        self.viewModel.getMyPage()
     }
     
     func setupNavBar() {
-        self.customNavigationBar(.primary, title: Localization.setting.title.text, textColor: UIColor.Asset.lightBlue, leftBarButton: .back)
+        self.customNavigationBar(.primary, title: Localization.setting.title.text, leftBarButton: .back)
     }
     
     func configureTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.notification, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.notification)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.verify, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.verify)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.pageList, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.pageList)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.setting, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.setting)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.other, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.other)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.social, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.social)
-        
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 100
     }
@@ -107,32 +104,27 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == SettingViewControllerSection.account.rawValue {
-            return (self.viewModel.accountSection.count > 0 ? 50 : 0)
+            return (self.viewModel.accountSection.count > 0 ? 15 : 0)
         } else {
             return 0
         }
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
-        
+        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 15))
         let label = UILabel()
-        label.frame = CGRect.init(x: 15, y: 5, width: headerView.frame.width - 10, height: headerView.frame.height - 10)
-        
+        label.frame = CGRect.init(x: 15, y: 0, width: headerView.frame.width - 30, height: headerView.frame.height)
         label.font = UIFont.asset(.regular, fontSize: .overline)
         label.textColor = UIColor.Asset.gray
-        
+
         switch section {
         case SettingViewControllerSection.account.rawValue:
             label.text = Localization.setting.accountSettings.text
         default:
             label.text = ""
         }
-        
         headerView.addSubview(label)
-        
         return headerView
-        
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -164,7 +156,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case SettingViewControllerSection.profile.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.pageList, for: indexPath as IndexPath) as? PageListTableViewCell
             cell?.backgroundColor = UIColor.clear
-            cell?.configCell(isVerify: UserManager.shared.isVerified)
+            cell?.configCell(userInfo: self.viewModel.userInfo)
             return cell ?? PageListTableViewCell()
         case SettingViewControllerSection.account.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.setting, for: indexPath as IndexPath) as? SettingTableViewCell
@@ -219,6 +211,12 @@ extension SettingViewController: SettingViewModelDelegate {
     }
     
     func didGetProfileFinish() {
+        UIView.animate(withDuration: 0.35, delay: 0, options: [.curveLinear], animations: {
+            self.tableView.reloadData()
+        })
+    }
+    
+    func didGetMyPageFinish() {
         UIView.animate(withDuration: 0.35, delay: 0, options: [.curveLinear], animations: {
             self.tableView.reloadData()
         })

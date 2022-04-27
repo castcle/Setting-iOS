@@ -29,6 +29,7 @@ import UIKit
 import Core
 import Defaults
 import RealmSwift
+import JGProgressHUD
 
 class DeleteAccountDetailViewController: UIViewController {
 
@@ -36,6 +37,8 @@ class DeleteAccountDetailViewController: UIViewController {
     
     private let realm = try! Realm()
     var pages: Results<Page>!
+    let viewModel = DeleteAccountViewModel()
+    let hud = JGProgressHUD()
     
     enum DeleteAccountDetailViewControllerSection: Int, CaseIterable {
         case header = 0
@@ -49,13 +52,24 @@ class DeleteAccountDetailViewController: UIViewController {
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.hideKeyboardWhenTapped()
         self.configureTableView()
-        self.pages = self.realm.objects(Page.self)
+        self.pages = self.realm.objects(Page.self).sorted(byKeyPath: "id")
+        
+        self.viewModel.didDeleteAccountFinish = {
+            self.hud.dismiss()
+            Defaults[.startLoadFeed] = true
+            Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.deleteSuccess), animated: true)
+        }
+
+        self.viewModel.didError = {
+            self.hud.dismiss()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavBar()
         Defaults[.screenId] = ""
+        self.hud.textLabel.text = "Deleting"
     }
     
     func setupNavBar() {
@@ -65,11 +79,9 @@ class DeleteAccountDetailViewController: UIViewController {
     func configureTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.deleteHeader, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.deleteHeader)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.accountList, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.accountList)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.password, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.password)
-        
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 100
     }
@@ -110,9 +122,19 @@ extension DeleteAccountDetailViewController: UITableViewDelegate, UITableViewDat
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.password, for: indexPath as IndexPath) as? DeleteAccountPasswordTableViewCell
             cell?.backgroundColor = UIColor.clear
             cell?.configCell()
+            cell?.delegate = self
             return cell ?? DeleteAccountPasswordTableViewCell()
         default:
             return UITableViewCell()
         }
+    }
+}
+
+extension DeleteAccountDetailViewController: DeleteAccountPasswordTableViewCellDelegate {
+    func didConfirm(_ deleteAccountPasswordTableViewCell: DeleteAccountPasswordTableViewCell, password: String) {
+        self.hud.show(in: self.view)
+        self.viewModel.userRequest.channel = .email
+        self.viewModel.userRequest.payload.password = password
+        self.viewModel.deleteAccount()
     }
 }

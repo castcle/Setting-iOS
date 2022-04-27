@@ -27,7 +27,13 @@
 
 import UIKit
 import Core
+import Networking
 import Defaults
+import JGProgressHUD
+import FBSDKLoginKit
+import Swifter
+import SafariServices
+import AuthenticationServices
 
 class AccountSettingViewController: UIViewController {
 
@@ -35,21 +41,42 @@ class AccountSettingViewController: UIViewController {
     
     enum AccountSettingViewControllerSection: Int, CaseIterable {
         case setting = 0
+        case social
         case control
     }
     
     var viewModel = AccountSettingViewModel()
+    let hud = JGProgressHUD()
+    var swifter: Swifter!
+    var accToken: Credential.OAuthAccessToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.configureTableView()
+        self.hud.textLabel.text = "Loading"
+        self.hud.show(in: Utility.currentViewController().view)
+        self.viewModel.getMe()
+        self.viewModel.didGetMeFinish = {
+            self.hud.dismiss()
+            self.tableView.reloadData()
+        }
+        
+        self.viewModel.didError = {
+            self.hud.dismiss()
+        }
+        
+        self.viewModel.didConnectSocialFinish = {
+            self.hud.dismiss()
+            self.tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavBar()
         Defaults[.screenId] = ""
+        self.tableView.reloadData()
     }
     
     func setupNavBar() {
@@ -59,9 +86,8 @@ class AccountSettingViewController: UIViewController {
     func configureTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.settingAccount, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.settingAccount)
-        
+        self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.settingSocialAccount, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.settingSocialAccount)
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 100
     }
@@ -76,6 +102,8 @@ extension AccountSettingViewController: UITableViewDelegate, UITableViewDataSour
         switch section {
         case AccountSettingViewControllerSection.setting.rawValue:
             return self.viewModel.accountSection.count
+        case AccountSettingViewControllerSection.social.rawValue:
+            return self.viewModel.socialSection.count
         case AccountSettingViewControllerSection.control.rawValue:
             return self.viewModel.controlSection.count
         default:
@@ -86,6 +114,8 @@ extension AccountSettingViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case AccountSettingViewControllerSection.setting.rawValue:
+            return (self.viewModel.accountSection.count > 0 ? 50 : 0)
+        case AccountSettingViewControllerSection.social.rawValue:
             return (self.viewModel.accountSection.count > 0 ? 50 : 0)
         case AccountSettingViewControllerSection.control.rawValue:
             return (self.viewModel.controlSection.count > 0 ? 50 : 0)
@@ -106,6 +136,8 @@ extension AccountSettingViewController: UITableViewDelegate, UITableViewDataSour
         switch section {
         case AccountSettingViewControllerSection.setting.rawValue:
             label.text = Localization.settingAccount.sectionAccountSetting.text
+        case AccountSettingViewControllerSection.social.rawValue:
+            label.text = "Link Social Media Account"
         case AccountSettingViewControllerSection.control.rawValue:
             label.text = Localization.settingAccount.sectionAccountControl.text
         default:
@@ -117,38 +149,135 @@ extension AccountSettingViewController: UITableViewDelegate, UITableViewDataSour
         return headerView
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == AccountSettingViewControllerSection.setting.rawValue {
-            return (self.viewModel.accountSection.count > 0 ? 1 : 0)
-        } else {
-            return 0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 1))
-        headerView.backgroundColor = UIColor.Asset.black
-        return headerView
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.settingAccount, for: indexPath as IndexPath) as? SettingAccountTableViewCell
-        cell?.backgroundColor = UIColor.clear
-        
-        if indexPath.section == AccountSettingViewControllerSection.setting.rawValue {
-            cell?.configCell(section: self.viewModel.accountSection[indexPath.row])
-        } else if indexPath.section == AccountSettingViewControllerSection.control.rawValue {
-            cell?.configCell(section: self.viewModel.controlSection[indexPath.row])
+        if indexPath.section == AccountSettingViewControllerSection.social.rawValue {
+            let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.settingSocialAccount, for: indexPath as IndexPath) as? SettingSocialAccountTableViewCell
+            cell?.backgroundColor = UIColor.clear
+            if self.viewModel.socialSection[indexPath.row] == .linkFacebook {
+                cell?.configCell(section: self.viewModel.socialSection[indexPath.row], socialUser: self.viewModel.linkSocial.facebook)
+            } else if self.viewModel.socialSection[indexPath.row] == .linkTwitter {
+                cell?.configCell(section: self.viewModel.socialSection[indexPath.row], socialUser: self.viewModel.linkSocial.twitter)
+            }
+            return cell ?? SettingSocialAccountTableViewCell()
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.settingAccount, for: indexPath as IndexPath) as? SettingAccountTableViewCell
+            cell?.backgroundColor = UIColor.clear
+            if indexPath.section == AccountSettingViewControllerSection.setting.rawValue {
+                cell?.configCell(section: self.viewModel.accountSection[indexPath.row])
+            } else if indexPath.section == AccountSettingViewControllerSection.control.rawValue {
+                cell?.configCell(section: self.viewModel.controlSection[indexPath.row])
+            }
+            return cell ?? SettingAccountTableViewCell()
         }
-        
-        return cell ?? SettingAccountTableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == AccountSettingViewControllerSection.setting.rawValue {
             self.viewModel.openSettingSection(section: self.viewModel.accountSection[indexPath.row])
+        } else if indexPath.section == AccountSettingViewControllerSection.social.rawValue {
+            if self.viewModel.socialSection[indexPath.row] == .linkFacebook {
+                if self.viewModel.linkSocial.facebook.socialId.isEmpty {
+                    self.connectFacebook()
+                }
+            } else if self.viewModel.socialSection[indexPath.row] == .linkTwitter {
+                if self.viewModel.linkSocial.twitter.socialId.isEmpty {
+                    self.connectTwitter()
+                }
+            }
         } else if indexPath.section == AccountSettingViewControllerSection.control.rawValue {
             self.viewModel.openSettingSection(section: self.viewModel.controlSection[indexPath.row])
         }
+    }
+}
+
+extension AccountSettingViewController {
+    private func connectFacebook() {
+        let loginManager = LoginManager()
+        if let _ = AccessToken.current {
+            loginManager.logOut()
+        }
+        loginManager.logIn(permissions: ["public_profile", "email"], from: self) { (result, error) in
+            guard error == nil else {
+                print(error!.localizedDescription)
+                return
+            }
+            guard let result = result, !result.isCancelled else {
+                print("User cancelled login")
+                return
+            }
+            Profile.loadCurrentProfile { (profile, error) in
+                let userId: String = profile?.userID ?? ""
+                let email: String = profile?.email ?? ""
+                let fullName: String = profile?.name ?? ""
+                let accessToken: String = AccessToken.current?.tokenString ?? ""
+                let profilePicUrl: String = "https://graph.facebook.com/\(userId)/picture?type=large&access_token=\(accessToken)"
+                var authenRequest: AuthenRequest = AuthenRequest()
+                authenRequest.provider = .facebook
+                authenRequest.socialId = userId
+                authenRequest.displayName = fullName
+                authenRequest.avatar = profilePicUrl
+                authenRequest.email = email
+                authenRequest.authToken = accessToken
+
+                self.dismiss(animated: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.hud.textLabel.text = "Connecting"
+                    self.hud.show(in: Utility.currentViewController().view)
+                    self.viewModel.authenRequest = authenRequest
+                    self.viewModel.connectSocial()
+                }
+            }
+        }
+    }
+    
+    private func connectTwitter() {
+        self.swifter = Swifter(consumerKey: TwitterConstants.key, consumerSecret: TwitterConstants.secretKey)
+        self.swifter.authorize(withProvider: self, callbackURL: URL(string: TwitterConstants.callbackUrl)!) { accessToken, response in
+            self.accToken = accessToken
+            self.getUserProfile()
+        } failure: { error in
+            print("ERROR: \(error.localizedDescription)")
+        }
+    }
+}
+
+extension AccountSettingViewController: SFSafariViewControllerDelegate, ASWebAuthenticationPresentationContextProviding {
+    func getUserProfile() {
+        self.swifter.verifyAccountCredentials(includeEntities: false, skipStatus: false, includeEmail: true, success: { json in
+            let twitterId: String = json["id_str"].string ?? ""
+            let twitterName: String = json["name"].string ?? ""
+            let twitterEmail: String = json["email"].string ?? ""
+            let twitterProfilePic: String = json["profile_image_url_https"].string?.replacingOccurrences(of: "_normal", with: "", options: .literal, range: nil) ?? ""
+            let twitterDescription: String = json["description"].string ?? ""
+            let twitterCover: String = json["profile_banner_url"].string ?? ""
+            
+            var authenRequest: AuthenRequest = AuthenRequest()
+            authenRequest.provider = .twitter
+            authenRequest.socialId = twitterId
+            authenRequest.displayName = twitterName
+            authenRequest.avatar = twitterProfilePic
+            authenRequest.email = twitterEmail
+            authenRequest.overview = twitterDescription
+            authenRequest.cover = twitterCover
+            authenRequest.authToken = self.accToken?.key ?? ""
+            
+            self.dismiss(animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.hud.textLabel.text = "Connecting"
+                self.hud.show(in: Utility.currentViewController().view)
+                self.viewModel.authenRequest = authenRequest
+                self.viewModel.connectSocial()
+            }
+        }) { error in
+            print("ERROR: \(error.localizedDescription)")
+        }
+    }
+    
+    public func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    public func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        return self.view.window!
     }
 }

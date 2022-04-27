@@ -35,9 +35,6 @@
 "setting_go_to"                     = "ไปยัง";
 "setting_new_page"                  = "สร้างเพจใหม่";
 "setting_account_settings"          = "ตั้งค่าข้อมูลบัญชี";
-"setting_account"                   = "บัญชี";
-"setting_language"                  = "ภาษา";
-"setting_about"                     = "เกี่ยวกับเรา";
 "setting_log_out"                   = "ออกจากระบบ";
 "setting_join_us"                   = "ร่วมงานกับเรา";
 "setting_docs"                      = "Docs";

@@ -29,12 +29,17 @@ import UIKit
 import Core
 import JVFloatLabeledTextField
 
-class DeleteAccountPasswordTableViewCell: UITableViewCell {
+protocol DeleteAccountPasswordTableViewCellDelegate {
+    func didConfirm(_ deleteAccountPasswordTableViewCell: DeleteAccountPasswordTableViewCell, password: String)
+}
+
+class DeleteAccountPasswordTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet var passwordView: UIView!
     @IBOutlet var continueButton: UIButton!
     @IBOutlet var passwordTextField: JVFloatLabeledTextField!
     
+    public var delegate: DeleteAccountPasswordTableViewCellDelegate?
     private var isCanContinue: Bool {
         if self.passwordTextField.text!.isEmpty {
             return false
@@ -47,6 +52,7 @@ class DeleteAccountPasswordTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.passwordView.custom(color: UIColor.Asset.darkGray, cornerRadius: 10, borderWidth: 1, borderColor: UIColor.Asset.black)
         self.setupContinueButton(isActive: self.isCanContinue)
+        self.passwordTextField.delegate = self
         self.passwordTextField.tag = 0
         self.passwordTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
     }
@@ -81,12 +87,19 @@ class DeleteAccountPasswordTableViewCell: UITableViewCell {
         }
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     @objc func textFieldDidChange(_ textField: UITextField) {
         self.setupContinueButton(isActive: self.isCanContinue)
     }
     
     @IBAction func continueAction(_ sender: Any) {
         self.endEditing(true)
-        Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.deleteSuccess), animated: true)
+        if self.isCanContinue {
+            self.delegate?.didConfirm(self, password: self.passwordTextField.text ?? "")
+        }
     }
 }
