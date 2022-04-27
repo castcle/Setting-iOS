@@ -60,11 +60,11 @@ class NotificationTableViewCell: UITableViewCell {
     func configCell() {
         self.titleLabel.text = Localization.setting.notification.text
         if UserManager.shared.badgeCount > 0 {
-            self.baseView.isHidden = false
+            self.badgeView.isHidden = false
             self.amountLabel.text =  "\(UserManager.shared.badgeCount) \(Localization.setting.notificationNew.text)"
             self.badgeLabel.text = "\(UserManager.shared.badgeCount)"
         } else {
-            self.baseView.isHidden = true
+            self.badgeView.isHidden = true
             self.amountLabel.text =  ""
             self.badgeLabel.text = ""
         }
