@@ -33,7 +33,7 @@ protocol DeleteAccountPasswordTableViewCellDelegate {
     func didConfirm(_ deleteAccountPasswordTableViewCell: DeleteAccountPasswordTableViewCell, password: String)
 }
 
-class DeleteAccountPasswordTableViewCell: UITableViewCell {
+class DeleteAccountPasswordTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet var passwordView: UIView!
     @IBOutlet var continueButton: UIButton!
@@ -52,6 +52,7 @@ class DeleteAccountPasswordTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.passwordView.custom(color: UIColor.Asset.darkGray, cornerRadius: 10, borderWidth: 1, borderColor: UIColor.Asset.black)
         self.setupContinueButton(isActive: self.isCanContinue)
+        self.passwordTextField.delegate = self
         self.passwordTextField.tag = 0
         self.passwordTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
     }
@@ -84,6 +85,11 @@ class DeleteAccountPasswordTableViewCell: UITableViewCell {
             self.continueButton.setBackgroundImage(UIColor.Asset.darkGraphiteBlue.toImage(), for: .normal)
             self.continueButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.Asset.black)
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
