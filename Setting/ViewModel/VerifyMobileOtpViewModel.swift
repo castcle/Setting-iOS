@@ -38,14 +38,6 @@ public final class VerifyMobileOtpViewModel {
     let tokenHelper: TokenHelper = TokenHelper()
     var state: State = .none
     
-    enum State {
-        case requestOtp
-        case verifyOtp
-        case updateMobile
-        case getMe
-        case none
-    }
-    
     public init(authenRequest: AuthenRequest = AuthenRequest()) {
         self.tokenHelper.delegate = self
         self.authenRequest = authenRequest
@@ -121,8 +113,7 @@ public final class VerifyMobileOtpViewModel {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    let userHelper = UserHelper()
-                    userHelper.updateLocalProfile(user: UserInfo(json: json))
+                    UserHelper.shared.updateLocalProfile(user: UserInfo(json: json))
                     self.didVerifyOtpFinish?()
                 } catch {
                     self.didError?()

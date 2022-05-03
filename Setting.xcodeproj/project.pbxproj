@@ -39,9 +39,6 @@
 		B779D95027B4CFCB008C8670 /* VerifyMobileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D94F27B4CFCB008C8670 /* VerifyMobileViewModel.swift */; };
 		B779D95527B4D659008C8670 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B779D95427B4D659008C8670 /* Assets.xcassets */; };
 		B779D95727B4F36B008C8670 /* VerifyMobileOtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D95627B4F36B008C8670 /* VerifyMobileOtpViewController.swift */; };
-		B779D95927B4F37E008C8670 /* SelectCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D95827B4F37E008C8670 /* SelectCodeViewController.swift */; };
-		B779D95C27B4F580008C8670 /* SelectCodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D95A27B4F580008C8670 /* SelectCodeTableViewCell.swift */; };
-		B779D95D27B4F580008C8670 /* SelectCodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B779D95B27B4F580008C8670 /* SelectCodeTableViewCell.xib */; };
 		B779D96027B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D95E27B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift */; };
 		B779D96127B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B779D95F27B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib */; };
 		B779D96327B54948008C8670 /* VerifyMobileSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D96227B54948008C8670 /* VerifyMobileSuccessViewController.swift */; };
@@ -51,6 +48,7 @@
 		B7AF660B26F24F5800BDE9C4 /* Profile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF660A26F24F5800BDE9C4 /* Profile.framework */; };
 		B7AF666826F4385800BDE9C4 /* Notification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF666726F4385800BDE9C4 /* Notification.framework */; };
 		B7B417A227CA802500EA82A8 /* DeleteAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B417A127CA802500EA82A8 /* DeleteAccountViewModel.swift */; };
+		B7B87C3427F193F4003284C6 /* Farming.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B87C3327F193F3003284C6 /* Farming.framework */; };
 		B7C252B426D3915400ACBB84 /* Setting.h in Headers */ = {isa = PBXBuildFile; fileRef = B7C252B226D3915400ACBB84 /* Setting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B7C252C326D3944E00ACBB84 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7C252C226D3944E00ACBB84 /* Setting.storyboard */; };
 		B7C252C526D3946E00ACBB84 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C252C426D3946E00ACBB84 /* SettingViewController.swift */; };
@@ -124,9 +122,6 @@
 		B779D94F27B4CFCB008C8670 /* VerifyMobileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileViewModel.swift; sourceTree = "<group>"; };
 		B779D95427B4D659008C8670 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B779D95627B4F36B008C8670 /* VerifyMobileOtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileOtpViewController.swift; sourceTree = "<group>"; };
-		B779D95827B4F37E008C8670 /* SelectCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCodeViewController.swift; sourceTree = "<group>"; };
-		B779D95A27B4F580008C8670 /* SelectCodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCodeTableViewCell.swift; sourceTree = "<group>"; };
-		B779D95B27B4F580008C8670 /* SelectCodeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectCodeTableViewCell.xib; sourceTree = "<group>"; };
 		B779D95E27B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileOtpTableViewCell.swift; sourceTree = "<group>"; };
 		B779D95F27B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerifyMobileOtpTableViewCell.xib; sourceTree = "<group>"; };
 		B779D96227B54948008C8670 /* VerifyMobileSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileSuccessViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +131,7 @@
 		B7AF660A26F24F5800BDE9C4 /* Profile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Profile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7AF666726F4385800BDE9C4 /* Notification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Notification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7B417A127CA802500EA82A8 /* DeleteAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewModel.swift; sourceTree = "<group>"; };
+		B7B87C3327F193F3003284C6 /* Farming.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Farming.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C252AF26D3915400ACBB84 /* Setting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Setting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C252B226D3915400ACBB84 /* Setting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Setting.h; sourceTree = "<group>"; };
 		B7C252B326D3915400ACBB84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -187,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7AF660B26F24F5800BDE9C4 /* Profile.framework in Frameworks */,
+				B7B87C3427F193F4003284C6 /* Farming.framework in Frameworks */,
 				B75E5B2527ABC2E600B6CC14 /* Ads.framework in Frameworks */,
 				B74338A526DE33C4004BBC05 /* Authen.framework in Frameworks */,
 				B7C252D326D395B400ACBB84 /* Networking.framework in Frameworks */,
@@ -266,7 +263,6 @@
 			isa = PBXGroup;
 			children = (
 				B779D94227B4C92A008C8670 /* VerifyMobileViewController.swift */,
-				B779D95827B4F37E008C8670 /* SelectCodeViewController.swift */,
 				B779D95627B4F36B008C8670 /* VerifyMobileOtpViewController.swift */,
 				B779D96227B54948008C8670 /* VerifyMobileSuccessViewController.swift */,
 			);
@@ -278,8 +274,6 @@
 			children = (
 				B779D94527B4CB19008C8670 /* VerifyMobileTableViewCell.swift */,
 				B779D94627B4CB19008C8670 /* VerifyMobileTableViewCell.xib */,
-				B779D95A27B4F580008C8670 /* SelectCodeTableViewCell.swift */,
-				B779D95B27B4F580008C8670 /* SelectCodeTableViewCell.xib */,
 				B779D95E27B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift */,
 				B779D95F27B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib */,
 			);
@@ -418,6 +412,7 @@
 		EA37D9F11EF0E5FE9778E44A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B7B87C3327F193F3003284C6 /* Farming.framework */,
 				B75E5B2427ABC2E600B6CC14 /* Ads.framework */,
 				B7AF666726F4385800BDE9C4 /* Notification.framework */,
 				B7AF660A26F24F5800BDE9C4 /* Profile.framework */,
@@ -507,7 +502,6 @@
 				B743385C26D6453D004BBC05 /* PreferredLanguageTableViewCell.xib in Resources */,
 				B743386E26D90B19004BBC05 /* ConfirmDeleteHeaderTableViewCell.xib in Resources */,
 				B7C252EA26D3BDBC00ACBB84 /* PageCollectionViewCell.xib in Resources */,
-				B779D95D27B4F580008C8670 /* SelectCodeTableViewCell.xib in Resources */,
 				B743386526D8DF3B004BBC05 /* SettingAccountTableViewCell.xib in Resources */,
 				B7C252DE26D3AB0D00ACBB84 /* NotificationTableViewCell.xib in Resources */,
 				B7C2530B26D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.xib in Resources */,
@@ -571,7 +565,6 @@
 				B7C252E926D3BDBC00ACBB84 /* PageCollectionViewCell.swift in Sources */,
 				B726646527BA3708005ABE90 /* RegisterPasswordTableViewCell.swift in Sources */,
 				B726645C27BA1BE8005ABE90 /* RegisterPasswordViewController.swift in Sources */,
-				B779D95927B4F37E008C8670 /* SelectCodeViewController.swift in Sources */,
 				B743386D26D90B19004BBC05 /* ConfirmDeleteHeaderTableViewCell.swift in Sources */,
 				B7C252F326D3E15800ACBB84 /* OtherTableViewCell.swift in Sources */,
 				B743386126D8DCE7004BBC05 /* AccountSettingViewController.swift in Sources */,
@@ -597,7 +590,6 @@
 				B743386426D8DF3B004BBC05 /* SettingAccountTableViewCell.swift in Sources */,
 				B7C252CA26D3950400ACBB84 /* SettingOpener.swift in Sources */,
 				B743385B26D6453D004BBC05 /* PreferredLanguageTableViewCell.swift in Sources */,
-				B779D95C27B4F580008C8670 /* SelectCodeTableViewCell.swift in Sources */,
 				B779D94327B4C92A008C8670 /* VerifyMobileViewController.swift in Sources */,
 				B7C252F926D50A5C00ACBB84 /* LanguageViewController.swift in Sources */,
 				B7C252C526D3946E00ACBB84 /* SettingViewController.swift in Sources */,

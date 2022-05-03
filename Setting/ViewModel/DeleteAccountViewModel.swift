@@ -59,9 +59,8 @@ public class DeleteAccountViewModel {
     func guestLogin() {
         self.authenticationRepository.guestLogin(uuid: Defaults[.deviceUuid]) { (success) in
             if success {
-                let userHelper = UserHelper()
-                userHelper.clearUserData()
-                userHelper.clearSeenContent()
+                UserHelper.shared.clearUserData()
+                UserHelper.shared.clearSeenContent()
                 let pageRealm = self.realm.objects(Page.self)
                 try! self.realm.write {
                     self.realm.delete(pageRealm)

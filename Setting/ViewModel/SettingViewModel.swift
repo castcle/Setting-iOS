@@ -34,47 +34,7 @@ import Defaults
 import SwiftyJSON
 import RealmSwift
 import Ads
-
-public enum SettingSection {
-    case profile
-    case privacy
-    case languang
-    case aboutUs
-    case verify
-    case ads
-    
-    public var text: String {
-        switch self {
-        case .profile:
-            return Localization.setting.account.text
-        case .languang:
-            return Localization.setting.language.text
-        case .aboutUs:
-            return Localization.setting.about.text
-        case .ads:
-            return "Ad manager"
-        default:
-            return ""
-        }
-    }
-    
-    public var image: UIImage {
-        switch self {
-        case .profile:
-            return UIImage.init(icon: .castcle(.righProfile), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
-        case .privacy:
-            return UIImage.init(icon: .castcle(.privacy), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
-        case .languang:
-            return UIImage.init(icon: .castcle(.language), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
-        case .aboutUs:
-            return UIImage.init(icon: .castcle(.aboutUs), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
-        case .ads:
-            return UIImage.init(icon: .castcle(.adsManager), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
-        default:
-            return UIImage()
-        }
-    }
-}
+import Farming
 
 public protocol SettingViewModelDelegate {
     func didSignOutFinish()
@@ -83,7 +43,6 @@ public protocol SettingViewModelDelegate {
 }
 
 public final class SettingViewModel {
-    
     public var delegate: SettingViewModelDelegate?
     var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
     private var pageRepository: PageRepository = PageRepositoryImpl()
@@ -94,21 +53,17 @@ public final class SettingViewModel {
     let languangSection: [SettingSection] = []
     let aboutSection: [SettingSection] = []
     var state: State = .none
+    var userInfo: UserInfo = UserInfo()
     private let realm = try! Realm()
     var accountSection: [SettingSection] {
+        // MARK: - For 1.4.0
 //        let pageRealm = self.realm.objects(Page.self)
 //        if pageRealm.count > 0 {
-//            return [.profile, .ads, .languang, .aboutUs]
+//            return [.profile, .ads, .farming, .languang, .aboutUs]
 //        } else {
-            return [.profile, .languang, .aboutUs]
+//            return [.profile, .farming, .languang, .aboutUs]
 //        }
-    }
-    
-    enum State {
-        case getMe
-        case getMyPage
-        case unregisterToken
-        case none
+        return [.profile, .aboutUs]
     }
     
     public init() {
@@ -129,6 +84,8 @@ public final class SettingViewModel {
             Utility.currentViewController().navigationController?.pushViewController(ComponentOpener.open(.internalWebView(URL(string: Environment.aboutUs)!)), animated: true)
         case .ads:
             Utility.currentViewController().navigationController?.pushViewController(AdsOpener.open(.adsManager), animated: true)
+        case .farming:
+            Utility.currentViewController().navigationController?.pushViewController(FarmingOpener.open(.contentFarming), animated: true)
         }
     }
     
@@ -136,9 +93,8 @@ public final class SettingViewModel {
         self.unregisterNotificationToken()
         self.authenticationRepository.guestLogin(uuid: Defaults[.deviceUuid]) { (success) in
             if success {
-                let userHelper = UserHelper()
-                userHelper.clearUserData()
-                userHelper.clearSeenContent()
+                UserHelper.shared.clearUserData()
+                UserHelper.shared.clearSeenContent()
                 let pageRealm = self.realm.objects(Page.self)
                 try! self.realm.write {
                     self.realm.delete(pageRealm)
@@ -168,8 +124,9 @@ public final class SettingViewModel {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    let userHelper = UserHelper()
-                    userHelper.updateLocalProfile(user: UserInfo(json: json))
+                    let info = UserInfo(json: json)
+                    self.userInfo = info
+                    UserHelper.shared.updateLocalProfile(user: info)
                     self.delegate?.didGetProfileFinish()
                 } catch {}
             } else {
@@ -195,7 +152,7 @@ public final class SettingViewModel {
                     }
                     
                     pages.forEach { page in
-                        let pageInfo = PageInfo(json: page)
+                        let pageInfo = UserInfo(json: page)
                         try! self.realm.write {
                             let pageTemp = Page()
                             pageTemp.id = pageInfo.id
@@ -205,9 +162,8 @@ public final class SettingViewModel {
                             pageTemp.cover = pageInfo.images.cover.fullHd
                             pageTemp.overview = pageInfo.overview
                             pageTemp.official = pageInfo.verified.official
-                            pageTemp.socialProvider = pageInfo.syncSocial.provider
-                            pageTemp.socialActive = pageInfo.syncSocial.active
-                            pageTemp.socialAutoPost = pageInfo.syncSocial.autoPost
+                            pageTemp.isSyncTwitter = !pageInfo.syncSocial.twitter.socialId.isEmpty
+                            pageTemp.isSyncFacebook = !pageInfo.syncSocial.facebook.socialId.isEmpty
                             self.realm.add(pageTemp, update: .modified)
                         }
                     }
