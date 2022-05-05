@@ -107,10 +107,10 @@ public final class AccountSettingViewModel {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
                     
-                    let accessToken = json[AuthenticationApiKey.accessToken.rawValue].stringValue
-                    let refreshToken = json[AuthenticationApiKey.refreshToken.rawValue].stringValue
-                    let profile = JSON(json[AuthenticationApiKey.profile.rawValue].dictionaryValue)
-                    let pages = json[AuthenticationApiKey.pages.rawValue].arrayValue
+                    let accessToken = json[JsonKey.accessToken.rawValue].stringValue
+                    let refreshToken = json[JsonKey.refreshToken.rawValue].stringValue
+                    let profile = JSON(json[JsonKey.profile.rawValue].dictionaryValue)
+                    let pages = json[JsonKey.pages.rawValue].arrayValue
                     let user = UserInfo(json: profile)
 
                     self.linkSocial = user.linkSocial

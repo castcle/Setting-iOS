@@ -47,7 +47,7 @@ public class RegisterPasswordOtpViewModel {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    self.authenRequest.payload.refCode = json[AuthenticationApiKey.refCode.rawValue].stringValue
+                    self.authenRequest.payload.refCode = json[JsonKey.refCode.rawValue].stringValue
                     self.didVerifyOtpFinish?()
                 } catch {
                     self.didError?()
@@ -69,7 +69,7 @@ public class RegisterPasswordOtpViewModel {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    self.authenRequest.payload.refCode = json[AuthenticationApiKey.refCode.rawValue].stringValue
+                    self.authenRequest.payload.refCode = json[JsonKey.refCode.rawValue].stringValue
                     self.didGetOtpFinish?()
                 } catch {
                     self.didError?()
