@@ -34,37 +34,37 @@ import JGProgressHUD
 class VerifyMobileViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
-    
+
     var viewModel = VerifyMobileViewModel()
     let hud = JGProgressHUD()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.hideKeyboardWhenTapped()
         self.configureTableView()
-        
+
         self.viewModel.didGetOtpFinish = {
             self.hud.dismiss()
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.verifyMobileOtp(VerifyMobileOtpViewModel(authenRequest: self.viewModel.authenRequest))), animated: true)
         }
-        
+
         self.viewModel.didError = {
             self.hud.dismiss()
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavBar()
         Defaults[.screenId] = ""
         self.hud.textLabel.text = "Sending"
     }
-    
+
     func setupNavBar() {
         self.customNavigationBar(.secondary, title: "Mobile number")
     }
-    
+
     func configureTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -78,11 +78,11 @@ extension VerifyMobileViewController: UITableViewDelegate, UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.verifyMobile, for: indexPath as IndexPath) as? VerifyMobileTableViewCell
         cell?.backgroundColor = UIColor.clear
@@ -94,11 +94,11 @@ extension VerifyMobileViewController: UITableViewDelegate, UITableViewDataSource
 
 extension VerifyMobileViewController: VerifyMobileTableViewCellDelegate {
     func didSelectCountryCode(_ cell: VerifyMobileTableViewCell) {
-        let vc = ComponentOpener.open(.selectCode) as? SelectCodeViewController
-        vc?.delegate = self
-        Utility.currentViewController().navigationController?.pushViewController(vc ?? SelectCodeViewController(), animated: true)
+        let viewController = ComponentOpener.open(.selectCode) as? SelectCodeViewController
+        viewController?.delegate = self
+        Utility.currentViewController().navigationController?.pushViewController(viewController ?? SelectCodeViewController(), animated: true)
     }
-    
+
     func didConfirm(_ cell: VerifyMobileTableViewCell, mobileNumber: String) {
         self.hud.show(in: self.view)
         self.viewModel.authenRequest.payload.mobileNumber = mobileNumber

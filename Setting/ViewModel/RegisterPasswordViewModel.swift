@@ -37,7 +37,7 @@ class RegisterPasswordViewModel {
     public init() {
         self.tokenHelper.delegate = self
     }
-    
+
     func requestOtp() {
         self.authenticationRepository.requestOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
@@ -58,9 +58,9 @@ class RegisterPasswordViewModel {
             }
         }
     }
-    
-    var didGetOtpFinish: (() -> ())?
-    var didError: (() -> ())?
+
+    var didGetOtpFinish: (() -> Void)?
+    var didError: (() -> Void)?
 }
 
 extension RegisterPasswordViewModel: TokenHelperDelegate {

@@ -28,7 +28,7 @@
 import UIKit
 import Core
 
-protocol VerifyMobileTableViewCellDelegate {
+protocol VerifyMobileTableViewCellDelegate: AnyObject {
     func didSelectCountryCode(_ cell: VerifyMobileTableViewCell)
     func didConfirm(_ cell: VerifyMobileTableViewCell, mobileNumber: String)
 }
@@ -43,13 +43,12 @@ class VerifyMobileTableViewCell: UITableViewCell {
     @IBOutlet var confirmButton: UIButton!
     @IBOutlet var mobileTextField: UITextField!
     @IBOutlet var dropdownImage: UIImageView!
-    
+
     var delegate: VerifyMobileTableViewCellDelegate?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.titleLabel.font = UIFont.asset(.regular, fontSize: .h4)
+        self.titleLabel.font = UIFont.asset(.regular, fontSize: .head4)
         self.titleLabel.textColor = UIColor.Asset.white
         self.subTitleLabel.font = UIFont.asset(.regular, fontSize: .body)
         self.subTitleLabel.textColor = UIColor.Asset.white
@@ -60,7 +59,6 @@ class VerifyMobileTableViewCell: UITableViewCell {
         self.codeView.capsule(color: UIColor.Asset.darkGray)
         self.mobileViewView.capsule(color: UIColor.Asset.darkGray)
         self.setupNextButton(isActive: false)
-        
         self.dropdownImage.image = UIImage.init(icon: .castcle(.dropDown), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.lightBlue)
         self.mobileTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
     }
@@ -68,13 +66,13 @@ class VerifyMobileTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     func configCell(countryCode: CountryCode) {
         self.codeLabel.text = "\(countryCode.dialCode) \(countryCode.code)"
     }
-        
+
     private func setupNextButton(isActive: Bool) {
-        self.confirmButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .h4)
+        self.confirmButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .head4)
         if isActive {
             self.confirmButton.setTitleColor(UIColor.Asset.white, for: .normal)
             self.confirmButton.setBackgroundImage(UIColor.Asset.lightBlue.toImage(), for: .normal)
@@ -85,7 +83,7 @@ class VerifyMobileTableViewCell: UITableViewCell {
             self.confirmButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.Asset.black)
         }
     }
-    
+
     @objc func textFieldDidChange(_ textField: UITextField) {
         let mobileNumber = (textField.text ?? "").substringWithRange(range: 20)
         if mobileNumber.isEmpty {
@@ -95,11 +93,11 @@ class VerifyMobileTableViewCell: UITableViewCell {
         }
         textField.text = mobileNumber
     }
-    
+
     @IBAction func selectContryCodeAction(_ sender: Any) {
         self.delegate?.didSelectCountryCode(self)
     }
-    
+
     @IBAction func confirmAction(_ sender: Any) {
         if !(self.mobileTextField.text?.isEmpty ?? true) {
             self.delegate?.didConfirm(self, mobileNumber: self.mobileTextField.text ?? "")

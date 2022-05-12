@@ -32,10 +32,9 @@ class AddPreferredLanguageTableViewCell: UITableViewCell {
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var addImage: UIImageView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         self.titleLabel.font = UIFont.asset(.regular, fontSize: .overline)
         self.titleLabel.textColor = UIColor.Asset.lightBlue
         self.addImage.image = UIImage.init(icon: .castcle(.addWithCircle), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.lightBlue)
@@ -44,8 +43,8 @@ class AddPreferredLanguageTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     func configCell() {
-        self.titleLabel.text = Localization.settingLanguage.selectAdditionalLanguagesAdd.text
+        self.titleLabel.text = Localization.SettingLanguage.selectAdditionalLanguagesAdd.text
     }
 }

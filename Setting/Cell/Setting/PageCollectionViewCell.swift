@@ -37,20 +37,19 @@ class PageCollectionViewCell: UICollectionViewCell {
     @IBOutlet var firstSocialIcon: UIImageView!
     @IBOutlet var seccondSocialIconView: UIView!
     @IBOutlet var seccondSocialIcon: UIImageView!
-    
+
     var providerList: [SocialType] = []
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+
     func configCell(userInfo: UserInfo?, page: Page?) {
         self.pageImage.isHidden = false
         self.addImage.isHidden = false
         self.firstSocialIconView.isHidden = true
         self.seccondSocialIconView.isHidden = true
         self.providerList = []
-        
         if let page = userInfo {
             if page.displayName == "NEW" {
                 self.pageImage.image = UIImage()
@@ -65,7 +64,7 @@ class PageCollectionViewCell: UICollectionViewCell {
                     self.providerList.append(.facebook)
                 }
                 self.mappingSocialIcon()
-                
+
                 if page.castcleId == UserManager.shared.rawCastcleId {
                     let url = URL(string: UserManager.shared.avatar)
                     self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
@@ -81,14 +80,12 @@ class PageCollectionViewCell: UICollectionViewCell {
             self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
             self.addImage.isHidden = true
             self.pageImage.circle(color: UIColor.Asset.white)
-            
             if page.isSyncTwitter {
                 self.providerList.append(.twitter)
             }
             if page.isSyncFacebook {
                 self.providerList.append(.facebook)
             }
-            
             self.mappingSocialIcon()
         } else {
             self.pageImage.isHidden = true
@@ -112,12 +109,12 @@ class PageCollectionViewCell: UICollectionViewCell {
             self.updateUiSeccondIcon(provider: self.providerList[1])
         }
     }
-    
+
     private func updateUiFirstIcon(provider: SocialType) {
         self.firstSocialIconView.capsule(color: provider.color, borderWidth: 1, borderColor: UIColor.Asset.white)
         self.firstSocialIcon.image = provider.icon
     }
-    
+
     private func updateUiSeccondIcon(provider: SocialType) {
         self.seccondSocialIconView.capsule(color: provider.color, borderWidth: 1, borderColor: UIColor.Asset.white)
         self.seccondSocialIcon.image = provider.icon

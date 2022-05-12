@@ -48,55 +48,55 @@ public struct SettingOpener {
         switch settingScene {
         case .setting:
             let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
-            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.setting)
-            return vc
+            let viewController = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.setting)
+            return viewController
         case .language:
             let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
-            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.language)
-            return vc
+            let viewController = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.language)
+            return viewController
         case .selectLanguage(let viewModel):
             let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
-            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.selectLanguage) as? SelectLanguageViewController
-            vc?.viewModel = viewModel
-            return vc ?? SelectLanguageViewController()
+            let viewController = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.selectLanguage) as? SelectLanguageViewController
+            viewController?.viewModel = viewModel
+            return viewController ?? SelectLanguageViewController()
         case .accountSetting:
             let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
-            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.accountSetting)
-            return vc
+            let viewController = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.accountSetting)
+            return viewController
         case .deleteAccount:
             let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
-            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.deleteAccount)
-            return vc
+            let viewController = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.deleteAccount)
+            return viewController
         case .deleteDetail:
             let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
-            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.deleteDetail)
-            return vc
+            let viewController = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.deleteDetail)
+            return viewController
         case .deleteSuccess:
             let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
-            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.deleteSuccess)
-            return vc
+            let viewController = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.deleteSuccess)
+            return viewController
         case .verifyMobile:
             let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
-            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.verifyMobile)
-            return vc
+            let viewController = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.verifyMobile)
+            return viewController
         case .verifyMobileOtp(let viewModel):
             let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
-            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.verifyMobileOtp) as? VerifyMobileOtpViewController
-            vc?.viewModel = viewModel
-            return vc ?? VerifyMobileOtpViewController()
+            let viewController = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.verifyMobileOtp) as? VerifyMobileOtpViewController
+            viewController?.viewModel = viewModel
+            return viewController ?? VerifyMobileOtpViewController()
         case .verifyMobileSuccess:
             let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
-            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.verifyMobileSuccess)
-            return vc
+            let viewController = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.verifyMobileSuccess)
+            return viewController
         case .registerPassword:
             let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
-            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.registerPassword)
-            return vc
+            let viewController = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.registerPassword)
+            return viewController
         case .registerPasswordOtp(let viewModel):
             let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
-            let vc = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.registerPasswordOtp) as? RegisterPasswordOtpViewController
-            vc?.viewModel = viewModel
-            return vc ?? RegisterPasswordOtpViewController()
+            let viewController = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.registerPasswordOtp) as? RegisterPasswordOtpViewController
+            viewController?.viewModel = viewModel
+            return viewController ?? RegisterPasswordOtpViewController()
         }
     }
 }

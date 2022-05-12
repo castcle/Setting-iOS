@@ -31,11 +31,9 @@ public final class SelectLanguageViewModel {
     var preferredLanguage: [Language] = []
     var isPreferredLanguage: Bool = false
     var selectLanguage: Language = Language()
-    
     var displayPreferredLanguage: [Language] = []
-    
     var language: [Language] = Language().setMock()
-    
+
     public init(preferredLanguage: [Language] = [], isPreferredLanguage: Bool = false) {
         self.preferredLanguage = preferredLanguage
         self.displayPreferredLanguage = preferredLanguage.filter { $0.isSelected == false }

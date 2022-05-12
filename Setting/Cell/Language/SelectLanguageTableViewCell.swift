@@ -33,7 +33,7 @@ class SelectLanguageTableViewCell: UITableViewCell {
     @IBOutlet var languageLabel: UILabel!
     @IBOutlet var checkImage: UIImageView!
     @IBOutlet var lineView: UIView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.languageLabel.font = UIFont.asset(.regular, fontSize: .body)
@@ -45,7 +45,7 @@ class SelectLanguageTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     func configCell(language: Language, isSelect: Bool) {
         self.languageLabel.text = language.display
         if isSelect {

@@ -36,32 +36,29 @@ class NotificationTableViewCell: UITableViewCell {
     @IBOutlet var baseView: UIView!
     @IBOutlet var badgeView: UIView!
     @IBOutlet var badgeLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.titleLabel.font = UIFont.asset(.regular, fontSize: .h3)
+        self.titleLabel.font = UIFont.asset(.regular, fontSize: .head3)
         self.titleLabel.textColor = UIColor.Asset.white
         self.amountLabel.font = UIFont.asset(.regular, fontSize: .overline)
         self.amountLabel.textColor = UIColor.Asset.lightBlue
-        
         self.iconImage.image = UIImage.init(icon: .castcle(.bell), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
         self.baseView?.custom(color: UIColor.Asset.darkGray, cornerRadius: 12)
-        
         self.badgeView?.capsule(color: UIColor.Asset.lightBlue, borderWidth: 1.0, borderColor: UIColor.Asset.darkGraphiteBlue)
         self.badgeLabel.font = UIFont.asset(.regular, fontSize: .custom(size: 10))
         self.badgeLabel.textColor = UIColor.Asset.darkGraphiteBlue
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     func configCell() {
-        self.titleLabel.text = Localization.setting.notification.text
+        self.titleLabel.text = Localization.Setting.notification.text
         if UserManager.shared.badgeCount > 0 {
             self.badgeView.isHidden = false
-            self.amountLabel.text =  "\(UserManager.shared.badgeCount) \(Localization.setting.notificationNew.text)"
+            self.amountLabel.text =  "\(UserManager.shared.badgeCount) \(Localization.Setting.notificationNew.text)"
             self.badgeLabel.text = "\(UserManager.shared.badgeCount)"
         } else {
             self.badgeView.isHidden = true

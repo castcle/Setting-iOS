@@ -36,7 +36,7 @@ class SettingSocialAccountTableViewCell: UITableViewCell {
     @IBOutlet var nextImage: UIImageView!
     @IBOutlet var socialView: UIView!
     @IBOutlet var socialImage: UIImageView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.titleLabel.font = UIFont.asset(.regular, fontSize: .body)
@@ -49,7 +49,7 @@ class SettingSocialAccountTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     func configCell(section: AccountSection, socialUser: SocialUser) {
         self.titleLabel.text = section.text
         if section == .linkFacebook {
@@ -62,7 +62,7 @@ class SettingSocialAccountTableViewCell: UITableViewCell {
             self.socialView.capsule(color: .clear)
             self.socialImage.image = UIImage()
         }
-        
+
         if socialUser.socialId.isEmpty {
             self.displayLabel.text = "Link"
             self.displayLabel.textColor = UIColor.Asset.gray
@@ -73,5 +73,4 @@ class SettingSocialAccountTableViewCell: UITableViewCell {
             self.nextImage.isHidden = true
         }
     }
-    
 }

@@ -30,19 +30,19 @@ import Networking
 import SwiftyJSON
 
 public final class VerifyMobileOtpViewModel {
-    
+
     var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
     var userRepository: UserRepository = UserRepositoryImpl()
     var authenRequest: AuthenRequest = AuthenRequest()
     var userRequest: UserRequest = UserRequest()
     let tokenHelper: TokenHelper = TokenHelper()
     var state: State = .none
-    
+
     public init(authenRequest: AuthenRequest = AuthenRequest()) {
         self.tokenHelper.delegate = self
         self.authenRequest = authenRequest
     }
-    
+
     func requestOtp() {
         self.state = .requestOtp
         self.authenticationRepository.requestOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
@@ -64,7 +64,7 @@ public final class VerifyMobileOtpViewModel {
             }
         }
     }
-    
+
     func verifyOtp() {
         self.state = .verifyOtp
         self.authenticationRepository.verificationOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
@@ -86,14 +86,14 @@ public final class VerifyMobileOtpViewModel {
             }
         }
     }
-    
+
     func updateMobile() {
         self.state = .updateMobile
         self.userRequest.objective = self.authenRequest.objective
         self.userRequest.refCode = self.authenRequest.payload.refCode
         self.userRequest.countryCode = self.authenRequest.payload.countryCode
         self.userRequest.mobileNumber = self.authenRequest.payload.mobileNumber
-        self.userRepository.updateMobile(userRequest: self.userRequest) { (success, response, isRefreshToken) in
+        self.userRepository.updateMobile(userRequest: self.userRequest) { (success, _, isRefreshToken) in
             if success {
                 self.getMe()
             } else {
@@ -105,10 +105,10 @@ public final class VerifyMobileOtpViewModel {
             }
         }
     }
-    
+
     func getMe() {
         self.state = .getMe
-        self.userRepository.getMe() { (success, response, isRefreshToken) in
+        self.userRepository.getMe { (success, response, isRefreshToken) in
             if success {
                 do {
                     let rawJson = try response.mapJSON()
@@ -127,10 +127,10 @@ public final class VerifyMobileOtpViewModel {
             }
         }
     }
-    
-    var didGetOtpFinish: (() -> ())?
-    var didVerifyOtpFinish: (() -> ())?
-    var didError: (() -> ())?
+
+    var didGetOtpFinish: (() -> Void)?
+    var didVerifyOtpFinish: (() -> Void)?
+    var didError: (() -> Void)?
 }
 
 extension VerifyMobileOtpViewModel: TokenHelperDelegate {

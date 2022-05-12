@@ -33,7 +33,7 @@ class SettingAccountTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var displayLabel: UILabel!
     @IBOutlet var nextImage: UIImageView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.titleLabel.font = UIFont.asset(.regular, fontSize: .body)
@@ -46,10 +46,9 @@ class SettingAccountTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     func configCell(section: AccountSection) {
         self.titleLabel.text = section.text
-        
         if section == .email {
             if UserManager.shared.isVerifiedEmail {
                 self.displayLabel.text = UserManager.shared.email

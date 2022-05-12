@@ -39,17 +39,17 @@ public enum AccountSection {
     case delete
     case linkFacebook
     case linkTwitter
-    
+
     public var text: String {
         switch self {
         case .email:
-            return Localization.settingAccount.email.text
+            return Localization.SettingAccount.email.text
         case .mobile:
             return "Mobile number"
         case .password:
-            return Localization.settingAccount.password.text
+            return Localization.SettingAccount.password.text
         case .delete:
-            return Localization.settingAccount.deleteAccount.text
+            return Localization.SettingAccount.deleteAccount.text
         case .linkFacebook:
             return "Facebook"
         case .linkTwitter:
@@ -59,7 +59,7 @@ public enum AccountSection {
 }
 
 public final class AccountSettingViewModel {
-    
+
     private var userRepository: UserRepository = UserRepositoryImpl()
     private var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
     let tokenHelper: TokenHelper = TokenHelper()
@@ -69,15 +69,14 @@ public final class AccountSettingViewModel {
     var state: State = .none
     var linkSocial: LinkSocial = LinkSocial()
     var authenRequest: AuthenRequest = AuthenRequest()
-    private let realm = try! Realm()
-    
+
     public init() {
         self.tokenHelper.delegate = self
     }
-    
+
     func getMe() {
         self.state = .getMe
-        self.userRepository.getMe() { (success, response, isRefreshToken) in
+        self.userRepository.getMe { (success, response, isRefreshToken) in
             if success {
                 do {
                     let rawJson = try response.mapJSON()
@@ -98,32 +97,29 @@ public final class AccountSettingViewModel {
             }
         }
     }
-    
+
     func connectSocial() {
         self.state = .connectSocial
         self.authenticationRepository.connectWithSocial(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
+                    let realm = try Realm()
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    
                     let accessToken = json[JsonKey.accessToken.rawValue].stringValue
                     let refreshToken = json[JsonKey.refreshToken.rawValue].stringValue
                     let profile = JSON(json[JsonKey.profile.rawValue].dictionaryValue)
                     let pages = json[JsonKey.pages.rawValue].arrayValue
                     let user = UserInfo(json: profile)
-
                     self.linkSocial = user.linkSocial
                     UserHelper.shared.updateLocalProfile(user: user)
-
-                    let pageRealm = self.realm.objects(Page.self)
-                    try! self.realm.write {
-                        self.realm.delete(pageRealm)
+                    let pageRealm = realm.objects(Page.self)
+                    try realm.write {
+                        realm.delete(pageRealm)
                     }
-
-                    pages.forEach { page in
-                        let pageInfo = UserInfo(json: page)
-                        try! self.realm.write {
+                    try realm.write {
+                        pages.forEach { page in
+                            let pageInfo = UserInfo(json: page)
                             let pageTemp = Page()
                             pageTemp.id = pageInfo.id
                             pageTemp.castcleId = pageInfo.castcleId
@@ -134,7 +130,7 @@ public final class AccountSettingViewModel {
                             pageTemp.official = pageInfo.verified.official
                             pageTemp.isSyncTwitter = !pageInfo.syncSocial.twitter.socialId.isEmpty
                             pageTemp.isSyncFacebook = !pageInfo.syncSocial.facebook.socialId.isEmpty
-                            self.realm.add(pageTemp, update: .modified)
+                            realm.add(pageTemp, update: .modified)
                         }
                     }
                     UserManager.shared.setAccessToken(token: accessToken)
@@ -152,7 +148,7 @@ public final class AccountSettingViewModel {
             }
         }
     }
-    
+
     func openSettingSection(section: AccountSection) {
         switch section {
         case .email:
@@ -173,10 +169,10 @@ public final class AccountSettingViewModel {
             return
         }
     }
-    
-    var didGetMeFinish: (() -> ())?
-    var didConnectSocialFinish: (() -> ())?
-    var didError: (() -> ())?
+
+    var didGetMeFinish: (() -> Void)?
+    var didConnectSocialFinish: (() -> Void)?
+    var didError: (() -> Void)?
 }
 
 extension AccountSettingViewModel: TokenHelperDelegate {

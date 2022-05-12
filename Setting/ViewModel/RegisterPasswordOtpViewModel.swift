@@ -34,12 +34,12 @@ public class RegisterPasswordOtpViewModel {
     var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
     let tokenHelper: TokenHelper = TokenHelper()
     private var state: State = .none
-    
+
     public init(authenRequest: AuthenRequest = AuthenRequest()) {
         self.authenRequest = authenRequest
         self.tokenHelper.delegate = self
     }
-    
+
     func verifyOtp() {
         self.state = .verifyOtp
         self.authenticationRepository.verificationOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
@@ -61,7 +61,7 @@ public class RegisterPasswordOtpViewModel {
             }
         }
     }
-    
+
     func requestOtp() {
         self.state = .requestOtp
         self.authenticationRepository.requestOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
@@ -83,10 +83,10 @@ public class RegisterPasswordOtpViewModel {
             }
         }
     }
-    
-    var didGetOtpFinish: (() -> ())?
-    var didVerifyOtpFinish: (() -> ())?
-    var didError: (() -> ())?
+
+    var didGetOtpFinish: (() -> Void)?
+    var didVerifyOtpFinish: (() -> Void)?
+    var didError: (() -> Void)?
 }
 
 extension RegisterPasswordOtpViewModel: TokenHelperDelegate {

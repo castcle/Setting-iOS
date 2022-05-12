@@ -34,20 +34,20 @@ import JGProgressHUD
 class RegisterPasswordOtpViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
-    
+
     var viewModel = RegisterPasswordOtpViewModel()
     let hud = JGProgressHUD()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.hideKeyboardWhenTapped()
         self.configureTableView()
-        
+
         self.viewModel.didGetOtpFinish = {
             self.hud.dismiss()
         }
-        
+
         self.viewModel.didVerifyOtpFinish = {
             self.hud.dismiss()
             self.viewModel.authenRequest.payload.objective = .forgotPassword
@@ -58,17 +58,17 @@ class RegisterPasswordOtpViewController: UIViewController {
             self.hud.dismiss()
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavBar()
         Defaults[.screenId] = ""
     }
-    
+
     func setupNavBar() {
         self.customNavigationBar(.secondary, title: "Password")
     }
-    
+
     func configureTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -82,11 +82,11 @@ extension RegisterPasswordOtpViewController: UITableViewDelegate, UITableViewDat
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.registerPasswordOtp, for: indexPath as IndexPath) as? RegisterPasswordOtpTableViewCell
         cell?.backgroundColor = UIColor.clear
@@ -102,7 +102,7 @@ extension RegisterPasswordOtpViewController: RegisterPasswordOtpTableViewCellDel
         self.hud.show(in: self.view)
         self.viewModel.requestOtp()
     }
-    
+
     func didConfirm(_ cell: RegisterPasswordOtpTableViewCell, pin: String) {
         self.hud.textLabel.text = "Verifying"
         self.hud.show(in: self.view)

@@ -33,40 +33,38 @@ import Defaults
 class LanguageViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
-    
+
     enum LanguageViewControllerSection: Int, CaseIterable {
         case language = 0
         case preferred
         case add
     }
-    
+
     var viewModel = LanguageViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.configureTableView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavBar()
         self.tableView.reloadData()
         Defaults[.screenId] = ""
     }
-    
+
     func setupNavBar() {
-        self.customNavigationBar(.secondary, title: Localization.settingLanguage.title.text)
+        self.customNavigationBar(.secondary, title: Localization.SettingLanguage.title.text)
     }
-    
+
     func configureTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.appLanguage, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.appLanguage)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.preferred, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.preferred)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.addPreferred, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.addPreferred)
-        
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 100
     }
@@ -76,7 +74,7 @@ extension LanguageViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return LanguageViewControllerSection.allCases.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == LanguageViewControllerSection.preferred.rawValue {
             return self.viewModel.preferredLanguage.filter { $0.isSelected == true }.count
@@ -84,7 +82,7 @@ extension LanguageViewController: UITableViewDelegate, UITableViewDataSource {
             return 1
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case LanguageViewControllerSection.language.rawValue:
@@ -107,22 +105,22 @@ extension LanguageViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == LanguageViewControllerSection.add.rawValue {
-            let vc = SettingOpener.open(.selectLanguage(SelectLanguageViewModel(preferredLanguage: self.viewModel.preferredLanguage, isPreferredLanguage: true))) as? SelectLanguageViewController
-            vc?.delegate = self
-            Utility.currentViewController().navigationController?.pushViewController(vc ?? SelectLanguageViewController(), animated: true)
+            let viewController = SettingOpener.open(.selectLanguage(SelectLanguageViewModel(preferredLanguage: self.viewModel.preferredLanguage, isPreferredLanguage: true))) as? SelectLanguageViewController
+            viewController?.delegate = self
+            Utility.currentViewController().navigationController?.pushViewController(viewController ?? SelectLanguageViewController(), animated: true)
         }
     }
 }
 
 extension LanguageViewController: SelectLanguageViewControllerDelegate {
     func selectPreferredLanguage(preferredLanguage: Language) {
-        for i in 0..<self.viewModel.preferredLanguage.count {
-            let language = self.viewModel.preferredLanguage[i]
+        for index in 0..<self.viewModel.preferredLanguage.count {
+            let language = self.viewModel.preferredLanguage[index]
             if language.code == preferredLanguage.code {
-                self.viewModel.preferredLanguage[i] = preferredLanguage
+                self.viewModel.preferredLanguage[index] = preferredLanguage
             }
         }
         self.tableView.reloadData()

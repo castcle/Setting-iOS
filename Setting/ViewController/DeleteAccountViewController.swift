@@ -34,33 +34,33 @@ class DeleteAccountViewController: UIViewController {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var detailLabel: UILabel!
     @IBOutlet var deleteAccountButton: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
-        self.titleLabel.font = UIFont.asset(.regular, fontSize: .h2)
+        self.titleLabel.font = UIFont.asset(.regular, fontSize: .head2)
         self.titleLabel.textColor = UIColor.Asset.white
         self.detailLabel.font = UIFont.asset(.regular, fontSize: .body)
         self.detailLabel.textColor = UIColor.Asset.white
-        self.deleteAccountButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .h4)
+        self.deleteAccountButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .head4)
         self.deleteAccountButton.setTitleColor(UIColor.Asset.white, for: .normal)
         self.deleteAccountButton.setBackgroundImage(UIColor.Asset.lightBlue.toImage(), for: .normal)
         self.deleteAccountButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.clear)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavBar()
-        self.titleLabel.text = "\(Localization.settingDeleteAccount.id.text) \(UserManager.shared.castcleId)?"
-        self.detailLabel.text = Localization.settingDeleteAccount.description.text
-        self.deleteAccountButton.setTitle(Localization.settingDeleteAccount.button.text, for: .normal)
+        self.titleLabel.text = "\(Localization.SettingDeleteAccount.id.text) \(UserManager.shared.castcleId)?"
+        self.detailLabel.text = Localization.SettingDeleteAccount.description.text
+        self.deleteAccountButton.setTitle(Localization.SettingDeleteAccount.button.text, for: .normal)
         Defaults[.screenId] = ""
     }
-    
+
     func setupNavBar() {
-        self.customNavigationBar(.secondary, title: Localization.settingDeleteAccount.title.text)
+        self.customNavigationBar(.secondary, title: Localization.SettingDeleteAccount.title.text)
     }
-    
+
     @IBAction func deleteAccountAction(_ sender: Any) {
         Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.deleteDetail), animated: true)
     }

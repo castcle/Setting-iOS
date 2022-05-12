@@ -35,22 +35,22 @@ class VerifyMobileSuccessViewController: UIViewController {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subTitleLabel: UILabel!
     @IBOutlet var confirmButton: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
-        self.headerLabel.font = UIFont.asset(.regular, fontSize: .h4)
+        self.headerLabel.font = UIFont.asset(.regular, fontSize: .head4)
         self.headerLabel.textColor = UIColor.Asset.white
-        self.titleLabel.font = UIFont.asset(.regular, fontSize: .h4)
+        self.titleLabel.font = UIFont.asset(.regular, fontSize: .head4)
         self.titleLabel.textColor = UIColor.Asset.white
         self.subTitleLabel.font = UIFont.asset(.regular, fontSize: .body)
         self.subTitleLabel.textColor = UIColor.Asset.white
-        self.confirmButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .h4)
+        self.confirmButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .head4)
         self.confirmButton.setTitleColor(UIColor.Asset.white, for: .normal)
         self.confirmButton.setBackgroundImage(UIColor.Asset.lightBlue.toImage(), for: .normal)
         self.confirmButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.clear)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -61,7 +61,7 @@ class VerifyMobileSuccessViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
+
     @IBAction func confirmAction(_ sender: Any) {
         let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
         self.navigationController!.popToViewController(viewControllers[viewControllers.count - 4], animated: true)

@@ -41,12 +41,12 @@ public struct SettingNibVars {
         public static let registerPassword = "RegisterPasswordViewController"
         public static let registerPasswordOtp = "RegisterPasswordOtpViewController"
     }
-    
+
     // MARK: - View
     public struct Storyboard {
         public static let setting = "Setting"
     }
-    
+
     // MARK: - TableViewCell
     public struct TableViewCell {
         public static let notification = "NotificationTableViewCell"
@@ -69,7 +69,7 @@ public struct SettingNibVars {
         public static let registerPassword = "RegisterPasswordTableViewCell"
         public static let registerPasswordOtp = "RegisterPasswordOtpTableViewCell"
     }
-    
+
     // MARK: - CollectionViewCell
     public struct CollectionViewCell {
         public static let page = "PageCollectionViewCell"

@@ -36,7 +36,7 @@ import RealmSwift
 import Ads
 import Farming
 
-public protocol SettingViewModelDelegate {
+public protocol SettingViewModelDelegate: AnyObject {
     func didSignOutFinish()
     func didGetProfileFinish()
     func didGetMyPageFinish()
@@ -54,7 +54,6 @@ public final class SettingViewModel {
     let aboutSection: [SettingSection] = []
     var state: State = .none
     var userInfo: UserInfo = UserInfo()
-    private let realm = try! Realm()
     var accountSection: [SettingSection] {
         // MARK: - For 1.4.0
 //        let pageRealm = self.realm.objects(Page.self)
@@ -65,11 +64,11 @@ public final class SettingViewModel {
 //        }
         return [.profile, .aboutUs]
     }
-    
+
     public init() {
         self.tokenHelper.delegate = self
     }
-    
+
     func openSettingSection(settingSection: SettingSection) {
         switch settingSection {
         case .profile:
@@ -88,27 +87,32 @@ public final class SettingViewModel {
             Utility.currentViewController().navigationController?.pushViewController(FarmingOpener.open(.contentFarming), animated: true)
         }
     }
-    
+
     func logout() {
         self.unregisterNotificationToken()
         self.authenticationRepository.guestLogin(uuid: Defaults[.deviceUuid]) { (success) in
             if success {
                 UserHelper.shared.clearUserData()
                 UserHelper.shared.clearSeenContent()
-                let pageRealm = self.realm.objects(Page.self)
-                try! self.realm.write {
-                    self.realm.delete(pageRealm)
+                do {
+                    let realm = try Realm()
+                    let pageRealm = realm.objects(Page.self)
+                    try realm.write {
+                        realm.delete(pageRealm)
+                    }
+                } catch let error as NSError {
+                    print(error)
                 }
                 self.delegate?.didSignOutFinish()
             }
         }
     }
-    
+
     private func unregisterNotificationToken() {
         self.state = .unregisterToken
         self.notificationRequest.uuid = Defaults[.deviceUuid]
         self.notificationRequest.firebaseToken = Defaults[.firebaseToken]
-        self.notificationRepository.unregisterToken(notificationRequest: self.notificationRequest) { (success, response, isRefreshToken) in
+        self.notificationRepository.unregisterToken(notificationRequest: self.notificationRequest) { (success, _, isRefreshToken) in
             if !success {
                 if isRefreshToken {
                     self.tokenHelper.refreshToken()
@@ -116,10 +120,10 @@ public final class SettingViewModel {
             }
         }
     }
-    
+
     func getMe() {
         self.state = .getMe
-        self.userRepository.getMe() { (success, response, isRefreshToken) in
+        self.userRepository.getMe { (success, response, isRefreshToken) in
             if success {
                 do {
                     let rawJson = try response.mapJSON()
@@ -136,24 +140,25 @@ public final class SettingViewModel {
             }
         }
     }
-    
+
     func getMyPage() {
         self.state = .getMyPage
-        self.pageRepository.getMyPage() { (success, response, isRefreshToken) in
+        self.pageRepository.getMyPage { (success, response, isRefreshToken) in
             if success {
                 self.state = .none
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
                     let pages = json[JsonKey.payload.rawValue].arrayValue
-                    let pageRealm = self.realm.objects(Page.self)
-                    try! self.realm.write {
-                        self.realm.delete(pageRealm)
+
+                    let realm = try Realm()
+                    let pageRealm = realm.objects(Page.self)
+                    try realm.write {
+                        realm.delete(pageRealm)
                     }
-                    
-                    pages.forEach { page in
-                        let pageInfo = UserInfo(json: page)
-                        try! self.realm.write {
+                    try realm.write {
+                        pages.forEach { page in
+                            let pageInfo = UserInfo(json: page)
                             let pageTemp = Page()
                             pageTemp.id = pageInfo.id
                             pageTemp.castcleId = pageInfo.castcleId
@@ -164,7 +169,7 @@ public final class SettingViewModel {
                             pageTemp.official = pageInfo.verified.official
                             pageTemp.isSyncTwitter = !pageInfo.syncSocial.twitter.socialId.isEmpty
                             pageTemp.isSyncFacebook = !pageInfo.syncSocial.facebook.socialId.isEmpty
-                            self.realm.add(pageTemp, update: .modified)
+                            realm.add(pageTemp, update: .modified)
                         }
                     }
                     self.delegate?.didGetMyPageFinish()

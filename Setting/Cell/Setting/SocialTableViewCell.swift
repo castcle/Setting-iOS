@@ -37,10 +37,9 @@ class SocialTableViewCell: UITableViewCell {
     @IBOutlet var telegramButton: UIButton!
     @IBOutlet var githubButton: UIButton!
     @IBOutlet var discordButton: UIButton!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         self.facebookButton.setImage(UIImage.init(icon: .castcle(.facebook), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.lightGray).withRenderingMode(.alwaysOriginal), for: .normal)
         self.twitterButton.setImage(UIImage.init(icon: .castcle(.twitter), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.lightGray).withRenderingMode(.alwaysOriginal), for: .normal)
         self.mediumButton.setImage(UIImage.init(icon: .castcle(.medium), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.lightGray).withRenderingMode(.alwaysOriginal), for: .normal)
@@ -52,31 +51,31 @@ class SocialTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     @IBAction func facebookAction(_ sender: Any) {
         self.openWebView(urlString: "https://facebook.com/castcle")
     }
-    
+
     @IBAction func twitterAction(_ sender: Any) {
         self.openWebView(urlString: "https://twitter.com/casttoken")
     }
-    
+
     @IBAction func mediumAction(_ sender: Any) {
         self.openWebView(urlString: "https://medium/castcle")
     }
-    
+
     @IBAction func telegramAction(_ sender: Any) {
         self.openWebView(urlString: "https://t.me/castcle")
     }
-    
+
     @IBAction func githubAction(_ sender: Any) {
         self.openWebView(urlString: "https://github.com/castcle")
     }
-    
+
     @IBAction func discordAction(_ sender: Any) {
         self.openWebView(urlString: "https://discord.gg/UdeFta52v9")
     }
-    
+
     private func openWebView(urlString: String) {
         Utility.currentViewController().navigationController?.pushViewController(ComponentOpener.open(.internalWebView(URL(string: urlString)!)), animated: true)
     }
