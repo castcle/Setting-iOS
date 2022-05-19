@@ -35,6 +35,7 @@ import SwiftyJSON
 import RealmSwift
 import Ads
 import Farming
+import FirebaseRemoteConfig
 
 public protocol SettingViewModelDelegate: AnyObject {
     func didSignOutFinish()
@@ -54,19 +55,27 @@ public final class SettingViewModel {
     let aboutSection: [SettingSection] = []
     var state: State = .none
     var userInfo: UserInfo = UserInfo()
-    var accountSection: [SettingSection] {
-        // MARK: - For 1.4.0
-//        let pageRealm = self.realm.objects(Page.self)
-//        if pageRealm.count > 0 {
-//            return [.profile, .ads, .farming, .languang, .aboutUs]
-//        } else {
-//            return [.profile, .farming, .languang, .aboutUs]
-//        }
-        return [.profile, .aboutUs]
-    }
+    var accountSection: [SettingSection] = []
 
     public init() {
         self.tokenHelper.delegate = self
+        var menu: [SettingSection] = [.profile]
+        do {
+            let realm = try Realm()
+            let pageRealm = realm.objects(Page.self)
+            if pageRealm.count > 0 {
+                let adsEnable = RemoteConfig.remoteConfig().configValue(forKey: "ads_enable").boolValue
+                if adsEnable {
+                    menu.append(.ads)
+                }
+            }
+        } catch {}
+        let farmingEnable = RemoteConfig.remoteConfig().configValue(forKey: "farming_enable").boolValue
+        if farmingEnable {
+            menu.append(.farming)
+        }
+        menu.append(.aboutUs)
+        self.accountSection = menu
     }
 
     func openSettingSection(settingSection: SettingSection) {
