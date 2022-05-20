@@ -70,8 +70,7 @@ public final class SettingViewModel {
                 }
             }
         } catch {}
-        let farmingEnable = RemoteConfig.remoteConfig().configValue(forKey: "farming_enable").boolValue
-        if farmingEnable {
+        if Defaults[.isFarmingEnable] {
             menu.append(.farming)
         }
         menu.append(.aboutUs)
