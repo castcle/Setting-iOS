@@ -158,7 +158,6 @@ public final class SettingViewModel {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
                     let pages = json[JsonKey.payload.rawValue].arrayValue
-
                     let realm = try Realm()
                     let pageRealm = realm.objects(Page.self)
                     try realm.write {
