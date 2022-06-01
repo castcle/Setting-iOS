@@ -32,10 +32,10 @@ class ConfirmDeleteHeaderTableViewCell: UITableViewCell {
 
     @IBOutlet var headerLabel: UILabel!
     @IBOutlet var detailLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.headerLabel.font = UIFont.asset(.regular, fontSize: .h2)
+        self.headerLabel.font = UIFont.asset(.regular, fontSize: .head2)
         self.headerLabel.textColor = UIColor.Asset.white
         self.detailLabel.font = UIFont.asset(.regular, fontSize: .body)
         self.detailLabel.textColor = UIColor.Asset.white
@@ -44,9 +44,9 @@ class ConfirmDeleteHeaderTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     func cogfigCell() {
-        self.headerLabel.text = Localization.settingDeleteConfirm.headline.text
-        self.detailLabel.text = Localization.settingDeleteConfirm.description.text
+        self.headerLabel.text = Localization.SettingDeleteConfirm.headline.text
+        self.detailLabel.text = Localization.SettingDeleteConfirm.description.text
     }
 }

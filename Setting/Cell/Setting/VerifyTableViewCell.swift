@@ -34,14 +34,13 @@ class VerifyTableViewCell: UITableViewCell {
     @IBOutlet var subtitleLabel: UILabel!
     @IBOutlet var iconImage: UIImageView!
     @IBOutlet var baseView: UIView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.titleLabel.font = UIFont.asset(.regular, fontSize: .h3)
+        self.titleLabel.font = UIFont.asset(.regular, fontSize: .head3)
         self.titleLabel.textColor = UIColor.Asset.white
         self.subtitleLabel.font = UIFont.asset(.regular, fontSize: .overline)
         self.subtitleLabel.textColor = UIColor.Asset.white
-        
         self.iconImage.image = UIImage.init(icon: .castcle(.remind), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
         self.baseView?.custom(color: UIColor.Asset.denger, cornerRadius: 12)
     }
@@ -49,9 +48,9 @@ class VerifyTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     func configCell() {
-        self.titleLabel.text = Localization.setting.verifyEmail.text
-        self.subtitleLabel.text = Localization.setting.plaseVerifyEmail.text
+        self.titleLabel.text = Localization.Setting.verifyEmail.text
+        self.subtitleLabel.text = Localization.Setting.plaseVerifyEmail.text
     }
 }

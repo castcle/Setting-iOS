@@ -34,26 +34,28 @@ import JGProgressHUD
 class DeleteAccountDetailViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
-    
-    private let realm = try! Realm()
+
     var pages: Results<Page>!
     let viewModel = DeleteAccountViewModel()
     let hud = JGProgressHUD()
-    
+
     enum DeleteAccountDetailViewControllerSection: Int, CaseIterable {
         case header = 0
         case user
         case page
         case password
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.hideKeyboardWhenTapped()
         self.configureTableView()
-        self.pages = self.realm.objects(Page.self).sorted(byKeyPath: "id")
-        
+        do {
+            let realm = try Realm()
+            self.pages = realm.objects(Page.self).sorted(byKeyPath: "id")
+        } catch {}
+
         self.viewModel.didDeleteAccountFinish = {
             self.hud.dismiss()
             Defaults[.startLoadFeed] = true
@@ -64,18 +66,18 @@ class DeleteAccountDetailViewController: UIViewController {
             self.hud.dismiss()
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavBar()
         Defaults[.screenId] = ""
         self.hud.textLabel.text = "Deleting"
     }
-    
+
     func setupNavBar() {
-        self.customNavigationBar(.secondary, title: Localization.settingDeleteConfirm.title.text)
+        self.customNavigationBar(.secondary, title: Localization.SettingDeleteConfirm.title.text)
     }
-    
+
     func configureTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -91,7 +93,7 @@ extension DeleteAccountDetailViewController: UITableViewDelegate, UITableViewDat
     func numberOfSections(in tableView: UITableView) -> Int {
         return DeleteAccountDetailViewControllerSection.allCases.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == DeleteAccountDetailViewControllerSection.page.rawValue {
             return self.pages.count
@@ -99,7 +101,7 @@ extension DeleteAccountDetailViewController: UITableViewDelegate, UITableViewDat
             return 1
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case DeleteAccountDetailViewControllerSection.header.rawValue:
@@ -110,13 +112,13 @@ extension DeleteAccountDetailViewController: UITableViewDelegate, UITableViewDat
         case DeleteAccountDetailViewControllerSection.user.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.accountList, for: indexPath as IndexPath) as? AccountListTableViewCell
             cell?.backgroundColor = UIColor.clear
-            cell?.configCell(title: UserManager.shared.displayName, type: Localization.settingDeleteConfirm.profile.text, avatar: UserManager.shared.avatar)
+            cell?.configCell(title: UserManager.shared.displayName, type: Localization.SettingDeleteConfirm.profile.text, avatar: UserManager.shared.avatar)
             return cell ?? AccountListTableViewCell()
         case DeleteAccountDetailViewControllerSection.page.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.accountList, for: indexPath as IndexPath) as? AccountListTableViewCell
             let page: Page = self.pages[indexPath.row]
             cell?.backgroundColor = UIColor.clear
-            cell?.configCell(title: page.displayName, type: Localization.settingDeleteConfirm.page.text, avatar: page.avatar)
+            cell?.configCell(title: page.displayName, type: Localization.SettingDeleteConfirm.page.text, avatar: page.avatar)
             return cell ?? AccountListTableViewCell()
         case DeleteAccountDetailViewControllerSection.password.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.password, for: indexPath as IndexPath) as? DeleteAccountPasswordTableViewCell

@@ -37,9 +37,9 @@ class AppLanguageTableViewCell: UITableViewCell {
     @IBOutlet var preferedLanguageLabel: UILabel!
     @IBOutlet var preferedLanguageDescLabel: UILabel!
     @IBOutlet var nextImage: UIImageView!
-    
+
     private var viewModel = LanguageViewModel()
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.appLanguageLabel.font = UIFont.asset(.regular, fontSize: .body)
@@ -54,20 +54,20 @@ class AppLanguageTableViewCell: UITableViewCell {
         self.preferedLanguageDescLabel.textColor = UIColor.Asset.gray
         self.nextImage.image = UIImage.init(icon: .castcle(.next), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.gray)
     }
-    
+
     func configCell(viewModel: LanguageViewModel) {
         self.viewModel = viewModel
         self.languageLabel.text = Defaults[.appLanguageDisplay]
-        self.appLanguageLabel.text = Localization.settingLanguage.displayLanguage.text
-        self.appLanguageDescLabel.text = Localization.settingLanguage.displayLanguageDescription.text
-        self.preferedLanguageLabel.text = Localization.settingLanguage.selectAdditionalLanguages.text
-        self.preferedLanguageDescLabel.text = Localization.settingLanguage.selectAdditionalLanguagesDescription.text
+        self.appLanguageLabel.text = Localization.SettingLanguage.displayLanguage.text
+        self.appLanguageDescLabel.text = Localization.SettingLanguage.displayLanguageDescription.text
+        self.preferedLanguageLabel.text = Localization.SettingLanguage.selectAdditionalLanguages.text
+        self.preferedLanguageDescLabel.text = Localization.SettingLanguage.selectAdditionalLanguagesDescription.text
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     @IBAction func selectLanguageAction(_ sender: Any) {
         Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.selectLanguage(SelectLanguageViewModel(preferredLanguage: self.viewModel.preferredLanguage, isPreferredLanguage: false))), animated: true)
     }

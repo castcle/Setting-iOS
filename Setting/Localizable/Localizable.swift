@@ -28,9 +28,9 @@
 import Core
 
 extension Localization {
-    
+
     // MARK: - Setting
-    public enum setting {
+    public enum Setting {
         case title
         case notification
         case notificationNew
@@ -49,7 +49,7 @@ extension Localization {
         case version
         case termOfService
         case privacy
-        
+
         public var text: String {
             switch self {
             case .title:
@@ -91,16 +91,16 @@ extension Localization {
             }
         }
     }
-    
+
     // MARK: - Setting (Language)
-    public enum settingLanguage {
+    public enum SettingLanguage {
         case title
         case displayLanguage
         case displayLanguageDescription
         case selectAdditionalLanguages
         case selectAdditionalLanguagesDescription
         case selectAdditionalLanguagesAdd
-        
+
         public var text: String {
             switch self {
             case .title:
@@ -118,11 +118,11 @@ extension Localization {
             }
         }
     }
-    
+
     // MARK: - Setting (App Language)
-    public enum settingDisplayLanguage {
+    public enum SettingDisplayLanguage {
         case title
-        
+
         public var text: String {
             switch self {
             case .title:
@@ -132,14 +132,14 @@ extension Localization {
     }
 
     // MARK: - Setting (Account)
-    public enum settingAccount {
+    public enum SettingAccount {
         case title
         case sectionAccountSetting
         case email
         case password
         case sectionAccountControl
         case deleteAccount
-        
+
         public var text: String {
             switch self {
             case .title:
@@ -159,12 +159,12 @@ extension Localization {
     }
 
     // MARK: - Setting (Delete Account)
-    public enum settingDeleteAccount {
+    public enum SettingDeleteAccount {
         case title
         case id
         case description
         case button
-        
+
         public var text: String {
             switch self {
             case .title:
@@ -180,7 +180,7 @@ extension Localization {
     }
 
     // MARK: - Setting (Delete Confirm)
-    public enum settingDeleteConfirm {
+    public enum SettingDeleteConfirm {
         case title
         case headline
         case description
@@ -188,7 +188,7 @@ extension Localization {
         case page
         case password
         case button
-        
+
         public var text: String {
             switch self {
             case .title:
@@ -210,10 +210,10 @@ extension Localization {
     }
 
     // MARK: - Setting (Delete Success)
-    public enum settingDeleteSuccess {
+    public enum SettingDeleteSuccess {
         case description
         case button
-        
+
         public var text: String {
             switch self {
             case .description:

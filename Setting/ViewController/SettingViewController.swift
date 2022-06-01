@@ -34,7 +34,7 @@ import Defaults
 class SettingViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
-    
+
     enum SettingViewControllerSection: Int, CaseIterable {
         case notification = 0
         case verify
@@ -45,16 +45,16 @@ class SettingViewController: UIViewController {
         case other
         case social
     }
-    
+
     var viewModel = SettingViewModel()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.configureTableView()
         self.viewModel.delegate = self
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavBar()
@@ -63,11 +63,11 @@ class SettingViewController: UIViewController {
         self.viewModel.getMe()
         self.viewModel.getMyPage()
     }
-    
+
     func setupNavBar() {
-        self.customNavigationBar(.primary, title: Localization.setting.title.text, leftBarButton: .back)
+        self.customNavigationBar(.primary, title: Localization.Setting.title.text, leftBarButton: .back)
     }
-    
+
     func configureTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -86,7 +86,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return SettingViewControllerSection.allCases.count
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case SettingViewControllerSection.verify.rawValue:
@@ -101,7 +101,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             return 1
         }
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == SettingViewControllerSection.account.rawValue {
             return (self.viewModel.accountSection.count > 0 ? 15 : 0)
@@ -119,14 +119,14 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 
         switch section {
         case SettingViewControllerSection.account.rawValue:
-            label.text = Localization.setting.accountSettings.text
+            label.text = Localization.Setting.accountSettings.text
         default:
             label.text = ""
         }
         headerView.addSubview(label)
         return headerView
     }
-    
+
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == SettingViewControllerSection.profile.rawValue {
             return 1
@@ -134,13 +134,13 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             return 0
         }
     }
-    
+
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 1))
         headerView.backgroundColor = UIColor.Asset.black
         return headerView
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case SettingViewControllerSection.notification.rawValue:
@@ -186,7 +186,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case SettingViewControllerSection.notification.rawValue:
@@ -209,13 +209,13 @@ extension SettingViewController: SettingViewModelDelegate {
     func didSignOutFinish() {
         // Not thing
     }
-    
+
     func didGetProfileFinish() {
         UIView.animate(withDuration: 0.35, delay: 0, options: [.curveLinear], animations: {
             self.tableView.reloadData()
         })
     }
-    
+
     func didGetMyPageFinish() {
         UIView.animate(withDuration: 0.35, delay: 0, options: [.curveLinear], animations: {
             self.tableView.reloadData()

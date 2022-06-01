@@ -33,7 +33,7 @@ class SettingTableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var iconImage: UIImageView!
     @IBOutlet var nextImage: UIImageView!
-    
+
     var settingSection: SettingSection? {
         didSet {
             guard let section = self.settingSection else { return }
@@ -41,7 +41,7 @@ class SettingTableViewCell: UITableViewCell {
             self.iconImage.image = section.image
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.titleLabel.font = UIFont.asset(.regular, fontSize: .body)
@@ -52,5 +52,4 @@ class SettingTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
 }

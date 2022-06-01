@@ -29,7 +29,7 @@ import UIKit
 import Core
 import JVFloatLabeledTextField
 
-protocol RegisterPasswordTableViewCellDelegate {
+protocol RegisterPasswordTableViewCellDelegate: AnyObject {
     func didConfirm(_ cell: RegisterPasswordTableViewCell, email: String)
 }
 
@@ -50,7 +50,7 @@ class RegisterPasswordTableViewCell: UITableViewCell {
         }
     }
     @IBOutlet var confirmButton: UIButton!
-    
+
     var delegate: RegisterPasswordTableViewCellDelegate?
     private var isCanContinue: Bool {
         if self.emailTextField.text!.isEmpty {
@@ -59,12 +59,12 @@ class RegisterPasswordTableViewCell: UITableViewCell {
             return true
         }
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.emailView.custom(color: UIColor.Asset.darkGray, cornerRadius: 10, borderWidth: 1, borderColor: UIColor.Asset.black)
         self.setupContinueButton(isActive: self.isCanContinue)
-        self.headlineLabel.font = UIFont.asset(.regular, fontSize: .h2)
+        self.headlineLabel.font = UIFont.asset(.regular, fontSize: .head2)
         self.headlineLabel.textColor = UIColor.Asset.white
         self.detailLabel.font = UIFont.asset(.regular, fontSize: .body)
         self.detailLabel.textColor = UIColor.Asset.white
@@ -74,7 +74,7 @@ class RegisterPasswordTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     func configCell() {
         if UserManager.shared.email.isEmpty {
             self.emailTextField.isEnabled = true
@@ -84,9 +84,9 @@ class RegisterPasswordTableViewCell: UITableViewCell {
         }
         self.setupContinueButton(isActive: self.isCanContinue)
     }
-    
+
     private func setupContinueButton(isActive: Bool) {
-        self.confirmButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .h4)
+        self.confirmButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .head4)
         if isActive {
             self.confirmButton.setTitleColor(UIColor.Asset.white, for: .normal)
             self.confirmButton.setBackgroundImage(UIColor.Asset.lightBlue.toImage(), for: .normal)
@@ -97,16 +97,16 @@ class RegisterPasswordTableViewCell: UITableViewCell {
             self.confirmButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.Asset.black)
         }
     }
-    
+
     @objc func textFieldDidChange(_ textField: UITextField) {
         self.setupContinueButton(isActive: self.isCanContinue)
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-    
+
     @IBAction func confirmAction(_ sender: Any) {
         self.endEditing(true)
         if self.isCanContinue {

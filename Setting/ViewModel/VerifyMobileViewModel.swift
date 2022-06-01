@@ -31,16 +31,16 @@ import SwiftyJSON
 import RealmSwift
 
 public final class VerifyMobileViewModel {
-    
+
     var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
     var authenRequest: AuthenRequest = AuthenRequest()
     let tokenHelper: TokenHelper = TokenHelper()
     var countryCode: CountryCode = CountryCode().initCustom(code: "TH", dialCode: "+66", name: "Thailand")
-    
+
     public init() {
         self.tokenHelper.delegate = self
     }
-    
+
     func requestOtp() {
         self.authenRequest.channel = .mobile
         self.authenRequest.objective = .verifyMobile
@@ -50,7 +50,7 @@ public final class VerifyMobileViewModel {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    self.authenRequest.payload.refCode = json[AuthenticationApiKey.refCode.rawValue].stringValue
+                    self.authenRequest.payload.refCode = json[JsonKey.refCode.rawValue].stringValue
                     self.didGetOtpFinish?()
                 } catch {
                     self.didError?()
@@ -64,9 +64,9 @@ public final class VerifyMobileViewModel {
             }
         }
     }
-    
-    var didGetOtpFinish: (() -> ())?
-    var didError: (() -> ())?
+
+    var didGetOtpFinish: (() -> Void)?
+    var didError: (() -> Void)?
 }
 
 extension VerifyMobileViewModel: TokenHelperDelegate {

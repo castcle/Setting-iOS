@@ -33,40 +33,40 @@ import JGProgressHUD
 class VerifyMobileOtpViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
-    
+
     var viewModel = VerifyMobileOtpViewModel()
     let hud = JGProgressHUD()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.hideKeyboardWhenTapped()
         self.configureTableView()
-        
+
         self.viewModel.didGetOtpFinish = {
             self.hud.dismiss()
         }
-        
+
         self.viewModel.didVerifyOtpFinish = {
             self.hud.dismiss()
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.verifyMobileSuccess), animated: true)
         }
-        
+
         self.viewModel.didError = {
             self.hud.dismiss()
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavBar()
         Defaults[.screenId] = ""
     }
-    
+
     func setupNavBar() {
         self.customNavigationBar(.secondary, title: "Verify mobile number")
     }
-    
+
     func configureTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -80,11 +80,11 @@ extension VerifyMobileOtpViewController: UITableViewDelegate, UITableViewDataSou
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.verifyMobileOtp, for: indexPath as IndexPath) as? VerifyMobileOtpTableViewCell
         cell?.backgroundColor = UIColor.clear
@@ -100,7 +100,7 @@ extension VerifyMobileOtpViewController: VerifyMobileOtpTableViewCellDelegate {
         self.hud.show(in: self.view)
         self.viewModel.requestOtp()
     }
-    
+
     func didConfirm(_ cell: VerifyMobileOtpTableViewCell, pin: String) {
         self.hud.textLabel.text = "Verifying"
         self.hud.show(in: self.view)

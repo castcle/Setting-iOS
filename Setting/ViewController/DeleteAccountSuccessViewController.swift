@@ -34,25 +34,24 @@ class DeleteAccountSuccessViewController: UIViewController {
     @IBOutlet var successImage: UIImageView!
     @IBOutlet var headlineLabel: UILabel!
     @IBOutlet var homeButton: UIButton!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
-        self.headlineLabel.font = UIFont.asset(.regular, fontSize: .h3)
+        self.headlineLabel.font = UIFont.asset(.regular, fontSize: .head3)
         self.headlineLabel.textColor = UIColor.Asset.white
-        self.homeButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .h4)
+        self.homeButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .head4)
         self.homeButton.setTitleColor(UIColor.Asset.white, for: .normal)
         self.homeButton.setBackgroundImage(UIColor.Asset.lightBlue.toImage(), for: .normal)
         self.homeButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.clear)
-        
         self.successImage.image = UIImage.init(icon: .castcle(.addWithCheckmark), size: CGSize(width: 100, height: 100), textColor: UIColor.Asset.lightBlue)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        self.headlineLabel.text = Localization.settingDeleteSuccess.description.text
-        self.homeButton.setTitle(Localization.settingDeleteSuccess.button.text, for: .normal)
+        self.headlineLabel.text = Localization.SettingDeleteSuccess.description.text
+        self.homeButton.setTitle(Localization.SettingDeleteSuccess.button.text, for: .normal)
         Defaults[.screenId] = ""
     }
 
@@ -60,7 +59,7 @@ class DeleteAccountSuccessViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
+
     @IBAction func homeAction(_ sender: Any) {
         self.navigationController?.popToRootViewController(animated: true)
     }

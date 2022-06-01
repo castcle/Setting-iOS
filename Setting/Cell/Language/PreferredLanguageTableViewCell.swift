@@ -27,7 +27,7 @@
 
 import UIKit
 
-protocol PreferredLanguageTableViewCellDelegate {
+protocol PreferredLanguageTableViewCellDelegate: AnyObject {
     func didDelete(_ cell: PreferredLanguageTableViewCell)
 }
 
@@ -36,9 +36,9 @@ class PreferredLanguageTableViewCell: UITableViewCell {
     @IBOutlet var languageLabel: UILabel!
     @IBOutlet var deleteButton: UIButton!
     @IBOutlet var nextImage: UIImageView!
-    
+
     var delegate: PreferredLanguageTableViewCellDelegate?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.languageLabel.font = UIFont.asset(.regular, fontSize: .overline)
@@ -51,7 +51,7 @@ class PreferredLanguageTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     @IBAction func deleteAction(_ sender: Any) {
         self.delegate?.didDelete(self)
     }

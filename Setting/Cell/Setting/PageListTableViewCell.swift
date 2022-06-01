@@ -37,19 +37,17 @@ class PageListTableViewCell: UITableViewCell {
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var newPageButton: UIButton!
     @IBOutlet var titleLabel: UILabel!
-    
-    private let realm = try! Realm()
+
     var pages: Results<Page>!
     var userInfo: UserInfo = UserInfo()
     var newPage: UserInfo = UserInfo()
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.collectionView.register(UINib(nibName: SettingNibVars.CollectionViewCell.page, bundle: ConfigBundle.setting), forCellWithReuseIdentifier: SettingNibVars.CollectionViewCell.page)
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         self.collectionView.backgroundColor = UIColor.clear
-        
         self.titleLabel.font = UIFont.asset(.regular, fontSize: .body)
         self.titleLabel.textColor = UIColor.Asset.white
         self.newPageButton.titleLabel?.font = UIFont.asset(.bold, fontSize: .body)
@@ -59,14 +57,16 @@ class PageListTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     func configCell(userInfo: UserInfo) {
         self.userInfo = userInfo
-        self.titleLabel.text = Localization.setting.goTo.text
-        self.newPageButton.setTitle("+ \(Localization.setting.newPage.text)", for: .normal)
-
+        self.titleLabel.text = Localization.Setting.goTo.text
+        self.newPageButton.setTitle("+ \(Localization.Setting.newPage.text)", for: .normal)
         if UserManager.shared.isVerified {
-            self.pages = self.realm.objects(Page.self).sorted(byKeyPath: "id")
+            do {
+              let realm = try Realm()
+                self.pages = realm.objects(Page.self).sorted(byKeyPath: "id")
+            } catch {}
             self.newPageButton.isHidden = false
             self.newPage = UserInfo(displayName: "NEW", avatar: "", castcleId: "")
         } else {
@@ -74,7 +74,7 @@ class PageListTableViewCell: UITableViewCell {
         }
         self.collectionView.reloadData()
     }
-    
+
     @IBAction func createPageAction(_ sender: Any) {
         Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.newPageWithSocial), animated: true)
     }
@@ -88,7 +88,7 @@ extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDel
             return 1
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingNibVars.CollectionViewCell.page, for: indexPath as IndexPath) as? PageCollectionViewCell
@@ -105,7 +105,7 @@ extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDel
             return cell ?? UICollectionViewCell()
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             ProfileOpener.openProfileDetail(UserManager.shared.rawCastcleId, displayName: "")

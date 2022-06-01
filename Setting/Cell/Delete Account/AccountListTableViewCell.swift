@@ -34,7 +34,7 @@ class AccountListTableViewCell: UITableViewCell {
     @IBOutlet var avatarImage: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var typeLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.nameLabel.font = UIFont.asset(.regular, fontSize: .body)
@@ -47,11 +47,10 @@ class AccountListTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     func configCell(title: String, type: String, avatar: String) {
         self.nameLabel.text = title
         self.typeLabel.text = type
-        
         let url = URL(string: avatar)
         self.avatarImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
     }

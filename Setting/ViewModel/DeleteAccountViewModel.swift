@@ -36,14 +36,13 @@ public class DeleteAccountViewModel {
     var authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl()
     var userRepository: UserRepository = UserRepositoryImpl()
     let tokenHelper: TokenHelper = TokenHelper()
-    private let realm = try! Realm()
-    
+
     public init() {
         self.tokenHelper.delegate = self
     }
-    
+
     func deleteAccount() {
-        self.userRepository.delateUser(userRequest: self.userRequest) { (success, response, isRefreshToken) in
+        self.userRepository.delateUser(userRequest: self.userRequest) { (success, _, isRefreshToken) in
             if success {
                 self.guestLogin()
             } else {
@@ -55,23 +54,26 @@ public class DeleteAccountViewModel {
             }
         }
     }
-    
+
     func guestLogin() {
         self.authenticationRepository.guestLogin(uuid: Defaults[.deviceUuid]) { (success) in
             if success {
                 UserHelper.shared.clearUserData()
                 UserHelper.shared.clearSeenContent()
-                let pageRealm = self.realm.objects(Page.self)
-                try! self.realm.write {
-                    self.realm.delete(pageRealm)
-                }
+                do {
+                    let realm = try Realm()
+                    let pageRealm = realm.objects(Page.self)
+                    try realm.write {
+                        realm.delete(pageRealm)
+                    }
+                } catch {}
                 self.didDeleteAccountFinish?()
             }
         }
     }
-    
-    var didDeleteAccountFinish: (() -> ())?
-    var didError: (() -> ())?
+
+    var didDeleteAccountFinish: (() -> Void)?
+    var didError: (() -> Void)?
 }
 
 extension DeleteAccountViewModel: TokenHelperDelegate {
