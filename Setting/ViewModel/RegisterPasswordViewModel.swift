@@ -38,13 +38,13 @@ class RegisterPasswordViewModel {
         self.tokenHelper.delegate = self
     }
 
-    func requestOtp() {
-        self.authenticationRepository.requestOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
+    func requestOtpWithEmail() {
+        self.authenticationRepository.requestOtpWithEmail(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    self.authenRequest.payload.refCode = json[JsonKey.refCode.rawValue].stringValue
+                    self.authenRequest.refCode = json[JsonKey.refCode.rawValue].stringValue
                     self.didGetOtpFinish?()
                 } catch {
                     self.didError?()
@@ -65,6 +65,6 @@ class RegisterPasswordViewModel {
 
 extension RegisterPasswordViewModel: TokenHelperDelegate {
     public func didRefreshTokenFinish() {
-        self.requestOtp()
+        self.requestOtpWithEmail()
     }
 }
