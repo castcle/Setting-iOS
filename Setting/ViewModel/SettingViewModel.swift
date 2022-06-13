@@ -60,16 +60,10 @@ public final class SettingViewModel {
     public init() {
         self.tokenHelper.delegate = self
         var menu: [SettingSection] = [.profile]
-        do {
-            let realm = try Realm()
-            let pageRealm = realm.objects(Page.self)
-            if pageRealm.count > 0 {
-                let adsEnable = RemoteConfig.remoteConfig().configValue(forKey: "ads_enable").boolValue
-                if adsEnable {
-                    menu.append(.ads)
-                }
-            }
-        } catch {}
+        let adsEnable = RemoteConfig.remoteConfig().configValue(forKey: "ads_enable").boolValue
+        if adsEnable {
+            menu.append(.ads)
+        }
         if Defaults[.isFarmingEnable] {
             menu.append(.farming)
         }
