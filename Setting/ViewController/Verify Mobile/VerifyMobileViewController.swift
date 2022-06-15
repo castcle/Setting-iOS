@@ -101,7 +101,7 @@ extension VerifyMobileViewController: VerifyMobileTableViewCellDelegate {
 
     func didConfirm(_ cell: VerifyMobileTableViewCell, mobileNumber: String) {
         self.hud.show(in: self.view)
-        self.viewModel.authenRequest.payload.mobileNumber = mobileNumber
+        self.viewModel.authenRequest.mobileNumber = mobileNumber
         self.viewModel.requestOtp()
     }
 }

@@ -42,15 +42,14 @@ public final class VerifyMobileViewModel {
     }
 
     func requestOtp() {
-        self.authenRequest.channel = .mobile
         self.authenRequest.objective = .verifyMobile
-        self.authenRequest.payload.countryCode = self.countryCode.dialCode
-        self.authenticationRepository.requestOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
+        self.authenRequest.countryCode = self.countryCode.dialCode
+        self.authenticationRepository.requestOtpWithMobile(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    self.authenRequest.payload.refCode = json[JsonKey.refCode.rawValue].stringValue
+                    self.authenRequest.refCode = json[JsonKey.refCode.rawValue].stringValue
                     self.didGetOtpFinish?()
                 } catch {
                     self.didError?()

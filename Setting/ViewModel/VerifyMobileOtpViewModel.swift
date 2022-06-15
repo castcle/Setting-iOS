@@ -45,12 +45,12 @@ public final class VerifyMobileOtpViewModel {
 
     func requestOtp() {
         self.state = .requestOtp
-        self.authenticationRepository.requestOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
+        self.authenticationRepository.requestOtpWithMobile(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    self.authenRequest.payload.refCode = json[JsonKey.refCode.rawValue].stringValue
+                    self.authenRequest.refCode = json[JsonKey.refCode.rawValue].stringValue
                     self.didGetOtpFinish?()
                 } catch {
                     self.didError?()
@@ -67,12 +67,12 @@ public final class VerifyMobileOtpViewModel {
 
     func verifyOtp() {
         self.state = .verifyOtp
-        self.authenticationRepository.verificationOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
+        self.authenticationRepository.verificationOtpWithMobile(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    self.authenRequest.payload.refCode = json[JsonKey.refCode.rawValue].stringValue
+                    self.authenRequest.refCode = json[JsonKey.refCode.rawValue].stringValue
                     self.updateMobile()
                 } catch {
                     self.didError?()
@@ -90,9 +90,9 @@ public final class VerifyMobileOtpViewModel {
     func updateMobile() {
         self.state = .updateMobile
         self.userRequest.objective = self.authenRequest.objective
-        self.userRequest.refCode = self.authenRequest.payload.refCode
-        self.userRequest.countryCode = self.authenRequest.payload.countryCode
-        self.userRequest.mobileNumber = self.authenRequest.payload.mobileNumber
+        self.userRequest.refCode = self.authenRequest.refCode
+        self.userRequest.countryCode = self.authenRequest.countryCode
+        self.userRequest.mobileNumber = self.authenRequest.mobileNumber
         self.userRepository.updateMobile(userRequest: self.userRequest) { (success, _, isRefreshToken) in
             if success {
                 self.getMe()

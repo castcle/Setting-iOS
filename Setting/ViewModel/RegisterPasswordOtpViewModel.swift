@@ -42,12 +42,12 @@ public class RegisterPasswordOtpViewModel {
 
     func verifyOtp() {
         self.state = .verifyOtp
-        self.authenticationRepository.verificationOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
+        self.authenticationRepository.verificationOtpWithEmail(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    self.authenRequest.payload.refCode = json[JsonKey.refCode.rawValue].stringValue
+                    self.authenRequest.refCode = json[JsonKey.refCode.rawValue].stringValue
                     self.didVerifyOtpFinish?()
                 } catch {
                     self.didError?()
@@ -64,12 +64,12 @@ public class RegisterPasswordOtpViewModel {
 
     func requestOtp() {
         self.state = .requestOtp
-        self.authenticationRepository.requestOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
+        self.authenticationRepository.requestOtpWithEmail(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    self.authenRequest.payload.refCode = json[JsonKey.refCode.rawValue].stringValue
+                    self.authenRequest.refCode = json[JsonKey.refCode.rawValue].stringValue
                     self.didGetOtpFinish?()
                 } catch {
                     self.didError?()

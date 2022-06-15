@@ -89,7 +89,7 @@ extension VerifyMobileOtpViewController: UITableViewDelegate, UITableViewDataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.verifyMobileOtp, for: indexPath as IndexPath) as? VerifyMobileOtpTableViewCell
         cell?.backgroundColor = UIColor.clear
         cell?.delegate = self
-        cell?.configCell(mobileNumber: self.viewModel.authenRequest.payload.mobileNumber)
+        cell?.configCell(mobileNumber: self.viewModel.authenRequest.mobileNumber)
         return cell ?? VerifyMobileOtpTableViewCell()
     }
 }
@@ -104,7 +104,7 @@ extension VerifyMobileOtpViewController: VerifyMobileOtpTableViewCellDelegate {
     func didConfirm(_ cell: VerifyMobileOtpTableViewCell, pin: String) {
         self.hud.textLabel.text = "Verifying"
         self.hud.show(in: self.view)
-        self.viewModel.authenRequest.payload.otp = pin
+        self.viewModel.authenRequest.otp = pin
         self.viewModel.verifyOtp()
     }
 }
