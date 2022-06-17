@@ -58,7 +58,7 @@ class VerifyMobileTableViewCell: UITableViewCell {
         self.mobileTextField.textColor = UIColor.Asset.white
         self.codeView.capsule(color: UIColor.Asset.darkGray)
         self.mobileViewView.capsule(color: UIColor.Asset.darkGray)
-        self.setupNextButton(isActive: false)
+        self.confirmButton.activeButton(isActive: false)
         self.dropdownImage.image = UIImage.init(icon: .castcle(.dropDown), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.lightBlue)
         self.mobileTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
     }
@@ -71,25 +71,12 @@ class VerifyMobileTableViewCell: UITableViewCell {
         self.codeLabel.text = "\(countryCode.dialCode) \(countryCode.code)"
     }
 
-    private func setupNextButton(isActive: Bool) {
-        self.confirmButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .head4)
-        if isActive {
-            self.confirmButton.setTitleColor(UIColor.Asset.white, for: .normal)
-            self.confirmButton.setBackgroundImage(UIColor.Asset.lightBlue.toImage(), for: .normal)
-            self.confirmButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.clear)
-        } else {
-            self.confirmButton.setTitleColor(UIColor.Asset.gray, for: .normal)
-            self.confirmButton.setBackgroundImage(UIColor.Asset.darkGraphiteBlue.toImage(), for: .normal)
-            self.confirmButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.Asset.black)
-        }
-    }
-
     @objc func textFieldDidChange(_ textField: UITextField) {
         let mobileNumber = (textField.text ?? "").substringWithRange(range: 20)
         if mobileNumber.isEmpty {
-            self.setupNextButton(isActive: false)
+            self.confirmButton.activeButton(isActive: false)
         } else {
-            self.setupNextButton(isActive: true)
+            self.confirmButton.activeButton(isActive: true)
         }
         textField.text = mobileNumber
     }
