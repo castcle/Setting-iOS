@@ -102,9 +102,7 @@ public final class SettingViewModel {
                     try realm.write {
                         realm.delete(pageRealm)
                     }
-                } catch let error as NSError {
-                    print(error)
-                }
+                } catch {}
                 self.delegate?.didSignOutFinish()
             }
         }
@@ -115,10 +113,8 @@ public final class SettingViewModel {
         self.notificationRequest.uuid = Defaults[.deviceUuid]
         self.notificationRequest.firebaseToken = Defaults[.firebaseToken]
         self.notificationRepository.unregisterToken(notificationRequest: self.notificationRequest) { (success, _, isRefreshToken) in
-            if !success {
-                if isRefreshToken {
-                    self.tokenHelper.refreshToken()
-                }
+            if !success && isRefreshToken {
+                self.tokenHelper.refreshToken()
             }
         }
     }

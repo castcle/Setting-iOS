@@ -116,11 +116,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         label.frame = CGRect.init(x: 15, y: 0, width: headerView.frame.width - 30, height: headerView.frame.height)
         label.font = UIFont.asset(.regular, fontSize: .overline)
         label.textColor = UIColor.Asset.gray
-
-        switch section {
-        case SettingViewControllerSection.account.rawValue:
+        if section == SettingViewControllerSection.account.rawValue {
             label.text = Localization.Setting.accountSettings.text
-        default:
+        } else {
             label.text = ""
         }
         headerView.addSubview(label)
