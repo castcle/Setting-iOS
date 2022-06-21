@@ -103,7 +103,6 @@ public final class AccountSettingViewModel {
         self.authenticationRepository.connectWithSocial(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
-                    let realm = try Realm()
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
                     let accessToken = json[JsonKey.accessToken.rawValue].stringValue
@@ -113,10 +112,6 @@ public final class AccountSettingViewModel {
                     let user = UserInfo(json: profile)
                     self.linkSocial = user.linkSocial
                     UserHelper.shared.updateLocalProfile(user: user)
-                    let pageRealm = realm.objects(Page.self)
-                    try realm.write {
-                        realm.delete(pageRealm)
-                    }
                     UserHelper.shared.updatePage(pages: pages)
                     UserManager.shared.setAccessToken(token: accessToken)
                     UserManager.shared.setRefreshToken(token: refreshToken)
