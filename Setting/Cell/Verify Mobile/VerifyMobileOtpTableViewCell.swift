@@ -82,20 +82,13 @@ class VerifyMobileOtpTableViewCell: UITableViewCell {
                 self.verifyMobileConfirmButton.activeButton(isActive: false)
             }
         }
-        self.verifyMobileCountdownLabel.text = "Request code again \(self.secondsToTime(seconds: self.secondsRemaining)) sec"
+        self.verifyMobileCountdownLabel.text = "Request code again \(self.secondsRemaining.secondsToTime()) sec"
         self.setupCountdown()
         self.verifyMobileConfirmButton.activeButton(isActive: false)
     }
 
     func configCell(mobileNumber: String) {
         self.verifyMobileSubTitleLabel.text = "You will receive a 6 digit code to verify your mobile number. OTP code will be sent to \(mobileNumber)"
-    }
-
-    private func secondsToTime(seconds: Int) -> String {
-        let (minuteValue, secondValue) = ((seconds % 3600) / 60, (seconds % 3600) % 60)
-        let minuteString =  minuteValue < 10 ? "0\(minuteValue)" : "\(minuteValue)"
-        let secondString =  secondValue < 10 ? "0\(secondValue)" : "\(secondValue)"
-        return "\(minuteString):\(secondString)"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -108,7 +101,7 @@ class VerifyMobileOtpTableViewCell: UITableViewCell {
         self.secondsRemaining = 300
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
             if self.secondsRemaining > 0 {
-                self.verifyMobileCountdownLabel.text = "Request code again \(self.secondsToTime(seconds: self.secondsRemaining)) sec"
+                self.verifyMobileCountdownLabel.text = "Request code again \(self.secondsRemaining.secondsToTime()) sec"
                 self.secondsRemaining -= 1
             } else {
                 timer.invalidate()
