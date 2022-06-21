@@ -34,7 +34,7 @@ class RegisterPasswordViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
-    var viewModel = RegisterPasswordViewModel()
+    var viewModel = RegisterPasswordOtpViewModel()
     let hud = JGProgressHUD()
 
     override func viewDidLoad() {

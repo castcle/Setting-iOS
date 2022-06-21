@@ -40,8 +40,8 @@ public class RegisterPasswordOtpViewModel {
         self.tokenHelper.delegate = self
     }
 
-    func verifyOtp() {
-        self.state = .verifyOtp
+    func verifyOtpWithEmail() {
+        self.state = .verifyOtpWithEmail
         self.authenticationRepository.verificationOtpWithEmail(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
@@ -62,8 +62,8 @@ public class RegisterPasswordOtpViewModel {
         }
     }
 
-    func requestOtp() {
-        self.state = .requestOtp
+    func requestOtpWithEmail() {
+        self.state = .requestOtpWithEmail
         self.authenticationRepository.requestOtpWithEmail(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
@@ -91,10 +91,10 @@ public class RegisterPasswordOtpViewModel {
 
 extension RegisterPasswordOtpViewModel: TokenHelperDelegate {
     public func didRefreshTokenFinish() {
-        if self.state == .verifyOtp {
-            self.verifyOtp()
-        } else if self.state == .requestOtp {
-            self.requestOtp()
+        if self.state == .verifyOtpWithEmail {
+            self.verifyOtpWithEmail()
+        } else if self.state == .requestOtpWithEmail {
+            self.requestOtpWithEmail()
         }
     }
 }

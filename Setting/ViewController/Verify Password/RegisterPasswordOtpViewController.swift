@@ -100,13 +100,13 @@ extension RegisterPasswordOtpViewController: RegisterPasswordOtpTableViewCellDel
     func didRequestOtp(_ cell: RegisterPasswordOtpTableViewCell) {
         self.hud.textLabel.text = "Sending"
         self.hud.show(in: self.view)
-        self.viewModel.requestOtp()
+        self.viewModel.requestOtpWithEmail()
     }
 
     func didConfirm(_ cell: RegisterPasswordOtpTableViewCell, pin: String) {
         self.hud.textLabel.text = "Verifying"
         self.hud.show(in: self.view)
         self.viewModel.authenRequest.otp = pin
-        self.viewModel.verifyOtp()
+        self.viewModel.verifyOtpWithEmail()
     }
 }

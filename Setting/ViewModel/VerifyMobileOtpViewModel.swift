@@ -45,7 +45,7 @@ public final class VerifyMobileOtpViewModel {
     }
 
     func requestOtp() {
-        self.state = .requestOtp
+        self.state = .requestOtpWithMobile
         self.authenticationRepository.requestOtpWithMobile(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
@@ -67,7 +67,7 @@ public final class VerifyMobileOtpViewModel {
     }
 
     func verifyOtp() {
-        self.state = .verifyOtp
+        self.state = .verifyOtpWithMobile
         self.authenticationRepository.verificationOtpWithMobile(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
@@ -136,9 +136,9 @@ public final class VerifyMobileOtpViewModel {
 
 extension VerifyMobileOtpViewModel: TokenHelperDelegate {
     public func didRefreshTokenFinish() {
-        if self.state == .requestOtp {
+        if self.state == .requestOtpWithMobile {
             self.requestOtp()
-        } else if self.state == .verifyOtp {
+        } else if self.state == .verifyOtpWithMobile {
             self.verifyOtp()
         } else if self.state == .updateMobile {
             self.updateMobile()
