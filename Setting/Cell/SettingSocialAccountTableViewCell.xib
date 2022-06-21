@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -72,11 +72,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="displayLabel" destination="FSf-7v-n9I" id="J9I-Rn-bTc"/>
-                <outlet property="nextImage" destination="lzm-i7-2x3" id="8Tq-rC-Bw2"/>
+                <outlet property="settingSocialDisplayLabel" destination="FSf-7v-n9I" id="1By-0a-LvK"/>
+                <outlet property="settingSocialNextImage" destination="lzm-i7-2x3" id="TSf-KV-c8H"/>
+                <outlet property="settingSocialTitleLabel" destination="Mnu-yj-oI0" id="rkO-Qy-wd7"/>
                 <outlet property="socialImage" destination="1ru-nT-Jxv" id="8wn-Ru-n2s"/>
                 <outlet property="socialView" destination="RBc-Ds-5Ac" id="VkT-UL-BJm"/>
-                <outlet property="titleLabel" destination="Mnu-yj-oI0" id="PFY-5U-zgF"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="92.075892857142847"/>
         </tableViewCell>

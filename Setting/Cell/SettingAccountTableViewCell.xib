@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -50,9 +50,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="displayLabel" destination="8RA-fi-7ub" id="bZ9-Im-ngk"/>
-                <outlet property="nextImage" destination="6Ec-wS-akz" id="FpT-4j-IJT"/>
-                <outlet property="titleLabel" destination="HAR-fB-RSP" id="ODX-Lp-38i"/>
+                <outlet property="settingDisplayLabel" destination="8RA-fi-7ub" id="y3c-ow-vfw"/>
+                <outlet property="settingNextImage" destination="6Ec-wS-akz" id="RMH-wF-tBc"/>
+                <outlet property="settingTitleLabel" destination="HAR-fB-RSP" id="Lyw-y8-ww7"/>
             </connections>
             <point key="canvasLocation" x="102.89855072463769" y="108.14732142857143"/>
         </tableViewCell>

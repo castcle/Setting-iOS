@@ -31,19 +31,19 @@ import Networking
 
 class SettingSocialAccountTableViewCell: UITableViewCell {
 
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var displayLabel: UILabel!
-    @IBOutlet var nextImage: UIImageView!
+    @IBOutlet var settingSocialTitleLabel: UILabel!
+    @IBOutlet var settingSocialDisplayLabel: UILabel!
+    @IBOutlet var settingSocialNextImage: UIImageView!
     @IBOutlet var socialView: UIView!
     @IBOutlet var socialImage: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.titleLabel.font = UIFont.asset(.regular, fontSize: .body)
-        self.titleLabel.textColor = UIColor.Asset.white
-        self.displayLabel.font = UIFont.asset(.regular, fontSize: .body)
-        self.displayLabel.textColor = UIColor.Asset.gray
-        self.nextImage.image = UIImage.init(icon: .castcle(.next), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
+        self.settingSocialTitleLabel.font = UIFont.asset(.regular, fontSize: .body)
+        self.settingSocialTitleLabel.textColor = UIColor.Asset.white
+        self.settingSocialDisplayLabel.font = UIFont.asset(.regular, fontSize: .body)
+        self.settingSocialDisplayLabel.textColor = UIColor.Asset.gray
+        self.settingSocialNextImage.image = UIImage.init(icon: .castcle(.next), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -51,7 +51,7 @@ class SettingSocialAccountTableViewCell: UITableViewCell {
     }
 
     func configCell(section: AccountSection, socialUser: SocialUser) {
-        self.titleLabel.text = section.text
+        self.settingSocialTitleLabel.text = section.text
         if section == .linkFacebook {
             self.socialView.capsule(color: UIColor.Asset.facebook)
             self.socialImage.image = UIImage.init(icon: .castcle(.facebook), size: CGSize(width: 23, height: 23), textColor: UIColor.Asset.white)
@@ -64,13 +64,13 @@ class SettingSocialAccountTableViewCell: UITableViewCell {
         }
 
         if socialUser.socialId.isEmpty {
-            self.displayLabel.text = "Link"
-            self.displayLabel.textColor = UIColor.Asset.gray
-            self.nextImage.isHidden = false
+            self.settingSocialDisplayLabel.text = "Link"
+            self.settingSocialDisplayLabel.textColor = UIColor.Asset.gray
+            self.settingSocialNextImage.isHidden = false
         } else {
-            self.displayLabel.text = "Linked"
-            self.displayLabel.textColor = UIColor.Asset.lightBlue
-            self.nextImage.isHidden = true
+            self.settingSocialDisplayLabel.text = "Linked"
+            self.settingSocialDisplayLabel.textColor = UIColor.Asset.lightBlue
+            self.settingSocialNextImage.isHidden = true
         }
     }
 }
