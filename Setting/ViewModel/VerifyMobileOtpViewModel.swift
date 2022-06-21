@@ -36,6 +36,7 @@ public final class VerifyMobileOtpViewModel {
     var authenRequest: AuthenRequest = AuthenRequest()
     var userRequest: UserRequest = UserRequest()
     let tokenHelper: TokenHelper = TokenHelper()
+    var countryCode: CountryCode = CountryCode().initCustom(code: "TH", dialCode: "+66", name: "Thailand")
     var state: State = .none
 
     public init(authenRequest: AuthenRequest = AuthenRequest()) {
