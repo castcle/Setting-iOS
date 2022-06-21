@@ -36,13 +36,13 @@ protocol VerifyMobileOtpTableViewCellDelegate: AnyObject {
 
 class VerifyMobileOtpTableViewCell: UITableViewCell {
 
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var subTitleLabel: UILabel!
-    @IBOutlet var pinView: SVPinView!
-    @IBOutlet var noticLabel: UILabel!
-    @IBOutlet var countdownLabel: UILabel!
-    @IBOutlet var resendButton: UIButton!
-    @IBOutlet var confirmButton: UIButton!
+    @IBOutlet var verifyMobileTitleLabel: UILabel!
+    @IBOutlet var verifyMobileSubTitleLabel: UILabel!
+    @IBOutlet var verifyMobilePinView: SVPinView!
+    @IBOutlet var verifyMobileNoticLabel: UILabel!
+    @IBOutlet var verifyMobileCountdownLabel: UILabel!
+    @IBOutlet var verifyMobileResendButton: UIButton!
+    @IBOutlet var verifyMobileConfirmButton: UIButton!
 
     var delegate: VerifyMobileOtpTableViewCellDelegate?
     var secondsRemaining = 300
@@ -50,45 +50,45 @@ class VerifyMobileOtpTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.titleLabel.font = UIFont.asset(.regular, fontSize: .head4)
-        self.titleLabel.textColor = UIColor.Asset.white
-        self.subTitleLabel.font = UIFont.asset(.regular, fontSize: .body)
-        self.subTitleLabel.textColor = UIColor.Asset.white
-        self.countdownLabel.font = UIFont.asset(.regular, fontSize: .overline)
-        self.countdownLabel.textColor = UIColor.Asset.lightGray
-        self.noticLabel.font = UIFont.asset(.regular, fontSize: .overline)
-        self.noticLabel.textColor = UIColor.Asset.white
-        self.resendButton.titleLabel?.font = UIFont.asset(.bold, fontSize: .body)
-        self.resendButton.setTitleColor(UIColor.Asset.lightBlue, for: .normal)
-        self.pinView.backgroundColor = UIColor.clear
-        self.pinView.pinLength = 6
-        self.pinView.style = .underline
-        self.pinView.interSpace = 20
-        self.pinView.shouldSecureText = false
-        self.pinView.fieldBackgroundColor = UIColor.clear
-        self.pinView.textColor = UIColor.Asset.white
-        self.pinView.borderLineColor = UIColor.Asset.white
-        self.pinView.activeBorderLineColor = UIColor.Asset.white
-        self.pinView.borderLineThickness = 1
-        self.pinView.activeBorderLineThickness = 1
-        self.pinView.font = UIFont.asset(.bold, fontSize: .head2)
-        self.pinView.keyboardType = .numberPad
-        self.pinView.didChangeCallback = {[weak self] pin in
+        self.verifyMobileTitleLabel.font = UIFont.asset(.regular, fontSize: .head4)
+        self.verifyMobileTitleLabel.textColor = UIColor.Asset.white
+        self.verifyMobileSubTitleLabel.font = UIFont.asset(.regular, fontSize: .body)
+        self.verifyMobileSubTitleLabel.textColor = UIColor.Asset.white
+        self.verifyMobileCountdownLabel.font = UIFont.asset(.regular, fontSize: .overline)
+        self.verifyMobileCountdownLabel.textColor = UIColor.Asset.lightGray
+        self.verifyMobileNoticLabel.font = UIFont.asset(.regular, fontSize: .overline)
+        self.verifyMobileNoticLabel.textColor = UIColor.Asset.white
+        self.verifyMobileResendButton.titleLabel?.font = UIFont.asset(.bold, fontSize: .body)
+        self.verifyMobileResendButton.setTitleColor(UIColor.Asset.lightBlue, for: .normal)
+        self.verifyMobilePinView.backgroundColor = UIColor.clear
+        self.verifyMobilePinView.pinLength = 6
+        self.verifyMobilePinView.style = .underline
+        self.verifyMobilePinView.interSpace = 20
+        self.verifyMobilePinView.shouldSecureText = false
+        self.verifyMobilePinView.fieldBackgroundColor = UIColor.clear
+        self.verifyMobilePinView.textColor = UIColor.Asset.white
+        self.verifyMobilePinView.borderLineColor = UIColor.Asset.white
+        self.verifyMobilePinView.activeBorderLineColor = UIColor.Asset.white
+        self.verifyMobilePinView.borderLineThickness = 1
+        self.verifyMobilePinView.activeBorderLineThickness = 1
+        self.verifyMobilePinView.font = UIFont.asset(.bold, fontSize: .head2)
+        self.verifyMobilePinView.keyboardType = .numberPad
+        self.verifyMobilePinView.didChangeCallback = {[weak self] pin in
             guard let self = self else { return }
             if pin.count == 6 {
                 self.pin = pin
-                self.confirmButton.activeButton(isActive: true)
+                self.verifyMobileConfirmButton.activeButton(isActive: true)
             } else {
-                self.confirmButton.activeButton(isActive: false)
+                self.verifyMobileConfirmButton.activeButton(isActive: false)
             }
         }
-        self.countdownLabel.text = "Request code again \(self.secondsToTime(seconds: self.secondsRemaining)) sec"
+        self.verifyMobileCountdownLabel.text = "Request code again \(self.secondsToTime(seconds: self.secondsRemaining)) sec"
         self.setupCountdown()
-        self.confirmButton.activeButton(isActive: false)
+        self.verifyMobileConfirmButton.activeButton(isActive: false)
     }
 
     func configCell(mobileNumber: String) {
-        self.subTitleLabel.text = "You will receive a 6 digit code to verify your mobile number. OTP code will be sent to \(mobileNumber)"
+        self.verifyMobileSubTitleLabel.text = "You will receive a 6 digit code to verify your mobile number. OTP code will be sent to \(mobileNumber)"
     }
 
     private func secondsToTime(seconds: Int) -> String {
@@ -103,28 +103,28 @@ class VerifyMobileOtpTableViewCell: UITableViewCell {
     }
 
     private func setupCountdown() {
-        self.countdownLabel.isHidden = false
-        self.resendButton.isHidden = true
+        self.verifyMobileCountdownLabel.isHidden = false
+        self.verifyMobileResendButton.isHidden = true
         self.secondsRemaining = 300
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
             if self.secondsRemaining > 0 {
-                self.countdownLabel.text = "Request code again \(self.secondsToTime(seconds: self.secondsRemaining)) sec"
+                self.verifyMobileCountdownLabel.text = "Request code again \(self.secondsToTime(seconds: self.secondsRemaining)) sec"
                 self.secondsRemaining -= 1
             } else {
                 timer.invalidate()
-                self.countdownLabel.isHidden = true
-                self.resendButton.isHidden = false
+                self.verifyMobileCountdownLabel.isHidden = true
+                self.verifyMobileResendButton.isHidden = false
             }
         }
     }
 
-    @IBAction func confirmAction(_ sender: Any) {
+    @IBAction func verifyMobileConfirmAction(_ sender: Any) {
         if self.pin.count == 6 {
             self.delegate?.didConfirm(self, pin: self.pin)
         }
     }
 
-    @IBAction func resendAction(_ sender: Any) {
+    @IBAction func verifyMobileResendAction(_ sender: Any) {
         self.setupCountdown()
         self.delegate?.didRequestOtp(self)
     }
