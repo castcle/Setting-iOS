@@ -96,6 +96,9 @@ public final class VerifyMobileOtpViewModel {
         self.userRequest.mobileNumber = self.authenRequest.mobileNumber
         self.userRepository.updateMobile(userRequest: self.userRequest) { (success, _, isRefreshToken) in
             if success {
+                if !UserManager.shared.isVerifiedMobile {
+                    self.sendAnalytics()
+                }
                 self.getMe()
             } else {
                 if isRefreshToken {
@@ -127,6 +130,14 @@ public final class VerifyMobileOtpViewModel {
                 }
             }
         }
+    }
+
+    private func sendAnalytics() {
+        let item = Analytic()
+        item.accountId = UserManager.shared.accountId
+        item.userId = UserManager.shared.id
+        item.countryCode = self.userRequest.countryCode
+        TrackingAnalyticHelper.shared.sendTrackingAnalytic(eventType: .verificationMobile, item: item)
     }
 
     var didGetOtpFinish: (() -> Void)?
