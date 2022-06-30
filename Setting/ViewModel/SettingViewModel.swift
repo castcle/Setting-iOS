@@ -78,7 +78,7 @@ public final class SettingViewModel {
         case .privacy:
             Utility.currentViewController().navigationController?.pushViewController(ComponentOpener.open(.internalWebView(URL(string: Environment.privacyPolicy)!)), animated: true)
         case .verify:
-            Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.resendEmail(ResendEmailViewModel(title: "Setting"))), animated: true)
+            NotificationCenter.default.post(name: .openVerifyDelegate, object: nil, userInfo: nil)
         case .languang:
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.language), animated: true)
         case .aboutUs:
