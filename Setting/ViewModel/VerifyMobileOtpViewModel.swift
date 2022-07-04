@@ -36,6 +36,7 @@ public final class VerifyMobileOtpViewModel {
     var authenRequest: AuthenRequest = AuthenRequest()
     var userRequest: UserRequest = UserRequest()
     let tokenHelper: TokenHelper = TokenHelper()
+    var countryCode: CountryCode = CountryCode().initCustom(code: "TH", dialCode: "+66", name: "Thailand")
     var state: State = .none
 
     public init(authenRequest: AuthenRequest = AuthenRequest()) {
@@ -44,13 +45,13 @@ public final class VerifyMobileOtpViewModel {
     }
 
     func requestOtp() {
-        self.state = .requestOtp
-        self.authenticationRepository.requestOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
+        self.state = .requestOtpWithMobile
+        self.authenticationRepository.requestOtpWithMobile(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    self.authenRequest.payload.refCode = json[JsonKey.refCode.rawValue].stringValue
+                    self.authenRequest.refCode = json[JsonKey.refCode.rawValue].stringValue
                     self.didGetOtpFinish?()
                 } catch {
                     self.didError?()
@@ -66,13 +67,13 @@ public final class VerifyMobileOtpViewModel {
     }
 
     func verifyOtp() {
-        self.state = .verifyOtp
-        self.authenticationRepository.verificationOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
+        self.state = .verifyOtpWithMobile
+        self.authenticationRepository.verificationOtpWithMobile(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    self.authenRequest.payload.refCode = json[JsonKey.refCode.rawValue].stringValue
+                    self.authenRequest.refCode = json[JsonKey.refCode.rawValue].stringValue
                     self.updateMobile()
                 } catch {
                     self.didError?()
@@ -90,9 +91,9 @@ public final class VerifyMobileOtpViewModel {
     func updateMobile() {
         self.state = .updateMobile
         self.userRequest.objective = self.authenRequest.objective
-        self.userRequest.refCode = self.authenRequest.payload.refCode
-        self.userRequest.countryCode = self.authenRequest.payload.countryCode
-        self.userRequest.mobileNumber = self.authenRequest.payload.mobileNumber
+        self.userRequest.refCode = self.authenRequest.refCode
+        self.userRequest.countryCode = self.authenRequest.countryCode
+        self.userRequest.mobileNumber = self.authenRequest.mobileNumber
         self.userRepository.updateMobile(userRequest: self.userRequest) { (success, _, isRefreshToken) in
             if success {
                 if !UserManager.shared.isVerifiedMobile {
@@ -146,9 +147,9 @@ public final class VerifyMobileOtpViewModel {
 
 extension VerifyMobileOtpViewModel: TokenHelperDelegate {
     public func didRefreshTokenFinish() {
-        if self.state == .requestOtp {
+        if self.state == .requestOtpWithMobile {
             self.requestOtp()
-        } else if self.state == .verifyOtp {
+        } else if self.state == .verifyOtpWithMobile {
             self.verifyOtp()
         } else if self.state == .updateMobile {
             self.updateMobile()

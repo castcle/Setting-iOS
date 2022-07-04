@@ -35,7 +35,7 @@ class VerifyMobileViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
-    var viewModel = VerifyMobileViewModel()
+    var viewModel = VerifyMobileOtpViewModel()
     let hud = JGProgressHUD()
 
     override func viewDidLoad() {
@@ -101,7 +101,9 @@ extension VerifyMobileViewController: VerifyMobileTableViewCellDelegate {
 
     func didConfirm(_ cell: VerifyMobileTableViewCell, mobileNumber: String) {
         self.hud.show(in: self.view)
-        self.viewModel.authenRequest.payload.mobileNumber = mobileNumber
+        self.viewModel.authenRequest.mobileNumber = mobileNumber
+        self.viewModel.authenRequest.objective = .verifyMobile
+        self.viewModel.authenRequest.countryCode = self.viewModel.countryCode.dialCode
         self.viewModel.requestOtp()
     }
 }

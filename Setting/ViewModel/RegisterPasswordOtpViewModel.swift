@@ -40,14 +40,14 @@ public class RegisterPasswordOtpViewModel {
         self.tokenHelper.delegate = self
     }
 
-    func verifyOtp() {
-        self.state = .verifyOtp
-        self.authenticationRepository.verificationOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
+    func verifyOtpWithEmail() {
+        self.state = .verifyOtpWithEmail
+        self.authenticationRepository.verificationOtpWithEmail(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    self.authenRequest.payload.refCode = json[JsonKey.refCode.rawValue].stringValue
+                    self.authenRequest.refCode = json[JsonKey.refCode.rawValue].stringValue
                     self.didVerifyOtpFinish?()
                 } catch {
                     self.didError?()
@@ -62,14 +62,14 @@ public class RegisterPasswordOtpViewModel {
         }
     }
 
-    func requestOtp() {
-        self.state = .requestOtp
-        self.authenticationRepository.requestOtp(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
+    func requestOtpWithEmail() {
+        self.state = .requestOtpWithEmail
+        self.authenticationRepository.requestOtpWithEmail(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
-                    self.authenRequest.payload.refCode = json[JsonKey.refCode.rawValue].stringValue
+                    self.authenRequest.refCode = json[JsonKey.refCode.rawValue].stringValue
                     self.didGetOtpFinish?()
                 } catch {
                     self.didError?()
@@ -91,10 +91,10 @@ public class RegisterPasswordOtpViewModel {
 
 extension RegisterPasswordOtpViewModel: TokenHelperDelegate {
     public func didRefreshTokenFinish() {
-        if self.state == .verifyOtp {
-            self.verifyOtp()
-        } else if self.state == .requestOtp {
-            self.requestOtp()
+        if self.state == .verifyOtpWithEmail {
+            self.verifyOtpWithEmail()
+        } else if self.state == .requestOtpWithEmail {
+            self.requestOtpWithEmail()
         }
     }
 }

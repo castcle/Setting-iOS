@@ -36,13 +36,13 @@ protocol RegisterPasswordOtpTableViewCellDelegate: AnyObject {
 
 class RegisterPasswordOtpTableViewCell: UITableViewCell {
 
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var subTitleLabel: UILabel!
-    @IBOutlet var pinView: SVPinView!
-    @IBOutlet var noticLabel: UILabel!
-    @IBOutlet var countdownLabel: UILabel!
-    @IBOutlet var resendButton: UIButton!
-    @IBOutlet var confirmButton: UIButton!
+    @IBOutlet var registerPasswordTitleLabel: UILabel!
+    @IBOutlet var registerPasswordSubTitleLabel: UILabel!
+    @IBOutlet var registerPasswordPinView: SVPinView!
+    @IBOutlet var registerPasswordNoticLabel: UILabel!
+    @IBOutlet var registerPasswordCountdownLabel: UILabel!
+    @IBOutlet var registerPasswordResendButton: UIButton!
+    @IBOutlet var registerPasswordConfirmButton: UIButton!
 
     var delegate: RegisterPasswordOtpTableViewCellDelegate?
     var secondsRemaining = 300
@@ -50,65 +50,45 @@ class RegisterPasswordOtpTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.titleLabel.font = UIFont.asset(.regular, fontSize: .head4)
-        self.titleLabel.textColor = UIColor.Asset.white
-        self.subTitleLabel.font = UIFont.asset(.regular, fontSize: .body)
-        self.subTitleLabel.textColor = UIColor.Asset.white
-        self.countdownLabel.font = UIFont.asset(.regular, fontSize: .overline)
-        self.countdownLabel.textColor = UIColor.Asset.lightGray
-        self.noticLabel.font = UIFont.asset(.regular, fontSize: .overline)
-        self.noticLabel.textColor = UIColor.Asset.white
-        self.resendButton.titleLabel?.font = UIFont.asset(.bold, fontSize: .body)
-        self.resendButton.setTitleColor(UIColor.Asset.lightBlue, for: .normal)
-        self.pinView.backgroundColor = UIColor.clear
-        self.pinView.pinLength = 6
-        self.pinView.style = .underline
-        self.pinView.interSpace = 20
-        self.pinView.shouldSecureText = false
-        self.pinView.fieldBackgroundColor = UIColor.clear
-        self.pinView.textColor = UIColor.Asset.white
-        self.pinView.borderLineColor = UIColor.Asset.white
-        self.pinView.activeBorderLineColor = UIColor.Asset.white
-        self.pinView.borderLineThickness = 1
-        self.pinView.activeBorderLineThickness = 1
-        self.pinView.font = UIFont.asset(.bold, fontSize: .head2)
-        self.pinView.keyboardType = .numberPad
-        self.pinView.didChangeCallback = {[weak self] pin in
+        self.registerPasswordTitleLabel.font = UIFont.asset(.regular, fontSize: .head4)
+        self.registerPasswordTitleLabel.textColor = UIColor.Asset.white
+        self.registerPasswordSubTitleLabel.font = UIFont.asset(.regular, fontSize: .body)
+        self.registerPasswordSubTitleLabel.textColor = UIColor.Asset.white
+        self.registerPasswordCountdownLabel.font = UIFont.asset(.regular, fontSize: .overline)
+        self.registerPasswordCountdownLabel.textColor = UIColor.Asset.lightGray
+        self.registerPasswordNoticLabel.font = UIFont.asset(.regular, fontSize: .overline)
+        self.registerPasswordNoticLabel.textColor = UIColor.Asset.white
+        self.registerPasswordResendButton.titleLabel?.font = UIFont.asset(.bold, fontSize: .body)
+        self.registerPasswordResendButton.setTitleColor(UIColor.Asset.lightBlue, for: .normal)
+        self.registerPasswordPinView.backgroundColor = UIColor.clear
+        self.registerPasswordPinView.pinLength = 6
+        self.registerPasswordPinView.style = .underline
+        self.registerPasswordPinView.interSpace = 20
+        self.registerPasswordPinView.shouldSecureText = false
+        self.registerPasswordPinView.fieldBackgroundColor = UIColor.clear
+        self.registerPasswordPinView.textColor = UIColor.Asset.white
+        self.registerPasswordPinView.borderLineColor = UIColor.Asset.white
+        self.registerPasswordPinView.activeBorderLineColor = UIColor.Asset.white
+        self.registerPasswordPinView.borderLineThickness = 1
+        self.registerPasswordPinView.activeBorderLineThickness = 1
+        self.registerPasswordPinView.font = UIFont.asset(.bold, fontSize: .head2)
+        self.registerPasswordPinView.keyboardType = .numberPad
+        self.registerPasswordPinView.didChangeCallback = {[weak self] pin in
             guard let self = self else { return }
             if pin.count == 6 {
                 self.pin = pin
-                self.setupNextButton(isActive: true)
+                self.registerPasswordConfirmButton.activeButton(isActive: true)
             } else {
-                self.setupNextButton(isActive: false)
+                self.registerPasswordConfirmButton.activeButton(isActive: false)
             }
         }
-        self.countdownLabel.text = "Request code again \(self.secondsToTime(seconds: self.secondsRemaining)) sec"
+        self.registerPasswordCountdownLabel.text = "Request code again \(self.secondsRemaining.secondsToTime()) sec"
         self.setupCountdown()
-        self.setupNextButton(isActive: false)
+        self.registerPasswordConfirmButton.activeButton(isActive: false)
     }
 
     func configCell(email: String) {
-        self.subTitleLabel.text = "You will receive a 6 digit code to verify your e-mail.  OTP code will be sent to \(email)"
-    }
-
-    private func setupNextButton(isActive: Bool) {
-        self.confirmButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .head4)
-        if isActive {
-            self.confirmButton.setTitleColor(UIColor.Asset.white, for: .normal)
-            self.confirmButton.setBackgroundImage(UIColor.Asset.lightBlue.toImage(), for: .normal)
-            self.confirmButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.clear)
-        } else {
-            self.confirmButton.setTitleColor(UIColor.Asset.gray, for: .normal)
-            self.confirmButton.setBackgroundImage(UIColor.Asset.darkGraphiteBlue.toImage(), for: .normal)
-            self.confirmButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.Asset.black)
-        }
-    }
-
-    private func secondsToTime(seconds: Int) -> String {
-        let (minuteValue, secondValue) = ((seconds % 3600) / 60, (seconds % 3600) % 60)
-        let minuteString =  minuteValue < 10 ? "0\(minuteValue)" : "\(minuteValue)"
-        let secondString =  secondValue < 10 ? "0\(secondValue)" : "\(secondValue)"
-        return "\(minuteString):\(secondString)"
+        self.registerPasswordSubTitleLabel.text = "You will receive a 6 digit code to verify your e-mail.  OTP code will be sent to \(email)"
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -116,28 +96,28 @@ class RegisterPasswordOtpTableViewCell: UITableViewCell {
     }
 
     private func setupCountdown() {
-        self.countdownLabel.isHidden = false
-        self.resendButton.isHidden = true
+        self.registerPasswordCountdownLabel.isHidden = false
+        self.registerPasswordResendButton.isHidden = true
         self.secondsRemaining = 300
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
             if self.secondsRemaining > 0 {
-                self.countdownLabel.text = "Request code again \(self.secondsToTime(seconds: self.secondsRemaining)) sec"
+                self.registerPasswordCountdownLabel.text = "Request code again \(self.secondsRemaining.secondsToTime()) sec"
                 self.secondsRemaining -= 1
             } else {
                 timer.invalidate()
-                self.countdownLabel.isHidden = true
-                self.resendButton.isHidden = false
+                self.registerPasswordCountdownLabel.isHidden = true
+                self.registerPasswordResendButton.isHidden = false
             }
         }
     }
 
-    @IBAction func confirmAction(_ sender: Any) {
+    @IBAction func registerPasswordConfirmAction(_ sender: Any) {
         if self.pin.count == 6 {
             self.delegate?.didConfirm(self, pin: self.pin)
         }
     }
 
-    @IBAction func resendAction(_ sender: Any) {
+    @IBAction func registerPasswordResendAction(_ sender: Any) {
         self.setupCountdown()
         self.delegate?.didRequestOtp(self)
     }

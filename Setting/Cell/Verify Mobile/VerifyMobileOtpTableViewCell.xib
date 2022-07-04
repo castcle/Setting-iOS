@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -45,7 +45,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <state key="normal" title="Confirm "/>
                         <connections>
-                            <action selector="confirmAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="EgV-oq-Aex"/>
+                            <action selector="verifyMobileConfirmAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="DuA-GG-VV1"/>
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j8t-x9-tum" customClass="SVPinView" customModule="SVPinView">
@@ -72,7 +72,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <state key="normal" title="Request code again "/>
                         <connections>
-                            <action selector="resendAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WXo-uL-OVR"/>
+                            <action selector="verifyMobileResendAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="AxZ-ji-ctL"/>
                         </connections>
                     </button>
                 </subviews>
@@ -102,13 +102,13 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="confirmButton" destination="xRR-JQ-IpP" id="Lt2-br-W1G"/>
-                <outlet property="countdownLabel" destination="aOX-Jy-8uu" id="Pcs-Hy-Vir"/>
-                <outlet property="noticLabel" destination="N2n-IL-D88" id="VCV-Lb-oSn"/>
-                <outlet property="pinView" destination="j8t-x9-tum" id="aSb-Ci-5SP"/>
-                <outlet property="resendButton" destination="mW0-xY-sJw" id="uvN-8C-9sT"/>
-                <outlet property="subTitleLabel" destination="p4n-bG-eiw" id="Fsw-HD-1Jj"/>
-                <outlet property="titleLabel" destination="ree-WB-xE8" id="9qQ-Yb-Rq5"/>
+                <outlet property="verifyMobileConfirmButton" destination="xRR-JQ-IpP" id="xZw-Je-7uA"/>
+                <outlet property="verifyMobileCountdownLabel" destination="aOX-Jy-8uu" id="Yym-M2-Yh0"/>
+                <outlet property="verifyMobileNoticLabel" destination="N2n-IL-D88" id="rS7-5L-mg7"/>
+                <outlet property="verifyMobilePinView" destination="j8t-x9-tum" id="ZC9-AD-pHb"/>
+                <outlet property="verifyMobileResendButton" destination="mW0-xY-sJw" id="R90-lk-gUd"/>
+                <outlet property="verifyMobileSubTitleLabel" destination="p4n-bG-eiw" id="81W-Zt-6f6"/>
+                <outlet property="verifyMobileTitleLabel" destination="ree-WB-xE8" id="prd-Ec-NqX"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="305.02232142857139"/>
         </tableViewCell>

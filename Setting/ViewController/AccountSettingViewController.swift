@@ -170,14 +170,10 @@ extension AccountSettingViewController: UITableViewDelegate, UITableViewDataSour
         if indexPath.section == AccountSettingViewControllerSection.setting.rawValue {
             self.viewModel.openSettingSection(section: self.viewModel.accountSection[indexPath.row])
         } else if indexPath.section == AccountSettingViewControllerSection.social.rawValue {
-            if self.viewModel.socialSection[indexPath.row] == .linkFacebook {
-                if self.viewModel.linkSocial.facebook.socialId.isEmpty {
-                    self.connectFacebook()
-                }
-            } else if self.viewModel.socialSection[indexPath.row] == .linkTwitter {
-                if self.viewModel.linkSocial.twitter.socialId.isEmpty {
-                    self.connectTwitter()
-                }
+            if self.viewModel.socialSection[indexPath.row] == .linkFacebook && self.viewModel.linkSocial.facebook.socialId.isEmpty {
+                self.connectFacebook()
+            } else if self.viewModel.socialSection[indexPath.row] == .linkTwitter && self.viewModel.linkSocial.twitter.socialId.isEmpty {
+                self.connectTwitter()
             }
         } else if indexPath.section == AccountSettingViewControllerSection.control.rawValue {
             self.viewModel.openSettingSection(section: self.viewModel.controlSection[indexPath.row])
@@ -205,7 +201,7 @@ extension AccountSettingViewController {
                 let email: String = profile?.email ?? ""
                 let fullName: String = profile?.name ?? ""
                 let accessToken: String = AccessToken.current?.tokenString ?? ""
-                let profilePicUrl: String = "https://graph.facebook.com/\(userId)/picture?type=large&access_token=\(accessToken)"
+                let profilePicUrl: String = ConstantUrl.facebookAvatar(userId, accessToken).path
                 var authenRequest: AuthenRequest = AuthenRequest()
                 authenRequest.provider = .facebook
                 authenRequest.socialId = userId
@@ -213,15 +209,18 @@ extension AccountSettingViewController {
                 authenRequest.avatar = profilePicUrl
                 authenRequest.email = email
                 authenRequest.authToken = accessToken
-
                 self.dismiss(animated: true)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.hud.textLabel.text = "Connecting"
-                    self.hud.show(in: Utility.currentViewController().view)
-                    self.viewModel.authenRequest = authenRequest
-                    self.viewModel.connectSocial()
-                }
+                self.connectSocial(authenRequest: authenRequest)
             }
+        }
+    }
+
+    private func connectSocial(authenRequest: AuthenRequest) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.hud.textLabel.text = "Connecting"
+            self.hud.show(in: Utility.currentViewController().view)
+            self.viewModel.authenRequest = authenRequest
+            self.viewModel.connectSocial()
         }
     }
 

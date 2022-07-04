@@ -53,27 +53,27 @@ class SocialTableViewCell: UITableViewCell {
     }
 
     @IBAction func facebookAction(_ sender: Any) {
-        self.openWebView(urlString: "https://facebook.com/castcle")
+        self.openWebView(urlString: CastcleSocial.facebook.path)
     }
 
     @IBAction func twitterAction(_ sender: Any) {
-        self.openWebView(urlString: "https://twitter.com/casttoken")
+        self.openWebView(urlString: CastcleSocial.twitter.path)
     }
 
     @IBAction func mediumAction(_ sender: Any) {
-        self.openWebView(urlString: "https://medium/castcle")
+        self.openWebView(urlString: CastcleSocial.medium.path)
     }
 
     @IBAction func telegramAction(_ sender: Any) {
-        self.openWebView(urlString: "https://t.me/castcle")
+        self.openWebView(urlString: CastcleSocial.telegram.path)
     }
 
     @IBAction func githubAction(_ sender: Any) {
-        self.openWebView(urlString: "https://github.com/castcle")
+        self.openWebView(urlString: CastcleSocial.github.path)
     }
 
     @IBAction func discordAction(_ sender: Any) {
-        self.openWebView(urlString: "https://discord.gg/UdeFta52v9")
+        self.openWebView(urlString: CastcleSocial.discord.path)
     }
 
     private func openWebView(urlString: String) {

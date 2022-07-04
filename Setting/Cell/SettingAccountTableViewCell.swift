@@ -30,17 +30,17 @@ import Core
 
 class SettingAccountTableViewCell: UITableViewCell {
 
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var displayLabel: UILabel!
-    @IBOutlet var nextImage: UIImageView!
+    @IBOutlet var settingTitleLabel: UILabel!
+    @IBOutlet var settingDisplayLabel: UILabel!
+    @IBOutlet var settingNextImage: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.titleLabel.font = UIFont.asset(.regular, fontSize: .body)
-        self.titleLabel.textColor = UIColor.Asset.white
-        self.displayLabel.font = UIFont.asset(.regular, fontSize: .body)
-        self.displayLabel.textColor = UIColor.Asset.gray
-        self.nextImage.image = UIImage.init(icon: .castcle(.next), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
+        self.settingTitleLabel.font = UIFont.asset(.regular, fontSize: .body)
+        self.settingTitleLabel.textColor = UIColor.Asset.white
+        self.settingDisplayLabel.font = UIFont.asset(.regular, fontSize: .body)
+        self.settingDisplayLabel.textColor = UIColor.Asset.gray
+        self.settingNextImage.image = UIImage.init(icon: .castcle(.next), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -48,30 +48,30 @@ class SettingAccountTableViewCell: UITableViewCell {
     }
 
     func configCell(section: AccountSection) {
-        self.titleLabel.text = section.text
+        self.settingTitleLabel.text = section.text
         if section == .email {
             if UserManager.shared.isVerifiedEmail {
-                self.displayLabel.text = UserManager.shared.email
-                self.nextImage.isHidden = true
+                self.settingDisplayLabel.text = UserManager.shared.email
+                self.settingNextImage.isHidden = true
             } else {
-                self.displayLabel.text = "Not Verify"
-                self.nextImage.isHidden = false
+                self.settingDisplayLabel.text = "Not Verify"
+                self.settingNextImage.isHidden = false
             }
         } else if section == .mobile {
             if UserManager.shared.isVerifiedMobile {
-                self.displayLabel.text = UserManager.shared.mobile
+                self.settingDisplayLabel.text = UserManager.shared.mobile
             } else {
-                self.displayLabel.text = "Unregistered"
+                self.settingDisplayLabel.text = "Unregistered"
             }
         } else if section == .password {
             if UserManager.shared.passwordNotSet {
-                self.displayLabel.text = "Unregistered"
+                self.settingDisplayLabel.text = "Unregistered"
             } else {
-                self.displayLabel.text = "Registered"
+                self.settingDisplayLabel.text = "Registered"
             }
         } else {
-            self.displayLabel.text = ""
-            self.nextImage.isHidden = false
+            self.settingDisplayLabel.text = ""
+            self.settingNextImage.isHidden = false
         }
     }
 }

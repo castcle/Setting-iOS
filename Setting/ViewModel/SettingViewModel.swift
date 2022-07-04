@@ -60,16 +60,10 @@ public final class SettingViewModel {
     public init() {
         self.tokenHelper.delegate = self
         var menu: [SettingSection] = [.profile]
-        do {
-            let realm = try Realm()
-            let pageRealm = realm.objects(Page.self)
-            if pageRealm.count > 0 {
-                let adsEnable = RemoteConfig.remoteConfig().configValue(forKey: "ads_enable").boolValue
-                if adsEnable {
-                    menu.append(.ads)
-                }
-            }
-        } catch {}
+        let adsEnable = RemoteConfig.remoteConfig().configValue(forKey: "ads_enable").boolValue
+        if adsEnable {
+            menu.append(.ads)
+        }
         if Defaults[.isFarmingEnable] {
             menu.append(.farming)
         }
@@ -84,7 +78,7 @@ public final class SettingViewModel {
         case .privacy:
             Utility.currentViewController().navigationController?.pushViewController(ComponentOpener.open(.internalWebView(URL(string: Environment.privacyPolicy)!)), animated: true)
         case .verify:
-            Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.resendEmail(ResendEmailViewModel(title: "Setting"))), animated: true)
+            NotificationCenter.default.post(name: .openVerifyDelegate, object: nil, userInfo: nil)
         case .languang:
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.language), animated: true)
         case .aboutUs:
@@ -108,9 +102,7 @@ public final class SettingViewModel {
                     try realm.write {
                         realm.delete(pageRealm)
                     }
-                } catch let error as NSError {
-                    print(error)
-                }
+                } catch {}
                 self.delegate?.didSignOutFinish()
             }
         }
@@ -121,10 +113,8 @@ public final class SettingViewModel {
         self.notificationRequest.uuid = Defaults[.deviceUuid]
         self.notificationRequest.firebaseToken = Defaults[.firebaseToken]
         self.notificationRepository.unregisterToken(notificationRequest: self.notificationRequest) { (success, _, isRefreshToken) in
-            if !success {
-                if isRefreshToken {
-                    self.tokenHelper.refreshToken()
-                }
+            if !success && isRefreshToken {
+                self.tokenHelper.refreshToken()
             }
         }
     }
@@ -158,12 +148,6 @@ public final class SettingViewModel {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
                     let pages = json[JsonKey.payload.rawValue].arrayValue
-
-                    let realm = try Realm()
-                    let pageRealm = realm.objects(Page.self)
-                    try realm.write {
-                        realm.delete(pageRealm)
-                    }
                     UserHelper.shared.updatePage(pages: pages)
                     self.delegate?.didGetMyPageFinish()
                 } catch {}

@@ -103,7 +103,6 @@ public final class AccountSettingViewModel {
         self.authenticationRepository.connectWithSocial(authenRequest: self.authenRequest) { (success, response, isRefreshToken) in
             if success {
                 do {
-                    let realm = try Realm()
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
                     let accessToken = json[JsonKey.accessToken.rawValue].stringValue
@@ -113,10 +112,6 @@ public final class AccountSettingViewModel {
                     let user = UserInfo(json: profile)
                     self.linkSocial = user.linkSocial
                     UserHelper.shared.updateLocalProfile(user: user)
-                    let pageRealm = realm.objects(Page.self)
-                    try realm.write {
-                        realm.delete(pageRealm)
-                    }
                     UserHelper.shared.updatePage(pages: pages)
                     UserManager.shared.setAccessToken(token: accessToken)
                     UserManager.shared.setRefreshToken(token: refreshToken)
@@ -138,10 +133,10 @@ public final class AccountSettingViewModel {
         switch section {
         case .email:
             if !UserManager.shared.isVerifiedEmail {
-                Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.resendEmail(ResendEmailViewModel(title: "Setting"))), animated: true)
+                NotificationCenter.default.post(name: .openVerifyDelegate, object: nil, userInfo: nil)
             }
         case .mobile:
-            Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.verifyMobile), animated: true)
+            NotificationCenter.default.post(name: .openVerifyMobileDelegate, object: nil, userInfo: nil)
         case .password:
             if UserManager.shared.passwordNotSet {
                 Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.registerPassword), animated: true)

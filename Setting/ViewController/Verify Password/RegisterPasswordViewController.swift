@@ -34,7 +34,7 @@ class RegisterPasswordViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
-    var viewModel = RegisterPasswordViewModel()
+    var viewModel = RegisterPasswordOtpViewModel()
     let hud = JGProgressHUD()
 
     override func viewDidLoad() {
@@ -95,8 +95,7 @@ extension RegisterPasswordViewController: RegisterPasswordTableViewCellDelegate 
     func didConfirm(_ cell: RegisterPasswordTableViewCell, email: String) {
         self.hud.show(in: self.view)
         self.viewModel.authenRequest.objective = .forgotPassword
-        self.viewModel.authenRequest.channel = .email
-        self.viewModel.authenRequest.payload.email = email
-        self.viewModel.requestOtp()
+        self.viewModel.authenRequest.email = email
+        self.viewModel.requestOtpWithEmail()
     }
 }

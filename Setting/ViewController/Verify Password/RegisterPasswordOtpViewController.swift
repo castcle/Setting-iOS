@@ -50,7 +50,7 @@ class RegisterPasswordOtpViewController: UIViewController {
 
         self.viewModel.didVerifyOtpFinish = {
             self.hud.dismiss()
-            self.viewModel.authenRequest.payload.objective = .forgotPassword
+            self.viewModel.authenRequest.objective = .forgotPassword
             Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.changePassword(ChangePasswordViewModel(.createPassword, authenRequest: self.viewModel.authenRequest))), animated: true)
         }
 
@@ -91,7 +91,7 @@ extension RegisterPasswordOtpViewController: UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.registerPasswordOtp, for: indexPath as IndexPath) as? RegisterPasswordOtpTableViewCell
         cell?.backgroundColor = UIColor.clear
         cell?.delegate = self
-        cell?.configCell(email: self.viewModel.authenRequest.payload.email)
+        cell?.configCell(email: self.viewModel.authenRequest.email)
         return cell ?? RegisterPasswordOtpTableViewCell()
     }
 }
@@ -100,13 +100,13 @@ extension RegisterPasswordOtpViewController: RegisterPasswordOtpTableViewCellDel
     func didRequestOtp(_ cell: RegisterPasswordOtpTableViewCell) {
         self.hud.textLabel.text = "Sending"
         self.hud.show(in: self.view)
-        self.viewModel.requestOtp()
+        self.viewModel.requestOtpWithEmail()
     }
 
     func didConfirm(_ cell: RegisterPasswordOtpTableViewCell, pin: String) {
         self.hud.textLabel.text = "Verifying"
         self.hud.show(in: self.view)
-        self.viewModel.authenRequest.payload.otp = pin
-        self.viewModel.verifyOtp()
+        self.viewModel.authenRequest.otp = pin
+        self.viewModel.verifyOtpWithEmail()
     }
 }
