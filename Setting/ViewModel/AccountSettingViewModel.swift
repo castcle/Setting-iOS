@@ -133,10 +133,10 @@ public final class AccountSettingViewModel {
         switch section {
         case .email:
             if !UserManager.shared.isVerifiedEmail {
-                Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.resendEmail(ResendEmailViewModel(title: "Setting"))), animated: true)
+                NotificationCenter.default.post(name: .openVerifyDelegate, object: nil, userInfo: nil)
             }
         case .mobile:
-            Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.verifyMobile), animated: true)
+            NotificationCenter.default.post(name: .openVerifyMobileDelegate, object: nil, userInfo: nil)
         case .password:
             if UserManager.shared.passwordNotSet {
                 Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.registerPassword), animated: true)
