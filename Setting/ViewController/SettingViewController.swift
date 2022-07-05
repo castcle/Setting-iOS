@@ -28,6 +28,7 @@
 import UIKit
 import Core
 import Component
+import Networking
 import Notification
 import Defaults
 
@@ -59,13 +60,26 @@ class SettingViewController: UIViewController {
         super.viewWillAppear(animated)
         self.setupNavBar()
         self.tableView.reloadData()
-        Defaults[.screenId] = ""
+        Defaults[.screenId] = ScreenId.setting.rawValue
         self.viewModel.getMe()
         self.viewModel.getMyPage()
     }
 
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        EngagementHelper().sendCastcleAnalytic(event: .onScreenView, screen: .setting)
+        self.sendAnalytics()
+    }
+
     func setupNavBar() {
         self.customNavigationBar(.primary, title: Localization.Setting.title.text, leftBarButton: .back)
+    }
+
+    private func sendAnalytics() {
+        let item = Analytic()
+        item.accountId = UserManager.shared.accountId
+        item.userId = UserManager.shared.id
+        TrackingAnalyticHelper.shared.sendTrackingAnalytic(eventType: .viewSetting, item: item)
     }
 
     func configureTableView() {
