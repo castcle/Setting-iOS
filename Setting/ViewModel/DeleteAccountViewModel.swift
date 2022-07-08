@@ -45,6 +45,7 @@ public class DeleteAccountViewModel {
         self.userRepository.delateUser(userRequest: self.userRequest) { (success, _, isRefreshToken) in
             if success {
                 self.guestLogin()
+                self.sendAnalytics()
             } else {
                 if isRefreshToken {
                     self.tokenHelper.refreshToken()
@@ -74,6 +75,13 @@ public class DeleteAccountViewModel {
 
     var didDeleteAccountFinish: (() -> Void)?
     var didError: (() -> Void)?
+
+    private func sendAnalytics() {
+        let item = Analytic()
+        item.accountId = UserManager.shared.accountId
+        item.userId = UserManager.shared.id
+        TrackingAnalyticHelper.shared.sendTrackingAnalytic(eventType: .deleteAccount, item: item)
+    }
 }
 
 extension DeleteAccountViewModel: TokenHelperDelegate {

@@ -27,6 +27,7 @@
 
 import UIKit
 import Core
+import Networking
 import Defaults
 import RealmSwift
 import JGProgressHUD
@@ -70,12 +71,25 @@ class DeleteAccountDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupNavBar()
-        Defaults[.screenId] = ""
+        Defaults[.screenId] = ScreenId.deleteAccount.rawValue
         self.hud.textLabel.text = "Deleting"
+    }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        EngagementHelper().sendCastcleAnalytic(event: .onScreenView, screen: .deleteAccount)
+        self.sendAnalytics()
     }
 
     func setupNavBar() {
         self.customNavigationBar(.secondary, title: Localization.SettingDeleteConfirm.title.text)
+    }
+
+    private func sendAnalytics() {
+        let item = Analytic()
+        item.accountId = UserManager.shared.accountId
+        item.userId = UserManager.shared.id
+        TrackingAnalyticHelper.shared.sendTrackingAnalytic(eventType: .viewDeleteAccount, item: item)
     }
 
     func configureTableView() {
