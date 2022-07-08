@@ -94,7 +94,7 @@ extension RegisterPasswordViewController: UITableViewDelegate, UITableViewDataSo
 extension RegisterPasswordViewController: RegisterPasswordTableViewCellDelegate {
     func didConfirm(_ cell: RegisterPasswordTableViewCell, email: String) {
         self.hud.show(in: self.view)
-        self.viewModel.authenRequest.objective = .forgotPassword
+        self.viewModel.authenRequest.objective = .changePassword
         self.viewModel.authenRequest.email = email
         self.viewModel.requestOtpWithEmail()
     }
