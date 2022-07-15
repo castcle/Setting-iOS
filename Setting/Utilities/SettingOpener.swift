@@ -41,6 +41,8 @@ public enum SettingScene {
     case verifyMobileSuccess
     case registerPassword
     case registerPasswordOtp(RegisterPasswordOtpViewModel)
+    case registerEmail
+    case registerEmailSuccess
 }
 
 public struct SettingOpener {
@@ -97,6 +99,14 @@ public struct SettingOpener {
             let viewController = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.registerPasswordOtp) as? RegisterPasswordOtpViewController
             viewController?.viewModel = viewModel
             return viewController ?? RegisterPasswordOtpViewController()
+        case .registerEmail:
+            let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
+            let viewController = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.registerEmail)
+            return viewController
+        case .registerEmailSuccess:
+            let storyboard: UIStoryboard = UIStoryboard(name: SettingNibVars.Storyboard.setting, bundle: ConfigBundle.setting)
+            let viewController = storyboard.instantiateViewController(withIdentifier: SettingNibVars.ViewController.registerEmailSuccess)
+            return viewController
         }
     }
 }

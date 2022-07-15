@@ -132,7 +132,9 @@ public final class AccountSettingViewModel {
     func openSettingSection(section: AccountSection) {
         switch section {
         case .email:
-            if !UserManager.shared.isVerifiedEmail {
+            if UserManager.shared.email.isEmpty {
+                NotificationCenter.default.post(name: .openRegisterEmailDelegate, object: nil, userInfo: nil)
+            } else if !UserManager.shared.isVerifiedEmail {
                 NotificationCenter.default.post(name: .openVerifyDelegate, object: nil, userInfo: nil)
             }
         case .mobile:
