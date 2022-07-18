@@ -82,6 +82,11 @@
 		B7C2531826D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C2531626D54E9B00ACBB84 /* SelectLanguageTableViewCell.xib */; };
 		B7FA199A27B3A1F500C69D37 /* SettingSocialAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FA199827B3A1F500C69D37 /* SettingSocialAccountTableViewCell.swift */; };
 		B7FA199B27B3A1F500C69D37 /* SettingSocialAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7FA199927B3A1F500C69D37 /* SettingSocialAccountTableViewCell.xib */; };
+		F688D83D288158EF00DEAE40 /* RegisterEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688D83C288158EF00DEAE40 /* RegisterEmailViewController.swift */; };
+		F688D841288159A200DEAE40 /* RegisterEmailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688D83F288159A200DEAE40 /* RegisterEmailTableViewCell.swift */; };
+		F688D842288159A200DEAE40 /* RegisterEmailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F688D840288159A200DEAE40 /* RegisterEmailTableViewCell.xib */; };
+		F688D844288161F100DEAE40 /* RegisterEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688D843288161F100DEAE40 /* RegisterEmailViewModel.swift */; };
+		F688D846288166BF00DEAE40 /* RegisterEmailSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688D845288166BF00DEAE40 /* RegisterEmailSuccessViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,6 +175,11 @@
 		BAC4AC43122933957DEFA40F /* Pods-Setting.debug (staging).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.debug (staging).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.debug (staging).xcconfig"; sourceTree = "<group>"; };
 		D4FC7016B0A506343C03F43A /* Pods-Setting.release (staging).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.release (staging).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.release (staging).xcconfig"; sourceTree = "<group>"; };
 		EB4AF3FA989FF6A4FEDDBE20 /* Pods-Setting.release (development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.release (development).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.release (development).xcconfig"; sourceTree = "<group>"; };
+		F688D83C288158EF00DEAE40 /* RegisterEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmailViewController.swift; sourceTree = "<group>"; };
+		F688D83F288159A200DEAE40 /* RegisterEmailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmailTableViewCell.swift; sourceTree = "<group>"; };
+		F688D840288159A200DEAE40 /* RegisterEmailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterEmailTableViewCell.xib; sourceTree = "<group>"; };
+		F688D843288161F100DEAE40 /* RegisterEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmailViewModel.swift; sourceTree = "<group>"; };
+		F688D845288166BF00DEAE40 /* RegisterEmailSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEmailSuccessViewController.swift; sourceTree = "<group>"; };
 		F927926DEE6C1B58E72F9815 /* Pods-Setting.release (production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Setting.release (production).xcconfig"; path = "Target Support Files/Pods-Setting/Pods-Setting.release (production).xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -339,6 +349,7 @@
 				B7C2530326D535FE00ACBB84 /* Setting */,
 				B779D94427B4CAEA008C8670 /* Verify Mobile */,
 				B726645A27BA1B36005ABE90 /* Verify Password */,
+				F688D83E2881597900DEAE40 /* Register Email */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -346,6 +357,7 @@
 		B7C252F626D50A1300ACBB84 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F688D83B2881582600DEAE40 /* Register Email */,
 				B726645927BA1B24005ABE90 /* Verify Password */,
 				B779D94127B4C83C008C8670 /* Verify Mobile */,
 				B7C252C426D3946E00ACBB84 /* SettingViewController.swift */,
@@ -368,6 +380,7 @@
 				B743386626D8E297004BBC05 /* AccountSettingViewModel.swift */,
 				B7A11BF227B60DD200D00F3A /* VerifyMobileOtpViewModel.swift */,
 				B726646D27BA4DF9005ABE90 /* RegisterPasswordOtpViewModel.swift */,
+				F688D843288161F100DEAE40 /* RegisterEmailViewModel.swift */,
 				B7B417A127CA802500EA82A8 /* DeleteAccountViewModel.swift */,
 			);
 			path = ViewModel;
@@ -419,6 +432,24 @@
 				33296E29F07D0AFE9916B159 /* Pods_Setting.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F688D83B2881582600DEAE40 /* Register Email */ = {
+			isa = PBXGroup;
+			children = (
+				F688D83C288158EF00DEAE40 /* RegisterEmailViewController.swift */,
+				F688D845288166BF00DEAE40 /* RegisterEmailSuccessViewController.swift */,
+			);
+			path = "Register Email";
+			sourceTree = "<group>";
+		};
+		F688D83E2881597900DEAE40 /* Register Email */ = {
+			isa = PBXGroup;
+			children = (
+				F688D83F288159A200DEAE40 /* RegisterEmailTableViewCell.swift */,
+				F688D840288159A200DEAE40 /* RegisterEmailTableViewCell.xib */,
+			);
+			path = "Register Email";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -515,6 +546,7 @@
 				B7C252F026D3D2D000ACBB84 /* SettingTableViewCell.xib in Resources */,
 				B7C252F426D3E15800ACBB84 /* OtherTableViewCell.xib in Resources */,
 				B786636A274B8D1000B13EEF /* SocialTableViewCell.xib in Resources */,
+				F688D842288159A200DEAE40 /* RegisterEmailTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,8 +599,10 @@
 				B7C2531026D5449B00ACBB84 /* LanguageViewModel.swift in Sources */,
 				B779D94727B4CB19008C8670 /* VerifyMobileTableViewCell.swift in Sources */,
 				B726646927BA3750005ABE90 /* RegisterPasswordOtpTableViewCell.swift in Sources */,
+				F688D844288161F100DEAE40 /* RegisterEmailViewModel.swift in Sources */,
 				B7B417A227CA802500EA82A8 /* DeleteAccountViewModel.swift in Sources */,
 				B7C252EF26D3D2D000ACBB84 /* SettingTableViewCell.swift in Sources */,
+				F688D846288166BF00DEAE40 /* RegisterEmailSuccessViewController.swift in Sources */,
 				B7C2530A26D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.swift in Sources */,
 				B7866369274B8D1000B13EEF /* SocialTableViewCell.swift in Sources */,
 				B743386726D8E297004BBC05 /* AccountSettingViewModel.swift in Sources */,
@@ -582,11 +616,13 @@
 				B743386426D8DF3B004BBC05 /* SettingAccountTableViewCell.swift in Sources */,
 				B7C252CA26D3950400ACBB84 /* SettingOpener.swift in Sources */,
 				B743385B26D6453D004BBC05 /* PreferredLanguageTableViewCell.swift in Sources */,
+				F688D83D288158EF00DEAE40 /* RegisterEmailViewController.swift in Sources */,
 				B779D94327B4C92A008C8670 /* VerifyMobileViewController.swift in Sources */,
 				B7C252F926D50A5C00ACBB84 /* LanguageViewController.swift in Sources */,
 				B7C252C526D3946E00ACBB84 /* SettingViewController.swift in Sources */,
 				B743386926D90695004BBC05 /* DeleteAccountDetailViewController.swift in Sources */,
 				B726646E27BA4DFA005ABE90 /* RegisterPasswordOtpViewModel.swift in Sources */,
+				F688D841288159A200DEAE40 /* RegisterEmailTableViewCell.swift in Sources */,
 				B779D95727B4F36B008C8670 /* VerifyMobileOtpViewController.swift in Sources */,
 				B7C252FC26D5308000ACBB84 /* Localizable.swift in Sources */,
 				B7C252E126D3B92F00ACBB84 /* VerifyTableViewCell.swift in Sources */,

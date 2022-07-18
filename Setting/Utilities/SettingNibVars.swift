@@ -40,6 +40,8 @@ public struct SettingNibVars {
         public static let verifyMobileSuccess = "VerifyMobileSuccessViewController"
         public static let registerPassword = "RegisterPasswordViewController"
         public static let registerPasswordOtp = "RegisterPasswordOtpViewController"
+        public static let registerEmail = "RegisterEmailViewController"
+        public static let registerEmailSuccess = "RegisterEmailSuccessViewController"
     }
 
     // MARK: - View
@@ -68,6 +70,7 @@ public struct SettingNibVars {
         public static let verifyMobileOtp = "VerifyMobileOtpTableViewCell"
         public static let registerPassword = "RegisterPasswordTableViewCell"
         public static let registerPasswordOtp = "RegisterPasswordOtpTableViewCell"
+        public static let registerEmail = "RegisterEmailTableViewCell"
     }
 
     // MARK: - CollectionViewCell
