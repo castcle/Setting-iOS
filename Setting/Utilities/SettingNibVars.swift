@@ -64,7 +64,6 @@ public struct SettingNibVars {
         public static let deleteHeader = "ConfirmDeleteHeaderTableViewCell"
         public static let accountList = "AccountListTableViewCell"
         public static let password = "DeleteAccountPasswordTableViewCell"
-        public static let social = "SocialTableViewCell"
         public static let settingSocialAccount = "SettingSocialAccountTableViewCell"
         public static let verifyMobile = "VerifyMobileTableViewCell"
         public static let verifyMobileOtp = "VerifyMobileOtpTableViewCell"

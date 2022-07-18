@@ -40,8 +40,6 @@
 		B779D96027B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D95E27B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift */; };
 		B779D96127B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B779D95F27B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib */; };
 		B779D96327B54948008C8670 /* VerifyMobileSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B779D96227B54948008C8670 /* VerifyMobileSuccessViewController.swift */; };
-		B7866369274B8D1000B13EEF /* SocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7866367274B8D1000B13EEF /* SocialTableViewCell.swift */; };
-		B786636A274B8D1000B13EEF /* SocialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7866368274B8D1000B13EEF /* SocialTableViewCell.xib */; };
 		B7A11BF327B60DD200D00F3A /* VerifyMobileOtpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A11BF227B60DD200D00F3A /* VerifyMobileOtpViewModel.swift */; };
 		B7AF660B26F24F5800BDE9C4 /* Profile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF660A26F24F5800BDE9C4 /* Profile.framework */; };
 		B7AF666826F4385800BDE9C4 /* Notification.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7AF666726F4385800BDE9C4 /* Notification.framework */; };
@@ -126,8 +124,6 @@
 		B779D95E27B510FA008C8670 /* VerifyMobileOtpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileOtpTableViewCell.swift; sourceTree = "<group>"; };
 		B779D95F27B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerifyMobileOtpTableViewCell.xib; sourceTree = "<group>"; };
 		B779D96227B54948008C8670 /* VerifyMobileSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileSuccessViewController.swift; sourceTree = "<group>"; };
-		B7866367274B8D1000B13EEF /* SocialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTableViewCell.swift; sourceTree = "<group>"; };
-		B7866368274B8D1000B13EEF /* SocialTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialTableViewCell.xib; sourceTree = "<group>"; };
 		B7A11BF227B60DD200D00F3A /* VerifyMobileOtpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyMobileOtpViewModel.swift; sourceTree = "<group>"; };
 		B7AF660A26F24F5800BDE9C4 /* Profile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Profile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7AF666726F4385800BDE9C4 /* Notification.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Notification.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -410,8 +406,6 @@
 				B7C252EE26D3D2D000ACBB84 /* SettingTableViewCell.xib */,
 				B7C252F126D3E15800ACBB84 /* OtherTableViewCell.swift */,
 				B7C252F226D3E15800ACBB84 /* OtherTableViewCell.xib */,
-				B7866367274B8D1000B13EEF /* SocialTableViewCell.swift */,
-				B7866368274B8D1000B13EEF /* SocialTableViewCell.xib */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -545,7 +539,6 @@
 				B779D96127B510FA008C8670 /* VerifyMobileOtpTableViewCell.xib in Resources */,
 				B7C252F026D3D2D000ACBB84 /* SettingTableViewCell.xib in Resources */,
 				B7C252F426D3E15800ACBB84 /* OtherTableViewCell.xib in Resources */,
-				B786636A274B8D1000B13EEF /* SocialTableViewCell.xib in Resources */,
 				F688D842288159A200DEAE40 /* RegisterEmailTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,7 +597,6 @@
 				B7C252EF26D3D2D000ACBB84 /* SettingTableViewCell.swift in Sources */,
 				F688D846288166BF00DEAE40 /* RegisterEmailSuccessViewController.swift in Sources */,
 				B7C2530A26D53CFC00ACBB84 /* AddPreferredLanguageTableViewCell.swift in Sources */,
-				B7866369274B8D1000B13EEF /* SocialTableViewCell.swift in Sources */,
 				B743386726D8E297004BBC05 /* AccountSettingViewModel.swift in Sources */,
 				B743387726D91CAB004BBC05 /* DeleteAccountPasswordTableViewCell.swift in Sources */,
 				B7C252C826D394F000ACBB84 /* SettingNibVars.swift in Sources */,

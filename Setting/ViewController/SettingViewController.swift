@@ -44,7 +44,7 @@ class SettingViewController: UIViewController {
         case language
         case about
         case other
-        case social
+        case castcleAbout
     }
 
     var viewModel = SettingViewModel()
@@ -90,7 +90,7 @@ class SettingViewController: UIViewController {
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.pageList, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.pageList)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.setting, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.setting)
         self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.other, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.other)
-        self.tableView.register(UINib(nibName: SettingNibVars.TableViewCell.social, bundle: ConfigBundle.setting), forCellReuseIdentifier: SettingNibVars.TableViewCell.social)
+        self.tableView.register(UINib(nibName: ComponentNibVars.TableViewCell.about, bundle: ConfigBundle.component), forCellReuseIdentifier: ComponentNibVars.TableViewCell.about)
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.estimatedRowHeight = 100
     }
@@ -190,10 +190,11 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             cell?.backgroundColor = UIColor.clear
             cell?.configCell()
             return cell ?? OtherTableViewCell()
-        case SettingViewControllerSection.social.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.social, for: indexPath as IndexPath) as? SocialTableViewCell
+        case SettingViewControllerSection.castcleAbout.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ComponentNibVars.TableViewCell.about, for: indexPath as IndexPath) as? AboutTableViewCell
             cell?.backgroundColor = UIColor.clear
-            return cell ?? SocialTableViewCell()
+            cell?.configCell()
+            return cell ?? AboutTableViewCell()
         default:
             return UITableViewCell()
         }

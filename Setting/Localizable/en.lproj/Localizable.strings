@@ -36,12 +36,6 @@
 "setting_new_page"                  = "New Page";
 "setting_account_settings"          = "Account Settings";
 "setting_log_out"                   = "Log out";
-"setting_join_us"                   = "Join us";
-"setting_docs"                      = "Docs";
-"setting_whitepaper"                = "Whitepaper";
-"setting_version"                   = "Version";
-"setting_term_of_service"           = "Terms of Service";
-"setting_privacy"                   = "Privacy Policy";
 
 // MARK: - Setting (Language)
 "setting_language_title"                            = "Language";

@@ -43,12 +43,6 @@ extension Localization {
         case language
         case about
         case logOut
-        case joinUs
-        case docs
-        case whitepaper
-        case version
-        case termOfService
-        case privacy
 
         public var text: String {
             switch self {
@@ -76,18 +70,6 @@ extension Localization {
                 return "setting_about".localized(bundle: ConfigBundle.setting)
             case .logOut:
                 return "setting_log_out".localized(bundle: ConfigBundle.setting)
-            case .joinUs:
-                return "setting_join_us".localized(bundle: ConfigBundle.setting)
-            case .docs:
-                return "setting_docs".localized(bundle: ConfigBundle.setting)
-            case .whitepaper:
-                return "setting_whitepaper".localized(bundle: ConfigBundle.setting)
-            case .version:
-                return "setting_version".localized(bundle: ConfigBundle.setting)
-            case .termOfService:
-                return "setting_term_of_service".localized(bundle: ConfigBundle.setting)
-            case .privacy:
-                return "setting_privacy".localized(bundle: ConfigBundle.setting)
             }
         }
     }

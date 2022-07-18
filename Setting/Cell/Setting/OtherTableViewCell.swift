@@ -28,24 +28,18 @@
 import UIKit
 import Core
 import Component
-import ActiveLabel
 import Defaults
 import JGProgressHUD
 
 class OtherTableViewCell: UITableViewCell {
 
     @IBOutlet var signOutButton: UIButton!
-    @IBOutlet var versionLabel: UILabel!
-    @IBOutlet var otherLabel: ActiveLabel!
-    @IBOutlet var termLabel: ActiveLabel!
 
     let viewModel: SettingViewModel = SettingViewModel()
     let hud = JGProgressHUD()
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.versionLabel.font = UIFont.asset(.light, fontSize: .overline)
-        self.versionLabel.textColor = UIColor.Asset.gray
         self.signOutButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .head4)
         self.signOutButton.setTitleColor(UIColor.Asset.white, for: .normal)
         self.signOutButton.setBackgroundImage(UIColor.Asset.lightBlue.toImage(), for: .normal)
@@ -70,52 +64,6 @@ class OtherTableViewCell: UITableViewCell {
 
     func configCell() {
         self.signOutButton.setTitle(Localization.Setting.logOut.text, for: .normal)
-        self.otherLabel.text = "\(Localization.Setting.joinUs.text) | \(Localization.Setting.docs.text) | \(Localization.Setting.whitepaper.text)"
-        self.versionLabel.text = "\(Localization.Setting.version.text) \(Defaults[.appVersion]) (\(Defaults[.appBuild]))"
-        self.termLabel.text = "\(Localization.Setting.termOfService.text) | \(Localization.Setting.privacy.text)"
-        self.otherLabel.customize { label in
-            label.font = UIFont.asset(.light, fontSize: .overline)
-            label.numberOfLines = 1
-            label.textColor = UIColor.Asset.gray
-            let joinUsType = ActiveType.custom(pattern: Localization.Setting.joinUs.text)
-            let docsType = ActiveType.custom(pattern: Localization.Setting.docs.text)
-            let whitepaperType = ActiveType.custom(pattern: Localization.Setting.whitepaper.text)
-            label.enabledTypes = [joinUsType, docsType, whitepaperType]
-            label.customColor[joinUsType] = UIColor.Asset.lightBlue
-            label.customSelectedColor[joinUsType] = UIColor.Asset.gray
-            label.customColor[docsType] = UIColor.Asset.lightBlue
-            label.customSelectedColor[docsType] = UIColor.Asset.gray
-            label.customColor[whitepaperType] = UIColor.Asset.lightBlue
-            label.customSelectedColor[whitepaperType] = UIColor.Asset.gray
-            label.handleCustomTap(for: joinUsType) { _ in
-                self.openWebView(urlString: Environment.joinUs)
-            }
-            label.handleCustomTap(for: docsType) { _ in
-                self.openWebView(urlString: Environment.docs)
-            }
-            label.handleCustomTap(for: whitepaperType) { _ in
-                self.openWebView(urlString: Environment.whitepaper)
-            }
-        }
-
-        self.termLabel.customize { label in
-            label.font = UIFont.asset(.light, fontSize: .overline)
-            label.numberOfLines = 1
-            label.textColor = UIColor.Asset.gray
-            let termType = ActiveType.custom(pattern: Localization.Setting.termOfService.text)
-            let privacyType = ActiveType.custom(pattern: Localization.Setting.privacy.text)
-            label.enabledTypes = [termType, privacyType]
-            label.customColor[termType] = UIColor.Asset.lightBlue
-            label.customSelectedColor[termType] = UIColor.Asset.gray
-            label.customColor[privacyType] = UIColor.Asset.lightBlue
-            label.customSelectedColor[privacyType] = UIColor.Asset.gray
-            label.handleCustomTap(for: termType) { _ in
-                self.openWebView(urlString: Environment.userAgreement)
-            }
-            label.handleCustomTap(for: privacyType) { _ in
-                self.openWebView(urlString: Environment.privacyPolicy)
-            }
-        }
     }
 }
 
