@@ -58,10 +58,6 @@ class OtherTableViewCell: UITableViewCell {
         self.viewModel.logout()
     }
 
-    private func openWebView(urlString: String) {
-        Utility.currentViewController().navigationController?.pushViewController(ComponentOpener.open(.internalWebView(URL(string: urlString)!)), animated: true)
-    }
-
     func configCell() {
         self.signOutButton.setTitle(Localization.Setting.logOut.text, for: .normal)
     }
