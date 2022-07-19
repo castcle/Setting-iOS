@@ -36,12 +36,6 @@
 "setting_new_page"                  = "สร้างเพจใหม่";
 "setting_account_settings"          = "ตั้งค่าข้อมูลบัญชี";
 "setting_log_out"                   = "ออกจากระบบ";
-"setting_join_us"                   = "ร่วมงานกับเรา";
-"setting_docs"                      = "Docs";
-"setting_whitepaper"                = "Whitepaper";
-"setting_version"                   = "เวอร์ชั่น";
-"setting_term_of_service"           = "เงื่อนไขการใช้บริการ";
-"setting_privacy"                   = "นโยบายความเป็นส่วนตัว";
 
 // MARK: - Setting (Language)
 "setting_language_title"                            = "ภาษา";
