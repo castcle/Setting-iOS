@@ -51,7 +51,7 @@ class RegisterEmailTableViewCell: UITableViewCell, UITextFieldDelegate {
         self.emailTitle.textColor = UIColor.Asset.white
         self.emailTextField.font = UIFont.asset(.regular, fontSize: .overline)
         self.emailTextField.textColor = UIColor.Asset.white
-        self.emailView.capsule(color: UIColor.Asset.darkGray)
+        self.emailView.capsule(color: UIColor.Asset.cellBackground)
         self.emailTextField.delegate = self
         self.emailTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         self.confirmButton.activeButton(isActive: false)

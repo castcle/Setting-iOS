@@ -44,7 +44,7 @@ class NotificationTableViewCell: UITableViewCell {
         self.amountLabel.font = UIFont.asset(.regular, fontSize: .overline)
         self.amountLabel.textColor = UIColor.Asset.lightBlue
         self.iconImage.image = UIImage.init(icon: .castcle(.bell), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
-        self.baseView?.custom(color: UIColor.Asset.darkGray, cornerRadius: 12)
+        self.baseView?.custom(color: UIColor.Asset.cellBackground, cornerRadius: 12)
         self.badgeView?.capsule(color: UIColor.Asset.lightBlue, borderWidth: 1.0, borderColor: UIColor.Asset.darkGraphiteBlue)
         self.badgeLabel.font = UIFont.asset(.regular, fontSize: .custom(size: 10))
         self.badgeLabel.textColor = UIColor.Asset.darkGraphiteBlue

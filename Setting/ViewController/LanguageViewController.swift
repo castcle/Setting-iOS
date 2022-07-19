@@ -92,13 +92,13 @@ extension LanguageViewController: UITableViewDelegate, UITableViewDataSource {
             return cell ?? AppLanguageTableViewCell()
         case LanguageViewControllerSection.preferred.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.preferred, for: indexPath as IndexPath) as? PreferredLanguageTableViewCell
-            cell?.backgroundColor = UIColor.Asset.darkGray
+            cell?.backgroundColor = UIColor.Asset.cellBackground
             cell?.languageLabel.text = self.viewModel.preferredLanguage.filter { $0.isSelected == true }[indexPath.row].display
             cell?.delegate = self
             return cell ?? PreferredLanguageTableViewCell()
         case LanguageViewControllerSection.add.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.addPreferred, for: indexPath as IndexPath) as? AddPreferredLanguageTableViewCell
-            cell?.backgroundColor = UIColor.Asset.darkGray
+            cell?.backgroundColor = UIColor.Asset.cellBackground
             cell?.configCell()
             return cell ?? AddPreferredLanguageTableViewCell()
         default:

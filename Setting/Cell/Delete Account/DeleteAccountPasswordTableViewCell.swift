@@ -50,7 +50,7 @@ class DeleteAccountPasswordTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.passwordView.custom(color: UIColor.Asset.darkGray, cornerRadius: 10, borderWidth: 1, borderColor: UIColor.Asset.black)
+        self.passwordView.custom(color: UIColor.Asset.cellBackground, cornerRadius: 10, borderWidth: 1, borderColor: UIColor.Asset.black)
         self.setupContinueButton(isActive: self.isCanContinue)
         self.passwordTextField.delegate = self
         self.passwordTextField.tag = 0

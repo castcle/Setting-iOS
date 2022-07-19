@@ -62,7 +62,7 @@ class RegisterPasswordTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.emailView.custom(color: UIColor.Asset.darkGray, cornerRadius: 10, borderWidth: 1, borderColor: UIColor.Asset.black)
+        self.emailView.custom(color: UIColor.Asset.cellBackground, cornerRadius: 10, borderWidth: 1, borderColor: UIColor.Asset.black)
         self.setupContinueButton(isActive: self.isCanContinue)
         self.headlineLabel.font = UIFont.asset(.regular, fontSize: .head2)
         self.headlineLabel.textColor = UIColor.Asset.white

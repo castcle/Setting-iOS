@@ -56,8 +56,8 @@ class VerifyMobileTableViewCell: UITableViewCell {
         self.codeLabel.textColor = UIColor.Asset.white
         self.mobileTextField.font = UIFont.asset(.regular, fontSize: .overline)
         self.mobileTextField.textColor = UIColor.Asset.white
-        self.codeView.capsule(color: UIColor.Asset.darkGray)
-        self.mobileViewView.capsule(color: UIColor.Asset.darkGray)
+        self.codeView.capsule(color: UIColor.Asset.cellBackground)
+        self.mobileViewView.capsule(color: UIColor.Asset.cellBackground)
         self.confirmButton.activeButton(isActive: false)
         self.dropdownImage.image = UIImage.init(icon: .castcle(.dropDown), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.lightBlue)
         self.mobileTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
