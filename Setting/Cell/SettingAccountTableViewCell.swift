@@ -32,14 +32,16 @@ class SettingAccountTableViewCell: UITableViewCell {
 
     @IBOutlet var settingTitleLabel: UILabel!
     @IBOutlet var settingDisplayLabel: UILabel!
+    @IBOutlet var settingNoteLabel: UILabel!
     @IBOutlet var settingNextImage: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.settingTitleLabel.font = UIFont.asset(.regular, fontSize: .body)
         self.settingTitleLabel.textColor = UIColor.Asset.white
-        self.settingDisplayLabel.font = UIFont.asset(.regular, fontSize: .body)
-        self.settingDisplayLabel.textColor = UIColor.Asset.gray
+        self.settingDisplayLabel.font = UIFont.asset(.contentLight, fontSize: .body)
+        self.settingNoteLabel.font = UIFont.asset(.contentLight, fontSize: .small)
+        self.settingNoteLabel.textColor = UIColor.Asset.denger
         self.settingNextImage.image = UIImage.init(icon: .castcle(.next), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
     }
 
@@ -50,26 +52,42 @@ class SettingAccountTableViewCell: UITableViewCell {
     func configCell(section: AccountSection) {
         self.settingTitleLabel.text = section.text
         if section == .email {
-            if UserManager.shared.isVerifiedEmail {
-                self.settingDisplayLabel.text = UserManager.shared.email
-                self.settingNextImage.isHidden = true
-            } else {
-                self.settingDisplayLabel.text = "Not Verify"
+            if UserManager.shared.email.isEmpty {
+                self.settingDisplayLabel.textColor = UIColor.Asset.unregistered
+                self.settingDisplayLabel.text = "Unregistered"
+                self.settingNoteLabel.text = ""
                 self.settingNextImage.isHidden = false
+            } else if !UserManager.shared.isVerifiedEmail {
+                self.settingDisplayLabel.textColor = UIColor.Asset.textGray
+                self.settingDisplayLabel.text = UserManager.shared.email
+                self.settingNoteLabel.text = "Please verify y0u email"
+                self.settingNextImage.isHidden = false
+            } else {
+                self.settingDisplayLabel.textColor = UIColor.Asset.textGray
+                self.settingDisplayLabel.text = UserManager.shared.email
+                self.settingNoteLabel.text = ""
+                self.settingNextImage.isHidden = true
             }
         } else if section == .mobile {
+            self.settingNoteLabel.text = ""
             if UserManager.shared.isVerifiedMobile {
+                self.settingDisplayLabel.textColor = UIColor.Asset.textGray
                 self.settingDisplayLabel.text = UserManager.shared.mobile
             } else {
+                self.settingDisplayLabel.textColor = UIColor.Asset.unregistered
                 self.settingDisplayLabel.text = "Unregistered"
             }
         } else if section == .password {
+            self.settingNoteLabel.text = ""
             if UserManager.shared.passwordNotSet {
+                self.settingDisplayLabel.textColor = UIColor.Asset.unregistered
                 self.settingDisplayLabel.text = "Unregistered"
             } else {
+                self.settingDisplayLabel.textColor = UIColor.Asset.lightBlue
                 self.settingDisplayLabel.text = "Registered"
             }
         } else {
+            self.settingNoteLabel.text = ""
             self.settingDisplayLabel.text = ""
             self.settingNextImage.isHidden = false
         }

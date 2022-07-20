@@ -41,7 +41,7 @@ class SettingSocialAccountTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.settingSocialTitleLabel.font = UIFont.asset(.regular, fontSize: .body)
         self.settingSocialTitleLabel.textColor = UIColor.Asset.white
-        self.settingSocialDisplayLabel.font = UIFont.asset(.regular, fontSize: .body)
+        self.settingSocialDisplayLabel.font = UIFont.asset(.contentLight, fontSize: .body)
         self.settingSocialDisplayLabel.textColor = UIColor.Asset.gray
         self.settingSocialNextImage.image = UIImage.init(icon: .castcle(.next), size: CGSize(width: 25, height: 25), textColor: UIColor.Asset.white)
     }
@@ -64,7 +64,7 @@ class SettingSocialAccountTableViewCell: UITableViewCell {
         }
 
         if socialUser.socialId.isEmpty {
-            self.settingSocialDisplayLabel.text = "Link"
+            self.settingSocialDisplayLabel.text = ""
             self.settingSocialDisplayLabel.textColor = UIColor.Asset.gray
             self.settingSocialNextImage.isHidden = false
         } else {

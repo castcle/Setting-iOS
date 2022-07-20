@@ -59,7 +59,7 @@
 // MARK: - Setting (Delete Account)
 "setting_profile_delete_title"                      = "Delete Account";
 "setting_profile_delete_id"                         = "Delete Account";
-"setting_profile_delete_description"                = "If you delete account:\n\n●   You won't be able to reactivate your account\n\n●   Your profile, photos, posts, videos and everything else you've added will be permanently deleted. You won't be able to retrieve anything you've added.\n\n●   Your pages will be deleted";
+"setting_profile_delete_description"                = "If you delete account:\n\n●   You won't be able to reactivate your account\n\n●   Your profile, photos, posts, videos and everything else you've added will be permanently deleted. You won't be able to retrieve anything you've added.\n\n●   Your pages will be deleted\n\n●   Your CAST token will be returned to Castcle";
 "setting_profile_delete_button"                     = "Delete Account";
 
 // MARK: - Setting (Delete Confirm)
