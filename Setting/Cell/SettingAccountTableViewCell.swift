@@ -60,7 +60,7 @@ class SettingAccountTableViewCell: UITableViewCell {
             } else if !UserManager.shared.isVerifiedEmail {
                 self.settingDisplayLabel.textColor = UIColor.Asset.textGray
                 self.settingDisplayLabel.text = UserManager.shared.email
-                self.settingNoteLabel.text = "Please verify y0u email"
+                self.settingNoteLabel.text = "Please verify you email"
                 self.settingNextImage.isHidden = false
             } else {
                 self.settingDisplayLabel.textColor = UIColor.Asset.textGray
@@ -72,7 +72,7 @@ class SettingAccountTableViewCell: UITableViewCell {
             self.settingNoteLabel.text = ""
             if UserManager.shared.isVerifiedMobile {
                 self.settingDisplayLabel.textColor = UIColor.Asset.textGray
-                self.settingDisplayLabel.text = UserManager.shared.mobile
+                self.settingDisplayLabel.text = "(\(UserManager.shared.countryCode)) \(UserManager.shared.mobile)"
             } else {
                 self.settingDisplayLabel.textColor = UIColor.Asset.unregistered
                 self.settingDisplayLabel.text = "Unregistered"
