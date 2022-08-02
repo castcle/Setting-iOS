@@ -31,24 +31,24 @@ import Defaults
 
 class VerifyMobileSuccessViewController: UIViewController {
 
-    @IBOutlet var headerLabel: UILabel!
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var subTitleLabel: UILabel!
-    @IBOutlet var confirmButton: UIButton!
+    @IBOutlet var headerVerifyMobileSuccessLabel: UILabel!
+    @IBOutlet var titleVerifyMobileSuccessLabel: UILabel!
+    @IBOutlet var subTitleVerifyMobileSuccessLabel: UILabel!
+    @IBOutlet var confirmVerifyMobileSuccessButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
-        self.headerLabel.font = UIFont.asset(.regular, fontSize: .head4)
-        self.headerLabel.textColor = UIColor.Asset.white
-        self.titleLabel.font = UIFont.asset(.regular, fontSize: .head4)
-        self.titleLabel.textColor = UIColor.Asset.white
-        self.subTitleLabel.font = UIFont.asset(.regular, fontSize: .body)
-        self.subTitleLabel.textColor = UIColor.Asset.white
-        self.confirmButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .head4)
-        self.confirmButton.setTitleColor(UIColor.Asset.white, for: .normal)
-        self.confirmButton.setBackgroundImage(UIColor.Asset.lightBlue.toImage(), for: .normal)
-        self.confirmButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.clear)
+        self.headerVerifyMobileSuccessLabel.font = UIFont.asset(.regular, fontSize: .head4)
+        self.headerVerifyMobileSuccessLabel.textColor = UIColor.Asset.white
+        self.titleVerifyMobileSuccessLabel.font = UIFont.asset(.regular, fontSize: .head4)
+        self.titleVerifyMobileSuccessLabel.textColor = UIColor.Asset.white
+        self.subTitleVerifyMobileSuccessLabel.font = UIFont.asset(.regular, fontSize: .body)
+        self.subTitleVerifyMobileSuccessLabel.textColor = UIColor.Asset.white
+        self.confirmVerifyMobileSuccessButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .head4)
+        self.confirmVerifyMobileSuccessButton.setTitleColor(UIColor.Asset.white, for: .normal)
+        self.confirmVerifyMobileSuccessButton.setBackgroundImage(UIColor.Asset.lightBlue.toImage(), for: .normal)
+        self.confirmVerifyMobileSuccessButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.clear)
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -31,24 +31,24 @@ import Defaults
 
 class RegisterEmailSuccessViewController: UIViewController {
 
-    @IBOutlet var headerLabel: UILabel!
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var subTitleLabel: UILabel!
-    @IBOutlet var confirmButton: UIButton!
+    @IBOutlet var headerRegisterEmailSuccessLabel: UILabel!
+    @IBOutlet var titleRegisterEmailSuccessLabel: UILabel!
+    @IBOutlet var subTitleRegisterEmailSuccessLabel: UILabel!
+    @IBOutlet var confirmRegisterEmailSuccessButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
-        self.headerLabel.font = UIFont.asset(.regular, fontSize: .head4)
-        self.headerLabel.textColor = UIColor.Asset.white
-        self.titleLabel.font = UIFont.asset(.regular, fontSize: .head4)
-        self.titleLabel.textColor = UIColor.Asset.white
-        self.subTitleLabel.font = UIFont.asset(.regular, fontSize: .body)
-        self.subTitleLabel.textColor = UIColor.Asset.white
-        self.confirmButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .head4)
-        self.confirmButton.setTitleColor(UIColor.Asset.white, for: .normal)
-        self.confirmButton.setBackgroundImage(UIColor.Asset.lightBlue.toImage(), for: .normal)
-        self.confirmButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.clear)
+        self.headerRegisterEmailSuccessLabel.font = UIFont.asset(.regular, fontSize: .head4)
+        self.headerRegisterEmailSuccessLabel.textColor = UIColor.Asset.white
+        self.titleRegisterEmailSuccessLabel.font = UIFont.asset(.regular, fontSize: .head4)
+        self.titleRegisterEmailSuccessLabel.textColor = UIColor.Asset.white
+        self.subTitleRegisterEmailSuccessLabel.font = UIFont.asset(.regular, fontSize: .body)
+        self.subTitleRegisterEmailSuccessLabel.textColor = UIColor.Asset.white
+        self.confirmRegisterEmailSuccessButton.titleLabel?.font = UIFont.asset(.regular, fontSize: .head4)
+        self.confirmRegisterEmailSuccessButton.setTitleColor(UIColor.Asset.white, for: .normal)
+        self.confirmRegisterEmailSuccessButton.setBackgroundImage(UIColor.Asset.lightBlue.toImage(), for: .normal)
+        self.confirmRegisterEmailSuccessButton.capsule(color: UIColor.clear, borderWidth: 1, borderColor: UIColor.clear)
     }
 
     override func viewWillAppear(_ animated: Bool) {

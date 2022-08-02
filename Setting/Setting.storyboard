@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21219" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21200"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -426,10 +426,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="confirmButton" destination="d3z-GP-3bw" id="OI1-1o-z8p"/>
-                        <outlet property="headerLabel" destination="ZLo-8Z-m1Q" id="Nra-ft-dsr"/>
-                        <outlet property="subTitleLabel" destination="4kP-bm-mns" id="KLU-DS-CBv"/>
-                        <outlet property="titleLabel" destination="3z3-ng-iNf" id="Kse-lM-5xD"/>
+                        <outlet property="confirmVerifyMobileSuccessButton" destination="d3z-GP-3bw" id="4fq-N1-dzi"/>
+                        <outlet property="headerVerifyMobileSuccessLabel" destination="ZLo-8Z-m1Q" id="oll-39-v4b"/>
+                        <outlet property="subTitleVerifyMobileSuccessLabel" destination="4kP-bm-mns" id="CQe-Xk-Xdf"/>
+                        <outlet property="titleVerifyMobileSuccessLabel" destination="3z3-ng-iNf" id="sNU-xw-ooB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UqS-p4-kcY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -607,10 +607,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="confirmButton" destination="VeW-Zh-TV4" id="V5s-RU-24g"/>
-                        <outlet property="headerLabel" destination="RNF-fF-tYI" id="IPD-HR-fQu"/>
-                        <outlet property="subTitleLabel" destination="YRc-iI-Xji" id="Je5-3n-Ido"/>
-                        <outlet property="titleLabel" destination="3C9-2S-tOc" id="8tt-Dk-rwS"/>
+                        <outlet property="confirmRegisterEmailSuccessButton" destination="VeW-Zh-TV4" id="Vyj-1F-ico"/>
+                        <outlet property="headerRegisterEmailSuccessLabel" destination="RNF-fF-tYI" id="pNs-kQ-qAB"/>
+                        <outlet property="subTitleRegisterEmailSuccessLabel" destination="YRc-iI-Xji" id="xSE-et-jaT"/>
+                        <outlet property="titleRegisterEmailSuccessLabel" destination="3C9-2S-tOc" id="qaP-gt-0Pl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hC3-iZ-PRb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
