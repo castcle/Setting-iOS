@@ -108,7 +108,7 @@ extension PageListTableViewCell: UICollectionViewDataSource, UICollectionViewDel
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            ProfileOpener.openProfileDetail(UserManager.shared.rawCastcleId, displayName: "")
+            ProfileOpener.openProfileDetail(UserManager.shared.castcleId, displayName: "")
         } else if indexPath.row == (self.pages.count + 1) {
             Utility.currentViewController().navigationController?.pushViewController(ProfileOpener.open(.newPageWithSocial), animated: true)
         } else {

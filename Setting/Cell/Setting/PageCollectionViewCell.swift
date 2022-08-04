@@ -65,7 +65,7 @@ class PageCollectionViewCell: UICollectionViewCell {
                 }
                 self.mappingSocialIcon()
 
-                if page.castcleId == UserManager.shared.rawCastcleId {
+                if page.castcleId == UserManager.shared.castcleId {
                     let url = URL(string: UserManager.shared.avatar)
                     self.pageImage.kf.setImage(with: url, placeholder: UIImage.Asset.userPlaceholder, options: [.transition(.fade(0.35))])
                 } else {
