@@ -61,6 +61,7 @@ public class DeleteAccountViewModel {
             if success {
                 UserHelper.shared.clearUserData()
                 UserHelper.shared.clearSeenContent()
+                ContentHelper.shared.clearReportContent()
                 do {
                     let realm = try Realm()
                     let pageRealm = realm.objects(Page.self)
