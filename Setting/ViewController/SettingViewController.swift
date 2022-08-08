@@ -63,6 +63,7 @@ class SettingViewController: UIViewController {
         Defaults[.screenId] = ScreenId.setting.rawValue
         self.viewModel.getMe()
         self.viewModel.getMyPage()
+        NotifyHelper.shared.getBadges()
     }
 
     public override func viewDidAppear(_ animated: Bool) {
