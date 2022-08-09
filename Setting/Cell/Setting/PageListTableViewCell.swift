@@ -38,7 +38,7 @@ class PageListTableViewCell: UITableViewCell {
     @IBOutlet var newPageButton: UIButton!
     @IBOutlet var titleLabel: UILabel!
 
-    var pages: Results<Page>!
+    var pages: Results<PageRealm>!
     var userInfo: UserInfo = UserInfo()
     var newPage: UserInfo = UserInfo()
 
@@ -65,7 +65,7 @@ class PageListTableViewCell: UITableViewCell {
         if UserManager.shared.isVerified {
             do {
               let realm = try Realm()
-                self.pages = realm.objects(Page.self).sorted(byKeyPath: "id")
+                self.pages = realm.objects(PageRealm.self).sorted(byKeyPath: "id")
             } catch {}
             self.newPageButton.isHidden = false
             self.newPage = UserInfo(displayName: "NEW", avatar: "", castcleId: "")

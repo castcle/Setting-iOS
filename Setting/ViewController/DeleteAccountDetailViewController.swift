@@ -36,7 +36,7 @@ class DeleteAccountDetailViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
-    var pages: Results<Page>!
+    var pages: Results<PageRealm>!
     let viewModel = DeleteAccountViewModel()
     let hud = JGProgressHUD()
 
@@ -54,7 +54,7 @@ class DeleteAccountDetailViewController: UIViewController {
         self.configureTableView()
         do {
             let realm = try Realm()
-            self.pages = realm.objects(Page.self).sorted(byKeyPath: "id")
+            self.pages = realm.objects(PageRealm.self).sorted(byKeyPath: "id")
         } catch {}
 
         self.viewModel.didDeleteAccountFinish = {
@@ -130,7 +130,7 @@ extension DeleteAccountDetailViewController: UITableViewDelegate, UITableViewDat
             return cell ?? AccountListTableViewCell()
         case DeleteAccountDetailViewControllerSection.page.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingNibVars.TableViewCell.accountList, for: indexPath as IndexPath) as? AccountListTableViewCell
-            let page: Page = self.pages[indexPath.row]
+            let page: PageRealm = self.pages[indexPath.row]
             cell?.backgroundColor = UIColor.clear
             cell?.configCell(title: page.displayName, type: Localization.SettingDeleteConfirm.page.text, avatar: page.avatar)
             return cell ?? AccountListTableViewCell()

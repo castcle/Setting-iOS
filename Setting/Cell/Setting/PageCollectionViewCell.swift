@@ -44,7 +44,7 @@ class PageCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
 
-    func configCell(userInfo: UserInfo?, page: Page?) {
+    func configCell(userInfo: UserInfo?, page: PageRealm?) {
         self.pageImage.isHidden = false
         self.addImage.isHidden = false
         self.firstSocialIconView.isHidden = true

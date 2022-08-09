@@ -64,7 +64,7 @@ public class DeleteAccountViewModel {
                 ContentHelper.shared.clearReportContent()
                 do {
                     let realm = try Realm()
-                    let pageRealm = realm.objects(Page.self)
+                    let pageRealm = realm.objects(PageRealm.self)
                     try realm.write {
                         realm.delete(pageRealm)
                     }
