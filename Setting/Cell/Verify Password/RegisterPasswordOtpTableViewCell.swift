@@ -45,7 +45,7 @@ class RegisterPasswordOtpTableViewCell: UITableViewCell {
     @IBOutlet var registerPasswordConfirmButton: UIButton!
 
     var delegate: RegisterPasswordOtpTableViewCellDelegate?
-    var secondsRemaining = 300
+    var secondsRemaining = 600
     var pin: String = ""
 
     override func awakeFromNib() {
@@ -98,7 +98,7 @@ class RegisterPasswordOtpTableViewCell: UITableViewCell {
     private func setupCountdown() {
         self.registerPasswordCountdownLabel.isHidden = false
         self.registerPasswordResendButton.isHidden = true
-        self.secondsRemaining = 300
+        self.secondsRemaining = 600
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
             if self.secondsRemaining > 0 {
                 self.registerPasswordCountdownLabel.text = "Request code again \(self.secondsRemaining.secondsToTime()) sec"

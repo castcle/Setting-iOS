@@ -45,7 +45,7 @@ class VerifyMobileOtpTableViewCell: UITableViewCell {
     @IBOutlet var verifyMobileConfirmButton: UIButton!
 
     var delegate: VerifyMobileOtpTableViewCellDelegate?
-    var secondsRemaining = 300
+    var secondsRemaining = 600
     var pin: String = ""
 
     override func awakeFromNib() {
@@ -98,7 +98,7 @@ class VerifyMobileOtpTableViewCell: UITableViewCell {
     private func setupCountdown() {
         self.verifyMobileCountdownLabel.isHidden = false
         self.verifyMobileResendButton.isHidden = true
-        self.secondsRemaining = 300
+        self.secondsRemaining = 600
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { (timer) in
             if self.secondsRemaining > 0 {
                 self.verifyMobileCountdownLabel.text = "Request code again \(self.secondsRemaining.secondsToTime()) sec"
