@@ -27,10 +27,10 @@
 
 import UIKit
 import Core
+import Component
 import Networking
 import Defaults
 import RealmSwift
-import JGProgressHUD
 
 class DeleteAccountDetailViewController: UIViewController {
 
@@ -38,7 +38,6 @@ class DeleteAccountDetailViewController: UIViewController {
 
     var pages: Results<PageRealm>!
     let viewModel = DeleteAccountViewModel()
-    let hud = JGProgressHUD()
 
     enum DeleteAccountDetailViewControllerSection: Int, CaseIterable {
         case header = 0
@@ -58,13 +57,13 @@ class DeleteAccountDetailViewController: UIViewController {
         } catch {}
 
         self.viewModel.didDeleteAccountFinish = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
             Defaults[.startLoadFeed] = true
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.deleteSuccess), animated: true)
         }
 
         self.viewModel.didError = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
         }
     }
 
@@ -72,7 +71,6 @@ class DeleteAccountDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         self.setupNavBar()
         Defaults[.screenId] = ScreenId.deleteAccount.rawValue
-        self.hud.textLabel.text = "Deleting"
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -148,7 +146,7 @@ extension DeleteAccountDetailViewController: UITableViewDelegate, UITableViewDat
 
 extension DeleteAccountDetailViewController: DeleteAccountPasswordTableViewCellDelegate {
     func didConfirm(_ deleteAccountPasswordTableViewCell: DeleteAccountPasswordTableViewCell, password: String) {
-        self.hud.show(in: self.view)
+        CCLoading.shared.show(text: "Deleting")
         self.viewModel.userRequest.channel = .email
         self.viewModel.userRequest.payload.password = password
         self.viewModel.deleteAccount()

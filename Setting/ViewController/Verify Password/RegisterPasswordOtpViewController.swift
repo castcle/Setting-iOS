@@ -27,16 +27,15 @@
 
 import UIKit
 import Core
+import Component
 import Authen
 import Defaults
-import JGProgressHUD
 
 class RegisterPasswordOtpViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
     var viewModel = RegisterPasswordOtpViewModel()
-    let hud = JGProgressHUD()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,17 +44,17 @@ class RegisterPasswordOtpViewController: UIViewController {
         self.configureTableView()
 
         self.viewModel.didGetOtpFinish = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
         }
 
         self.viewModel.didVerifyOtpFinish = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
             self.viewModel.authenRequest.objective = .forgotPassword
             Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.changePassword(ChangePasswordViewModel(.createPassword, authenRequest: self.viewModel.authenRequest))), animated: true)
         }
 
         self.viewModel.didError = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
         }
     }
 
@@ -98,14 +97,12 @@ extension RegisterPasswordOtpViewController: UITableViewDelegate, UITableViewDat
 
 extension RegisterPasswordOtpViewController: RegisterPasswordOtpTableViewCellDelegate {
     func didRequestOtp(_ cell: RegisterPasswordOtpTableViewCell) {
-        self.hud.textLabel.text = "Sending"
-        self.hud.show(in: self.view)
+        CCLoading.shared.show(text: "Sending")
         self.viewModel.requestOtpWithEmail()
     }
 
     func didConfirm(_ cell: RegisterPasswordOtpTableViewCell, pin: String) {
-        self.hud.textLabel.text = "Verifying"
-        self.hud.show(in: self.view)
+        CCLoading.shared.show(text: "Verifying")
         self.viewModel.authenRequest.otp = pin
         self.viewModel.verifyOtpWithEmail()
     }

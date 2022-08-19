@@ -27,15 +27,14 @@
 
 import UIKit
 import Core
+import Component
 import Defaults
-import JGProgressHUD
 
 class RegisterPasswordViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
     var viewModel = RegisterPasswordOtpViewModel()
-    let hud = JGProgressHUD()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,12 +43,12 @@ class RegisterPasswordViewController: UIViewController {
         self.configureTableView()
 
         self.viewModel.didGetOtpFinish = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.registerPasswordOtp(RegisterPasswordOtpViewModel(authenRequest: self.viewModel.authenRequest))), animated: true)
         }
 
         self.viewModel.didError = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
         }
     }
 
@@ -57,7 +56,6 @@ class RegisterPasswordViewController: UIViewController {
         super.viewWillAppear(animated)
         self.setupNavBar()
         Defaults[.screenId] = ""
-        self.hud.textLabel.text = "Sending"
     }
 
     func setupNavBar() {
@@ -93,7 +91,7 @@ extension RegisterPasswordViewController: UITableViewDelegate, UITableViewDataSo
 
 extension RegisterPasswordViewController: RegisterPasswordTableViewCellDelegate {
     func didConfirm(_ cell: RegisterPasswordTableViewCell, email: String) {
-        self.hud.show(in: self.view)
+        CCLoading.shared.show(text: "Sending")
         self.viewModel.authenRequest.objective = .changePassword
         self.viewModel.authenRequest.email = email
         self.viewModel.requestOtpWithEmail()

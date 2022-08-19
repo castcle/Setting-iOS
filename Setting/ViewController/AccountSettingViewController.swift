@@ -27,9 +27,9 @@
 
 import UIKit
 import Core
+import Component
 import Networking
 import Defaults
-import JGProgressHUD
 import FBSDKLoginKit
 import Swifter
 import SafariServices
@@ -46,7 +46,6 @@ class AccountSettingViewController: UIViewController {
     }
 
     var viewModel = AccountSettingViewModel()
-    let hud = JGProgressHUD()
     var swifter: Swifter!
     var accToken: Credential.OAuthAccessToken?
 
@@ -54,20 +53,19 @@ class AccountSettingViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Asset.darkGraphiteBlue
         self.configureTableView()
-        self.hud.textLabel.text = "Loading"
-        self.hud.show(in: Utility.currentViewController().view)
+        CCLoading.shared.show(text: "Loading")
         self.viewModel.getMe()
         self.viewModel.didGetMeFinish = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
             self.tableView.reloadData()
         }
 
         self.viewModel.didError = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
         }
 
         self.viewModel.didConnectSocialFinish = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
             self.tableView.reloadData()
         }
     }
@@ -230,8 +228,7 @@ extension AccountSettingViewController {
 
     private func connectSocial(authenRequest: AuthenRequest) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.hud.textLabel.text = "Connecting"
-            self.hud.show(in: Utility.currentViewController().view)
+            CCLoading.shared.show(text: "Connecting")
             self.viewModel.authenRequest = authenRequest
             self.viewModel.connectSocial()
         }
@@ -270,8 +267,7 @@ extension AccountSettingViewController: SFSafariViewControllerDelegate, ASWebAut
 
             self.dismiss(animated: true)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.hud.textLabel.text = "Connecting"
-                self.hud.show(in: Utility.currentViewController().view)
+                CCLoading.shared.show(text: "Connecting")
                 self.viewModel.authenRequest = authenRequest
                 self.viewModel.connectSocial()
             }

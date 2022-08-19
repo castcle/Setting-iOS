@@ -27,7 +27,7 @@
 
 import UIKit
 import Core
-import JGProgressHUD
+import Component
 
 class RegisterEmailTableViewCell: UITableViewCell, UITextFieldDelegate {
 
@@ -39,7 +39,6 @@ class RegisterEmailTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet var confirmButton: UIButton!
 
     var viewModel = RegisterEmailViewModel()
-    let hud = JGProgressHUD()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -56,11 +55,11 @@ class RegisterEmailTableViewCell: UITableViewCell, UITextFieldDelegate {
         self.emailTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         self.confirmButton.activeButton(isActive: false)
         self.viewModel.didUpdateEmailFinish = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.registerEmailSuccess), animated: true)
         }
         self.viewModel.didError = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
         }
     }
 
@@ -82,8 +81,7 @@ class RegisterEmailTableViewCell: UITableViewCell, UITextFieldDelegate {
         let email = self.emailTextField.text ?? ""
         if !email.isEmpty {
             self.endEditing(true)
-            self.hud.textLabel.text = "Sending"
-            self.hud.show(in: Utility.currentViewController().view)
+            CCLoading.shared.show(text: "Sending")
             self.viewModel.userRequest.email = email
             self.viewModel.updateEmail()
         }

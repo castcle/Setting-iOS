@@ -29,14 +29,12 @@ import UIKit
 import Core
 import Component
 import Defaults
-import JGProgressHUD
 
 class VerifyMobileViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
     var viewModel = VerifyMobileOtpViewModel()
-    let hud = JGProgressHUD()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,12 +43,12 @@ class VerifyMobileViewController: UIViewController {
         self.configureTableView()
 
         self.viewModel.didGetOtpFinish = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.verifyMobileOtp(VerifyMobileOtpViewModel(authenRequest: self.viewModel.authenRequest))), animated: true)
         }
 
         self.viewModel.didError = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
         }
     }
 
@@ -58,7 +56,6 @@ class VerifyMobileViewController: UIViewController {
         super.viewWillAppear(animated)
         self.setupNavBar()
         Defaults[.screenId] = ""
-        self.hud.textLabel.text = "Sending"
     }
 
     func setupNavBar() {
@@ -100,7 +97,7 @@ extension VerifyMobileViewController: VerifyMobileTableViewCellDelegate {
     }
 
     func didConfirm(_ cell: VerifyMobileTableViewCell, mobileNumber: String) {
-        self.hud.show(in: self.view)
+        CCLoading.shared.show(text: "Sending")
         self.viewModel.authenRequest.mobileNumber = mobileNumber
         self.viewModel.authenRequest.objective = .verifyMobile
         self.viewModel.authenRequest.countryCode = self.viewModel.countryCode.dialCode

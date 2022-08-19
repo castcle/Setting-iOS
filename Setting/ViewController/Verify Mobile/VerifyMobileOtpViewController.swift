@@ -27,15 +27,14 @@
 
 import UIKit
 import Core
+import Component
 import Defaults
-import JGProgressHUD
 
 class VerifyMobileOtpViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
     var viewModel = VerifyMobileOtpViewModel()
-    let hud = JGProgressHUD()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,16 +43,16 @@ class VerifyMobileOtpViewController: UIViewController {
         self.configureTableView()
 
         self.viewModel.didGetOtpFinish = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
         }
 
         self.viewModel.didVerifyOtpFinish = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
             Utility.currentViewController().navigationController?.pushViewController(SettingOpener.open(.verifyMobileSuccess), animated: true)
         }
 
         self.viewModel.didError = {
-            self.hud.dismiss()
+            CCLoading.shared.dismiss()
         }
     }
 
@@ -96,14 +95,12 @@ extension VerifyMobileOtpViewController: UITableViewDelegate, UITableViewDataSou
 
 extension VerifyMobileOtpViewController: VerifyMobileOtpTableViewCellDelegate {
     func didRequestOtp(_ cell: VerifyMobileOtpTableViewCell) {
-        self.hud.textLabel.text = "Sending"
-        self.hud.show(in: self.view)
+        CCLoading.shared.show(text: "Sending")
         self.viewModel.requestOtp()
     }
 
     func didConfirm(_ cell: VerifyMobileOtpTableViewCell, pin: String) {
-        self.hud.textLabel.text = "Verifying"
-        self.hud.show(in: self.view)
+        CCLoading.shared.show(text: "Verifying")
         self.viewModel.authenRequest.otp = pin
         self.viewModel.verifyOtp()
     }
