@@ -144,7 +144,6 @@ public final class SettingViewModel {
         self.state = .getMyPage
         self.pageRepository.getMyPage { (success, response, isRefreshToken) in
             if success {
-                self.state = .none
                 do {
                     let rawJson = try response.mapJSON()
                     let json = JSON(rawJson)
