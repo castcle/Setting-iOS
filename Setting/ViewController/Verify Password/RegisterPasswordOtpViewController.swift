@@ -49,7 +49,7 @@ class RegisterPasswordOtpViewController: UIViewController {
 
         self.viewModel.didVerifyOtpFinish = {
             CCLoading.shared.dismiss()
-            self.viewModel.authenRequest.objective = .forgotPassword
+            self.viewModel.authenRequest.objective = .changePassword
             Utility.currentViewController().navigationController?.pushViewController(AuthenOpener.open(.changePassword(ChangePasswordViewModel(.createPassword, authenRequest: self.viewModel.authenRequest))), animated: true)
         }
 
